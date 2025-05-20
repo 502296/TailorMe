@@ -1,0 +1,85 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f9f9f9;
+}
+nav {
+  background-color: #111;
+  padding: 10px;
+}
+.nav {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.nav li a {
+  color: gold;
+  text-decoration: none;
+  font-weight: bold;
+}
+header {
+  background: black;
+  color: gold;
+  text-align: center;
+  padding: 20px;
+}
+.tagline {
+  font-size: 0.9em;
+  color: #eee;
+}
+.about {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+.about img {
+  width: 160px;
+}
+.booking {
+  padding: 20px;
+}
+form input, form select {
+  width: 300px;
+  margin: 10px 0;
+  padding: 10px;
+}
+button {
+  background-color: gold;
+  padding: 10px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 12px;
+  border: 1px solid #ccc;
+}
+th {
+  background-color: #eee;
+}
+
+.cancel-btn {
+  background-color: #666;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cancel-btn:hover {
+  background-color: #444;
+}
+
+.cancel-note {
+  font-size: 0.85em;
+  color: #555;
+  margin-top: 5px;
+}
