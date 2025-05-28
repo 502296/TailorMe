@@ -145,13 +145,21 @@
 </section>
 
 <section id="booking" class="booking">
+
   <h2>Book Your Appointment</h2>
-  <form>
-    <input type="text" placeholder="Your Name" required />
-    <input type="email" placeholder="Your Email" required />
-    <textarea placeholder="Your Address and Service Details" required></textarea>
+
+  <form action="https://formspree.io/f/mdkqggzn" method="POST">
+
+    <input type="text" name="name" placeholder="Your Name" required />
+
+    <input type="email" name="email" placeholder="Your Email" required />
+
+    <textarea name="message" placeholder="Your Address and Service Details" required></textarea>
+
     <button type="submit">Book Now</button>
+
   </form>
+
 </section>
 
 <section id="contact">
