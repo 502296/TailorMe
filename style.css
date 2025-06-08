@@ -17,20 +17,15 @@ nav {
   color: gold;
   text-decoration: none;
   font-weight: bold;
-}
 .video-responsive {
 
     position: relative;
 
-    padding-top: 25px;
+    width: 100vw;
 
-    height: auto;
+    height: 100vh;
 
     overflow: hidden;
-
-    display: flex;
-
-    justify-content: center;
 
 }
 
@@ -38,22 +33,19 @@ nav {
 
 .video-responsive iframe {
 
-    width: 100%;
+    position: absolute;
 
-    max-width: 360px; /* لضبط عرض الفيديو العمودي */
+    top: 0;
 
-    aspect-ratio: 9 / 16;
+    left: 0;
 
-    height: auto;
+    width: 100vw;
 
-    border-radius: 10px;
+    height: 100vh;
 
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-
-}
+    border: none;
 
 }
-header {
   background: black;
   color: gold;
   text-align: center;
