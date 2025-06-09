@@ -13,6 +13,51 @@
       background-size: cover;
       color: #f4f4f4;
     }
+    .booking-form {
+
+  max-width: 600px;
+
+  margin: 0 auto;
+
+  padding: 25px;
+
+  background-color: rgba(0, 0, 0, 0.7);
+
+  border-radius: 10px;
+
+}
+
+.booking-form label {
+
+  display: block;
+
+  margin-top: 15px;
+
+  margin-bottom: 5px;
+
+  font-weight: bold;
+
+  color: #fff;
+
+}
+
+.booking-form input,
+
+.booking-form textarea {
+
+  width: 100%;
+
+  padding: 10px;
+
+  border-radius: 5px;
+
+  margin-bottom: 10px;
+
+  border: none;
+
+  font-family: 'Georgia', serif;
+
+}
     header {
       background-color: rgba(0, 0, 0, 0.85);
       padding: 20px;
@@ -145,7 +190,7 @@
 
 
 
-  <form action="mailto:contact@tailorme.me" method="POST" enctype="text/plain">
+  <form class="booking-form" action="mailto:contact@tailorme.me" method="POST" enctype="text/plain">
 
     <label for="name">Full Name</label>
 
@@ -157,47 +202,31 @@
 
     <input type="tel" id="phone" name="Phone Number" required>
 
-
-
-    <label for="email">Email Address</label>
+   <label for="email">Email Address</label>
 
     <input type="email" id="email" name="Email">
-
-
 
     <label for="address">Address + Service Requested</label>
 
     <textarea id="address" name="Service Details" rows="4" required></textarea>
 
-
-
     <label for="date">Booking Date</label>
 
     <input type="date" id="date" name="Booking Date" required>
-
-
 
     <label for="time">Booking Time</label>
 
     <input type="time" id="time" name="Booking Time" required>
 
 
-
-    <button type="submit">Book Now</button>
+  <button type="submit">Book Now</button>
 
   </form>
-
-
-
-  <br />
-
-
-
-  <!-- زر Google Form -->
 
   <a href="https://forms.gle/YOUR_FORM_LINK" target="_blank" class="gform-btn">Book via Google Form</a>
 
 </section>
+ 
   <h2>About Us</h2>
   <p>With over 25 years of experience in professional tailoring and garment design, TailorMe brings precision and comfort directly to your home. We measure, alter, press, and return – with care and class.</p>
 </section>
@@ -210,29 +239,6 @@
     <li>Leather Repairs</li>
     <li>Urgent Same-Day Tailoring</li>
   </ul>
-</section>
-<form action="https://formspree.io/f/xyzwrplp" method="POST">
-
-  <input type="hidden" name="_redirect" value="https://tailorme.me/thankyou.html" />
-
-
-
-  <input type="text" name="name" placeholder="Your Name" required />
-
-  <input type="email" name="email" placeholder="Your Email" required />
-
-  <textarea name="message" placeholder="Your Address and Service Details" required></textarea>
-
-
-
-  <button type="submit">Book Now</button>
-
-</form>
-
-
-
-
-
 </section>
 
 <section id="contact">
