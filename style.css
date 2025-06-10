@@ -135,6 +135,81 @@ th {
     opacity: 1;
 
     transform: translateY(0);
+    /* ---------- Pricing Section Styles ---------- */
+
+.pricing-details {
+
+  background: #f9f9f9;
+
+  border: 1px solid #ddd;
+
+  border-radius: 8px;
+
+  padding: 10px;
+
+  margin: 40px 0;
+
+}
+
+.pricing-details summary {
+
+  cursor: pointer;
+
+  font-size: 1.4rem;
+
+  font-weight: bold;
+
+  outline: none;
+
+}
+
+.pricing-details[open] {
+
+  background: #fff;
+
+}
+
+.pricing-content {
+
+  margin-top: 20px;
+
+}
+
+.pricing-content h3 {
+
+  margin-top: 30px;
+
+  font-size: 1.3rem;
+
+}
+
+.pricing-content table {
+
+  width: 100%;
+
+  border-collapse: collapse;
+
+  margin-bottom: 20px;
+
+}
+
+.pricing-content th,
+
+.pricing-content td {
+
+  padding: 8px;
+
+  border: 1px solid #ccc;
+
+  text-align: left;
+
+}
+
+
+
+
+
+
 
   }
 
