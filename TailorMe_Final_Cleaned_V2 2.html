@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TailorMe - Cleaned Edition</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: url('leather_background_dark.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #f4f4f4;
+    }
+    header {
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5em;
+      color: gold;
+      margin: 0;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.75);
+      margin: 15px;
+      border-radius: 10px;
+    }
+    h2 {
+      color: gold;
+      text-align: center;
+    }
+    .form-btn {
+      background-color: gold;
+      color: black;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 15px;
+    }
+    .form-btn:hover {
+      background-color: #d4af37;
+    }
+    .booking-form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 25px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+    }
+    .booking-form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #fff;
+    }
+    .booking-form input,
+    .booking-form textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 10px;
+    }
+    .qr-section {
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>TailorMe</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#booking">Book</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="booking">
+  <a href="https://fill.boloforms.com/signature/1Gczg0U6_vPdP6hlS_AaFBw9Je5RTCfoA5HttE7-cdz8?p=view#googtrans(en)"
+     target="_blank" class="form-btn">🖊️ Confirm Delivery & Sign</a>
+
+  <h2>Book Your Appointment</h2>
+  <form class="booking-form" action="mailto:contact@tailorme.me" method="POST" enctype="text/plain">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="Full Name" required>
+
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" name="Phone Number" required>
+
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="Email">
+
+    <label for="address">Address + Service Requested</label>
+    <textarea id="address" name="Service Details" rows="4" required></textarea>
+
+    <label for="date">Booking Date</label>
+    <input type="date" id="date" name="Booking Date" required>
+
+    <label for="time">Booking Time</label>
+    <input type="time" id="time" name="Booking Time" required>
+
+    <button type="submit">Book Now</button>
+  </form>
+</section>
+
+<section id="delivery">
+  <h2>Delivery Confirmation</h2>
+  <div class="qr-section">
+    <a href="https://fill.boloforms.com/signature/1Gczg0U6_vPdP6hlS_AaFBw9Je5RTCfoA5HttE7-cdz8?p=view#googtrans(en)"
+       target="_blank" class="form-btn">✅ Confirm Delivery – Sign Now</a>
+    <p style="margin-top: 15px; font-size: 18px; color: gold;">Or scan to confirm</p>
+    <img src="images/7343F1DE-72A7-4F19-8B12-D3DB61A79EE0.png" 
+         alt="QR to Confirm" 
+         style="max-width: 200px; border-radius: 10px; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); margin-top: 10px;">
+  </div>
+</section>
+
+<section id="about">
+  <h2>About Us</h2>
+  <p>With over 25 years of experience in professional tailoring and garment design, TailorMe brings precision and comfort directly to your home. We measure, alter, press, and return – with care and class.</p>
+</section>
+
+<section id="services">
+  <h2>Our Services</h2>
+  <ul>
+    <li>Men's Suit Alterations</li>
+    <li>Women's Dress Adjustments</li>
+    <li>Leather Repairs</li>
+    <li>Urgent Same-Day Tailoring</li>
+  </ul>
+</section>
+
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>Email: contact@tailorme.me</p>
+  <p>Phone: (502) 296-8168</p>
+</section>
+
+</body>
+</html>
