@@ -1,3 +1,5 @@
+/* Reset & Base */
+
 * {
 
   margin: 0;
@@ -8,15 +10,13 @@
 
 }
 
-
-
 body {
 
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Georgia', serif;
 
-  background-color: #0c1a3c;
+  background: linear-gradient(to right, #001F3F, #002b5c);
 
-  color: silver;
+  color: #f0f0f0;
 
   line-height: 1.6;
 
@@ -24,95 +24,59 @@ body {
 
 
 
-nav {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  background-color: #0a1433;
-
-  padding: 15px 30px;
-
-  flex-wrap: wrap;
-
-}
-
-
-
-.logo {
-
-  font-size: 1.6rem;
-
-  color: gold;
-
-  font-weight: bold;
-
-}
-
-
-
-.nav-links {
-
-  list-style: none;
-
-  display: flex;
-
-  gap: 20px;
-
-  flex-wrap: wrap;
-
-}
-
-
-
-.nav-links li a {
-
-  color: silver;
-
-  text-decoration: none;
-
-  font-weight: bold;
-
-}
-
-
-
-.book-btn {
-
-  background-color: gold;
-
-  color: #0a1433;
-
-  padding: 8px 15px;
-
-  border-radius: 5px;
-
-  text-decoration: none;
-
-  font-weight: bold;
-
-}
-
-
+/* Header */
 
 header {
 
+  background-color: rgba(0, 31, 63, 0.95); /* Royal blue */
+
+  padding: 20px;
+
   text-align: center;
 
-  padding: 100px 20px;
-
-  background: linear-gradient(to bottom, #0c1a3c, #142e5d);
+  border-bottom: 2px solid silver;
 
 }
 
-
-
 header h1 {
 
-  font-size: 2.8rem;
+  font-size: 2.8em;
+
+  color: silver;
+
+  letter-spacing: 2px;
+
+}
+
+header .logo {
+
+  font-size: 1.2em;
+
+  margin-right: 10px;
+
+}
+
+nav {
+
+  margin-top: 15px;
+
+}
+
+nav a {
+
+  color: #ccc;
+
+  text-decoration: none;
+
+  margin: 0 15px;
+
+  font-weight: bold;
+
+  font-size: 1.1em;
+
+}
+
+nav a:hover {
 
   color: gold;
 
@@ -120,121 +84,251 @@ header h1 {
 
 
 
-header p {
+/* Buttons */
 
-  font-size: 1.1rem;
-
-  margin: 20px auto;
-
-  max-width: 600px;
-
-}
-
-
-
-.btn-main {
-
-  display: inline-block;
-
-  background-color: gold;
-
-  color: #0a1433;
-
-  padding: 12px 25px;
-
-  text-decoration: none;
-
-  border-radius: 5px;
-
-  font-weight: bold;
+.buttons {
 
   margin-top: 20px;
 
 }
 
+.primary, .secondary {
 
+  background-color: gold;
+
+  color: black;
+
+  padding: 12px 25px;
+
+  font-weight: bold;
+
+  border: none;
+
+  border-radius: 6px;
+
+  margin: 10px;
+
+  cursor: pointer;
+
+}
+
+.secondary {
+
+  background-color: silver;
+
+  color: #001f3f;
+
+}
+
+.primary:hover {
+
+  background-color: #e5c100;
+
+}
+
+.secondary:hover {
+
+  background-color: #c0c0c0;
+
+}
+
+
+
+/* Hero Section */
+
+.hero {
+
+  padding: 60px 20px;
+
+  text-align: center;
+
+}
+
+.hero h2 {
+
+  font-size: 2.5em;
+
+  color: #fff;
+
+}
+
+.hero p {
+
+  font-size: 1.2em;
+
+  margin: 20px 0;
+
+}
+
+.hero .appointment {
+
+  background: gold;
+
+  color: black;
+
+  padding: 12px 25px;
+
+  border: none;
+
+  font-weight: bold;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+}
+
+
+
+/* Sections */
 
 section {
 
-  padding: 60px 30px;
+  padding: 40px 20px;
 
-  text-align: center;
+  max-width: 1000px;
 
-}
-
-
-
-section h2 {
-
-  color: gold;
-
-  margin-bottom: 15px;
-
-  font-size: 2rem;
+  margin: auto;
 
 }
 
-
-
-section ul {
-
-  list-style: none;
-
-  padding: 0;
-
-}
-
-
-
-section ul li {
-
-  margin: 10px 0;
-
-  font-size: 1.1rem;
-
-}
-
-
-
-footer {
-
-  background-color: #0a1433;
+h3 {
 
   color: silver;
 
+  font-size: 2em;
+
+  margin-bottom: 20px;
+
   text-align: center;
-
-  padding: 15px;
-
-  font-size: 0.9rem;
 
 }
 
 
 
+/* List */
+
+ul {
+
+  list-style-type: square;
+
+  padding-left: 30px;
+
+}
+
+ul li {
+
+  margin-bottom: 10px;
+
+}
+
+
+
+/* Pricing Table */
+
+table {
+
+  width: 100%;
+
+  border-collapse: collapse;
+
+  margin-top: 20px;
+
+}
+
+th, td {
+
+  padding: 15px;
+
+  text-align: left;
+
+  border: 1px solid #ccc;
+
+}
+
+th {
+
+  background-color: #003366;
+
+  color: gold;
+
+}
+
+td {
+
+  background-color: #002b5c;
+
+}
+
+
+
+/* AI & Delivery */
+
+iframe {
+
+  width: 100%;
+
+  border: none;
+
+  border-radius: 10px;
+
+  box-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
+
+}
+
+
+
+/* Footer */
+
+footer {
+
+  background-color: #001f3f;
+
+  color: #aaa;
+
+  padding: 20px;
+
+  text-align: center;
+
+  font-size: 0.9em;
+
+}
+
+footer a {
+
+  color: gold;
+
+  text-decoration: none;
+
+}
+
+footer a:hover {
+
+  text-decoration: underline;
+
+}
+
+
+
+/* Responsive */
+
 @media (max-width: 768px) {
 
-  .nav-links {
+  nav a {
+
+    display: block;
+
+    margin: 10px 0;
+
+  }
+
+  .buttons {
 
     flex-direction: column;
 
+    display: flex;
+
     align-items: center;
-
-  }
-
-
-
-  header h1 {
-
-    font-size: 2.2rem;
-
-  }
-
-
-
-  .btn-main {
-
-    padding: 10px 20px;
 
   }
 
