@@ -1,215 +1,240 @@
-body {
-  font-family: Arial, sans-serif;
+* {
+
   margin: 0;
-  background-color: #f9f9f9;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
 }
+
+
+
+body {
+
+  font-family: 'Segoe UI', sans-serif;
+
+  background-color: #0c1a3c;
+
+  color: silver;
+
+  line-height: 1.6;
+
+}
+
+
+
 nav {
-  background-color: #111;
-  padding: 10px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  background-color: #0a1433;
+
+  padding: 15px 30px;
+
+  flex-wrap: wrap;
+
 }
-.nav {
+
+
+
+.logo {
+
+  font-size: 1.6rem;
+
+  color: gold;
+
+  font-weight: bold;
+
+}
+
+
+
+.nav-links {
+
   list-style: none;
+
   display: flex;
+
   gap: 20px;
-  justify-content: center;
+
+  flex-wrap: wrap;
+
 }
-.nav li a {
-  color: gold;
+
+
+
+.nav-links li a {
+
+  color: silver;
+
   text-decoration: none;
+
   font-weight: bold;
-.video-responsive {
-
-    position: relative;
-
-    width: 100vw;
-
-    height: 100vh;
-
-    overflow: hidden;
 
 }
 
 
 
-.video-responsive iframe {
+.book-btn {
 
-    position: absolute;
-
-    top: 0;
-
-    left: 0;
-
-    width: 100vw;
-
-    height: 100vh;
-
-    border: none;
-
-}
-  background: black;
-  color: gold;
-  text-align: center;
-  padding: 20px;
-}
-.tagline {
-  font-size: 0.9em;
-  color: #eee;
-}
-.about {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-}
-.about img {
-  width: 160px;
-}
-.booking {
-  padding: 20px;
-}
-form input, form select {
-  width: 300px;
-  margin: 10px 0;
-  padding: 10px;
-}
-button {
   background-color: gold;
-  padding: 10px;
-  border: none;
+
+  color: #0a1433;
+
+  padding: 8px 15px;
+
+  border-radius: 5px;
+
+  text-decoration: none;
+
   font-weight: bold;
-  cursor: pointer;
+
 }
-table {
-  width: 80%;
+
+
+
+header {
+
+  text-align: center;
+
+  padding: 100px 20px;
+
+  background: linear-gradient(to bottom, #0c1a3c, #142e5d);
+
+}
+
+
+
+header h1 {
+
+  font-size: 2.8rem;
+
+  color: gold;
+
+}
+
+
+
+header p {
+
+  font-size: 1.1rem;
+
   margin: 20px auto;
-  border-collapse: collapse;
-}
-th, td {
-  padding: 12px;
-  border: 1px solid #ccc;
-}
-th {
-  background-color: #eee;
-}
 
-.cancel-btn {
-  background-color: #666;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin-top: 10px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.cancel-btn:hover {
-  background-color: #444;
-}
-
-.cancel-note {
-  font-size: 0.85em;
-  color: #555;
-  margin-top: 5px;
-}
-/* Fade-in animation for video */
-
-.video-responsive {
-
-  animation: fadeIn 1.5s ease-in;
+  max-width: 600px;
 
 }
 
 
 
-@keyframes fadeIn {
+.btn-main {
 
-  from {
+  display: inline-block;
 
-    opacity: 0;
+  background-color: gold;
 
-    transform: translateY(30px);
+  color: #0a1433;
 
-  }
+  padding: 12px 25px;
 
-  to {
+  text-decoration: none;
 
-    opacity: 1;
-
-    transform: translateY(0);
-    /* ---------- Pricing Section Styles ---------- */
-
-.pricing-details {
-
-  background: #f9f9f9;
-
-  border: 1px solid #ddd;
-
-  border-radius: 8px;
-
-  padding: 10px;
-
-  margin: 40px 0;
-
-}
-
-.pricing-details summary {
-
-  cursor: pointer;
-
-  font-size: 1.4rem;
+  border-radius: 5px;
 
   font-weight: bold;
-
-  outline: none;
-
-}
-
-.pricing-details[open] {
-
-  background: #fff;
-
-}
-
-.pricing-content {
 
   margin-top: 20px;
 
 }
 
-.pricing-content h3 {
 
-  margin-top: 30px;
 
-  font-size: 1.3rem;
+section {
 
-}
+  padding: 60px 30px;
 
-.pricing-content table {
-
-  width: 100%;
-
-  border-collapse: collapse;
-
-  margin-bottom: 20px;
-
-}
-
-.pricing-content th,
-
-.pricing-content td {
-
-  padding: 8px;
-
-  border: 1px solid #ccc;
-
-  text-align: left;
+  text-align: center;
 
 }
 
 
 
+section h2 {
+
+  color: gold;
+
+  margin-bottom: 15px;
+
+  font-size: 2rem;
+
+}
 
 
 
+section ul {
+
+  list-style: none;
+
+  padding: 0;
+
+}
+
+
+
+section ul li {
+
+  margin: 10px 0;
+
+  font-size: 1.1rem;
+
+}
+
+
+
+footer {
+
+  background-color: #0a1433;
+
+  color: silver;
+
+  text-align: center;
+
+  padding: 15px;
+
+  font-size: 0.9rem;
+
+}
+
+
+
+@media (max-width: 768px) {
+
+  .nav-links {
+
+    flex-direction: column;
+
+    align-items: center;
+
+  }
+
+
+
+  header h1 {
+
+    font-size: 2.2rem;
+
+  }
+
+
+
+  .btn-main {
+
+    padding: 10px 20px;
 
   }
 
