@@ -4,37 +4,205 @@
 
 <head>
 
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>TailorMe – Royal Mobile Tailoring</title>
+  <title>TailorMe</title>
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+
+    body {
+
+      margin: 0;
+
+      font-family: 'Georgia', serif;
+
+      background-color: #0a0f2c;
+
+      color: white;
+
+    }
+
+    nav {
+
+      background-color: #0a0f2c;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      padding: 10px 30px;
+
+    }
+
+    .logo-section {
+
+      display: flex;
+
+      align-items: center;
+
+    }
+
+    .logo-section img {
+
+      height: 40px;
+
+      margin-right: 10px;
+
+    }
+
+    .language {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 6px;
+
+    }
+
+    .language img {
+
+      width: 24px;
+
+      height: auto;
+
+    }
+
+    .hero {
+
+      text-align: center;
+
+      padding: 60px 20px 40px;
+
+    }
+
+    .hero h1 {
+
+      font-size: 32px;
+
+      margin-bottom: 10px;
+
+    }
+
+    .hero p {
+
+      color: #ccc;
+
+      font-size: 16px;
+
+      margin-bottom: 30px;
+
+    }
+
+    .btn-gold {
+
+      background: linear-gradient(to right, #e6c87a, #d4af37);
+
+      color: #000;
+
+      font-weight: bold;
+
+      border: none;
+
+      padding: 14px 26px;
+
+      font-size: 16px;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      margin-bottom: 20px;
+
+    }
+
+    .button-container {
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 15px;
+
+    }
+
+    .secondary-button {
+
+      background-color: transparent;
+
+      color: white;
+
+      border: 1px solid #ccc;
+
+      padding: 10px 20px;
+
+      border-radius: 8px;
+
+      font-size: 15px;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+    }
+
+    section {
+
+      padding: 40px 20px 20px;
+
+      max-width: 600px;
+
+      margin: 0 auto;
+
+    }
+
+    footer {
+
+      background-color: #0a0f2c;
+
+      padding: 20px;
+
+      text-align: center;
+
+      font-size: 14px;
+
+      color: #aaa;
+
+    }
+
+  </style>
 
 </head>
 
-<body style="background-color:#0c1a2b; color:white; font-family:serif;">
+<body>
 
 
 
   <!-- Navbar -->
 
-  <nav style="display: flex; justify-content: space-between; align-items: center; padding: 20px;">
+  <nav>
 
-    <div style="display: flex; align-items: center;">
+    <div class="logo-section">
 
-      <img src="images/tailorme-logo.png" alt="TailorMe Logo" style="height: 40px; margin-right: 10px;">
+      <img src="images/thread-crown.png" alt="TailorMe Logo">
 
-      <h1 style="color: silver; font-size: 24px;">TailorMe</h1>
+      <span style="color: #c0c0c0; font-size: 24px; font-weight: bold;">TailorMe</span>
 
     </div>
 
-    <div style="display: flex; align-items: center;">
+    <div class="language">
 
-      <img src="images/us-flag-icon.png" alt="US Flag" style="height: 16px; margin-right: 6px;">
+      <img src="images/Flag_of_the_United_States.svg" alt="US Flag">
 
-      <span style="color:white; font-size: 14px;">English</span>
+      <span>English</span>
 
     </div>
 
@@ -44,43 +212,55 @@
 
   <!-- Hero Section -->
 
-  <section style="text-align: center; margin-top: 40px;">
+  <div class="hero">
 
-    <h2 style="font-size: 36px; color: white;">Royal Mobile Tailoring</h2>
+    <h1>Royal Mobile Tailoring</h1>
 
-    <p style="color: #ccc; font-size: 18px;">Luxury bespoke tailoring & alterations delivered to your door.</p>
-
-
-
-    <div style="margin-top: 30px;">
-
-      <a href="appointment.html" style="display: inline-block; background: linear-gradient(to right, #f6d365, #fda085); padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; color: #000; margin: 10px;">Book an Appointment</a>
+    <p>Luxury bespoke tailoring & alterations delivered to your door.</p>
 
 
 
-      <a href="pricing.html" style="display: block; border: 2px solid #ccc; padding: 10px 20px; border-radius: 8px; margin: 10px auto; width: 200px; background-color: #1f2d3a; color: white; text-decoration: none;">
+    <div class="button-container">
 
-        🧳 View Price List
+      <a href="appointment.html"><button class="btn-gold">Book an Appointment</button></a>
+
+
+
+      <a href="tailorme_pricing_page_en_with_home_button_v2.html">
+
+        <button class="secondary-button">
+
+          <img src="images/briefcase-icon.png" alt="Price List Icon" width="20">
+
+          View Price List
+
+        </button>
 
       </a>
 
 
 
-      <a href="https://tailorme.me/ai-chat" target="_blank" style="display: block; border: 2px solid #ccc; padding: 10px 20px; border-radius: 8px; margin: 10px auto; width: 200px; background-color: #1f2d3a; color: white; text-decoration: none;">
+      <a href="ai.html">
 
-        💬 Asking TailorMe
+        <button class="secondary-button">
+
+          <img src="images/chat-icon.png" alt="AI Icon" width="20">
+
+          Asking TailorMe
+
+        </button>
 
       </a>
 
     </div>
 
-  </section>
+  </div>
 
 
 
-  <!-- About Us Section -->
+  <!-- About Us -->
 
-  <section style="padding: 40px 20px; max-width: 600px; margin: 0 auto;">
+  <section>
 
     <h2>About Us</h2>
 
@@ -88,9 +268,9 @@
 
       With over 25 years of experience in professional tailoring and garment design,
 
-      TailorMe brings high-quality custom and alteration services directly to your doorstep
+      TailorMe brings high-quality custom and alteration services directly to your
 
-      with elegance and precision.
+      doorstep with elegance and precision.
 
     </p>
 
@@ -98,15 +278,15 @@
 
 
 
-  <!-- Contact Section -->
+  <!-- Contact -->
 
-  <section style="padding: 20px; max-width: 600px; margin: 0 auto;">
+  <section>
 
     <h2>Contact</h2>
 
-    <p>Email: <a href="mailto:contact@tailorme.me" style="color:#f6d365;">contact@tailorme.me</a></p>
+    <p>Email: contact@tailorme.me</p>
 
-    <p>Phone: <a href="tel:5022968168" style="color:#f6d365;">(502) 296-8168</a></p>
+    <p>Phone: (502) 296-8168</p>
 
   </section>
 
@@ -114,9 +294,9 @@
 
   <!-- Footer -->
 
-  <footer style="text-align: center; padding: 20px; font-size: 14px; color: #888;">
+  <footer>
 
-    &copy; 2025 TailorMe – All rights reserved.
+    © 2025 TailorMe. All rights reserved.
 
   </footer>
 
