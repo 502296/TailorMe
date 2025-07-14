@@ -1,22 +1,12 @@
-/* Reset & Base */
-
-* {
+body {
 
   margin: 0;
 
-  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-  box-sizing: border-box;
+  background: linear-gradient(to bottom, #0f2c52, #001a33);
 
-}
-
-body {
-
-  font-family: 'Georgia', serif;
-
-  background: linear-gradient(to right, #001F3F, #002b5c);
-
-  color: #f0f0f0;
+  color: #ddd;
 
   line-height: 1.6;
 
@@ -24,119 +14,137 @@ body {
 
 
 
-/* Header */
-
-header {
-
-  background-color: rgba(0, 31, 63, 0.95); /* Royal blue */
-
-  padding: 20px;
-
-  text-align: center;
-
-  border-bottom: 2px solid silver;
-
-}
-
-header h1 {
-
-  font-size: 2.8em;
-
-  color: silver;
-
-  letter-spacing: 2px;
-
-}
-
-header .logo {
-
-  font-size: 1.2em;
-
-  margin-right: 10px;
-
-}
-
-nav {
-
-  margin-top: 15px;
-
-}
-
-nav a {
+a {
 
   color: #ccc;
 
   text-decoration: none;
 
-  margin: 0 15px;
+}
+
+
+
+header {
+
+  background-color: #001a33;
+
+  padding: 20px;
+
+  border-bottom: 1px solid #444;
+
+}
+
+
+
+nav {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+}
+
+
+
+.logo {
+
+  color: silver;
+
+  font-size: 1.5rem;
 
   font-weight: bold;
 
-  font-size: 1.1em;
-
-}
-
-nav a:hover {
-
-  color: gold;
-
 }
 
 
 
-/* Buttons */
+nav ul {
 
-.buttons {
+  list-style: none;
 
-  margin-top: 20px;
+  display: flex;
+
+  gap: 20px;
 
 }
 
-.primary, .secondary {
 
-  background-color: gold;
 
-  color: black;
+nav ul li a {
 
-  padding: 12px 25px;
+  color: silver;
 
   font-weight: bold;
 
-  border: none;
+}
 
-  border-radius: 6px;
+
+
+.hero {
+
+  text-align: center;
+
+  padding: 80px 20px;
+
+  color: #eee;
+
+}
+
+
+
+.hero h1 {
+
+  font-size: 2.5rem;
+
+  color: silver;
+
+}
+
+
+
+.hero .btn {
+
+  display: inline-block;
 
   margin: 10px;
 
-  cursor: pointer;
+  padding: 12px 20px;
+
+  border-radius: 5px;
+
+  text-decoration: none;
+
+  font-weight: bold;
+
+  border: 2px solid silver;
 
 }
 
-.secondary {
+
+
+.hero .btn.silver {
 
   background-color: silver;
 
-  color: #001f3f;
-
-}
-
-.primary:hover {
-
-  background-color: #e5c100;
-
-}
-
-.secondary:hover {
-
-  background-color: #c0c0c0;
+  color: #001a33;
 
 }
 
 
 
-/* Hero Section */
+.hero .btn.outline {
 
-.hero {
+  background: transparent;
+
+  color: silver;
+
+}
+
+
+
+section {
 
   padding: 60px 20px;
 
@@ -144,192 +152,42 @@ nav a:hover {
 
 }
 
-.hero h2 {
-
-  font-size: 2.5em;
-
-  color: #fff;
-
-}
-
-.hero p {
-
-  font-size: 1.2em;
-
-  margin: 20px 0;
-
-}
-
-.hero .appointment {
-
-  background: gold;
-
-  color: black;
-
-  padding: 12px 25px;
-
-  border: none;
-
-  font-weight: bold;
-
-  border-radius: 6px;
-
-  cursor: pointer;
-
-}
 
 
-
-/* Sections */
-
-section {
-
-  padding: 40px 20px;
-
-  max-width: 1000px;
-
-  margin: auto;
-
-}
-
-h3 {
+section h2 {
 
   color: silver;
 
-  font-size: 2em;
+  font-size: 1.8rem;
 
   margin-bottom: 20px;
 
-  text-align: center;
-
 }
 
 
 
-/* List */
+.pricing ul {
 
-ul {
+  list-style: none;
 
-  list-style-type: square;
+  padding: 0;
 
-  padding-left: 30px;
-
-}
-
-ul li {
-
-  margin-bottom: 10px;
+  font-size: 1.1rem;
 
 }
 
 
-
-/* Pricing Table */
-
-table {
-
-  width: 100%;
-
-  border-collapse: collapse;
-
-  margin-top: 20px;
-
-}
-
-th, td {
-
-  padding: 15px;
-
-  text-align: left;
-
-  border: 1px solid #ccc;
-
-}
-
-th {
-
-  background-color: #003366;
-
-  color: gold;
-
-}
-
-td {
-
-  background-color: #002b5c;
-
-}
-
-
-
-/* AI & Delivery */
-
-iframe {
-
-  width: 100%;
-
-  border: none;
-
-  border-radius: 10px;
-
-  box-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
-
-}
-
-
-
-/* Footer */
 
 footer {
 
-  background-color: #001f3f;
-
-  color: #aaa;
+  text-align: center;
 
   padding: 20px;
 
-  text-align: center;
+  background: #001a33;
 
-  font-size: 0.9em;
+  border-top: 1px solid #444;
 
-}
-
-footer a {
-
-  color: gold;
-
-  text-decoration: none;
-
-}
-
-footer a:hover {
-
-  text-decoration: underline;
-
-}
-
-
-
-/* Responsive */
-
-@media (max-width: 768px) {
-
-  nav a {
-
-    display: block;
-
-    margin: 10px 0;
-
-  }
-
-  .buttons {
-
-    flex-direction: column;
-
-    display: flex;
-
-    align-items: center;
-
-  }
+  color: silver;
 
 }
