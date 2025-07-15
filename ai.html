@@ -113,36 +113,33 @@
 const data = await res.json();
 
 const reply = data.reply;
+try {
 
-            "Content-Type":"application/json",
+  const res = await fetch("https://tailorme-backend.vercel.app/api/chat", {
 
-            "Authorization":"Bearer "+OPENAI_API_KEY
+    method: "POST",
 
-          },
+    headers: { "Content-Type": "application/json" },
 
-          body:JSON.stringify({
+    body: JSON.stringify({ prompt: text })
 
-            model:"gpt-3.5-turbo",
+  });
 
-            messages:[
 
-              {role:"system",content:"You are TailorMe, a luxury mobile tailoring assistant. Answer briefly, politely, and in everyday English."},
 
-              {role:"user",content:text}
+  const data = await res.json();
 
-            ],
+  const reply = data.reply;
 
-            max_tokens:200,
 
-            temperature:0.7
 
-          })
+  document.querySelectorAll(".ai")[assistantIndex].innerHTML = reply;
 
-        });
+} catch (e) {
 
-        const data=await res.json();
+  document.querySelectorAll(".ai")[assistantIndex].innerHTML = "<strong>Error:</strong> Unable to fetch response.";
 
-        const reply=data.choices[0].message.content.trim();
+}
 
         document.querySelectorAll(".ai")[assistantIndex].innerHTML = reply;
 
