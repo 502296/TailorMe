@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <title>Asking TailorMe</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+
+    /* ====== Chat UI basic ====== */
+
+    .chat-container{
+
+      max-width:600px;margin:40px auto;padding:20px;border:1px solid #2a2f3d;
+
+      background:#0c1220;border-radius:12px;color:#eee;font-family:'Georgia',serif
+
+    }
+
+    #chat-log{max-height:400px;overflow-y:auto;margin-bottom:15px}
+
+    .msg{padding:10px 14px;border-radius:8px;margin:8px 0;line-height:1.4}
+
+    .user{background:#1e2636;text-align:right}
+
+    .ai{background:#142042}
+
+    .msg strong{color:#d4af37}
+
+    #user-input{width:75%;padding:10px;border-radius:8px;border:1px solid #555;background:#101827;color:#fff}
+
+    #send-btn{padding:10px 18px;border:none;border-radius:8px;background:#d4af37;color:#000;font-weight:bold;cursor:pointer}
+
+    #send-btn:active{transform:scale(.97)}
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="chat-container">
+
+    <h2 style="text-align:center;color:#d4af37;margin-top:0">🤖 Asking TailorMe</h2>
+
+
+
+    <div id="chat-log"></div>
+
+
+
+    <div style="display:flex;gap:10px">
+
+      <input id="user-input" type="text" placeholder="Ask TailorMe..." />
+
+      <button id="send-btn" onclick="sendMessage()">Send</button>
+
+    </div>
+
+  </div>
+
+
+
+  <script>
+
+    // ==========  Configuration ==========
+
+    const OPENAI_API_KEY = "YOUR_API_KEY_HERE"; // <-- استبدلها محليًا ولا ترفعها
+
+
+
+    // ==========  Chat Logic  ==========
+
+    async function sendMessage(){
+
+      const input=document.getElementById("user-input");
+
+      const text=input.value.trim();
+
+      if(!text) return;
+
+      appendMessage("user", text);
+
+      input.value="";
+
+
+
+      appendMessage("ai","<em>TailorMe is typing...</em>");
+
+      const assistantIndex = document.querySelectorAll(".ai").length - 1;
+
+
+
+      try{
+
+        const res=await fetch("https://api.openai.com/v1/chat/completions",{
+
+          method:"POST",
+
+          headers:{
+
+            "Content-Type":"application/json",
+
+            "Authorization":"Bearer "+OPENAI_API_KEY
+
+          },
+
+          body:JSON.stringify({
+
+            model:"gpt-3.5-turbo",
+
+            messages:[
+
+              {role:"system",content:"You are TailorMe, a luxury mobile tailoring assistant. Answer briefly, politely, and in everyday English."},
+
+              {role:"user",content:text}
+
+            ],
+
+            max_tokens:200,
+
+            temperature:0.7
+
+          })
+
+        });
+
+        const data=await res.json();
+
+        const reply=data.choices[0].message.content.trim();
+
+        document.querySelectorAll(".ai")[assistantIndex].innerHTML = reply;
+
+      }catch(e){
+
+        document.querySelectorAll(".ai")[assistantIndex].innerHTML = "<strong>Error:</strong> Unable to fetch response.";
+
+      }
+
+    }
+
+
+
+    function appendMessage(role, text){
+
+      const log=document.getElementById("chat-log");
+
+      const div=document.createElement("div");
+
+      div.className=`msg ${role}`;
+
+      div.innerHTML = role==="user"
+
+        ? `<strong>You:</strong> ${text}`
+
+        : `<strong>TailorMe:</strong> ${text}`;
+
+      log.appendChild(div);
+
+      log.scrollTop = log.scrollHeight;
+
+    }
+
+
+
+    // Enter key shortcut
+
+    document.getElementById("user-input").addEventListener("keydown",e=>{
+
+      if(e.key==="Enter") sendMessage();
+
+    });
+
+  </script>
+
+</body>
+
+</html>
