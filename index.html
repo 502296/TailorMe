@@ -1,8 +1,48 @@
 <!DOCTYPE html>
 
 <html lang="en">
+  
+<script>
+
+  async function askTailorMe() {
+
+    const prompt = document.getElementById("prompt").value;
 
 
+
+    try {
+
+      const res = await fetch("https://tailorme-backend.vercel.app/api/chat", {
+
+        method: "POST",
+
+        headers: {
+
+          "Content-Type": "application/json"
+
+        },
+
+        body: JSON.stringify({ prompt })
+
+      });
+
+
+
+      const data = await res.json();
+
+      document.getElementById("response").innerText = data.reply || "No response received.";
+
+    } catch (error) {
+
+      document.getElementById("response").innerText = "⚠️ Error: Unable to fetch response.";
+
+      console.error(error);
+
+    }
+
+  }
+
+</script>
 
 <head>
 
