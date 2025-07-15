@@ -1,191 +1,189 @@
+/* ====== TailorMe Global Styles ====== */
+
 body {
 
-    margin: 0;
+  background-color: #0c1220;
 
-    font-family: 'Georgia', serif;
+  color: white;
 
-    background-color: #0c1a2b;
+  font-family: 'Georgia', serif;
 
-    color: #e0e0e0;
+  margin: 0;
 
-}
-
-
-
-.navbar {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding: 1em 2em;
-
-    background-color: #08121f;
+  padding: 0;
 
 }
 
 
 
-.logo {
+/* Logo & Title */
 
-    display: flex;
+.navbar-logo {
 
-    align-items: center;
+  height: 60px;
 
-}
-
-
-
-.logo img {
-
-    height: 40px;
-
-    margin-right: 0.5em;
+  margin-right: 15px;
 
 }
 
 
 
-.logo span {
+.navbar-title {
 
-    font-size: 1.5em;
+  font-size: 30px;
 
-    font-weight: bold;
-
-    color: silver;
+  color: silver;
 
 }
 
 
 
-.lang-flag {
+/* Language */
 
-    display: flex;
+.lang-section {
 
-    align-items: center;
+  display: flex;
 
-    gap: 0.4em;
-
-    color: white;
+  align-items: center;
 
 }
 
 
 
-.lang-flag img {
+/* Buttons General */
 
-    height: 16px;
+.main-buttons a {
 
-}
+  background: linear-gradient(to right, #d4af37, #b8860b);
 
+  color: black;
 
+  padding: 15px 30px;
 
-.hero {
+  border-radius: 10px;
 
-    text-align: center;
+  font-weight: bold;
 
-    padding: 4em 1em;
-
-}
-
-
-
-.hero h1 {
-
-    font-size: 2.5em;
-
-    color: white;
-
-    margin-bottom: 0.5em;
+  text-decoration: none;
 
 }
 
 
 
-.hero p {
+/* Icon inside buttons */
 
-    font-size: 1.2em;
+.icon-btn {
 
-    color: #ccc;
+  width: 30px;
 
-    margin-bottom: 2em;
-
-}
-
-
-
-.button-group {
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    gap: 1em;
+  margin-right: 10px;
 
 }
 
 
 
-.btn {
+/* Text links (View Price List & Asking TailorMe) */
 
-    padding: 0.8em 1.5em;
+a.text-button {
 
-    font-size: 1em;
+  border: 1px solid white;
 
-    text-decoration: none;
+  color: white;
 
-    border-radius: 8px;
+  padding: 10px 25px;
 
-    transition: background-color 0.3s;
+  border-radius: 8px;
 
-}
+  text-decoration: none;
 
+  display: inline-flex;
 
+  align-items: center;
 
-.btn.gold {
-
-    background: linear-gradient(to right, #f6d365, #d4af37);
-
-    color: #000;
-
-    font-weight: bold;
+  margin-top: 20px;
 
 }
 
 
 
-.btn.outline {
+/* About & Contact Sections */
 
-    border: 2px solid #ccc;
+.section {
 
-    color: white;
+  padding: 40px 20px;
 
-    background-color: transparent;
-
-}
-
-
-
-.about, .contact {
-
-    padding: 2em;
-
-    background-color: #0e1c30;
-
-    margin-top: 2em;
+  background-color: #101827;
 
 }
 
 
 
-.about h2, .contact h2 {
+.contact {
 
-    color: white;
+  background-color: #0c1220;
 
-    margin-bottom: 0.5em;
+  padding: 30px 20px;
+
+}
+
+
+
+/* ====== Mobile Responsive Design ====== */
+
+@media (max-width: 600px) {
+
+  .navbar-logo {
+
+    height: 70px !important;
+
+  }
+
+
+
+  .navbar-title {
+
+    font-size: 32px !important;
+
+  }
+
+
+
+  .icon-btn {
+
+    width: 40px !important;
+
+    margin-right: 10px !important;
+
+  }
+
+
+
+  .main-buttons a {
+
+    font-size: 18px;
+
+    padding: 12px 25px;
+
+  }
+
+
+
+  .lang-section {
+
+    justify-content: center;
+
+    margin-top: 10px;
+
+  }
+
+
+
+  .text-button {
+
+    font-size: 16px;
+
+    padding: 10px 20px;
+
+  }
 
 }
