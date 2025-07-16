@@ -248,6 +248,64 @@
 
     }
 
+    <script>
+
+async function askTailorMe() {
+
+  const text = document.getElementById("prompt").value;
+
+  const replyBox = document.getElementById("response");
+
+
+
+  if (!text.trim()) {
+
+    replyBox.innerHTML = "Please type a question first!";
+
+    return;
+
+  }
+
+
+
+  replyBox.innerHTML = "Thinking...";
+
+
+
+  try {
+
+    const res = await fetch("https://tailorme-backend.vercel.app/api/chat", {
+
+      method: "POST",
+
+      headers: {
+
+        "Content-Type": "application/json"
+
+      },
+
+      body: JSON.stringify({ prompt: text })
+
+    });
+
+
+
+    const data = await res.json();
+
+    replyBox.innerText = data.reply;
+
+  } catch (error) {
+
+    replyBox.innerText = "⚠️ Error contacting TailorMe AI.";
+
+    console.error(error);
+
+  }
+
+}
+
+</script>
+
   </script>
 
 </body>
