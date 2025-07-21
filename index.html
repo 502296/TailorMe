@@ -2,15 +2,13 @@
 
 <html lang="en">
 
+
+
 <head>
 
   <meta charset="UTF-8" />
 
   <title>TailorMe | Royal Mobile Tailoring</title>
-
-
-
-  <!-- الأسلوب العام -->
 
   <link rel="stylesheet" href="style.css" />
 
@@ -24,6 +22,8 @@
 
 <body style="margin:0; background:#0a0a23; font-family:'Segoe UI',Arial,sans-serif;">
 
+
+
   <!-- ░░ Navbar ░░ -->
 
   <div class="navbar" style="display:flex; justify-content:space-between; align-items:center; padding:20px;">
@@ -35,8 +35,6 @@
       <h1 class="navbar-title" style="font-size:30px; color:silver;">TailorMe</h1>
 
     </div>
-
-
 
     <div class="lang-section" style="display:flex; align-items:center; gap:5px;">
 
@@ -64,11 +62,13 @@
 
     <div class="main-buttons" style="margin-top:40px;">
 
+
+
       <!-- Book -->
 
       <a href="appointment.html"
 
-         style="display:inline-block; background:linear-gradient(to right,#d4af37,#b8860b); color:black; padding:15px 30px; border-radius:10px; font-weight:bold; text-decoration:none;">
+        style="display:inline-block; background:linear-gradient(to right,#d4af37,#b8860b); color:black; padding:15px 30px; border-radius:10px; font-weight:bold; text-decoration:none;">
 
         Book an Appointment
 
@@ -82,7 +82,7 @@
 
         <a href="tailorme_pricing_page_en_with_home_button_v2.html" class="text-button"
 
-           style="display:inline-block; border:1px solid #d4af37; border-radius:10px; padding:15px 30px; color:white; text-decoration:none;">
+          style="display:inline-block; border:1px solid #d4af37; border-radius:10px; padding:15px 30px; color:white; text-decoration:none;">
 
           <img src="images/price_list_icon_silver_brief_case.png" alt="Price List" style="height:24px; vertical-align:middle; margin-right:8px;">
 
@@ -94,13 +94,13 @@
 
 
 
-      <!-- Asking TailorMe (تم تعديل الرابط) -->
+      <!-- Asking TailorMe -->
 
       <div style="margin-top:20px;">
 
         <a href="#ask-tailorme" class="text-button"
 
-           style="display:inline-block; border:1px solid #d4af37; border-radius:10px; padding:15px 30px; color:white; text-decoration:none;">
+          style="display:inline-block; border:1px solid #d4af37; border-radius:10px; padding:15px 30px; color:white; text-decoration:none;">
 
           <img src="images/asking_tailorme_ai_icon.png" alt="AI Assistant" style="height:24px; vertical-align:middle; margin-right:8px;">
 
@@ -109,6 +109,8 @@
         </a>
 
       </div>
+
+
 
     </div>
 
@@ -248,65 +250,9 @@
 
     }
 
-    <script>
-
-async function askTailorMe() {
-
-  const text = document.getElementById("prompt").value;
-
-  const replyBox = document.getElementById("response");
-
-
-
-  if (!text.trim()) {
-
-    replyBox.innerHTML = "Please type a question first!";
-
-    return;
-
-  }
-
-
-
-  replyBox.innerHTML = "Thinking...";
-
-
-
-  try {
-
-    const res = await fetch("https://tailorme-backend.vercel.app/api/chat", {
-
-      method: "POST",
-
-      headers: {
-
-        "Content-Type": "application/json"
-
-      },
-
-      body: JSON.stringify({ prompt: text })
-
-    });
-
-
-
-    const data = await res.json();
-
-    replyBox.innerText = data.reply;
-
-  } catch (error) {
-
-    replyBox.innerText = "⚠️ Error contacting TailorMe AI.";
-
-    console.error(error);
-
-  }
-
-}
-
-</script>
-
   </script>
+
+
 
 </body>
 
