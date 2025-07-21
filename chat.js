@@ -7,7 +7,6 @@ async function askTailorMe() {
 
 
   if (!text.trim()) {
-
     replyBox.innerHTML = "Please type a question first!";
 
     return;
