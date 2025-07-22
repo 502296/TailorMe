@@ -1,33 +1,63 @@
-<!DOCTYPE html>
+<form id="appointment-form">
 
-<html lang="en">
+  <h2>Book an Appointment</h2>
 
-<head>
 
-    <meta charset="UTF-8">
 
-    <title>TailorMe | Book Now</title>
+  <label for="name">Customer Name:</label>
 
-    <link rel="stylesheet" href="style.css">
+  <input type="text" id="name" name="name" required>
 
-</head>
 
-<body>
 
-    <main class="hero">
+  <label for="phone">Phone Number:</label>
 
-        <h1>Book an Appointment</h1>
+  <input type="tel" id="phone" name="phone" required>
 
-        <p>Please sign and confirm your delivery/pickup request.</p>
 
-        <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" class="btn gold" target="_blank">🖊 Sign and Submit (Google Form)</a>
 
-        <br><br>
+  <label for="address">Address:</label>
 
-        <a href="index.html" class="btn outline">⬅ Back to Home</a>
+  <textarea id="address" name="address" rows="2" required></textarea>
 
-    </main>
 
-</body>
 
-</html>
+  <label for="items">Number of Items:</label>
+
+  <input type="number" id="items" name="items" required>
+
+
+
+  <label for="pickup">Pickup Date & Time:</label>
+
+  <input type="datetime-local" id="pickup" name="pickup" required>
+
+
+
+  <label for="delivery">Delivery Date & Time:</label>
+
+  <input type="datetime-local" id="delivery" name="delivery" required>
+
+
+
+  <label for="notes">Additional Notes:</label>
+
+  <textarea id="notes" name="notes" rows="3"></textarea>
+
+
+
+  <label for="pickup-signature">Signature at Pickup:</label>
+
+  <canvas id="pickup-signature" width="300" height="150" style="border:1px solid #ccc;"></canvas>
+
+
+
+  <label for="delivery-signature">Signature at Delivery:</label>
+
+  <canvas id="delivery-signature" width="300" height="150" style="border:1px solid #ccc;"></canvas>
+
+
+
+  <button type="submit">Save Appointment</button>
+
+</form>
