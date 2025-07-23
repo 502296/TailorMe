@@ -4,13 +4,161 @@
 
 <head>
 
-  <meta charset="UTF-8" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
 
   <title>Delivery Signature</title>
 
-  <link rel="stylesheet" href="appointment.css">
+  <style>
+
+    body {
+
+      background-color: #0c0c2c;
+
+      font-family: 'Segoe UI', sans-serif;
+
+      color: #fff;
+
+      margin: 0;
+
+      padding: 0;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      height: 100vh;
+
+    }
+
+
+
+    .container {
+
+      background: #111144;
+
+      border: 2px solid gold;
+
+      padding: 30px;
+
+      border-radius: 15px;
+
+      box-shadow: 0 0 20px gold;
+
+      text-align: center;
+
+      width: 90%;
+
+      max-width: 500px;
+
+    }
+
+
+
+    h2 {
+
+      color: gold;
+
+      margin-bottom: 20px;
+
+    }
+
+
+
+    canvas {
+
+      background: #fff;
+
+      border: 2px solid #888;
+
+      border-radius: 10px;
+
+      width: 100%;
+
+      height: 200px;
+
+      touch-action: none;
+
+    }
+
+
+
+    .buttons {
+
+      margin-top: 20px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+    }
+
+
+
+    button {
+
+      flex: 1;
+
+      padding: 12px;
+
+      font-size: 16px;
+
+      font-weight: bold;
+
+      border: none;
+
+      border-radius: 8px;
+
+      background-color: gold;
+
+      color: #000;
+
+      cursor: pointer;
+
+      transition: 0.3s ease;
+
+    }
+
+
+
+    button:hover {
+
+      box-shadow: 0 0 10px #ffd700;
+
+      transform: scale(1.03);
+
+    }
+
+
+
+    .back-button {
+
+      margin-top: 15px;
+
+      background: transparent;
+
+      color: gold;
+
+      border: 1px solid gold;
+
+    }
+
+
+
+    .back-button:hover {
+
+      background: gold;
+
+      color: #000;
+
+    }
+
+  </style>
 
 </head>
 
@@ -18,21 +166,163 @@
 
   <div class="container">
 
-    <h2>Signature at Delivery</h2>
+    <h2>Delivery Signature</h2>
 
-    <canvas id="signature-pad" width="300" height="150"></canvas>
+    <canvas id="signature-pad"></canvas>
 
     <div class="buttons">
 
-      <button onclick="clearPad()">Clear</button>
+      <button onclick="clearSignature()">Clear</button>
 
-      <a href="appointment.html" class="btn">Back</a>
+      <button onclick="saveSignature()">Save</button>
 
     </div>
 
+    <button class="back-button" onclick="goBack()">← Back</button>
+
   </div>
 
-  <script src="signature.js"></script>
+
+
+  <script>
+
+    const canvas = document.getElementById('signature-pad');
+
+    const ctx = canvas.getContext('2d');
+
+    let isDrawing = false;
+
+
+
+    function resizeCanvas() {
+
+      const { width } = canvas.getBoundingClientRect();
+
+      canvas.width = width;
+
+      canvas.height = 200;
+
+    }
+
+
+
+    window.addEventListener('resize', resizeCanvas);
+
+    resizeCanvas();
+
+
+
+    canvas.addEventListener('mousedown', e => {
+
+      isDrawing = true;
+
+      ctx.beginPath();
+
+      ctx.moveTo(e.offsetX, e.offsetY);
+
+    });
+
+
+
+    canvas.addEventListener('mousemove', e => {
+
+      if (!isDrawing) return;
+
+      ctx.lineTo(e.offsetX, e.offsetY);
+
+      ctx.stroke();
+
+    });
+
+
+
+    canvas.addEventListener('mouseup', () => isDrawing = false);
+
+    canvas.addEventListener('mouseout', () => isDrawing = false);
+
+
+
+    // Touch support for phones
+
+    canvas.addEventListener('touchstart', e => {
+
+      e.preventDefault();
+
+      const rect = canvas.getBoundingClientRect();
+
+      const touch = e.touches[0];
+
+      const x = touch.clientX - rect.left;
+
+      const y = touch.clientY - rect.top;
+
+      isDrawing = true;
+
+      ctx.beginPath();
+
+      ctx.moveTo(x, y);
+
+    });
+
+
+
+    canvas.addEventListener('touchmove', e => {
+
+      e.preventDefault();
+
+      if (!isDrawing) return;
+
+      const rect = canvas.getBoundingClientRect();
+
+      const touch = e.touches[0];
+
+      const x = touch.clientX - rect.left;
+
+      const y = touch.clientY - rect.top;
+
+      ctx.lineTo(x, y);
+
+      ctx.stroke();
+
+    });
+
+
+
+    canvas.addEventListener('touchend', () => isDrawing = false);
+
+    canvas.addEventListener('touchcancel', () => isDrawing = false);
+
+
+
+    function clearSignature() {
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    }
+
+
+
+    function saveSignature() {
+
+      const dataURL = canvas.toDataURL();
+
+      alert("Signature saved! (Data URL logged in console)");
+
+      console.log("Delivery Signature:", dataURL);
+
+      // يمكنك هنا إرسال التوقيع إلى Google Sheets أو قاعدة البيانات لاحقًا
+
+    }
+
+
+
+    function goBack() {
+
+      window.location.href = "appointment.html";
+
+    }
+
+  </script>
 
 </body>
 
