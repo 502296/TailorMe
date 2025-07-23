@@ -1,8 +1,10 @@
 <?php
 
-// الاتصال بقاعدة البيانات
+
 
 $conn = new mysqli("localhost", "root", "", "tailorme_db");
+
+
 
 if ($conn->connect_error) {
 
@@ -12,13 +14,23 @@ if ($conn->connect_error) {
 
 
 
-// استقبال البيانات
+// استقبال كل البيانات
 
-$signature = $_POST['pickup_signature'];
+$customer_name     = $_POST['customer_name'];
+
+$phone             = $_POST['phone'];
+
+$number_of_items   = $_POST['number_of_items'];
+
+$service_type      = $_POST['service_type'];
+
+$pickup_datetime   = $_POST['pickup_datetime'];
+
+$signature         = $_POST['pickup_signature'];
 
 
 
-// فك الترميز base64
+// فك ترميز التوقيع
 
 $signature = str_replace('data:image/png;base64,', '', $signature);
 
@@ -30,11 +42,11 @@ $signatureData = base64_decode($signature);
 
 // تجهيز SQL
 
-$stmt = $conn->prepare("INSERT INTO signatures (pickup_signature) VALUES (?)");
+$stmt = $conn->prepare("INSERT INTO signatures (customer_name, phone, number_of_items, service_type, pickup_datetime, pickup_signature) VALUES (?, ?, ?, ?, ?, ?)");
 
-$stmt->bind_param("b", $null);
+$stmt->bind_param("ssissb", $customer_name, $phone, $number_of_items, $service_type, $pickup_datetime, $null);
 
-$stmt->send_long_data(0, $signatureData);
+$stmt->send_long_data(5, $signatureData);
 
 
 
@@ -42,7 +54,7 @@ $stmt->send_long_data(0, $signatureData);
 
 if ($stmt->execute()) {
 
-    echo "✅ Signature saved!";
+    echo "✅ Signature and data saved successfully!";
 
 } else {
 
