@@ -4,85 +4,93 @@
 
 <head>
 
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Book an Appointment | TailorMe</title>
 
-  <link rel="stylesheet" href="appointment.css" />
+  <link rel="stylesheet" href="appointment.css">
 
 </head>
 
 <body>
 
+
+
   <div class="container">
 
     <h2>Book an Appointment</h2>
 
-    
+
 
     <form action="#" method="post">
 
+
+
       <label for="name">Customer Name:</label>
 
-      <input type="text" id="name" name="name" required />
+      <input type="text" id="name" name="name" required>
 
 
 
       <label for="phone">Phone Number:</label>
 
-      <input type="tel" id="phone" name="phone" required />
+      <input type="tel" id="phone" name="phone" required>
 
 
 
       <label for="address">Address:</label>
 
-      <textarea id="address" name="address" rows="3" required></textarea>
+      <textarea id="address" name="address" required></textarea>
 
 
 
       <label for="items">Number of Items:</label>
 
-      <input type="number" id="items" name="items" min="1" required />
+      <input type="number" id="items" name="items" required>
 
 
 
       <label for="pickup">Pickup Date & Time:</label>
 
-      <input type="datetime-local" id="pickup" name="pickup" required />
+      <input type="datetime-local" id="pickup" name="pickup" required>
 
 
 
       <label for="delivery">Delivery Date & Time:</label>
 
-      <input type="datetime-local" id="delivery" name="delivery" required />
+      <input type="datetime-local" id="delivery" name="delivery" required>
 
 
 
       <label for="notes">Additional Notes:</label>
 
-      <textarea id="notes" name="notes" rows="3"></textarea>
+      <textarea id="notes" name="notes"></textarea>
 
 
 
-      <label for="signature_pickup">Signature at Pickup:</label>
+      <label for="pickup-signature">Signature at Pickup:</label>
 
-      <div class="signature" id="signature_pickup"></div>
+      <div class="signature" id="pickup-signature"></div>
 
 
 
-      <label for="signature_delivery">Signature at Delivery:</label>
+      <label for="delivery-signature">Signature at Delivery:</label>
 
-      <div class="signature" id="signature_delivery"></div>
+      <div class="signature" id="delivery-signature"></div>
 
 
 
       <button type="submit">Save Appointment</button>
 
+
+
     </form>
 
   </div>
+
+
 
 </body>
 
