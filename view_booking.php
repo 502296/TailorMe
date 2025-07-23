@@ -1,5 +1,7 @@
 <?php
 
+// الاتصال بقاعدة البيانات
+
 $conn = new mysqli("localhost", "root", "", "tailorme_db");
 
 if ($conn->connect_error) {
@@ -10,7 +12,11 @@ if ($conn->connect_error) {
 
 
 
-$result = $conn->query("SELECT * FROM signatures ORDER BY created_at DESC");
+// جلب جميع التواقيع
+
+$sql = "SELECT * FROM signatures ORDER BY id DESC";
+
+$result = $conn->query($sql);
 
 ?>
 
@@ -22,108 +28,144 @@ $result = $conn->query("SELECT * FROM signatures ORDER BY created_at DESC");
 
 <head>
 
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-  <title>All Bookings</title>
+    <title>View Bookings</title>
 
-  <style>
+    <style>
 
-    body { font-family: Arial; background: #f4f4f4; padding: 20px; }
+        body {
 
-    table { width: 100%; border-collapse: collapse; background: white; }
+            background-color: #0f0f0f;
 
-    th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+            color: white;
 
-    img { max-height: 80px; border: 1px solid #999; border-radius: 4px; }
+            font-family: 'Arial';
 
-    h1 { text-align: center; margin-bottom: 20px; }
+            padding: 30px;
 
-  </style>
+        }
+
+        table {
+
+            border-collapse: collapse;
+
+            width: 100%;
+
+            background-color: #1a1a1a;
+
+        }
+
+        th, td {
+
+            border: 1px solid #444;
+
+            padding: 10px;
+
+            text-align: left;
+
+        }
+
+        th {
+
+            background-color: #333;
+
+            color: #f1c40f;
+
+        }
+
+        tr:hover {
+
+            background-color: #222;
+
+        }
+
+        img {
+
+            max-width: 200px;
+
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-
-
-<h1>TailorMe - All Bookings</h1>
-
-
-
-<table>
-
-  <tr>
-
-    <th>Name</th>
-
-    <th>Phone</th>
-
-    <th>Items</th>
-
-    <th>Service</th>
-
-    <th>Pickup Time</th>
-
-    <th>Delivery Time</th>
-
-    <th>Pickup Signature</th>
-
-    <th>Delivery Signature</th>
-
-    <th>Created At</th>
-
-  </tr>
+    <h1>🖊️ Saved Signatures</h1>
 
 
 
-<?php while($row = $result->fetch_assoc()): ?>
+    <table>
 
-  <tr>
+        <tr>
 
-    <td><?= htmlspecialchars($row['customer_name']) ?></td>
+            <th>ID</th>
 
-    <td><?= htmlspecialchars($row['phone']) ?></td>
+            <th>Customer Name</th>
 
-    <td><?= $row['number_of_items'] ?></td>
+            <th>Phone</th>
 
-    <td><?= ucfirst($row['service_type']) ?></td>
+            <th>Number of Items</th>
 
-    <td><?= $row['pickup_datetime'] ?></td>
+            <th>Service Type</th>
 
-    <td><?= $row['delivery_datetime'] ?: '-' ?></td>
+            <th>Pickup Date/Time</th>
 
-    <td>
+            <th>Pickup Signature</th>
 
-      <?php if ($row['pickup_signature']): ?>
+        </tr>
 
-        <img src="data:image/png;base64,<?= base64_encode($row['pickup_signature']) ?>">
+        <?php
 
-      <?php else: ?> - <?php endif; ?>
+        if ($result->num_rows > 0):
 
-    </td>
+            while($row = $result->fetch_assoc()):
 
-    <td>
+        ?>
 
-      <?php if ($row['delivery_signature']): ?>
+        <tr>
 
-        <img src="data:image/png;base64,<?= base64_encode($row['delivery_signature']) ?>">
+            <td><?= $row["id"] ?></td>
 
-      <?php else: ?> - <?php endif; ?>
+            <td><?= $row["customer_name"] ?></td>
 
-    </td>
+            <td><?= $row["phone"] ?></td>
 
-    <td><?= $row['created_at'] ?></td>
+            <td><?= $row["number_of_items"] ?></td>
 
-  </tr>
+            <td><?= $row["service_type"] ?></td>
 
-<?php endwhile; ?>
+            <td><?= $row["pickup_datetime"] ?></td>
 
+            <td>
 
+                <?php if (!empty($row["pickup_signature"])): ?>
 
-</table>
+                    <img src="data:image/png;base64,<?= base64_encode($row["pickup_signature"]) ?>" alt="Signature">
 
+                <?php else: ?>
 
+                    No signature
+
+                <?php endif; ?>
+
+            </td>
+
+        </tr>
+
+        <?php endwhile; else: ?>
+
+        <tr><td colspan="7">No bookings yet.</td></tr>
+
+        <?php endif; ?>
+
+    </table>
 
 </body>
 
 </html>
+
+
+
+<?php $conn->close(); ?>
