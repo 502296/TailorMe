@@ -1,72 +1,92 @@
 body {
 
-  margin: 0;
-
-  font-family: Arial, sans-serif;
-
-  background-color: #0a0a23;
+  background-color: #0b0b28;
 
   color: white;
 
-  display: flex;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-  justify-content: center;
+  padding: 20px;
 
-  align-items: center;
-
-  padding: 40px 20px;
-
-  min-height: 100vh;
+  margin: 0;
 
 }
 
 
 
-.container {
-
-  background-color: #1a1a40;
-
-  border: 2px solid gold;
-
-  border-radius: 12px;
-
-  padding: 30px;
-
-  width: 100%;
-
-  max-width: 500px;
-
-  box-shadow: 0 0 15px gold;
-
-}
-
-
-
-h1, h2 {
+h1 {
 
   text-align: center;
 
   color: gold;
 
+  font-size: 28px;
+
+  margin-bottom: 30px;
+
 }
 
 
 
-input, textarea {
+form {
+
+  max-width: 500px;
+
+  margin: auto;
+
+}
+
+
+
+label {
+
+  display: block;
+
+  margin-top: 12px;
+
+  font-weight: bold;
+
+  font-size: 16px;
+
+}
+
+
+
+input[type="text"],
+
+input[type="tel"],
+
+input[type="datetime-local"],
+
+select,
+
+textarea {
 
   width: 100%;
 
-  padding: 10px;
+  padding: 12px;
 
-  margin: 8px 0;
+  margin-top: 6px;
+
+  margin-bottom: 10px;
+
+  border: 1px solid #444;
 
   border-radius: 6px;
 
-  border: none;
-
-  background-color: #333;
+  background-color: #1a1a3c;
 
   color: white;
+
+  font-size: 15px;
+
+}
+
+
+
+select {
+
+  appearance: none;
 
 }
 
@@ -74,118 +94,78 @@ input, textarea {
 
 textarea {
 
-  resize: vertical;
-
   min-height: 80px;
 
-}
-
-
-
-.signature-buttons {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  margin-top: 10px;
+  resize: vertical;
 
 }
 
 
 
-.btn {
+/* زر الحفظ */
+
+button[type="submit"] {
 
   background-color: gold;
 
-  color: #1a1a40;
+  color: black;
 
-  padding: 10px 15px;
+  font-weight: bold;
+
+  border: none;
+
+  padding: 12px 24px;
 
   border-radius: 8px;
 
-  text-decoration: none;
+  cursor: pointer;
 
-  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
 
-  box-shadow: 0 0 6px #ffc107;
-
-}
-
-
-
-.btn:hover {
-
-  background-color: #ffd700;
-
-}
-
-
-
-.submit-btn {
+  transition: all 0.3s ease;
 
   width: 100%;
 
-  background-color: #ffc107;
-
-  color: #1a1a40;
-
-  padding: 12px;
-
-  font-size: 16px;
-
-  border: none;
-
-  border-radius: 10px;
-
   margin-top: 20px;
-
-  font-weight: bold;
-
-  box-shadow: 0 0 10px gold;
 
 }
 
 
 
-canvas {
+button[type="submit"]:hover {
 
-  background-color: white;
+  background-color: #ffdb4d;
 
-  border: 2px dashed gold;
+  box-shadow: 0 6px 15px rgba(255, 215, 0, 0.6);
+
+  transform: scale(1.03);
+
+}
+
+
+
+.back-link {
 
   display: block;
 
-  margin: 20px auto;
-
-}
-
-
-
-.buttons {
+  margin-top: 12px;
 
   text-align: center;
 
+  color: #4d9fff;
+
+  text-decoration: none;
+
+  font-size: 15px;
+
 }
 
 
 
-button {
+.back-link:hover {
 
-  background-color: gold;
+  text-decoration: underline;
 
-  color: #1a1a40;
-
-  padding: 8px 12px;
-
-  border: none;
-
-  border-radius: 6px;
-
-  margin: 5px;
-
-  font-weight: bold;
-
-  box-shadow: 0 0 5px #ffcc00;
+  color: #80bfff;
 
 }
