@@ -1,24 +1,20 @@
-/* الصفحة الملكية لحجز TailorMe */
-
-
-
 body {
-
-  background-color: #0c0f2c;
-
-  color: white;
-
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
   margin: 0;
 
-  padding: 0;
+  font-family: Arial, sans-serif;
+
+  background-color: #0a0a23;
+
+  color: white;
 
   display: flex;
 
   justify-content: center;
 
   align-items: center;
+
+  padding: 40px 20px;
 
   min-height: 100vh;
 
@@ -28,93 +24,49 @@ body {
 
 .container {
 
-  max-width: 600px;
+  background-color: #1a1a40;
 
-  background-color: #11153d;
-
-  padding: 30px;
+  border: 2px solid gold;
 
   border-radius: 12px;
 
-  border: 1px solid gold;
+  padding: 30px;
 
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  width: 100%;
 
-  margin: 20px;
+  max-width: 500px;
+
+  box-shadow: 0 0 15px gold;
 
 }
 
 
 
-h2 {
-
-  color: gold;
+h1, h2 {
 
   text-align: center;
 
-  margin-bottom: 25px;
+  color: gold;
 
 }
 
 
 
-label {
-
-  display: block;
-
-  margin-top: 15px;
-
-  margin-bottom: 5px;
-
-  font-weight: bold;
-
-  color: #f5f5f5;
-
-}
-
-
-
-input,
-
-textarea {
+input, textarea {
 
   width: 100%;
 
   padding: 10px;
 
-  border: 1px solid #444;
+  margin: 8px 0;
 
   border-radius: 6px;
 
-  background-color: #1a1e40;
+  border: none;
+
+  background-color: #333;
 
   color: white;
-
-  font-size: 14px;
-
-}
-
-
-
-input:focus,
-
-textarea:focus {
-
-  outline: none;
-
-  border-color: gold;
-
-  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
-
-}
-
-
-
-input::placeholder,
-
-textarea::placeholder {
-
-  color: #aaa;
 
 }
 
@@ -130,21 +82,89 @@ textarea {
 
 
 
-.signature {
+.signature-buttons {
 
-  border: 2px dashed gold;
+  display: flex;
 
-  background-color: #0f1330;
-
-  height: 150px;
+  justify-content: space-between;
 
   margin-top: 10px;
 
-  margin-bottom: 25px;
+}
+
+
+
+.btn {
+
+  background-color: gold;
+
+  color: #1a1a40;
+
+  padding: 10px 15px;
 
   border-radius: 8px;
 
-  box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
+  text-decoration: none;
+
+  font-weight: bold;
+
+  box-shadow: 0 0 6px #ffc107;
+
+}
+
+
+
+.btn:hover {
+
+  background-color: #ffd700;
+
+}
+
+
+
+.submit-btn {
+
+  width: 100%;
+
+  background-color: #ffc107;
+
+  color: #1a1a40;
+
+  padding: 12px;
+
+  font-size: 16px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  margin-top: 20px;
+
+  font-weight: bold;
+
+  box-shadow: 0 0 10px gold;
+
+}
+
+
+
+canvas {
+
+  background-color: white;
+
+  border: 2px dashed gold;
+
+  display: block;
+
+  margin: 20px auto;
+
+}
+
+
+
+.buttons {
+
+  text-align: center;
 
 }
 
@@ -154,32 +174,18 @@ button {
 
   background-color: gold;
 
-  color: #0c0f2c;
+  color: #1a1a40;
 
-  font-weight: bold;
+  padding: 8px 12px;
 
   border: none;
 
-  border-radius: 8px;
+  border-radius: 6px;
 
-  padding: 12px 18px;
+  margin: 5px;
 
-  font-size: 16px;
+  font-weight: bold;
 
-  width: 100%;
-
-  margin-top: 20px;
-
-  cursor: pointer;
-
-  transition: background-color 0.3s ease;
-
-}
-
-
-
-button:hover {
-
-  background-color: #e6b800;
+  box-shadow: 0 0 5px #ffcc00;
 
 }
