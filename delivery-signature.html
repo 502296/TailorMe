@@ -4,121 +4,83 @@
 
 <head>
 
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Delivery Signature</title>
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="appointment.css">
 
   <style>
 
-    body {
-
-      background-color: #0d0b28;
-
-      font-family: 'Segoe UI', sans-serif;
-
-      color: gold;
-
-      display: flex;
-
-      justify-content: center;
-
-      align-items: center;
-
-      height: 100vh;
-
-    }
-
-
-
-    .signature-container {
-
-      background-color: #101040;
-
-      padding: 30px;
-
-      border-radius: 10px;
-
-      box-shadow: 0 0 20px gold;
-
-      text-align: center;
-
-      width: 90%;
-
-      max-width: 400px;
-
-    }
-
-
-
     canvas {
 
-      background-color: white;
+      background-color: #fff;
 
       border: 2px solid gold;
 
-      border-radius: 5px;
+      border-radius: 8px;
 
-      margin-bottom: 15px;
+      width: 100%;
+
+      height: 200px;
 
     }
 
+    .signature-label {
 
+      margin-top: 16px;
 
-    button {
+      font-weight: bold;
 
-      background-color: gold;
+    }
 
-      color: #101040;
+    .button-row {
 
-      border: none;
+      display: flex;
 
-      padding: 10px 18px;
+      justify-content: space-between;
+
+      margin-top: 20px;
+
+    }
+
+    .btn {
+
+      padding: 12px 20px;
 
       border-radius: 6px;
 
       font-weight: bold;
 
-      margin: 5px;
-
       cursor: pointer;
 
-      box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+      border: none;
 
     }
 
-
-
-    button:hover {
-
-      background-color: #ffd700cc;
-
-    }
-
-
-
-    .back-button {
-
-      background-color: transparent;
-
-      color: gold;
-
-      border: 1px solid gold;
-
-      margin-top: 10px;
-
-    }
-
-
-
-    .back-button:hover {
+    .btn-save {
 
       background-color: gold;
 
-      color: #101040;
+      color: black;
+
+      flex: 1;
+
+      margin-right: 10px;
+
+    }
+
+    .btn-back {
+
+      background-color: #222;
+
+      color: white;
+
+      flex: 1;
+
+      margin-left: 10px;
 
     }
 
@@ -128,23 +90,193 @@
 
 <body>
 
-  <div class="signature-container">
 
-    <h2>Delivery Signature</h2>
 
-    <canvas id="signature-pad" width="300" height="150"></canvas><br />
+  <div class="form-container">
 
-    <button onclick="clearSignature()">Clear</button>
+    <h1>Delivery Signature</h1>
 
-    <button onclick="saveSignature()">Save</button><br />
 
-    <button class="back-button" onclick="window.location.href='appointment.html'">← Back</button>
+
+    <form id="deliveryForm">
+
+
+
+      <label for="customer_name">Customer Name:</label>
+
+      <input type="text" id="customer_name" name="customer_name" required>
+
+
+
+      <label for="pieces">Number of Pieces:</label>
+
+      <input type="number" id="pieces" name="pieces" required>
+
+
+
+      <label for="service_type">Service Type:</label>
+
+      <select id="service_type" name="service_type" required>
+
+        <option value="">Select...</option>
+
+        <option value="Alteration">Alteration</option>
+
+        <option value="Custom Tailoring">Custom Tailoring</option>
+
+      </select>
+
+
+
+      <label for="delivery_time">Delivery Date & Time:</label>
+
+      <input type="datetime-local" id="delivery_time" name="delivery_time" required>
+
+
+
+      <label for="notes">Notes (Optional):</label>
+
+      <textarea id="notes" name="notes"></textarea>
+
+
+
+      <label class="signature-label">Customer Signature:</label>
+
+      <canvas id="signaturePad"></canvas>
+
+
+
+      <div class="button-row">
+
+        <button type="submit" class="btn btn-save">Save</button>
+
+        <a href="appointment.html" class="btn btn-back" style="text-align: center;">← Back</a>
+
+      </div>
+
+
+
+    </form>
 
   </div>
 
 
 
-  <script src="signature.js"></script>
+  <script>
+
+    const canvas = document.getElementById("signaturePad");
+
+    const ctx = canvas.getContext("2d");
+
+    let drawing = false;
+
+
+
+    function resizeCanvas() {
+
+      canvas.width = canvas.offsetWidth;
+
+      canvas.height = 200;
+
+    }
+
+
+
+    window.addEventListener("resize", resizeCanvas);
+
+    resizeCanvas();
+
+
+
+    canvas.addEventListener("mousedown", () => drawing = true);
+
+    canvas.addEventListener("mouseup", () => drawing = false);
+
+    canvas.addEventListener("mouseout", () => drawing = false);
+
+    canvas.addEventListener("mousemove", draw);
+
+
+
+    function draw(e) {
+
+      if (!drawing) return;
+
+      ctx.lineWidth = 2;
+
+      ctx.lineCap = "round";
+
+      ctx.strokeStyle = "#000";
+
+
+
+      const rect = canvas.getBoundingClientRect();
+
+      ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+
+      ctx.stroke();
+
+      ctx.beginPath();
+
+      ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+
+    }
+
+
+
+    // لمس الجوال
+
+    canvas.addEventListener("touchstart", (e) => {
+
+      e.preventDefault();
+
+      drawing = true;
+
+    });
+
+    canvas.addEventListener("touchend", () => drawing = false);
+
+    canvas.addEventListener("touchcancel", () => drawing = false);
+
+    canvas.addEventListener("touchmove", function (e) {
+
+      e.preventDefault();
+
+      const touch = e.touches[0];
+
+      const rect = canvas.getBoundingClientRect();
+
+      const x = touch.clientX - rect.left;
+
+      const y = touch.clientY - rect.top;
+
+      if (drawing) {
+
+        ctx.lineTo(x, y);
+
+        ctx.stroke();
+
+        ctx.beginPath();
+
+        ctx.moveTo(x, y);
+
+      }
+
+    });
+
+
+
+    document.getElementById("deliveryForm").addEventListener("submit", function (e) {
+
+      e.preventDefault();
+
+      alert("Delivery form submitted successfully!");
+
+    });
+
+  </script>
+
+
 
 </body>
 
