@@ -4,79 +4,86 @@
 
 <head>
 
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Book an Appointment</title>
 
-  <link rel="stylesheet" href="style.css"> <!-- أو appointment.css إذا استخدمت ملف منفصل -->
+  <link rel="stylesheet" href="appointment.css" />
 
 </head>
 
 <body>
 
-<form id="appointment-form">
+  <div class="container">
 
-  <h2>Book an Appointment</h2>
+    <form id="appointment-form">
 
-
-
-  <label for="name">Customer Name:</label>
-
-  <input type="text" id="name" name="name" required>
+      <h2>Book an Appointment</h2>
 
 
 
-  <label for="phone">Phone Number:</label>
+      <label for="name">Customer Name:</label>
 
-  <input type="tel" id="phone" name="phone" required>
-
-
-
-  <label for="address">Address:</label>
-
-  <textarea id="address" name="address" rows="2" required></textarea>
+      <input type="text" id="name" name="name" required />
 
 
 
-  <label for="items">Number of Items:</label>
+      <label for="phone">Phone Number:</label>
 
-  <input type="number" id="items" name="items" required>
-
-
-
-  <label for="pickup">Pickup Date & Time:</label>
-
-  <input type="datetime-local" id="pickup" name="pickup" required>
+      <input type="tel" id="phone" name="phone" required />
 
 
 
-  <label for="delivery">Delivery Date & Time:</label>
+      <label for="address">Address:</label>
 
-  <input type="datetime-local" id="delivery" name="delivery" required>
-
-
-
-  <label for="notes">Additional Notes:</label>
-
-  <textarea id="notes" name="notes" rows="3"></textarea>
+      <textarea id="address" name="address" rows="2" required></textarea>
 
 
 
-  <label for="pickup-signature">Signature at Pickup:</label>
+      <label for="items">Number of Items:</label>
 
-  <canvas id="pickup-signature" width="300" height="150" style="border:1px solid #ccc;"></canvas>
-
-
-
-  <label for="delivery-signature">Signature at Delivery:</label>
-
-  <canvas id="delivery-signature" width="300" height="150" style="border:1px solid #ccc;"></canvas>
+      <input type="number" id="items" name="items" required />
 
 
 
-  <button type="submit">Save Appointment</button>
+      <label for="pickup">Pickup Date & Time:</label>
 
-</form>
+      <input type="datetime-local" id="pickup" name="pickup" required />
+
+
+
+      <label for="delivery">Delivery Date & Time:</label>
+
+      <input type="datetime-local" id="delivery" name="delivery" required />
+
+
+
+      <label for="notes">Additional Notes:</label>
+
+      <textarea id="notes" name="notes" rows="3"></textarea>
+
+
+
+      <label for="signature-pickup">Signature at Pickup:</label>
+
+      <div class="signature" id="signature-pickup"></div>
+
+
+
+      <label for="signature-delivery">Signature at Delivery:</label>
+
+      <div class="signature" id="signature-delivery"></div>
+
+
+
+      <button type="submit">Save Appointment</button>
+
+    </form>
+
+  </div>
+
 </body>
 
 </html>
