@@ -10,29 +10,233 @@
 
   <title>Pickup Signature</title>
 
-  <link rel="stylesheet" href="appointment.css">
+  <link rel="stylesheet" href="appointment.css" />
+
+  <style>
+
+    .signature-container {
+
+      background-color: #0c0c3d;
+
+      padding: 20px;
+
+      border-radius: 12px;
+
+      box-shadow: 0 0 20px gold;
+
+      max-width: 500px;
+
+      margin: auto;
+
+      margin-top: 60px;
+
+      color: white;
+
+      text-align: center;
+
+    }
+
+
+
+    canvas {
+
+      background-color: #fff;
+
+      border: 2px solid gold;
+
+      border-radius: 6px;
+
+      width: 100%;
+
+      height: 200px;
+
+      margin-top: 10px;
+
+    }
+
+
+
+    .btn-row {
+
+      margin-top: 20px;
+
+      display: flex;
+
+      gap: 10px;
+
+      justify-content: center;
+
+    }
+
+
+
+    .btn-row button {
+
+      padding: 10px 20px;
+
+      border: none;
+
+      border-radius: 8px;
+
+      font-weight: bold;
+
+      background-color: gold;
+
+      color: #00003d;
+
+      cursor: pointer;
+
+    }
+
+
+
+    .btn-row button:hover {
+
+      background-color: #ffd700c0;
+
+    }
+
+  </style>
 
 </head>
 
 <body>
 
-  <div class="container">
+  <div class="signature-container">
 
-    <h2>Signature at Pickup</h2>
+    <h2>Pickup Signature</h2>
 
-    <canvas id="signature-pad" width="300" height="150"></canvas>
+    <p>Please sign below to confirm item pickup</p>
 
-    <div class="buttons">
 
-      <button onclick="clearPad()">Clear</button>
 
-      <a href="appointment.html" class="btn">Back</a>
+    <canvas id="pickupCanvas"></canvas>
+
+
+
+    <div class="btn-row">
+
+      <button onclick="clearSignature()">Clear</button>
+
+      <button onclick="saveSignature()">Save</button>
+
+      <button onclick="goBack()">Back</button>
 
     </div>
 
   </div>
 
-  <script src="signature.js"></script>
+
+
+  <script>
+
+    const canvas = document.getElementById("pickupCanvas");
+
+    const ctx = canvas.getContext("2d");
+
+    let drawing = false;
+
+
+
+    canvas.addEventListener("mousedown", startDraw);
+
+    canvas.addEventListener("mouseup", endDraw);
+
+    canvas.addEventListener("mousemove", draw);
+
+    canvas.addEventListener("touchstart", startDraw);
+
+    canvas.addEventListener("touchend", endDraw);
+
+    canvas.addEventListener("touchmove", draw);
+
+
+
+    function getPosition(e) {
+
+      const rect = canvas.getBoundingClientRect();
+
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+      return {
+
+        x: clientX - rect.left,
+
+        y: clientY - rect.top,
+
+      };
+
+    }
+
+
+
+    function startDraw(e) {
+
+      drawing = true;
+
+      const pos = getPosition(e);
+
+      ctx.beginPath();
+
+      ctx.moveTo(pos.x, pos.y);
+
+    }
+
+
+
+    function draw(e) {
+
+      if (!drawing) return;
+
+      e.preventDefault();
+
+      const pos = getPosition(e);
+
+      ctx.lineTo(pos.x, pos.y);
+
+      ctx.stroke();
+
+    }
+
+
+
+    function endDraw() {
+
+      drawing = false;
+
+    }
+
+
+
+    function clearSignature() {
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    }
+
+
+
+    function saveSignature() {
+
+      const dataURL = canvas.toDataURL();
+
+      alert("Signature saved! (You can connect to Google Sheets later)");
+
+      console.log("Signature Image:", dataURL);
+
+    }
+
+
+
+    function goBack() {
+
+      window.location.href = "appointment.html";
+
+    }
+
+  </script>
 
 </body>
 
