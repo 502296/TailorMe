@@ -4,55 +4,87 @@
 
 <head>
 
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Book an Appointment | TailorMe</title>
+  <title>Book an Appointment</title>
 
- <link rel="stylesheet" href="appointment_improved.css">
+  <link rel="stylesheet" href="appointment_improved.css">
 
 </head>
 
 <body>
 
+
+
   <div class="container">
 
     <h1>Book an Appointment</h1>
 
-    <form>
 
-      <input type="text" placeholder="Customer Name" required>
 
-      <input type="tel" placeholder="Phone Number" required>
+    <form id="appointmentForm">
 
-      <input type="text" placeholder="Address" required>
+      <label for="name">Customer Name</label>
 
-      <input type="number" placeholder="Number of Items" required>
-
-      <input type="datetime-local" placeholder="Pickup Date & Time" required>
-
-      <input type="datetime-local" placeholder="Delivery Date & Time" required>
-
-      <textarea placeholder="Additional Notes"></textarea>
+      <input type="text" id="name" name="name" required>
 
 
 
-      <div class="signature-buttons">
+      <label for="phone">Phone Number</label>
 
-        <a href="pickup-signature.html" class="btn">Pick up Signature</a>
+      <input type="tel" id="phone" name="phone" required>
 
-        <a href="delivery-signature.html" class="btn">Delivery Signature</a>
+
+
+      <label for="address">Address</label>
+
+      <input type="text" id="address" name="address" required>
+
+
+
+      <label for="items">Number of Items</label>
+
+      <input type="text" id="items" name="items" required>
+
+
+
+      <label for="pickup">Pickup Date & Time</label>
+
+      <input type="datetime-local" id="pickup" name="pickup">
+
+
+
+      <label for="delivery">Delivery Date & Time</label>
+
+      <input type="datetime-local" id="delivery" name="delivery">
+
+
+
+      <label for="notes">Additional Notes</label>
+
+      <textarea id="notes" name="notes" placeholder="Any instructions or comments..."></textarea>
+
+
+
+      <div class="buttons">
+
+        <button type="button" onclick="window.location.href='pickup_signature.html'">Pick up<br>Signature</button>
+
+        <button type="button" onclick="window.location.href='delivery_signature.html'">Delivery<br>Signature</button>
 
       </div>
 
 
 
-      <button type="submit" class="submit-btn">Save Appointment</button>
+      <button type="submit" class="save-btn">Save Appointment</button>
 
     </form>
 
   </div>
+
+
 
 </body>
 
