@@ -2,6 +2,8 @@
 
 <html lang="en">
 
+
+
 <head>
 
   <meta charset="UTF-8">
@@ -28,6 +30,8 @@
 
     }
 
+
+
     .signature-label {
 
       margin-top: 16px;
@@ -35,6 +39,8 @@
       font-weight: bold;
 
     }
+
+
 
     .button-row {
 
@@ -45,6 +51,8 @@
       margin-top: 20px;
 
     }
+
+
 
     .btn {
 
@@ -60,6 +68,8 @@
 
     }
 
+
+
     .btn-save {
 
       background-color: gold;
@@ -71,6 +81,8 @@
       margin-right: 10px;
 
     }
+
+
 
     .btn-back {
 
@@ -88,6 +100,8 @@
 
 </head>
 
+
+
 <body>
 
 
@@ -98,9 +112,7 @@
 
 
 
-    <form id="pickupForm">
-
-
+    <form id="pickupForm" method="POST" action="save_pickup.php" onsubmit="prepareSignature()">
 
       <label for="customer_name">Customer Name:</label>
 
@@ -110,7 +122,7 @@
 
       <label for="pieces">Number of Pieces:</label>
 
-      <input type="number" id="pieces" name="pieces" required>
+      <input type="number" id="pieces" name="number_of_items" required>
 
 
 
@@ -120,9 +132,9 @@
 
         <option value="">Select...</option>
 
-        <option value="Alteration">Alteration</option>
+        <option value="alteration">Alteration</option>
 
-        <option value="Custom Tailoring">Custom Tailoring</option>
+        <option value="custom">Custom Tailoring</option>
 
       </select>
 
@@ -130,7 +142,7 @@
 
       <label for="pickup_time">Pickup Date & Time:</label>
 
-      <input type="datetime-local" id="pickup_time" name="pickup_time" required>
+      <input type="datetime-local" id="pickup_time" name="pickup_datetime" required>
 
 
 
@@ -144,6 +156,8 @@
 
       <canvas id="signaturePad"></canvas>
 
+      <input type="hidden" name="pickup_signature" id="pickup_signature">
+
 
 
       <div class="button-row">
@@ -153,8 +167,6 @@
         <a href="appointment.html" class="btn btn-back" style="text-align: center;">← Back</a>
 
       </div>
-
-
 
     </form>
 
@@ -208,8 +220,6 @@
 
       ctx.strokeStyle = "#000";
 
-
-
       const rect = canvas.getBoundingClientRect();
 
       ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
@@ -224,7 +234,7 @@
 
 
 
-    // لمس على الجوال
+    // دعم التاتش على الجوال
 
     canvas.addEventListener("touchstart", (e) => {
 
@@ -266,20 +276,22 @@
 
 
 
-    document.getElementById("pickupForm").addEventListener("submit", function (e) {
+    // قبل الإرسال نحضّر التوقيع
 
-      e.preventDefault();
+    function prepareSignature() {
 
-      alert("Pickup form submitted successfully!");
+      const dataURL = canvas.toDataURL();
 
-      // مستقبلاً نرسل البيانات إلى Google Sheet أو MySQL
+      document.getElementById("pickup_signature").value = dataURL;
 
-    });
+    }
 
   </script>
 
 
 
 </body>
+
+
 
 </html>
