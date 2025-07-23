@@ -6,9 +6,9 @@
 
   <meta charset="UTF-8" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Book an Appointment</title>
+  <title>Book an Appointment | TailorMe</title>
 
   <link rel="stylesheet" href="appointment.css" />
 
@@ -18,11 +18,11 @@
 
   <div class="container">
 
-    <form id="appointment-form">
+    <h2>Book an Appointment</h2>
 
-      <h2>Book an Appointment</h2>
+    
 
-
+    <form action="#" method="post">
 
       <label for="name">Customer Name:</label>
 
@@ -38,13 +38,13 @@
 
       <label for="address">Address:</label>
 
-      <textarea id="address" name="address" rows="2" required></textarea>
+      <textarea id="address" name="address" rows="3" required></textarea>
 
 
 
       <label for="items">Number of Items:</label>
 
-      <input type="number" id="items" name="items" required />
+      <input type="number" id="items" name="items" min="1" required />
 
 
 
@@ -66,15 +66,15 @@
 
 
 
-      <label for="signature-pickup">Signature at Pickup:</label>
+      <label for="signature_pickup">Signature at Pickup:</label>
 
-      <div class="signature" id="signature-pickup"></div>
+      <div class="signature" id="signature_pickup"></div>
 
 
 
-      <label for="signature-delivery">Signature at Delivery:</label>
+      <label for="signature_delivery">Signature at Delivery:</label>
 
-      <div class="signature" id="signature-delivery"></div>
+      <div class="signature" id="signature_delivery"></div>
 
 
 
