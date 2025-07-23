@@ -10,27 +10,39 @@
 
   <title>Pickup Signature</title>
 
-  <link rel="stylesheet" href="appointment.css" />
-
   <style>
 
-    .signature-container {
+    body {
 
-      background-color: #0c0c3d;
+      background-color: #0d0c2d;
+
+      font-family: 'Segoe UI', sans-serif;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      height: 100vh;
+
+      margin: 0;
+
+    }
+
+
+
+    .signature-box {
+
+      background-color: #0d0c2d;
+
+      border: 2px solid #FFD700;
+
+      border-radius: 10px;
 
       padding: 20px;
 
-      border-radius: 12px;
-
-      box-shadow: 0 0 20px gold;
-
-      max-width: 500px;
-
-      margin: auto;
-
-      margin-top: 60px;
-
-      color: white;
+      box-shadow: 0 0 25px #FFD700;
 
       text-align: center;
 
@@ -38,61 +50,89 @@
 
 
 
+    h2 {
+
+      color: #FFD700;
+
+      margin-bottom: 15px;
+
+    }
+
+
+
     canvas {
 
-      background-color: #fff;
+      background-color: white;
 
-      border: 2px solid gold;
+      border: 3px solid #FFD700;
 
-      border-radius: 6px;
+      border-radius: 5px;
 
-      width: 100%;
+      box-shadow: 0 0 15px #FFD700;
 
-      height: 200px;
-
-      margin-top: 10px;
+      touch-action: none;
 
     }
 
 
 
-    .btn-row {
+    button {
 
-      margin-top: 20px;
-
-      display: flex;
-
-      gap: 10px;
-
-      justify-content: center;
-
-    }
-
-
-
-    .btn-row button {
+      margin: 10px 5px;
 
       padding: 10px 20px;
 
-      border: none;
-
-      border-radius: 8px;
+      font-size: 16px;
 
       font-weight: bold;
 
-      background-color: gold;
+      border: none;
 
-      color: #00003d;
+      border-radius: 5px;
+
+      background-color: #FFD700;
+
+      color: #0d0c2d;
 
       cursor: pointer;
+
+      box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
+
+      transition: transform 0.2s ease;
 
     }
 
 
 
-    .btn-row button:hover {
+    button:hover {
 
-      background-color: #ffd700c0;
+      transform: scale(1.05);
+
+    }
+
+
+
+    #backBtn {
+
+      margin-top: 15px;
+
+      background-color: transparent;
+
+      border: 1px solid #FFD700;
+
+      color: #FFD700;
+
+      padding: 8px 16px;
+
+    }
+
+
+
+    #backBtn:hover {
+
+      background-color: #FFD700;
+
+      color: #0d0c2d;
 
     }
 
@@ -102,27 +142,17 @@
 
 <body>
 
-  <div class="signature-container">
+  <div class="signature-box">
 
     <h2>Pickup Signature</h2>
 
-    <p>Please sign below to confirm item pickup</p>
+    <canvas id="signatureCanvas" width="300" height="150"></canvas><br/>
 
+    <button onclick="clearSignature()">Clear</button>
 
+    <button onclick="saveSignature()">Save</button><br/>
 
-    <canvas id="pickupCanvas"></canvas>
-
-
-
-    <div class="btn-row">
-
-      <button onclick="clearSignature()">Clear</button>
-
-      <button onclick="saveSignature()">Save</button>
-
-      <button onclick="goBack()">Back</button>
-
-    </div>
+    <button id="backBtn" onclick="history.back()">← Back</button>
 
   </div>
 
@@ -130,7 +160,7 @@
 
   <script>
 
-    const canvas = document.getElementById("pickupCanvas");
+    const canvas = document.getElementById("signatureCanvas");
 
     const ctx = canvas.getContext("2d");
 
@@ -138,33 +168,15 @@
 
 
 
-    canvas.addEventListener("mousedown", startDraw);
-
-    canvas.addEventListener("mouseup", endDraw);
-
-    canvas.addEventListener("mousemove", draw);
-
-    canvas.addEventListener("touchstart", startDraw);
-
-    canvas.addEventListener("touchend", endDraw);
-
-    canvas.addEventListener("touchmove", draw);
-
-
-
     function getPosition(e) {
 
       const rect = canvas.getBoundingClientRect();
 
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-
       return {
 
-        x: clientX - rect.left,
+        x: e.clientX - rect.left,
 
-        y: clientY - rect.top,
+        y: e.clientY - rect.top
 
       };
 
@@ -172,7 +184,7 @@
 
 
 
-    function startDraw(e) {
+    canvas.addEventListener("mousedown", e => {
 
       drawing = true;
 
@@ -182,15 +194,13 @@
 
       ctx.moveTo(pos.x, pos.y);
 
-    }
+    });
 
 
 
-    function draw(e) {
+    canvas.addEventListener("mousemove", e => {
 
       if (!drawing) return;
-
-      e.preventDefault();
 
       const pos = getPosition(e);
 
@@ -198,15 +208,53 @@
 
       ctx.stroke();
 
-    }
+    });
 
 
 
-    function endDraw() {
+    canvas.addEventListener("mouseup", () => drawing = false);
 
-      drawing = false;
+    canvas.addEventListener("mouseleave", () => drawing = false);
 
-    }
+
+
+    // Touch support for phones/tablets
+
+    canvas.addEventListener("touchstart", e => {
+
+      e.preventDefault();
+
+      const touch = e.touches[0];
+
+      const pos = getPosition(touch);
+
+      drawing = true;
+
+      ctx.beginPath();
+
+      ctx.moveTo(pos.x, pos.y);
+
+    });
+
+
+
+    canvas.addEventListener("touchmove", e => {
+
+      e.preventDefault();
+
+      const touch = e.touches[0];
+
+      const pos = getPosition(touch);
+
+      ctx.lineTo(pos.x, pos.y);
+
+      ctx.stroke();
+
+    });
+
+
+
+    canvas.addEventListener("touchend", () => drawing = false);
 
 
 
@@ -222,17 +270,9 @@
 
       const dataURL = canvas.toDataURL();
 
-      alert("Signature saved! (You can connect to Google Sheets later)");
+      alert("Signature saved! (You can now store it in database or send it to backend)");
 
-      console.log("Signature Image:", dataURL);
-
-    }
-
-
-
-    function goBack() {
-
-      window.location.href = "appointment.html";
+      console.log(dataURL);
 
     }
 
