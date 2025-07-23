@@ -6,85 +6,103 @@
 
   <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Book an Appointment</title>
 
-  <link rel="stylesheet" href="appointment_improved.css">
+  <link rel="stylesheet" href="appointment.css">
 
 </head>
 
 <body>
 
-
-
-  <div class="container">
+  <div class="form-container">
 
     <h1>Book an Appointment</h1>
 
-
-
     <form id="appointmentForm">
 
-      <label for="name">Customer Name</label>
+      <label for="name">Name:</label>
 
       <input type="text" id="name" name="name" required>
 
 
 
-      <label for="phone">Phone Number</label>
+      <label for="phone">Phone:</label>
 
       <input type="tel" id="phone" name="phone" required>
 
 
 
-      <label for="address">Address</label>
+      <label for="address">Address:</label>
 
-      <input type="text" id="address" name="address" required>
-
-
-
-      <label for="items">Number of Items</label>
-
-      <input type="text" id="items" name="items" required>
+      <textarea id="address" name="address" required></textarea>
 
 
 
-      <label for="pickup">Pickup Date & Time</label>
+      <label for="pieces">Number of Pieces:</label>
 
-      <input type="datetime-local" id="pickup" name="pickup">
-
-
-
-      <label for="delivery">Delivery Date & Time</label>
-
-      <input type="datetime-local" id="delivery" name="delivery">
+      <input type="number" id="pieces" name="pieces" min="1" required>
 
 
 
-      <label for="notes">Additional Notes</label>
+      <label for="pickup_date">Pickup Date & Time:</label>
 
-      <textarea id="notes" name="notes" placeholder="Any instructions or comments..."></textarea>
+      <input type="datetime-local" id="pickup_date" name="pickup_date" required>
 
 
 
-      <div class="buttons">
+      <label for="delivery_date">Delivery Date & Time:</label>
 
-        <button type="button" onclick="window.location.href='pickup_signature.html'">Pick up<br>Signature</button>
+      <input type="datetime-local" id="delivery_date" name="delivery_date" required>
 
-        <button type="button" onclick="window.location.href='delivery_signature.html'">Delivery<br>Signature</button>
+
+
+      <label for="service_type">Service Type:</label>
+
+      <select id="service_type" name="service_type" required>
+
+        <option value="">Select...</option>
+
+        <option value="Alteration">Alteration</option>
+
+        <option value="Custom Tailoring">Custom Tailoring</option>
+
+      </select>
+
+
+
+      <label for="notes">Additional Notes:</label>
+
+      <textarea id="notes" name="notes"></textarea>
+
+
+
+      <div class="button-group">
+
+        <button type="submit">Save Appointment</button>
+
+        <a href="index.html" class="back-button">← Back</a>
 
       </div>
-
-
-
-      <button type="submit" class="save-btn">Save Appointment</button>
 
     </form>
 
   </div>
 
 
+
+  <script>
+
+    document.getElementById("appointmentForm").addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      alert("Appointment saved successfully!");
+
+    });
+
+  </script>
 
 </body>
 
