@@ -8,105 +8,9 @@
 
   <title>Delivery Signature</title>
 
-  <link rel="stylesheet" href="appointment.css">
+  <link rel="stylesheet" href="signature.css">
 
-  <script>
-
-    function clearSignature() {
-
-      const canvas = document.getElementById("signature-pad");
-
-      const ctx = canvas.getContext("2d");
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    }
-
-
-
-    function submitForm() {
-
-      const canvas = document.getElementById("signature-pad");
-
-      const dataURL = canvas.toDataURL();
-
-
-
-      const data = {
-
-        customer_name: document.getElementById("customer_name").value,
-
-        phone: document.getElementById("phone").value,
-
-        service: document.getElementById("service").value,
-
-        pieces: document.getElementById("pieces").value,
-
-        delivery_date: document.getElementById("delivery_date").value,
-
-        delivery_time: document.getElementById("delivery_time").value,
-
-        notes: document.getElementById("notes").value,
-
-        signature: dataURL
-
-      };
-
-
-
-      fetch("https://script.google.com/macros/s/AKfyc...<أكمل برابطك الكامل هنا>.../exec", {
-
-        method: "POST",
-
-        body: JSON.stringify(data),
-
-        headers: {
-
-          "Content-Type": "application/json"
-
-        }
-
-      })
-
-      .then(response => alert("Delivery signature submitted successfully."))
-
-      .catch(error => alert("Submission failed: " + error));
-
-    }
-
-  </script>
-
-  <style>
-
-    canvas {
-
-      border: 2px solid #ccc;
-
-      width: 100%;
-
-      height: 200px;
-
-      background: #fff;
-
-    }
-
-    button {
-
-      margin: 10px;
-
-      padding: 10px 20px;
-
-      font-weight: bold;
-
-      background-color: gold;
-
-      border: none;
-
-      cursor: pointer;
-
-    }
-
-  </style>
+  <script src="signature.js"></script>
 
 </head>
 
@@ -116,67 +20,61 @@
 
     <h1>Delivery Signature</h1>
 
+    <form id="deliveryForm" method="post">
 
+      <label for="customer_name">Name:</label>
 
-    <label for="customer_name">Name:</label>
-
-    <input type="text" id="customer_name" required>
-
-
-
-    <label for="phone">Phone:</label>
-
-    <input type="tel" id="phone" required>
+      <input type="text" id="customer_name" name="customer_name" required>
 
 
 
-    <label for="service">Service:</label>
+      <label for="phone">Phone:</label>
 
-    <select id="service">
-
-      <option value="Alteration">Alteration</option>
-
-      <option value="Custom">Custom</option>
-
-    </select>
+      <input type="tel" id="phone" name="phone" required>
 
 
 
-    <label for="pieces">Pieces:</label>
+      <label for="service">Service Type:</label>
 
-    <input type="number" id="pieces" required>
-
-
-
-    <label for="delivery_date">Delivery Date:</label>
-
-    <input type="date" id="delivery_date" required>
+      <input type="text" id="service" name="service" required>
 
 
 
-    <label for="delivery_time">Delivery Time:</label>
+      <label for="pieces">Number of Pieces:</label>
 
-    <input type="time" id="delivery_time" required>
-
-
-
-    <label for="notes">Notes:</label>
-
-    <textarea id="notes"></textarea>
+      <input type="number" id="pieces" name="pieces" required>
 
 
 
-    <label>Signature:</label>
+      <label for="delivery_date">Delivery Date:</label>
 
-    <canvas id="signature-pad"></canvas>
-
-    <button type="button" onclick="clearSignature()">Clear</button>
+      <input type="date" id="delivery_date" name="delivery_date" required>
 
 
 
-    <button type="button" onclick="submitForm()">Submit</button>
+      <label for="delivery_time">Delivery Time:</label>
 
-    <a href="appointment.html"><button type="button">Back</button></a>
+      <input type="time" id="delivery_time" name="delivery_time" required>
+
+
+
+      <label for="notes">Notes:</label>
+
+      <textarea id="notes" name="notes" rows="4"></textarea>
+
+
+
+      <label>Signature:</label>
+
+      <canvas id="signature-pad"></canvas>
+
+      <br>
+
+      <button type="button" onclick="submitForm()">Submit</button>
+
+      <button type="button" class="back-button" onclick="window.history.back()">Back</button>
+
+    </form>
 
   </div>
 
