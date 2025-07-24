@@ -20,7 +20,7 @@
 
     <h1>Delivery Signature</h1>
 
-    <form id="deliveryForm" method="post">
+    <form id="deliveryForm">
 
       <label for="customer_name">Name:</label>
 
@@ -58,7 +58,7 @@
 
 
 
-      <label for="signature">Signature:</label>
+      <label for="signature-pad">Signature:</label>
 
       <canvas id="signature-pad" width="300" height="100" style="border:1px solid #ccc;"></canvas><br>
 
@@ -66,13 +66,11 @@
 
 
 
-      <input type="hidden" name="delivery_signature" id="delivery_signature">
-
-
-
       <br><br>
 
       <button type="submit">Save</button>
+
+      <button type="button" onclick="goBack()">Back</button>
 
     </form>
 
@@ -130,45 +128,71 @@
 
 
 
+    function goBack() {
+
+      window.history.back();
+
+    }
+
+
+
     document.getElementById("deliveryForm").addEventListener("submit", function (e) {
 
       e.preventDefault();
 
-      const signatureData = canvas.toDataURL();
-
-      document.getElementById("delivery_signature").value = signatureData;
 
 
+      const data = {
 
-      const formData = new FormData(this);
+        name: document.getElementById("customer_name").value,
+
+        phone: document.getElementById("phone").value,
+
+        number_of_items: document.getElementById("number_of_items").value,
+
+        service_type: document.getElementById("service_type").value,
+
+        delivery_datetime: document.getElementById("delivery_datetime").value,
+
+        signature: canvas.toDataURL()
+
+      };
 
 
 
-      fetch("save_delivery.php", {
+      fetch("🔗 ضع هنا رابط Web App الخاص بك", {
 
         method: "POST",
 
-        body: formData
+        headers: {
+
+          "Content-Type": "application/json"
+
+        },
+
+        body: JSON.stringify(data)
 
       })
 
-        .then(response => response.text())
+      .then(response => response.text())
 
-        .then(result => {
+      .then(result => {
 
-          alert(result);
+        alert("تم حفظ توقيع التسليم بنجاح ✔️");
 
-          this.reset();
+        clearSignature();
 
-          clearSignature();
+        document.getElementById("deliveryForm").reset();
 
-        })
+      })
 
-        .catch(error => {
+      .catch(error => {
 
-          alert("Error: " + error);
+        alert("حدث خطأ أثناء الحفظ ❌");
 
-        });
+        console.error(error);
+
+      });
 
     });
 
