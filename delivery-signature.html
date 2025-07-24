@@ -2,8 +2,6 @@
 
 <html lang="en">
 
-
-
 <head>
 
   <meta charset="UTF-8">
@@ -12,11 +10,105 @@
 
   <link rel="stylesheet" href="appointment.css">
 
-  <script src="signature.js"></script>
+  <script>
+
+    function clearSignature() {
+
+      const canvas = document.getElementById("signature-pad");
+
+      const ctx = canvas.getContext("2d");
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    }
+
+
+
+    function submitForm() {
+
+      const canvas = document.getElementById("signature-pad");
+
+      const dataURL = canvas.toDataURL();
+
+
+
+      const data = {
+
+        customer_name: document.getElementById("customer_name").value,
+
+        phone: document.getElementById("phone").value,
+
+        service: document.getElementById("service").value,
+
+        pieces: document.getElementById("pieces").value,
+
+        delivery_date: document.getElementById("delivery_date").value,
+
+        delivery_time: document.getElementById("delivery_time").value,
+
+        notes: document.getElementById("notes").value,
+
+        signature: dataURL
+
+      };
+
+
+
+      fetch("https://script.google.com/macros/s/AKfyc...<أكمل برابطك الكامل هنا>.../exec", {
+
+        method: "POST",
+
+        body: JSON.stringify(data),
+
+        headers: {
+
+          "Content-Type": "application/json"
+
+        }
+
+      })
+
+      .then(response => alert("Delivery signature submitted successfully."))
+
+      .catch(error => alert("Submission failed: " + error));
+
+    }
+
+  </script>
+
+  <style>
+
+    canvas {
+
+      border: 2px solid #ccc;
+
+      width: 100%;
+
+      height: 200px;
+
+      background: #fff;
+
+    }
+
+    button {
+
+      margin: 10px;
+
+      padding: 10px 20px;
+
+      font-weight: bold;
+
+      background-color: gold;
+
+      border: none;
+
+      cursor: pointer;
+
+    }
+
+  </style>
 
 </head>
-
-
 
 <body>
 
@@ -26,178 +118,68 @@
 
 
 
-    <form id="deliveryForm">
+    <label for="customer_name">Name:</label>
 
-      <label for="customer_name">Name:</label>
-
-      <input type="text" id="customer_name" name="customer_name" required>
+    <input type="text" id="customer_name" required>
 
 
 
-      <label for="phone">Phone:</label>
+    <label for="phone">Phone:</label>
 
-      <input type="tel" id="phone" name="phone" required>
-
-
-
-      <label for="number_of_items">Number of Items:</label>
-
-      <input type="number" id="number_of_items" name="number_of_items" required>
+    <input type="tel" id="phone" required>
 
 
 
-      <label for="service_type">Service Type:</label>
+    <label for="service">Service:</label>
 
-      <select id="service_type" name="service_type" required>
+    <select id="service">
 
-        <option value="Alteration">Alteration</option>
+      <option value="Alteration">Alteration</option>
 
-        <option value="Tailoring">Tailoring</option>
+      <option value="Custom">Custom</option>
 
-      </select>
-
-
-
-      <label for="delivery_datetime">Delivery Date & Time:</label>
-
-      <input type="datetime-local" id="delivery_datetime" name="delivery_datetime" required>
+    </select>
 
 
 
-      <label for="signature-pad">Signature:</label>
+    <label for="pieces">Pieces:</label>
 
-      <canvas id="signature-pad" width="300" height="100" style="border:1px solid #ccc;"></canvas><br>
-
-      <button type="button" onclick="clearSignature()">Clear</button>
+    <input type="number" id="pieces" required>
 
 
 
-      <br><br>
+    <label for="delivery_date">Delivery Date:</label>
 
-      <button type="submit">Save</button>
+    <input type="date" id="delivery_date" required>
 
-      <button type="button" onclick="goBack()">Back</button>
 
-    </form>
+
+    <label for="delivery_time">Delivery Time:</label>
+
+    <input type="time" id="delivery_time" required>
+
+
+
+    <label for="notes">Notes:</label>
+
+    <textarea id="notes"></textarea>
+
+
+
+    <label>Signature:</label>
+
+    <canvas id="signature-pad"></canvas>
+
+    <button type="button" onclick="clearSignature()">Clear</button>
+
+
+
+    <button type="button" onclick="submitForm()">Submit</button>
+
+    <a href="appointment.html"><button type="button">Back</button></a>
 
   </div>
 
-
-
-  <script>
-
-    const canvas = document.getElementById("signature-pad");
-
-    const ctx = canvas.getContext("2d");
-
-    let drawing = false;
-
-
-
-    canvas.addEventListener("mousedown", () => drawing = true);
-
-    canvas.addEventListener("mouseup", () => drawing = false);
-
-    canvas.addEventListener("mouseout", () => drawing = false);
-
-    canvas.addEventListener("mousemove", draw);
-
-
-
-    function draw(e) {
-
-      if (!drawing) return;
-
-      ctx.lineWidth = 2;
-
-      ctx.lineCap = "round";
-
-      const rect = canvas.getBoundingClientRect();
-
-      ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-
-      ctx.stroke();
-
-      ctx.beginPath();
-
-      ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-
-    }
-
-
-
-    function clearSignature() {
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    }
-
-
-
-    function goBack() {
-
-      window.history.back();
-
-    }
-
-
-
-    document.getElementById("deliveryForm").addEventListener("submit", function (e) {
-
-      e.preventDefault();
-
-
-
-      const formData = new FormData();
-
-      formData.append("name", document.getElementById("customer_name").value);
-
-      formData.append("phone", document.getElementById("phone").value);
-
-      formData.append("number_of_items", document.getElementById("number_of_items").value);
-
-      formData.append("service_type", document.getElementById("service_type").value);
-
-      formData.append("delivery_datetime", document.getElementById("delivery_datetime").value);
-
-      formData.append("signature", canvas.toDataURL());
-
-
-
-      fetch("https://script.google.com/macros/s/AKfycbwJhxcjMtc9uV9ukpRBcIDsa2M_nKNlBJW1K2Kra7oKs0RWnWyPQ0VvYBEFL/exec", {
-
-        method: "POST",
-
-        body: formData
-
-      })
-
-        .then(res => res.text())
-
-        .then(data => {
-
-          alert("✔️ Delivery signature saved successfully!");
-
-          clearSignature();
-
-          document.getElementById("deliveryForm").reset();
-
-        })
-
-        .catch(err => {
-
-          console.error("Error:", err.message);
-
-          alert("❌ Submission failed.");
-
-        });
-
-    });
-
-  </script>
-
 </body>
-
-
 
 </html>
