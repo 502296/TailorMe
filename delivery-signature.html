@@ -8,9 +8,9 @@
 
   <title>Delivery Signature</title>
 
-  <link rel="stylesheet" href="signature.css">
+  <link rel="stylesheet" href="appointment.css">
 
-  <script src="signature.js"></script>
+  <script src="signature.js" defer></script>
 
 </head>
 
@@ -20,7 +20,7 @@
 
     <h1>Delivery Signature</h1>
 
-    <form id="deliveryForm" method="post">
+    <form id="deliveryForm">
 
       <label for="customer_name">Name:</label>
 
@@ -34,49 +34,159 @@
 
 
 
-      <label for="service">Service Type:</label>
+      <label for="number_of_items">Number of Items:</label>
 
-      <input type="text" id="service" name="service" required>
-
-
-
-      <label for="pieces">Number of Pieces:</label>
-
-      <input type="number" id="pieces" name="pieces" required>
+      <input type="number" id="number_of_items" name="number_of_items" required>
 
 
 
-      <label for="delivery_date">Delivery Date:</label>
+      <label for="service_type">Service Type:</label>
 
-      <input type="date" id="delivery_date" name="delivery_date" required>
+      <select id="service_type" name="service_type" required>
 
+        <option value="Alteration">Alteration</option>
 
+        <option value="Tailoring">Tailoring</option>
 
-      <label for="delivery_time">Delivery Time:</label>
-
-      <input type="time" id="delivery_time" name="delivery_time" required>
-
-
-
-      <label for="notes">Notes:</label>
-
-      <textarea id="notes" name="notes" rows="4"></textarea>
+      </select>
 
 
 
-      <label>Signature:</label>
+      <label for="delivery_datetime">Delivery Date & Time:</label>
 
-      <canvas id="signature-pad"></canvas>
+      <input type="datetime-local" id="delivery_datetime" name="delivery_datetime" required>
 
-      <br>
 
-      <button type="button" onclick="submitForm()">Submit</button>
 
-      <button type="button" class="back-button" onclick="window.history.back()">Back</button>
+      <label for="signature-pad">Signature:</label>
+
+      <canvas id="signature-pad" width="300" height="100" style="border:1px solid #ccc;"></canvas><br>
+
+      <button type="button" onclick="clearSignature()">Clear</button><br><br>
+
+
+
+      <button type="submit">Save</button>
+
+      <button type="button" onclick="goBack()">Back</button>
 
     </form>
 
   </div>
+
+
+
+  <script>
+
+    const canvas = document.getElementById("signature-pad");
+
+    const ctx = canvas.getContext("2d");
+
+    let drawing = false;
+
+
+
+    canvas.addEventListener("mousedown", () => drawing = true);
+
+    canvas.addEventListener("mouseup", () => drawing = false);
+
+    canvas.addEventListener("mouseout", () => drawing = false);
+
+    canvas.addEventListener("mousemove", draw);
+
+
+
+    function draw(e) {
+
+      if (!drawing) return;
+
+      ctx.lineWidth = 2;
+
+      ctx.lineCap = "round";
+
+      const rect = canvas.getBoundingClientRect();
+
+      ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+
+      ctx.stroke();
+
+      ctx.beginPath();
+
+      ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+
+    }
+
+
+
+    function clearSignature() {
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    }
+
+
+
+    function goBack() {
+
+      window.history.back();
+
+    }
+
+
+
+    document.getElementById("deliveryForm").addEventListener("submit", function (e) {
+
+      e.preventDefault();
+
+
+
+      const data = {
+
+        name: document.getElementById("customer_name").value,
+
+        phone: document.getElementById("phone").value,
+
+        number_of_items: document.getElementById("number_of_items").value,
+
+        service_type: document.getElementById("service_type").value,
+
+        delivery_datetime: document.getElementById("delivery_datetime").value,
+
+        signature: canvas.toDataURL()
+
+      };
+
+
+
+      fetch("https://script.google.com/macros/s/AKfycbwJhxcjMtc9uV9ukpRBcIDsa2M_nKNlBJW1K2Kra7oKs0RWnWyPQ0VvYBEFL/exec", {
+
+        method: "POST",
+
+        headers: { "Content-Type": "application/json" },
+
+        body: JSON.stringify(data)
+
+      })
+
+      .then(response => response.text())
+
+      .then(result => {
+
+        window.location.href = "confirmation.html";
+
+      })
+
+      .catch(error => {
+
+        alert("❌ Error while saving data.");
+
+        console.error(error);
+
+      });
+
+    });
+
+  </script>
 
 </body>
 
