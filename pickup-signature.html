@@ -20,7 +20,7 @@
 
     <h1>Pickup Signature</h1>
 
-    <form id="pickupForm" method="post">
+    <form id="pickupForm">
 
       <label for="customer_name">Name:</label>
 
@@ -134,41 +134,68 @@
 
       e.preventDefault();
 
+
+
+      // تحويل التوقيع إلى صورة Base64
+
       const signatureData = canvas.toDataURL();
 
       document.getElementById("pickup_signature").value = signatureData;
 
 
 
-      const formData = new FormData(this);
+      // جمع البيانات
 
+      const formData = {
 
+        customer_name: document.getElementById("customer_name").value,
 
-      fetch("save_pickup.php", {
+        phone: document.getElementById("phone").value,
 
-        method: "POST",
+        number_of_items: document.getElementById("number_of_items").value,
 
-        body: formData
+        service_type: document.getElementById("service_type").value,
+
+        pickup_datetime: document.getElementById("pickup_datetime").value,
+
+        pickup_signature: signatureData
+
+      };
+
+      
+    fetch("https://script.google.com/macros/s/AKfycbwJhxcjMtc9Uv9ukpRBCIDsa2M_nKNIBJW1K2KKra7oKsORWnWyPQ0VvYBEFI05PV7z/exec", {
+
+  method: "POST",
+
+  body: formData
+
+})
+
+  .then(response => response.text())
+
+  .then(result => {
+
+    alert("Saved successfully: " + result);
+
+    this.reset();
+
+    clearSignature();
+
+  })
+
+  .catch(error => {
+
+    alert("Error: " + error);
+
+  });
 
       })
 
-        .then(response => response.text())
+      .catch(error => {
 
-        .then(result => {
+        alert("Error: " + error);
 
-          alert(result);
-
-          this.reset();
-
-          clearSignature();
-
-        })
-
-        .catch(error => {
-
-          alert("Error: " + error);
-
-        });
+      });
 
     });
 
