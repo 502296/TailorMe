@@ -71,34 +71,33 @@
       formData.append("signature", signature);
 
 
+    fetch("https://script.google.com/macros/s/AKfycbwJhxjcMtc9vV9ukpRBclDsa2M_nKNIBJW1K2KK7a70KsORWnWyPQQvYyBEF1/exec", {
 
-     fetch("https://script.google.com/macros/s/AKfycwbur0gDuM-jPLWXQUWVi-XBsTd66bAZPYnmNk1oCRJGtbfqq5F9B7jjNAYDfFa1PaeV/exec", {
+  method: "POST",
 
-        method: "POST",
+  body: formData
 
-        body: formData
+})
 
-      })
+.then(res => res.text())
 
-      .then(res => res.text())
+.then(data => {
 
-      .then(data => {
+  alert("✅ Submitted successfully!");
 
-        alert("✅ Submitted successfully!");
+  document.getElementById("pickupForm").reset();
 
-        document.getElementById("pickupForm").reset();
+  clearSignature();
 
-        clearSignature();
+})
 
-      })
+.catch(err => {
 
-      .catch(err => {
+  console.error("Error!", err.message);
 
-        console.error("Error!", err.message);
+  alert("❌ Submission failed.");
 
-        alert("❌ Submission failed.");
-
-      });
+});
 
     }
 
