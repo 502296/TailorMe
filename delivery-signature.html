@@ -2,6 +2,8 @@
 
 <html lang="en">
 
+
+
 <head>
 
   <meta charset="UTF-8">
@@ -14,11 +16,15 @@
 
 </head>
 
+
+
 <body>
 
   <div class="form-container">
 
     <h1>Delivery Signature</h1>
+
+
 
     <form id="deliveryForm">
 
@@ -142,92 +148,56 @@
 
 
 
-      const data = {
+      const formData = new FormData();
 
-        name: document.getElementById("customer_name").value,
+      formData.append("name", document.getElementById("customer_name").value);
 
-        phone: document.getElementById("phone").value,
+      formData.append("phone", document.getElementById("phone").value);
 
-        number_of_items: document.getElementById("number_of_items").value,
+      formData.append("number_of_items", document.getElementById("number_of_items").value);
 
-        service_type: document.getElementById("service_type").value,
+      formData.append("service_type", document.getElementById("service_type").value);
 
-        delivery_datetime: document.getElementById("delivery_datetime").value,
+      formData.append("delivery_datetime", document.getElementById("delivery_datetime").value);
 
-        signature: canvas.toDataURL()
+      formData.append("signature", canvas.toDataURL());
 
-      };
 
-fetch("https://script.google.com/macros/s/AKfycbwJhxcjMtc9uV9ukpRBcIDsa2M_nKNlBJW1K2KKra7oKsORWnWyPQ0VvYBEFI05PV7z/exec", {
 
-  method: "POST",
-
-  headers: {
-
-    "Content-Type": "application/json"
-
-  },
-
-  body: JSON.stringify(data)
-
-})
-
-.then(response => response.text())
-
-.then(result => {
-
-  alert("✔️ تم حفظ توقيع التسليم بنجاح");
-
-  clearSignature();
-
-  document.getElementById("deliveryForm").reset();
-
-})
-
-.catch(error => {
-
-  alert("حدث خطأ أثناء الحفظ ❌");
-
-  console.error(error);
-
-});
+      fetch("https://script.google.com/macros/s/AKfycbwJhxcjMtc9uV9ukpRBcIDsa2M_nKNlBJW1K2Kra7oKs0RWnWyPQ0VvYBEFL/exec", {
 
         method: "POST",
 
-        headers: {
-
-          "Content-Type": "application/json"
-
-        },
-
-        body: JSON.stringify(data)
+        body: formData
 
       })
 
-      .then(response => response.text())
+        .then(res => res.text())
 
-      .then(result => {
+        .then(data => {
 
-        alert("تم حفظ توقيع التسليم بنجاح ✔️");
+          alert("✔️ Delivery signature saved successfully!");
 
-        clearSignature();
+          clearSignature();
 
-        document.getElementById("deliveryForm").reset();
+          document.getElementById("deliveryForm").reset();
 
-      })
+        })
 
-      .catch(error => {
+        .catch(err => {
 
-        alert("حدث خطأ أثناء الحفظ ❌");
+          console.error("Error:", err.message);
 
-        console.error(error);
+          alert("❌ Submission failed.");
 
-      });
+        });
 
     });
 
   </script>
 
 </body>
+
+
 
 </html>
