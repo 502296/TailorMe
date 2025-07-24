@@ -6,41 +6,115 @@
 
   <meta charset="UTF-8">
 
-  <title>Booking Confirmation</title>
+  <title>Success | TailorMe</title>
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+
+    body {
+
+      background-color: #0e1a2b;
+
+      color: #fff;
+
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      height: 100vh;
+
+      flex-direction: column;
+
+      text-align: center;
+
+    }
+
+
+
+    h1 {
+
+      color: gold;
+
+      margin-bottom: 20px;
+
+    }
+
+
+
+    .success-box {
+
+      border: 2px solid gold;
+
+      padding: 30px 40px;
+
+      border-radius: 12px;
+
+      background-color: #1a2b40;
+
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+
+    }
+
+
+
+    .back-button {
+
+      margin-top: 25px;
+
+      background-color: gold;
+
+      color: #000;
+
+      padding: 10px 25px;
+
+      border: none;
+
+      border-radius: 6px;
+
+      font-size: 16px;
+
+      cursor: pointer;
+
+    }
+
+
+
+    .back-button:hover {
+
+      background-color: #e6c200;
+
+    }
+
+  </style>
 
 </head>
 
 <body>
 
-  <nav>
+  <div class="success-box">
 
-    <a href="index.html">Home</a>
+    <h1>✔️ Signature Saved Successfully</h1>
 
-    <a href="pricing.html">Pricing</a>
+    <p>Your signature and delivery details were sent to TailorMe and saved securely.</p>
 
-    <a href="payment.html">Payment</a>
+    <button class="back-button" onclick="goBack()">Back to TailorMe</button>
 
-    <a href="about.html">About</a>
-
-    <a href="contact.html">Contact</a>
-
-  </nav>
+  </div>
 
 
 
-  <h2>Booking Confirmed</h2>
+  <script>
 
-  <p>Thank you! Your request was received. We’ll be in touch soon.</p>
+    function goBack() {
 
+      window.location.href = "index.html";
 
+    }
 
-  <footer>
-
-    <p>© 2025 TailorMe. All rights reserved.</p>
-
-  </footer>
+  </script>
 
 </body>
 
