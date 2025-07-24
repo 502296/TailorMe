@@ -10,7 +10,99 @@
 
   <link rel="stylesheet" href="appointment.css">
 
-  <script src="signature.js"></script>
+  <script>
+
+    function clearSignature() {
+
+      const canvas = document.getElementById('signatureCanvas');
+
+      const ctx = canvas.getContext('2d');
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    }
+
+
+
+    function submitForm(event) {
+
+      event.preventDefault();
+
+
+
+      const name = document.getElementById("customer_name").value;
+
+      const phone = document.getElementById("phone").value;
+
+      const service = document.getElementById("service").value;
+
+      const pieces = document.getElementById("pieces").value;
+
+      const pickup_date = document.getElementById("pickup_date").value;
+
+      const pickup_time = document.getElementById("pickup_time").value;
+
+      const notes = document.getElementById("notes").value;
+
+
+
+      const canvas = document.getElementById("signatureCanvas");
+
+      const signature = canvas.toDataURL();
+
+
+
+      const formData = new FormData();
+
+      formData.append("name", name);
+
+      formData.append("phone", phone);
+
+      formData.append("service", service);
+
+      formData.append("pieces", pieces);
+
+      formData.append("pickup_date", pickup_date);
+
+      formData.append("pickup_time", pickup_time);
+
+      formData.append("notes", notes);
+
+      formData.append("signature", signature);
+
+
+
+      fetch("https://script.google.com/macros/s/AKfycbwur0gDuM-jlPLWXQUWVi-xBsTd66bAZPYmNmk1OcRJGbtfqq5F9B7jiNAYDfFa1P9aew/exec", {
+
+        method: "POST",
+
+        body: formData
+
+      })
+
+      .then(res => res.text())
+
+      .then(data => {
+
+        alert("✅ Submitted successfully!");
+
+        document.getElementById("pickupForm").reset();
+
+        clearSignature();
+
+      })
+
+      .catch(err => {
+
+        console.error("Error!", err.message);
+
+        alert("❌ Submission failed.");
+
+      });
+
+    }
+
+  </script>
 
 </head>
 
@@ -20,11 +112,11 @@
 
     <h1>Pickup Signature</h1>
 
-    <form id="pickupForm">
+    <form id="pickupForm" onsubmit="submitForm(event)">
 
       <label for="customer_name">Name:</label>
 
-      <input type="text" id="customer_name" name="customer_name" required>
+      <input type="text" id="customer_name" name="name" required>
 
 
 
@@ -34,45 +126,57 @@
 
 
 
-      <label for="number_of_items">Number of Items:</label>
+      <label for="service">Service Type:</label>
 
-      <input type="number" id="number_of_items" name="number_of_items" required>
-
-
-
-      <label for="service_type">Service Type:</label>
-
-      <select id="service_type" name="service_type" required>
-
-        <option value="Alteration">Alteration</option>
+      <select id="service" name="service" required>
 
         <option value="Tailoring">Tailoring</option>
+
+        <option value="Alteration">Alteration</option>
 
       </select>
 
 
 
-      <label for="pickup_datetime">Pickup Date & Time:</label>
+      <label for="pieces">Number of Pieces:</label>
 
-      <input type="datetime-local" id="pickup_datetime" name="pickup_datetime" required>
+      <input type="number" id="pieces" name="pieces" required>
+
+
+
+      <label for="pickup_date">Pickup Date:</label>
+
+      <input type="date" id="pickup_date" name="pickup_date" required>
+
+
+
+      <label for="pickup_time">Pickup Time:</label>
+
+      <input type="time" id="pickup_time" name="pickup_time" required>
+
+
+
+      <label for="notes">Notes (optional):</label>
+
+      <textarea id="notes" name="notes"></textarea>
 
 
 
       <label for="signature">Signature:</label>
 
-      <canvas id="signature-pad" width="300" height="100" style="border:1px solid #ccc;"></canvas><br>
+      <canvas id="signatureCanvas" width="300" height="150" style="border:1px solid #ccc; background-color:white;"></canvas>
 
-      <button type="button" onclick="clearSignature()">Clear</button>
+      <br>
 
-
-
-      <input type="hidden" name="pickup_signature" id="pickup_signature">
+      <button type="button" onclick="clearSignature()">Clear Signature</button>
 
 
 
       <br><br>
 
-      <button type="submit">Save</button>
+      <button type="submit">Submit</button>
+
+      <a href="appointment.html" class="back-button">Back</a>
 
     </form>
 
@@ -82,21 +186,29 @@
 
   <script>
 
-    const canvas = document.getElementById("signature-pad");
+    const canvas = document.getElementById('signatureCanvas');
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
 
     let drawing = false;
 
 
 
-    canvas.addEventListener("mousedown", () => drawing = true);
+    canvas.addEventListener('mousedown', () => drawing = true);
 
-    canvas.addEventListener("mouseup", () => drawing = false);
+    canvas.addEventListener('mouseup', () => drawing = false);
 
-    canvas.addEventListener("mouseout", () => drawing = false);
+    canvas.addEventListener('mouseout', () => drawing = false);
 
-    canvas.addEventListener("mousemove", draw);
+    canvas.addEventListener('mousemove', draw);
+
+    canvas.addEventListener('touchstart', () => drawing = true);
+
+    canvas.addEventListener('touchend', () => drawing = false);
+
+    canvas.addEventListener('touchcancel', () => drawing = false);
+
+    canvas.addEventListener('touchmove', drawTouch);
 
 
 
@@ -106,98 +218,51 @@
 
       ctx.lineWidth = 2;
 
-      ctx.lineCap = "round";
+      ctx.lineCap = 'round';
 
-      const rect = canvas.getBoundingClientRect();
+      ctx.strokeStyle = '#000';
 
-      ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+      ctx.lineTo(e.offsetX, e.offsetY);
 
       ctx.stroke();
 
       ctx.beginPath();
 
-      ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+      ctx.moveTo(e.offsetX, e.offsetY);
 
     }
 
 
 
-    function clearSignature() {
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    }
-
-
-
-    document.getElementById("pickupForm").addEventListener("submit", function (e) {
+    function drawTouch(e) {
 
       e.preventDefault();
 
+      const rect = canvas.getBoundingClientRect();
 
+      const touch = e.touches[0];
 
-      // تحويل التوقيع إلى صورة Base64
+      const x = touch.clientX - rect.left;
 
-      const signatureData = canvas.toDataURL();
+      const y = touch.clientY - rect.top;
 
-      document.getElementById("pickup_signature").value = signatureData;
+      if (!drawing) return;
 
+      ctx.lineWidth = 2;
 
+      ctx.lineCap = 'round';
 
-      // جمع البيانات
+      ctx.strokeStyle = '#000';
 
-      const formData = {
+      ctx.lineTo(x, y);
 
-        customer_name: document.getElementById("customer_name").value,
+      ctx.stroke();
 
-        phone: document.getElementById("phone").value,
+      ctx.beginPath();
 
-        number_of_items: document.getElementById("number_of_items").value,
+      ctx.moveTo(x, y);
 
-        service_type: document.getElementById("service_type").value,
-
-        pickup_datetime: document.getElementById("pickup_datetime").value,
-
-        pickup_signature: signatureData
-
-      };
-
-      
-    fetch("https://script.google.com/macros/s/AKfycbwJhxcjMtc9Uv9ukpRBCIDsa2M_nKNIBJW1K2KKra7oKsORWnWyPQ0VvYBEFI05PV7z/exec", {
-
-  method: "POST",
-
-  body: formData
-
-})
-
-  .then(response => response.text())
-
-  .then(result => {
-
-    alert("Saved successfully: " + result);
-
-    this.reset();
-
-    clearSignature();
-
-  })
-
-  .catch(error => {
-
-    alert("Error: " + error);
-
-  });
-
-      })
-
-      .catch(error => {
-
-        alert("Error: " + error);
-
-      });
-
-    });
+    }
 
   </script>
 
