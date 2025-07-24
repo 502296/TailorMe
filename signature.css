@@ -1,0 +1,157 @@
+/* signature.css - TailorMe Signature Style */
+
+
+
+body {
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  background-color: #0f0f1a; /* خلفية داكنة ملكية */
+
+  color: #ffffff;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+
+
+.form-container {
+
+  max-width: 600px;
+
+  margin: 50px auto;
+
+  background-color: #1a1a2e;
+
+  border: 2px solid #d4af37; /* إطار ذهبي */
+
+  border-radius: 12px;
+
+  padding: 30px;
+
+  box-shadow: 0 0 15px #d4af37;
+
+}
+
+
+
+h1 {
+
+  text-align: center;
+
+  color: #d4af37;
+
+  margin-bottom: 30px;
+
+  font-size: 28px;
+
+}
+
+
+
+label {
+
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-weight: bold;
+
+  color: #ffffff;
+
+}
+
+
+
+input, textarea {
+
+  width: 100%;
+
+  padding: 10px;
+
+  margin-bottom: 20px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 8px;
+
+  font-size: 16px;
+
+}
+
+
+
+canvas {
+
+  border: 2px dashed #d4af37;
+
+  background-color: #ffffff;
+
+  width: 100%;
+
+  height: 200px;
+
+  margin-bottom: 20px;
+
+}
+
+
+
+button {
+
+  display: inline-block;
+
+  background-color: #d4af37;
+
+  color: #000000;
+
+  font-weight: bold;
+
+  border: none;
+
+  padding: 12px 20px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition: background-color 0.3s ease;
+
+}
+
+
+
+button:hover {
+
+  background-color: #f5d562;
+
+}
+
+
+
+.back-button {
+
+  background-color: transparent;
+
+  color: #d4af37;
+
+  border: 1px solid #d4af37;
+
+  margin-top: 15px;
+
+  display: inline-block;
+
+}
+
+
+
+.back-button:hover {
+
+  background-color: #d4af37;
+
+  color: #000;
+
+}
