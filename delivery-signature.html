@@ -158,9 +158,40 @@
 
       };
 
+fetch("https://script.google.com/macros/s/AKfycbwJ.../exec", {
 
+  method: "POST",
 
-      fetch("🔗 ضع هنا رابط Web App الخاص بك", {
+  headers: {
+
+    "Content-Type": "application/json"
+
+  },
+
+  body: JSON.stringify(data)
+
+})
+
+.then(response => response.text())
+
+.then(result => {
+
+  alert("تم حفظ توقيع التسليم بنجاح ✔️");
+
+  clearSignature();
+
+  document.getElementById("deliveryForm").reset();
+
+})
+
+.catch(error => {
+
+  alert("حدث خطأ أثناء الحفظ ❌");
+
+  console.error(error);
+
+});
+
 
         method: "POST",
 
