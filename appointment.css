@@ -1,171 +1,187 @@
-body {
+<!DOCTYPE html>
 
-  background-color: #0b0b28;
+<html lang="en">
 
-  color: white;
+<head>
 
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  <meta charset="UTF-8">
 
-  padding: 20px;
+  <title>Book an Appointment – TailorMe</title>
 
-  margin: 0;
+  <link rel="stylesheet" href="appointment.css">
 
-}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+</head>
 
+<body>
 
-h1 {
+  <h1>🧵 Book an Appointment</h1>
 
-  text-align: center;
+  <form id="appointmentForm">
 
-  color: gold;
+    
 
-  font-size: 28px;
+    <label for="name">Name:</label>
 
-  margin-bottom: 30px;
+    <input type="text" id="name" name="name" required>
 
-}
 
 
+    <label for="phone">Phone:</label>
 
-form {
+    <input type="tel" id="phone" name="phone" required>
 
-  max-width: 500px;
 
-  margin: auto;
 
-}
+    <label for="address">Address:</label>
 
+    <input type="text" id="address" name="address" required>
 
 
-label {
 
-  display: block;
+    <label for="service">Service Type:</label>
 
-  margin-top: 12px;
+    <select id="service" name="service" required>
 
-  font-weight: bold;
+      <option value="">Select</option>
 
-  font-size: 16px;
+      <option value="Alteration">Alteration</option>
 
-}
+      <option value="Custom Tailoring">Custom Tailoring</option>
 
+    </select>
 
 
-input[type="text"],
 
-input[type="tel"],
+    <label for="pieces">Number of Pieces:</label>
 
-input[type="datetime-local"],
+    <input type="text" id="pieces" name="pieces" required>
 
-select,
 
-textarea {
 
-  width: 100%;
+    <label for="pickup_date">Pickup Date:</label>
 
-  padding: 12px;
+    <input type="date" id="pickup_date" name="pickup_date" required>
 
-  margin-top: 6px;
 
-  margin-bottom: 10px;
 
-  border: 1px solid #444;
+    <label for="pickup_time">Pickup Time:</label>
 
-  border-radius: 6px;
+    <input type="time" id="pickup_time" name="pickup_time" required>
 
-  background-color: #1a1a3c;
 
-  color: white;
 
-  font-size: 15px;
+    <label for="delivery_date">Delivery Date:</label>
 
-}
+    <input type="date" id="delivery_date" name="delivery_date" required>
 
 
 
-select {
+    <label for="delivery_time">Delivery Time:</label>
 
-  appearance: none;
+    <input type="time" id="delivery_time" name="delivery_time" required>
 
-}
 
 
+    <label for="notes">Additional Notes (optional):</label>
 
-textarea {
+    <textarea id="notes" name="notes" placeholder="e.g. Please call upon arrival."></textarea>
 
-  min-height: 80px;
 
-  resize: vertical;
 
-}
+    <button type="submit">Submit</button>
 
+    <a class="back-link" href="index.html">← Back to Home</a>
 
 
-/* زر الحفظ */
 
-button[type="submit"] {
+  </form>
 
-  background-color: gold;
 
-  color: black;
 
-  font-weight: bold;
+  <script>
 
-  border: none;
+    const scriptURL = "https://script.google.com/macros/s/AKfycb3YkJB_08QZMK8_7UR1JRmfchZ35AQgz75iWjKSc2y6su6VahatAvHZFLCW5-4AsXw/exec";
 
-  padding: 12px 24px;
 
-  border-radius: 8px;
 
-  cursor: pointer;
+    document.getElementById('appointmentForm').addEventListener('submit', function (e) {
 
-  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
+      e.preventDefault();
 
-  transition: all 0.3s ease;
 
-  width: 100%;
 
-  margin-top: 20px;
+      const form = e.target;
 
-}
+      const data = {
 
+        name: form.name.value,
 
+        phone: form.phone.value,
 
-button[type="submit"]:hover {
+        address: form.address.value,
 
-  background-color: #ffdb4d;
+        service: form.service.value,
 
-  box-shadow: 0 6px 15px rgba(255, 215, 0, 0.6);
+        pieces: form.pieces.value,
 
-  transform: scale(1.03);
+        pickup_date: form.pickup_date.value,
 
-}
+        pickup_time: form.pickup_time.value,
 
+        delivery_date: form.delivery_date.value,
 
+        delivery_time: form.delivery_time.value,
 
-.back-link {
+        notes: form.notes.value
 
-  display: block;
+      };
 
-  margin-top: 12px;
 
-  text-align: center;
 
-  color: #4d9fff;
+      fetch(scriptURL, {
 
-  text-decoration: none;
+        method: 'POST',
 
-  font-size: 15px;
+        body: JSON.stringify(data),
 
-}
+        headers: {
 
+          'Content-Type': 'application/json'
 
+        }
 
-.back-link:hover {
+      })
 
-  text-decoration: underline;
+      .then(response => {
 
-  color: #80bfff;
+        if (response.ok) {
 
-}
+          alert('✅ Booking submitted successfully!');
+
+          form.reset();
+
+        } else {
+
+          alert('❌ Error! Please try again.\nRequest failed.');
+
+        }
+
+      })
+
+      .catch(error => {
+
+        console.error('Error!', error.message);
+
+        alert('❌ Error! Please try again.\nLoad failed');
+
+      });
+
+    });
+
+  </script>
+
+</body>
+
+</html>
