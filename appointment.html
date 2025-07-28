@@ -6,9 +6,9 @@
 
   <meta charset="UTF-8" />
 
-  <title>Book an Appointment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book an Appointment</title>
 
   <link rel="stylesheet" href="appointment.css" />
 
@@ -16,105 +16,99 @@
 
 <body>
 
-  <div class="form-container">
-
-    <h1>Book an Appointment</h1>
-
-    <form id="bookingForm">
-
-      <label for="name">Name:</label>
-
-      <input type="text" id="name" name="name" required />
+  <h1>Book an Appointment</h1>
 
 
 
-      <label for="phone">Phone:</label>
+  <form id="appointmentForm">
 
-      <input type="tel" id="phone" name="phone" required />
+    <label for="name">Name:</label>
 
-
-
-      <label for="address">Address:</label>
-
-      <input type="text" id="address" name="address" required />
+    <input type="text" id="name" name="name" required />
 
 
 
-      <label for="service">Service Type:</label>
+    <label for="phone">Phone:</label>
 
-      <select id="service" name="service" required>
-
-        <option value="Alteration">Alteration</option>
-
-        <option value="Custom Tailoring">Custom Tailoring</option>
-
-      </select>
+    <input type="tel" id="phone" name="phone" required />
 
 
 
-      <label for="pieces">Number of Pieces:</label>
+    <label for="address">Address:</label>
 
-      <input type="number" id="pieces" name="pieces" required />
-
-
-
-      <label for="pickup_date">Pickup Date:</label>
-
-      <input type="date" id="pickup_date" name="pickup_date" required />
+    <input type="text" id="address" name="address" required />
 
 
 
-      <label for="pickup_time">Pickup Time:</label>
+    <label for="service">Service Type:</label>
 
-      <input type="time" id="pickup_time" name="pickup_time" required />
+    <select id="service" name="service" required>
 
+      <option value="">-- Select --</option>
 
+      <option value="Alteration">Alteration</option>
 
-      <label for="delivery_date">Delivery Date:</label>
+      <option value="Custom Tailoring">Custom Tailoring</option>
 
-      <input type="date" id="delivery_date" name="delivery_date" required />
-
-
-
-      <label for="delivery_time">Delivery Time:</label>
-
-      <input type="time" id="delivery_time" name="delivery_time" required />
+    </select>
 
 
 
-      <label for="notes">Additional Notes (optional):</label>
+    <label for="pieces">Number of Pieces:</label>
 
-      <textarea id="notes" name="notes" placeholder="Write any notes..."></textarea>
-
-
-
-      <button type="submit">Submit</button>
-
-    </form>
+    <input type="text" id="pieces" name="pieces" required />
 
 
 
-    <a href="index.html" class="back-link">← Back to Home</a>
+    <label for="pickup_date">Pickup Date:</label>
 
-  </div>
+    <input type="date" id="pickup_date" name="pickup_date" required />
+
+
+
+    <label for="pickup_time">Pickup Time:</label>
+
+    <input type="time" id="pickup_time" name="pickup_time" required />
+
+
+
+    <label for="delivery_date">Delivery Date:</label>
+
+    <input type="date" id="delivery_date" name="delivery_date" required />
+
+
+
+    <label for="delivery_time">Delivery Time:</label>
+
+    <input type="time" id="delivery_time" name="delivery_time" required />
+
+
+
+    <label for="notes">Additional Notes (optional):</label>
+
+    <textarea id="notes" name="notes" placeholder="e.g., Please ring the doorbell"></textarea>
+
+
+
+    <button type="submit">Submit</button>
+
+    <a class="back-link" href="index.html">&larr; Back to Home</a>
+
+  </form>
 
 
 
   <script>
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbY3YkJB_08QZMK8_7UR1JRmcfhZ35AQgZ75iWjKSc2y6su6VahatAvHZFLCW5-4AsXw/exec";
-
-    const form = document.getElementById("bookingForm");
-
-
-
-    form.addEventListener("submit", e => {
+    document.getElementById("appointmentForm").addEventListener("submit", function (e) {
 
       e.preventDefault();
 
 
 
-      const formData = {
+      const form = e.target;
+
+      const data = {
 
         name: form.name.value,
 
@@ -134,49 +128,41 @@
 
         delivery_time: form.delivery_time.value,
 
-        notes: form.notes.value
+        notes: form.notes.value,
 
       };
 
 
 
-      fetch(scriptURL, {
+      fetch("https://script.google.com/macros/s/AKfycby3YkJB_08QZMK8_7UR1JRmfcHZ35AQgz75iWjKSc2y6su6VahatAvHZFLCW5-4AsXw/exec", {
 
         method: "POST",
 
-        body: JSON.stringify(formData),
+        mode: "no-cors", // لتجنب الخطأ
 
         headers: {
 
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
 
-        }
+        },
+
+        body: JSON.stringify(data),
 
       })
 
-        .then(response => {
+      .then(() => {
 
-          if (response.ok) {
+        alert("Appointment submitted successfully!");
 
-            alert("✅ Appointment submitted successfully!");
+        form.reset();
 
-            form.reset();
+      })
 
-          } else {
+      .catch(() => {
 
-            alert("❌ Error! Please try again.\nLoad failed");
+        alert("❌ Error! Please try again.\nLoad failed");
 
-          }
-
-        })
-
-        .catch(error => {
-
-          alert("❌ Error! Please try again.\nLoad failed");
-
-          console.error("Error!", error.message);
-
-        });
+      });
 
     });
 
