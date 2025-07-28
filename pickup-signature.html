@@ -2,17 +2,157 @@
 
 <html lang="en">
 
+
+
 <head>
 
   <meta charset="UTF-8">
 
-  <title>Pickup Signature</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="signature.css">
+  <title>Pickup Signature | TailorMe</title>
 
-  <script src="signature.js"></script>
+  <link rel="stylesheet" href="appointment.css">
+
+  <style>
+
+    body {
+
+      background-color: #0e1a2b;
+
+      color: #fff;
+
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+      padding: 40px 20px;
+
+    }
+
+
+
+    .form-container {
+
+      max-width: 600px;
+
+      margin: auto;
+
+      border: 2px solid gold;
+
+      border-radius: 12px;
+
+      padding: 30px;
+
+      background-color: #1a2b40;
+
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.2);
+
+    }
+
+
+
+    h1 {
+
+      text-align: center;
+
+      color: gold;
+
+      margin-bottom: 20px;
+
+    }
+
+
+
+    label {
+
+      display: block;
+
+      margin-top: 15px;
+
+      font-weight: bold;
+
+    }
+
+
+
+    input, textarea {
+
+      width: 100%;
+
+      padding: 10px;
+
+      margin-top: 6px;
+
+      border-radius: 6px;
+
+      border: none;
+
+      font-size: 16px;
+
+    }
+
+
+
+    canvas {
+
+      border: 1px solid #ccc;
+
+      border-radius: 6px;
+
+      margin-top: 10px;
+
+      background-color: #fff;
+
+      width: 100%;
+
+      height: 200px;
+
+    }
+
+
+
+    .buttons {
+
+      margin-top: 20px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+    }
+
+
+
+    .btn {
+
+      background-color: gold;
+
+      color: black;
+
+      border: none;
+
+      padding: 12px 20px;
+
+      font-size: 16px;
+
+      border-radius: 6px;
+
+      cursor: pointer;
+
+    }
+
+
+
+    .btn:hover {
+
+      background-color: #e6c200;
+
+    }
+
+  </style>
 
 </head>
+
+
 
 <body>
 
@@ -22,21 +162,25 @@
 
     <form id="pickupForm">
 
+
+
       <label for="customer_name">Name:</label>
 
-      <input type="text" id="customer_name" required>
+      <input type="text" id="customer_name" name="customer_name" required>
 
 
 
       <label for="phone">Phone:</label>
 
-      <input type="tel" id="phone" required>
+      <input type="tel" id="phone" name="phone" required>
 
 
 
-      <label for="service">Service:</label>
+      <label for="service">Service Type:</label>
 
-      <select id="service" required>
+      <select id="service" name="service" required>
+
+        <option value="">Select...</option>
 
         <option value="Alteration">Alteration</option>
 
@@ -48,37 +192,49 @@
 
       <label for="pieces">Number of Pieces:</label>
 
-      <input type="number" id="pieces" required>
+      <input type="number" id="pieces" name="pieces" min="1" required>
 
 
 
       <label for="pickup_date">Pickup Date:</label>
 
-      <input type="date" id="pickup_date" required>
+      <input type="date" id="pickup_date" name="pickup_date" required>
 
 
 
       <label for="pickup_time">Pickup Time:</label>
 
-      <input type="time" id="pickup_time" required>
+      <input type="time" id="pickup_time" name="pickup_time" required>
 
 
 
       <label for="notes">Notes (optional):</label>
 
-      <textarea id="notes"></textarea>
+      <textarea id="notes" name="notes"></textarea>
 
 
 
-      <label>Signature:</label>
+      <label for="signature">Customer Signature:</label>
 
-      <canvas id="signature-pad" width="300" height="150" style="border:1px solid #000;"></canvas><br>
-
-      <button type="button" onclick="clearSignature()">Clear Signature</button><br><br>
+      <canvas id="signature-pad"></canvas>
 
 
 
-      <button type="submit">Submit</button>
+      <div class="buttons">
+
+        <button type="button" class="btn" onclick="clearSignature()">Clear</button>
+
+        <button type="submit" class="btn">Save Signature</button>
+
+      </div>
+
+
+
+      <div style="text-align: center; margin-top: 20px;">
+
+        <a href="index.html" style="color: gold; text-decoration: underline;">← Back to Home</a>
+
+      </div>
 
     </form>
 
@@ -86,63 +242,25 @@
 
 
 
+  <script src="signature.js"></script>
+
   <script>
 
-    const canvas = document.getElementById("signature-pad");
-
-    const ctx = canvas.getContext("2d");
-
-    let isDrawing = false;
-
-
-
-    canvas.addEventListener("mousedown", () => isDrawing = true);
-
-    canvas.addEventListener("mouseup", () => isDrawing = false);
-
-    canvas.addEventListener("mousemove", draw);
-
-
-
-    function draw(e) {
-
-      if (!isDrawing) return;
-
-      ctx.lineWidth = 2;
-
-      ctx.lineCap = "round";
-
-      ctx.strokeStyle = "#000";
-
-      ctx.lineTo(e.offsetX, e.offsetY);
-
-      ctx.stroke();
-
-      ctx.beginPath();
-
-      ctx.moveTo(e.offsetX, e.offsetY);
-
-    }
-
-
-
-    function clearSignature() {
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    }
-
-
-
-    document.getElementById("pickupForm").addEventListener("submit", async function (e) {
+    document.getElementById("pickupForm").addEventListener("submit", function (e) {
 
       e.preventDefault();
 
 
 
+      const canvas = document.getElementById("signature-pad");
+
+      const signatureData = canvas.toDataURL();
+
+
+
       const data = {
 
-        customer_name: document.getElementById("customer_name").value,
+        name: document.getElementById("customer_name").value,
 
         phone: document.getElementById("phone").value,
 
@@ -156,53 +274,53 @@
 
         notes: document.getElementById("notes").value,
 
-        signature: canvas.toDataURL()
+        signature: signatureData
 
       };
 
 
 
-      try {
+      fetch("https://script.google.com/macros/s/AKfycbz5nHctFlDckZ8PKWNi-zJvhmP0Xdvt_RKbXStyxeV8N4SR8joxsCwhD02d7DsQ3o1D/exec", {
 
-        const response = await fetch("https://script.google.com/macros/s/AKfycbyo1PzUGYJSlCzktI-5f4ptCk1J1i6Rk84UAH0YgDo6FHOfc7qTU5swTq8zB2bwas-wag/exec", {
+        method: "POST",
 
-          method: "POST",
+        body: JSON.stringify(data),
 
-          body: JSON.stringify(data),
+        headers: {
 
-          headers: {
-
-            "Content-Type": "application/json"
-
-          }
-
-        });
-
-
-
-        if (response.ok) {
-
-          alert("Pickup confirmed and email sent successfully!");
-
-          window.location.href = "thankyou.html";
-
-        } else {
-
-          alert("Something went wrong. Please try again.");
+          "Content-Type": "application/json"
 
         }
 
+      })
 
+        .then(res => res.text())
 
-      } catch (error) {
+        .then(result => {
 
-        console.error("Fetch error:", error);
+          window.location.href = "confirmation.html";
 
-        alert("Error sending data. Please check the console.");
+        })
 
-      }
+        .catch(err => {
+
+          alert("Error: " + err);
+
+        });
 
     });
+
+
+
+    function clearSignature() {
+
+      const canvas = document.getElementById("signature-pad");
+
+      const ctx = canvas.getContext("2d");
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    }
 
   </script>
 
