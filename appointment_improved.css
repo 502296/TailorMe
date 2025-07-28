@@ -1,171 +1,187 @@
-body {
+<!DOCTYPE html>
 
-  background-color: #0a0a23;
+<html lang="en">
 
-  color: gold;
 
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-  margin: 0;
+<head>
 
-  padding: 0;
+  <meta charset="UTF-8">
 
-}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <title>Book an Appointment</title>
 
+  <link rel="stylesheet" href="appointment.css">
 
-.container {
+</head>
 
-  max-width: 400px;
 
-  margin: 40px auto;
 
-  background-color: #111132;
+<body>
 
-  padding: 25px 30px;
 
-  border-radius: 16px;
 
-  box-shadow: 0 0 20px gold;
+  <div class="form-container">
 
-  border: 2px solid gold;
+    <h1>Book an Appointment</h1>
 
-}
 
 
+    <form id="appointmentForm">
 
-h1 {
 
-  text-align: center;
 
-  color: gold;
+      <label for="name">Name:</label>
 
-  font-size: 26px;
+      <input type="text" id="name" name="name" required>
 
-  margin-bottom: 25px;
 
-}
 
+      <label for="phone">Phone:</label>
 
+      <input type="tel" id="phone" name="phone" required>
 
-label {
 
-  display: block;
 
-  margin-bottom: 6px;
+      <label for="address">Address:</label>
 
-  font-weight: 600;
+      <textarea id="address" name="address" required></textarea>
 
-  color: gold;
 
-}
 
+      <label for="pieces">Number of Pieces:</label>
 
+      <input type="number" id="pieces" name="pieces" min="1" required>
 
-input[type="text"],
 
-input[type="tel"],
 
-input[type="datetime-local"],
+      <label for="pickup_date">Pickup Date:</label>
 
-textarea {
+      <input type="date" id="pickup_date" name="pickup_date" required>
 
-  width: 100%;
 
-  padding: 12px 10px;
 
-  margin-bottom: 15px;
+      <label for="pickup_time">Pickup Time:</label>
 
-  border: none;
+      <input type="time" id="pickup_time" name="pickup_time" required>
 
-  border-radius: 8px;
 
-  background-color: #2c2c44;
 
-  color: white;
+      <label for="delivery_date">Delivery Date:</label>
 
-  font-size: 16px;
+      <input type="date" id="delivery_date" name="delivery_date" required>
 
-  box-sizing: border-box;
 
-}
 
+      <label for="delivery_time">Delivery Time:</label>
 
+      <input type="time" id="delivery_time" name="delivery_time" required>
 
-textarea {
 
-  resize: vertical;
 
-  min-height: 80px;
+      <label for="service">Service Type:</label>
 
-}
+      <select id="service" name="service" required>
 
+        <option value="">Select...</option>
 
+        <option value="Alteration">Alteration</option>
 
-.buttons {
+        <option value="Custom Tailoring">Custom Tailoring</option>
 
-  display: flex;
+      </select>
 
-  justify-content: space-between;
 
-  margin-top: 20px;
 
-  gap: 10px;
+      <label for="notes">Additional Notes:</label>
 
-}
+      <textarea id="notes" name="notes"></textarea>
 
 
 
-button {
+      <button type="submit" class="save-button">Save Appointment</button>
 
-  flex: 1;
+      <a href="index.html" class="back-link">← Back to Home</a>
 
-  background-color: gold;
 
-  color: #0a0a23;
 
-  padding: 12px 14px;
+    </form>
 
-  border: none;
+  </div>
 
-  border-radius: 8px;
 
-  font-weight: bold;
 
-  font-size: 15px;
+  <script>
 
-  cursor: pointer;
+    document.getElementById("appointmentForm").addEventListener("submit", function (e) {
 
-  transition: all 0.3s ease-in-out;
+      e.preventDefault();
 
-  box-shadow: 0 3px 10px #ffcc00a0;
 
-}
 
+      const data = {
 
+        name: document.getElementById("name").value,
 
-button:hover {
+        phone: document.getElementById("phone").value,
 
-  background-color: #ffd700;
+        address: document.getElementById("address").value,
 
-  transform: scale(1.04);
+        service: document.getElementById("service").value,
 
-}
+        pieces: document.getElementById("pieces").value,
 
+        pickup_date: document.getElementById("pickup_date").value,
 
+        pickup_time: document.getElementById("pickup_time").value,
 
-button:active {
+        delivery_date: document.getElementById("delivery_date").value,
 
-  transform: scale(0.97);
+        delivery_time: document.getElementById("delivery_time").value,
 
-}
+        notes: document.getElementById("notes").value
 
+      };
 
 
-.save-btn {
 
-  margin-top: 20px;
+      fetch("https://script.google.com/macros/s/AKfycbz5nHctFlDckZ8PKWNi-zJvhmP0Xdvt_RKbXStyxeV8N4SR8joxsCwhD02d7DsQ3o1D/exec", {
 
-  width: 100%;
+        method: "POST",
 
-}
+        body: JSON.stringify(data),
+
+        headers: {
+
+          "Content-Type": "application/json"
+
+        }
+
+      })
+
+        .then(response => response.text())
+
+        .then(result => {
+
+          alert("Appointment submitted successfully!");
+
+          document.getElementById("appointmentForm").reset();
+
+        })
+
+        .catch(error => {
+
+          alert("Something went wrong: " + error);
+
+        });
+
+    });
+
+  </script>
+
+
+
+</body>
+
+</html>
