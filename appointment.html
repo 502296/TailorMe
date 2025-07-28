@@ -6,9 +6,7 @@
 
   <meta charset="UTF-8">
 
-  <title>Book an Appointment – TailorMe</title>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book an Appointment</title>
 
   <link rel="stylesheet" href="appointment.css">
 
@@ -19,8 +17,6 @@
   <div class="form-container">
 
     <h1>Book an Appointment</h1>
-
-
 
     <form id="appointmentForm">
 
@@ -46,7 +42,7 @@
 
       <select id="service" name="service" required>
 
-        <option value="">Select Service</option>
+        <option value="">-- Select --</option>
 
         <option value="Alteration">Alteration</option>
 
@@ -86,19 +82,23 @@
 
 
 
-      <label for="notes">Additional Notes:</label>
+      <label for="notes">Additional Notes (optional):</label>
 
-      <textarea id="notes" name="notes" rows="3"></textarea>
+      <textarea id="notes" name="notes" rows="4"></textarea>
 
 
 
-      <button type="submit" class="submit-btn">Submit Booking</button>
+      <button type="submit" class="submit-btn">Submit</button>
 
     </form>
 
 
 
-    <p id="statusMessage"></p>
+    <div id="successMessage" style="display:none; margin-top: 20px; color: gold; font-weight: bold;">
+
+      Appointment submitted successfully!
+
+    </div>
 
   </div>
 
@@ -106,59 +106,41 @@
 
   <script>
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbz5nHctFIDckZ8PKWNi-zJvhmP0Xdvt_RK.../exec"; // ← ضع رابطك الكامل هنا
+    const form = document.getElementById('appointmentForm');
+
+    const successMessage = document.getElementById('successMessage');
 
 
 
-    const form = document.getElementById("appointmentForm");
-
-    const statusMessage = document.getElementById("statusMessage");
+    const scriptURL = "https://script.google.com/macros/s/AKfycbz5nHctFIDckZ8PKWNi-zJvhmP0Xdvt_RKZXYaXcDxWIkD7ybGV0_gp7YNe5-WM29Wm/exec";
 
 
 
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener('submit', e => {
 
       e.preventDefault();
-
-      statusMessage.textContent = "Submitting...";
-
-
 
       const formData = new FormData(form);
 
 
 
-      try {
+      fetch(scriptURL, { method: 'POST', body: formData })
 
-        const response = await fetch(scriptURL, {
-
-          method: "POST",
-
-          body: formData,
-
-        });
-
-
-
-        if (response.ok) {
-
-          statusMessage.textContent = "✅ Appointment booked successfully!";
+        .then(response => {
 
           form.reset();
 
-        } else {
+          successMessage.style.display = 'block';
 
-          throw new Error("Submission failed");
+        })
 
-        }
+        .catch(error => {
 
-      } catch (error) {
+          alert('Error! Please try again.');
 
-        statusMessage.textContent = "❌ Failed to submit the form.";
+          console.error('Error!', error.message);
 
-        console.error(error);
-
-      }
+        });
 
     });
 
