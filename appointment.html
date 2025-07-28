@@ -10,277 +10,107 @@
 
   <title>Book an Appointment</title>
 
-  <style>
-
-    body {
-
-      background-color: #0b0b28;
-
-      color: white;
-
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-      padding: 20px;
-
-      margin: 0;
-
-    }
-
-
-
-    h1 {
-
-      text-align: center;
-
-      color: gold;
-
-      font-size: 28px;
-
-      margin-bottom: 30px;
-
-    }
-
-
-
-    form {
-
-      max-width: 500px;
-
-      margin: auto;
-
-    }
-
-
-
-    label {
-
-      display: block;
-
-      margin-top: 12px;
-
-      font-weight: bold;
-
-      font-size: 16px;
-
-    }
-
-
-
-    input[type="text"],
-
-    input[type="tel"],
-
-    input[type="date"],
-
-    input[type="time"],
-
-    select,
-
-    textarea {
-
-      width: 100%;
-
-      padding: 12px;
-
-      margin-top: 6px;
-
-      margin-bottom: 10px;
-
-      border: 1px solid #444;
-
-      border-radius: 6px;
-
-      background-color: #1a1a3c;
-
-      color: white;
-
-      font-size: 15px;
-
-    }
-
-
-
-    select {
-
-      appearance: none;
-
-    }
-
-
-
-    textarea {
-
-      min-height: 80px;
-
-      resize: vertical;
-
-    }
-
-
-
-    button[type="submit"] {
-
-      background-color: gold;
-
-      color: black;
-
-      font-weight: bold;
-
-      border: none;
-
-      padding: 12px 24px;
-
-      border-radius: 8px;
-
-      cursor: pointer;
-
-      box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
-
-      transition: all 0.3s ease;
-
-      width: 100%;
-
-      margin-top: 20px;
-
-    }
-
-
-
-    button[type="submit"]:hover {
-
-      background-color: #ffdb4d;
-
-      box-shadow: 0 6px 15px rgba(255, 215, 0, 0.6);
-
-      transform: scale(1.03);
-
-    }
-
-
-
-    .back-link {
-
-      display: block;
-
-      margin-top: 12px;
-
-      text-align: center;
-
-      color: #4d9fff;
-
-      text-decoration: none;
-
-      font-size: 15px;
-
-    }
-
-
-
-    .back-link:hover {
-
-      text-decoration: underline;
-
-      color: #80bfff;
-
-    }
-
-  </style>
+  <link rel="stylesheet" href="appointment.css" />
 
 </head>
 
 <body>
 
-  <h1>Book an Appointment</h1>
+  <div class="form-container">
+
+    <h1>Book an Appointment</h1>
+
+    <form id="appointmentForm">
+
+      <label for="name">Name:</label>
+
+      <input type="text" id="name" name="name" required />
 
 
 
-  <form id="appointmentForm">
+      <label for="phone">Phone:</label>
 
-    <label for="name">Name:</label>
-
-    <input type="text" id="name" name="name" required />
+      <input type="tel" id="phone" name="phone" required />
 
 
 
-    <label for="phone">Phone:</label>
+      <label for="address">Address:</label>
 
-    <input type="tel" id="phone" name="phone" required />
-
-
-
-    <label for="address">Address:</label>
-
-    <input type="text" id="address" name="address" required />
+      <input type="text" id="address" name="address" required />
 
 
 
-    <label for="service">Service Type:</label>
+      <label for="service">Service Type:</label>
 
-    <select id="service" name="service" required>
+      <select id="service" name="service" required>
 
-      <option value="">-- Select --</option>
+        <option value="">-- Select --</option>
 
-      <option value="Alteration">Alteration</option>
+        <option value="Alteration">Alteration</option>
 
-      <option value="Custom Tailoring">Custom Tailoring</option>
+        <option value="Custom Tailoring">Custom Tailoring</option>
 
-    </select>
-
-
-
-    <label for="pieces">Number of Pieces:</label>
-
-    <input type="text" id="pieces" name="pieces" required />
+      </select>
 
 
 
-    <label for="pickup_date">Pickup Date:</label>
+      <label for="pieces">Number of Pieces:</label>
 
-    <input type="date" id="pickup_date" name="pickup_date" required />
-
-
-
-    <label for="pickup_time">Pickup Time:</label>
-
-    <input type="time" id="pickup_time" name="pickup_time" required />
+      <input type="number" id="pieces" name="pieces" required min="1" />
 
 
 
-    <label for="delivery_date">Delivery Date:</label>
+      <label for="pickup_date">Pickup Date:</label>
 
-    <input type="date" id="delivery_date" name="delivery_date" required />
-
-
-
-    <label for="delivery_time">Delivery Time:</label>
-
-    <input type="time" id="delivery_time" name="delivery_time" required />
+      <input type="date" id="pickup_date" name="pickup_date" required />
 
 
 
-    <label for="notes">Additional Notes (optional):</label>
+      <label for="pickup_time">Pickup Time:</label>
 
-    <textarea id="notes" name="notes" placeholder="e.g., Please ring the doorbell"></textarea>
+      <input type="time" id="pickup_time" name="pickup_time" required />
 
 
 
-    <button type="submit">Submit</button>
+      <label for="delivery_date">Delivery Date:</label>
 
-    <a class="back-link" href="index.html">&larr; Back to Home</a>
+      <input type="date" id="delivery_date" name="delivery_date" required />
 
-  </form>
+
+
+      <label for="delivery_time">Delivery Time:</label>
+
+      <input type="time" id="delivery_time" name="delivery_time" required />
+
+
+
+      <label for="notes">Additional Notes (optional):</label>
+
+      <textarea id="notes" name="notes" placeholder="e.g., Please ring the doorbell"></textarea>
+
+
+
+      <button type="submit">Submit</button>
+
+    </form>
+
+    <a href="index.html" class="back-link">← Back to Home</a>
+
+  </div>
 
 
 
   <script>
 
-    document.getElementById("appointmentForm").addEventListener("submit", function (e) {
+    const form = document.getElementById("appointmentForm");
+
+
+
+    form.addEventListener("submit", async function (e) {
 
       e.preventDefault();
 
 
-
-      const form = e.target;
 
       const data = {
 
@@ -308,35 +138,33 @@
 
 
 
-      fetch("https://script.google.com/macros/s/AKfycby3YkJB_08QZMK8_7UR1JRmfcHZ35AQgz75iWjKSc2y6su6VahatAvHZFLCW5-4AsXw/exec", {
+      try {
 
-        method: "POST",
+        const response = await fetch("https://script.google.com/macros/s/YOUR_WEB_APP_URL/exec", {
 
-        mode: "no-cors",
+          method: "POST",
 
-        headers: {
+          mode: "no-cors",
 
-          "Content-Type": "application/json",
+          headers: { "Content-Type": "application/json" },
 
-        },
+          body: JSON.stringify(data),
 
-        body: JSON.stringify(data),
+        });
 
-      })
 
-      .then(() => {
 
         alert("Appointment submitted successfully!");
 
         form.reset();
 
-      })
-
-      .catch(() => {
+      } catch (error) {
 
         alert("❌ Error! Please try again.\nLoad failed");
 
-      });
+        console.error("Error:", error);
+
+      }
 
     });
 
