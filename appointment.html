@@ -6,11 +6,11 @@
 
   <meta charset="UTF-8" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Book an Appointment</title>
+  <title>Book an Appointment – TailorMe</title>
 
-  <link rel="stylesheet" href="appointment.css" />
+  <link rel="stylesheet" href="appointment.css">
 
 </head>
 
@@ -19,8 +19,6 @@
   <div class="form-container">
 
     <h1>Book an Appointment</h1>
-
-
 
     <form id="appointmentForm">
 
@@ -38,13 +36,27 @@
 
       <label for="address">Address:</label>
 
-      <textarea id="address" name="address" required></textarea>
+      <input type="text" id="address" name="address" required />
+
+
+
+      <label for="service">Service Type:</label>
+
+      <select id="service" name="service" required>
+
+        <option value="">Select</option>
+
+        <option value="Alteration">Alteration</option>
+
+        <option value="Custom Tailoring">Custom Tailoring</option>
+
+      </select>
 
 
 
       <label for="pieces">Number of Pieces:</label>
 
-      <input type="number" id="pieces" name="pieces" min="1" required />
+      <input type="number" id="pieces" name="pieces" required />
 
 
 
@@ -72,31 +84,25 @@
 
 
 
-      <label for="service">Service Type:</label>
+      <label for="notes">Notes (Optional):</label>
 
-      <select id="service" name="service" required>
-
-        <option value="">Select...</option>
-
-        <option value="Alteration">Alteration</option>
-
-        <option value="Custom Tailoring">Custom Tailoring</option>
-
-      </select>
+      <textarea id="notes" name="notes" rows="4" placeholder="Any specific instructions..."></textarea>
 
 
 
-      <label for="notes">Additional Notes:</label>
-
-      <textarea id="notes" name="notes"></textarea>
-
-
-
-      <button type="submit" class="save-button">Save Appointment</button>
-
-      <a href="index.html" class="back-link">← Back to Home</a>
+      <button type="submit">Submit Booking</button>
 
     </form>
+
+
+
+    <div id="confirmation" style="display: none;">
+
+      <h2>✅ Booking Submitted Successfully!</h2>
+
+      <p>We have received your request. A confirmation has been sent to our office.</p>
+
+    </div>
 
   </div>
 
@@ -104,65 +110,37 @@
 
   <script>
 
-    document.getElementById("appointmentForm").addEventListener("submit", function (e) {
+    const scriptURL = "https://script.google.com/macros/s/AKfycbVy6tNjen6GsFZL5VTFz_NBWaYf4eFZEyIU8A8VMgnuZlCWlAWzD0zsXvy5QtIz7zL/exec";
+
+
+
+    const form = document.getElementById('appointmentForm');
+
+    const confirmation = document.getElementById('confirmation');
+
+
+
+    form.addEventListener('submit', e => {
 
       e.preventDefault();
 
+      const formData = new FormData(form);
 
+      fetch(scriptURL, { method: 'POST', body: formData })
 
-      const data = {
+        .then(response => {
 
-        name: document.getElementById("name").value,
+          form.style.display = 'none';
 
-        phone: document.getElementById("phone").value,
-
-        address: document.getElementById("address").value,
-
-        service: document.getElementById("service").value,
-
-        pieces: document.getElementById("pieces").value,
-
-        pickup_date: document.getElementById("pickup_date").value,
-
-        pickup_time: document.getElementById("pickup_time").value,
-
-        delivery_date: document.getElementById("delivery_date").value,
-
-        delivery_time: document.getElementById("delivery_time").value,
-
-        notes: document.getElementById("notes").value
-
-      };
-
-
-
-      fetch("https://script.google.com/macros/s/AKfycbvYt6Njen6GsFZL5VTFz_NBWaYf4efZEyU8A8VMgnuzlCWI4AwZDOzSvxy5Qtlz7L/exec", {
-
-        method: "POST",
-
-        body: JSON.stringify(data),
-
-        headers: {
-
-          "Content-Type": "application/json"
-
-        }
-
-      })
-
-        .then(response => response.text())
-
-        .then(result => {
-
-          alert("✅ Booking submitted successfully!");
-
-          document.getElementById("appointmentForm").reset();
+          confirmation.style.display = 'block';
 
         })
 
         .catch(error => {
 
-          alert("❌ Something went wrong: " + error);
+          alert('❌ There was an error! Please try again later.');
+
+          console.error('Error!', error.message);
 
         });
 
