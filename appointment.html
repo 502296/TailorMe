@@ -2,91 +2,19 @@
 
 <html lang="en">
 
-
-
 <head>
 
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Book an Appointment</title>
 
-  <link rel="stylesheet" href="appointment.css">
+  <link rel="stylesheet" href="appointment.css" />
 
 </head>
 
-<script>
-
-document.getElementById("appointmentForm").addEventListener("submit", function (e) {
-
-  e.preventDefault();
-
-
-
-  const data = {
-
-    name: document.getElementById("name").value,
-
-    phone: document.getElementById("phone").value,
-
-    address: document.getElementById("address").value,
-
-    service: document.getElementById("service").value,
-
-    pieces: document.getElementById("pieces").value,
-
-    pickup_date: document.getElementById("pickup_date").value,
-
-    pickup_time: document.getElementById("pickup_time").value,
-
-    delivery_date: document.getElementById("delivery_date").value,
-
-    delivery_time: document.getElementById("delivery_time").value,
-
-    notes: document.getElementById("notes").value
-
-  };
-
-
-
-  fetch("https://script.google.com/macros/s/AKfyc.../exec", { // 🔁 ضع هنا الرابط الكامل
-
-    method: "POST",
-
-    body: JSON.stringify(data),
-
-    headers: {
-
-      "Content-Type": "application/json"
-
-    }
-
-  })
-
-    .then(response => response.text())
-
-    .then(result => {
-
-      alert("Booking submitted successfully!");
-
-      document.getElementById("appointmentForm").reset();
-
-    })
-
-    .catch(error => {
-
-      alert("Something went wrong: " + error);
-
-    });
-
-});
-
-</script>
-
 <body>
-
-
 
   <div class="form-container">
 
@@ -96,17 +24,15 @@ document.getElementById("appointmentForm").addEventListener("submit", function (
 
     <form id="appointmentForm">
 
-
-
       <label for="name">Name:</label>
 
-      <input type="text" id="name" name="name" required>
+      <input type="text" id="name" name="name" required />
 
 
 
       <label for="phone">Phone:</label>
 
-      <input type="tel" id="phone" name="phone" required>
+      <input type="tel" id="phone" name="phone" required />
 
 
 
@@ -118,25 +44,37 @@ document.getElementById("appointmentForm").addEventListener("submit", function (
 
       <label for="pieces">Number of Pieces:</label>
 
-      <input type="number" id="pieces" name="pieces" min="1" required>
+      <input type="number" id="pieces" name="pieces" min="1" required />
 
 
 
-      <label for="pickup_date">Pickup Date & Time:</label>
+      <label for="pickup_date">Pickup Date:</label>
 
-      <input type="datetime-local" id="pickup_date" name="pickup_date" required>
-
-
-
-      <label for="delivery_date">Delivery Date & Time:</label>
-
-      <input type="datetime-local" id="delivery_date" name="delivery_date" required>
+      <input type="date" id="pickup_date" name="pickup_date" required />
 
 
 
-      <label for="service_type">Service Type:</label>
+      <label for="pickup_time">Pickup Time:</label>
 
-      <select id="service_type" name="service_type" required>
+      <input type="time" id="pickup_time" name="pickup_time" required />
+
+
+
+      <label for="delivery_date">Delivery Date:</label>
+
+      <input type="date" id="delivery_date" name="delivery_date" required />
+
+
+
+      <label for="delivery_time">Delivery Time:</label>
+
+      <input type="time" id="delivery_time" name="delivery_time" required />
+
+
+
+      <label for="service">Service Type:</label>
+
+      <select id="service" name="service" required>
 
         <option value="">Select...</option>
 
@@ -158,8 +96,6 @@ document.getElementById("appointmentForm").addEventListener("submit", function (
 
       <a href="index.html" class="back-link">← Back to Home</a>
 
-
-
     </form>
 
   </div>
@@ -168,17 +104,71 @@ document.getElementById("appointmentForm").addEventListener("submit", function (
 
   <script>
 
-    document.getElementById("appointmentForm").addEventListener("submit", function (event) {
+    document.getElementById("appointmentForm").addEventListener("submit", function (e) {
 
-      event.preventDefault();
+      e.preventDefault();
 
-      alert("Appointment saved successfully!");
+
+
+      const data = {
+
+        name: document.getElementById("name").value,
+
+        phone: document.getElementById("phone").value,
+
+        address: document.getElementById("address").value,
+
+        service: document.getElementById("service").value,
+
+        pieces: document.getElementById("pieces").value,
+
+        pickup_date: document.getElementById("pickup_date").value,
+
+        pickup_time: document.getElementById("pickup_time").value,
+
+        delivery_date: document.getElementById("delivery_date").value,
+
+        delivery_time: document.getElementById("delivery_time").value,
+
+        notes: document.getElementById("notes").value
+
+      };
+
+
+
+      fetch("https://script.google.com/macros/s/AKfycbvYt6Njen6GsFZL5VTFz_NBWaYf4efZEyU8A8VMgnuzlCWI4AwZDOzSvxy5Qtlz7L/exec", {
+
+        method: "POST",
+
+        body: JSON.stringify(data),
+
+        headers: {
+
+          "Content-Type": "application/json"
+
+        }
+
+      })
+
+        .then(response => response.text())
+
+        .then(result => {
+
+          alert("✅ Booking submitted successfully!");
+
+          document.getElementById("appointmentForm").reset();
+
+        })
+
+        .catch(error => {
+
+          alert("❌ Something went wrong: " + error);
+
+        });
 
     });
 
   </script>
-
-
 
 </body>
 
