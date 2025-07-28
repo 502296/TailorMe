@@ -4,11 +4,11 @@
 
 <head>
 
-  <meta charset="UTF-8" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
 
   <title>Book an Appointment – TailorMe</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="appointment.css">
 
@@ -20,23 +20,25 @@
 
     <h1>Book an Appointment</h1>
 
+
+
     <form id="appointmentForm">
 
       <label for="name">Name:</label>
 
-      <input type="text" id="name" name="name" required />
+      <input type="text" id="name" name="name" required>
 
 
 
       <label for="phone">Phone:</label>
 
-      <input type="tel" id="phone" name="phone" required />
+      <input type="tel" id="phone" name="phone" required>
 
 
 
       <label for="address">Address:</label>
 
-      <input type="text" id="address" name="address" required />
+      <input type="text" id="address" name="address" required>
 
 
 
@@ -44,11 +46,11 @@
 
       <select id="service" name="service" required>
 
-        <option value="">Select</option>
+        <option value="">Select Service</option>
 
         <option value="Alteration">Alteration</option>
 
-        <option value="Custom Tailoring">Custom Tailoring</option>
+        <option value="Tailoring">Tailoring</option>
 
       </select>
 
@@ -56,53 +58,47 @@
 
       <label for="pieces">Number of Pieces:</label>
 
-      <input type="number" id="pieces" name="pieces" required />
+      <input type="number" id="pieces" name="pieces" required>
 
 
 
       <label for="pickup_date">Pickup Date:</label>
 
-      <input type="date" id="pickup_date" name="pickup_date" required />
+      <input type="date" id="pickup_date" name="pickup_date" required>
 
 
 
       <label for="pickup_time">Pickup Time:</label>
 
-      <input type="time" id="pickup_time" name="pickup_time" required />
+      <input type="time" id="pickup_time" name="pickup_time" required>
 
 
 
       <label for="delivery_date">Delivery Date:</label>
 
-      <input type="date" id="delivery_date" name="delivery_date" required />
+      <input type="date" id="delivery_date" name="delivery_date" required>
 
 
 
       <label for="delivery_time">Delivery Time:</label>
 
-      <input type="time" id="delivery_time" name="delivery_time" required />
+      <input type="time" id="delivery_time" name="delivery_time" required>
 
 
 
-      <label for="notes">Notes (Optional):</label>
+      <label for="notes">Additional Notes:</label>
 
-      <textarea id="notes" name="notes" rows="4" placeholder="Any specific instructions..."></textarea>
+      <textarea id="notes" name="notes" rows="3"></textarea>
 
 
 
-      <button type="submit">Submit Booking</button>
+      <button type="submit" class="submit-btn">Submit Booking</button>
 
     </form>
 
 
 
-    <div id="confirmation" style="display: none;">
-
-      <h2>✅ Booking Submitted Successfully!</h2>
-
-      <p>We have received your request. A confirmation has been sent to our office.</p>
-
-    </div>
+    <p id="statusMessage"></p>
 
   </div>
 
@@ -110,43 +106,25 @@
 
   <script>
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbVy6tNjen6GsFZL5VTFz_NBWaYf4eFZEyIU8A8VMgnuZlCWlAWzD0zsXvy5QtIz7zL/exec";
-
-    const form = document.getElementById('appointmentForm');
-
-    const confirmation = document.getElementById('confirmation');
+    const scriptURL = "https://script.google.com/macros/s/AKfycbz5nHctFIDckZ8PKWNi-zJvhmP0Xdvt_RK.../exec"; // ← ضع رابطك الكامل هنا
 
 
 
-    form.addEventListener('submit', async (e) => {
+    const form = document.getElementById("appointmentForm");
+
+    const statusMessage = document.getElementById("statusMessage");
+
+
+
+    form.addEventListener("submit", async (e) => {
 
       e.preventDefault();
 
+      statusMessage.textContent = "Submitting...";
 
 
-      const data = {
 
-        name: document.getElementById("name").value,
-
-        phone: document.getElementById("phone").value,
-
-        address: document.getElementById("address").value,
-
-        service: document.getElementById("service").value,
-
-        pieces: document.getElementById("pieces").value,
-
-        pickup_date: document.getElementById("pickup_date").value,
-
-        pickup_time: document.getElementById("pickup_time").value,
-
-        delivery_date: document.getElementById("delivery_date").value,
-
-        delivery_time: document.getElementById("delivery_time").value,
-
-        notes: document.getElementById("notes").value
-
-      };
+      const formData = new FormData(form);
 
 
 
@@ -154,15 +132,9 @@
 
         const response = await fetch(scriptURL, {
 
-          method: 'POST',
+          method: "POST",
 
-          headers: {
-
-            'Content-Type': 'application/json'
-
-          },
-
-          body: JSON.stringify(data)
+          body: formData,
 
         });
 
@@ -170,23 +142,21 @@
 
         if (response.ok) {
 
-          form.style.display = 'none';
+          statusMessage.textContent = "✅ Appointment booked successfully!";
 
-          confirmation.style.display = 'block';
+          form.reset();
 
         } else {
 
-          alert("❌ There was an error! Please try again later.");
+          throw new Error("Submission failed");
 
         }
 
+      } catch (error) {
 
+        statusMessage.textContent = "❌ Failed to submit the form.";
 
-      } catch (err) {
-
-        console.error("Error submitting form", err);
-
-        alert("❌ Failed to submit form. Try again later.");
+        console.error(error);
 
       }
 
