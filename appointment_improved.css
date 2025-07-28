@@ -164,9 +164,7 @@
 
         .then(result => {
 
-          alert("Appointment submitted successfully!");
-
-          document.getElementById("appointmentForm").reset();
+          window.location.href = "confirmation.html";
 
         })
 
