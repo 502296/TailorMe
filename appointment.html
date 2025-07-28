@@ -16,7 +16,73 @@
 
 </head>
 
+<script>
 
+document.getElementById("appointmentForm").addEventListener("submit", function (e) {
+
+  e.preventDefault();
+
+
+
+  const data = {
+
+    name: document.getElementById("name").value,
+
+    phone: document.getElementById("phone").value,
+
+    address: document.getElementById("address").value,
+
+    service: document.getElementById("service").value,
+
+    pieces: document.getElementById("pieces").value,
+
+    pickup_date: document.getElementById("pickup_date").value,
+
+    pickup_time: document.getElementById("pickup_time").value,
+
+    delivery_date: document.getElementById("delivery_date").value,
+
+    delivery_time: document.getElementById("delivery_time").value,
+
+    notes: document.getElementById("notes").value
+
+  };
+
+
+
+  fetch("https://script.google.com/macros/s/AKfyc.../exec", { // 🔁 ضع هنا الرابط الكامل
+
+    method: "POST",
+
+    body: JSON.stringify(data),
+
+    headers: {
+
+      "Content-Type": "application/json"
+
+    }
+
+  })
+
+    .then(response => response.text())
+
+    .then(result => {
+
+      alert("Booking submitted successfully!");
+
+      document.getElementById("appointmentForm").reset();
+
+    })
+
+    .catch(error => {
+
+      alert("Something went wrong: " + error);
+
+    });
+
+});
+
+</script>
 
 <body>
 
