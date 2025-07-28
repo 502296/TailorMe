@@ -112,37 +112,83 @@
 
     const scriptURL = "https://script.google.com/macros/s/AKfycbVy6tNjen6GsFZL5VTFz_NBWaYf4eFZEyIU8A8VMgnuZlCWlAWzD0zsXvy5QtIz7zL/exec";
 
-
-
     const form = document.getElementById('appointmentForm');
 
     const confirmation = document.getElementById('confirmation');
 
 
 
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async (e) => {
 
       e.preventDefault();
 
-      const formData = new FormData(form);
 
-      fetch(scriptURL, { method: 'POST', body: formData })
 
-        .then(response => {
+      const data = {
+
+        name: document.getElementById("name").value,
+
+        phone: document.getElementById("phone").value,
+
+        address: document.getElementById("address").value,
+
+        service: document.getElementById("service").value,
+
+        pieces: document.getElementById("pieces").value,
+
+        pickup_date: document.getElementById("pickup_date").value,
+
+        pickup_time: document.getElementById("pickup_time").value,
+
+        delivery_date: document.getElementById("delivery_date").value,
+
+        delivery_time: document.getElementById("delivery_time").value,
+
+        notes: document.getElementById("notes").value
+
+      };
+
+
+
+      try {
+
+        const response = await fetch(scriptURL, {
+
+          method: 'POST',
+
+          headers: {
+
+            'Content-Type': 'application/json'
+
+          },
+
+          body: JSON.stringify(data)
+
+        });
+
+
+
+        if (response.ok) {
 
           form.style.display = 'none';
 
           confirmation.style.display = 'block';
 
-        })
+        } else {
 
-        .catch(error => {
+          alert("❌ There was an error! Please try again later.");
 
-          alert('❌ There was an error! Please try again later.');
+        }
 
-          console.error('Error!', error.message);
 
-        });
+
+      } catch (err) {
+
+        console.error("Error submitting form", err);
+
+        alert("❌ Failed to submit form. Try again later.");
+
+      }
 
     });
 
