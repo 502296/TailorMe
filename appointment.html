@@ -6,7 +6,7 @@
 
   <meta charset="UTF-8">
 
-  <title>Book an Appointment</title>
+  <title>Book an Appointment – TailorMe</title>
 
   <link rel="stylesheet" href="appointment.css">
 
@@ -42,11 +42,9 @@
 
       <select id="service" name="service" required>
 
-        <option value="">-- Select --</option>
-
         <option value="Alteration">Alteration</option>
 
-        <option value="Tailoring">Tailoring</option>
+        <option value="Custom Tailoring">Custom Tailoring</option>
 
       </select>
 
@@ -84,21 +82,13 @@
 
       <label for="notes">Additional Notes (optional):</label>
 
-      <textarea id="notes" name="notes" rows="4"></textarea>
+      <textarea id="notes" name="notes" rows="3" placeholder="Enter any notes here..."></textarea>
 
 
 
-      <button type="submit" class="submit-btn">Submit</button>
+      <button type="submit">Submit</button>
 
     </form>
-
-
-
-    <div id="successMessage" style="display:none; margin-top: 20px; color: gold; font-weight: bold;">
-
-      Appointment submitted successfully!
-
-    </div>
 
   </div>
 
@@ -106,13 +96,11 @@
 
   <script>
 
+    const scriptURL = "https://script.google.com/macros/s/AKfycb3YkJB_08QZMK8_7UR1RmfCHZ35AQgz7J5WjKSc2y6su6VAhatAvHZFLCW5-4AsXw/exec";
+
+
+
     const form = document.getElementById('appointmentForm');
-
-    const successMessage = document.getElementById('successMessage');
-
-
-
-    const scriptURL = "https://script.google.com/macros/s/AKfycbz5nHctFIDckZ8PKWNi-zJvhmP0Xdvt_RKZXYaXcDxWIkD7ybGV0_gp7YNe5-WM29Wm/exec";
 
 
 
@@ -120,27 +108,35 @@
 
       e.preventDefault();
 
+
+
       const formData = new FormData(form);
 
 
 
-      fetch(scriptURL, { method: 'POST', body: formData })
+      fetch(scriptURL, {
 
-        .then(response => {
+        method: 'POST',
 
-          form.reset();
+        body: formData
 
-          successMessage.style.display = 'block';
+      })
 
-        })
+      .then(response => {
 
-        .catch(error => {
+        alert("✅ Appointment submitted successfully!");
 
-          alert('Error! Please try again.');
+        form.reset();
 
-          console.error('Error!', error.message);
+      })
 
-        });
+      .catch(error => {
+
+        alert("❌ Error! Please try again.");
+
+        console.error("Error!", error.message);
+
+      });
 
     });
 
