@@ -4,15 +4,33 @@
 
 <head>
 
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <title>Book an Appointment</title>
 
-  <link rel="stylesheet" href="../assets/css/main.css"/>
+  <link rel="stylesheet" href="appointment.css" />
+
+  <style>
+
+    /* honeypot hidden */
+
+    .hp { position:absolute !important; left:-9999px !important; opacity:0 !important; height:0 !important; width:0 !important; }
+
+    .msg { margin-top:12px; font-size:0.95rem; }
+
+    .msg.ok { color: #0a8754; }
+
+    .msg.err { color: #b00020; }
+
+    button[disabled] { opacity: .6; cursor: not-allowed; }
+
+  </style>
 
 </head>
+
+
 
 <body>
 
@@ -20,59 +38,83 @@
 
     <h1>Book an Appointment</h1>
 
-    <form id="appointmentForm">
 
-      <label for="name">Name</label>
 
-      <input id="name" name="name" required>
+    <form id="appointmentForm" novalidate>
 
-      <label for="phone">Phone</label>
+      <label for="name">Name:</label>
 
-      <input id="phone" name="phone" type="tel" required>
+      <input type="text" id="name" name="name" required />
 
-      <label for="address">Address</label>
 
-      <input id="address" name="address" required>
 
-      <label for="service">Service Type</label>
+      <label for="phone">Phone:</label>
+
+      <input type="tel" id="phone" name="phone" required />
+
+
+
+      <label for="address">Address:</label>
+
+      <input type="text" id="address" name="address" required />
+
+
+
+      <label for="service">Service Type:</label>
 
       <select id="service" name="service" required>
 
         <option value="">-- Select --</option>
 
-        <option>Alteration</option>
+        <option value="Alteration">Alteration</option>
 
-        <option>Custom Tailoring</option>
+        <option value="Custom Tailoring">Custom Tailoring</option>
 
       </select>
 
-      <label for="pieces">Number of Pieces</label>
 
-      <input id="pieces" name="pieces" type="number" min="1" required>
 
-      <label for="pickup_date">Pickup Date</label>
+      <label for="pieces">Number of Pieces:</label>
 
-      <input id="pickup_date" name="pickup_date" type="date" required>
+      <input type="number" id="pieces" name="pieces" required min="1" />
 
-      <label for="pickup_time">Pickup Time</label>
 
-      <input id="pickup_time" name="pickup_time" type="time" required>
 
-      <label for="delivery_date">Delivery Date</label>
+      <label for="pickup_date">Pickup Date:</label>
 
-      <input id="delivery_date" name="delivery_date" type="date" required>
+      <input type="date" id="pickup_date" name="pickup_date" required />
 
-      <label for="delivery_time">Delivery Time</label>
 
-      <input id="delivery_time" name="delivery_time" type="time" required>
 
-      <label for="notes">Additional Notes (optional)</label>
+      <label for="pickup_time">Pickup Time:</label>
 
-      <textarea id="notes" name="notes" rows="3" placeholder="e.g., Please ring the doorbell"></textarea>
+      <input type="time" id="pickup_time" name="pickup_time" required />
 
-      <!-- honeypot -->
 
-      <input id="company" name="company" class="hp" autocomplete="off" tabindex="-1" aria-hidden="true">
+
+      <label for="delivery_date">Delivery Date:</label>
+
+      <input type="date" id="delivery_date" name="delivery_date" required />
+
+
+
+      <label for="delivery_time">Delivery Time:</label>
+
+      <input type="time" id="delivery_time" name="delivery_time" required />
+
+
+
+      <label for="notes">Additional Notes (optional):</label>
+
+      <textarea id="notes" name="notes" placeholder="e.g., Please ring the doorbell"></textarea>
+
+
+
+      <!-- Honeypot (bots will fill it; humans won't) -->
+
+      <input type="text" id="company" name="company" autocomplete="off" class="hp" tabindex="-1" aria-hidden="true"/>
+
+
 
       <button type="submit" id="submitBtn">Submit</button>
 
@@ -80,13 +122,145 @@
 
     </form>
 
+
+
     <a href="index.html" class="back-link">← Back to Home</a>
 
   </div>
 
-  <script src="../assets/js/config.js"></script>
 
-  <script src="../assets/js/app.js"></script>
+
+  <script>
+
+    // === Your Apps Script Web App URL (live) ===
+
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxF6kjQC8k-QZsYsrSbf7vWlVZLjR2nTSWWHkeL1dmzoCUt0qXwdwhEURtXBphyoR6_/exec";
+
+
+
+    const form = document.getElementById("appointmentForm");
+
+    const btn  = document.getElementById("submitBtn");
+
+    const msg  = document.getElementById("msg");
+
+
+
+    function setMsg(text, ok=false) {
+
+      msg.textContent = text || "";
+
+      msg.className = "msg " + (ok ? "ok" : "err");
+
+    }
+
+
+
+    form.addEventListener("submit", async (e) => {
+
+      e.preventDefault();
+
+
+
+      // Honeypot: إذا ممتلئ، نعمل نجاح صوري وننهي (لا نرسل للخادم)
+
+      if (document.getElementById("company").value.trim() !== "") {
+
+        setMsg("Thank you — your request was received.", true);
+
+        form.reset();
+
+        return;
+
+      }
+
+
+
+      // تأكيد الحقول المطلوبة من المتصفح
+
+      if (!form.checkValidity()) {
+
+        setMsg("Please complete all required fields.");
+
+        return;
+
+      }
+
+
+
+      const payload = {
+
+        name: form.name.value.trim(),
+
+        phone: form.phone.value.trim(),
+
+        address: form.address.value.trim(),
+
+        serviceType: form.service.value,
+
+        pieces: form.pieces.value,
+
+        pickupDate: form.pickup_date.value,
+
+        pickupTime: form.pickup_time.value,
+
+        deliveryDate: form.delivery_date.value,
+
+        deliveryTime: form.delivery_time.value,
+
+        notes: form.notes.value.trim()
+
+      };
+
+
+
+      btn.disabled = true;
+
+      btn.textContent = "Submitting…";
+
+      setMsg("");
+
+
+
+      try {
+
+        // استخدام no-cors لأن معظم Web Apps في Apps Script لا تُمكّن CORS افتراضيًا
+
+        await fetch(WEB_APP_URL, {
+
+          method: "POST",
+
+          mode: "no-cors",
+
+          headers: { "Content-Type": "application/json" },
+
+          body: JSON.stringify(payload)
+
+        });
+
+
+
+        setMsg("✅ Appointment submitted successfully! You'll get an email confirmation.", true);
+
+        form.reset();
+
+      } catch (err) {
+
+        console.error(err);
+
+        setMsg("❌ Network error. Please try again.");
+
+      } finally {
+
+        btn.disabled = false;
+
+        btn.textContent = "Submit";
+
+      }
+
+    });
+
+  </script>
 
 </body>
 
