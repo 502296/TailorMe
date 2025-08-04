@@ -1,44 +1,34 @@
+<!-- /public/asking-tailorme.html -->
+
 <!DOCTYPE html>
 
 <html lang="en">
 
 <head>
 
-  <meta charset="UTF-8" />
+  <meta charset="utf-8"/>
 
-  <title>Asking TailorMe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-  <link rel="stylesheet" href="style.css" />
+  <title>Asking TailorMe – Smart Assistant</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/main.css"/>
 
   <style>
 
-    /* ====== Chat UI basic ====== */
+    .chat{max-width:860px;margin:20px auto}
 
-    .chat-container{
+    .chat-log{border:1px solid rgba(212,175,55,.25);border-radius:12px;padding:12px;min-height:260px;background:rgba(255,255,255,.02)}
 
-      max-width:600px;margin:40px auto;padding:20px;border:1px solid #2a2f3d;
+    .msg{padding:8px 10px;margin:8px 0;border-radius:10px}
 
-      background:#0c1220;border-radius:12px;color:#eee;font-family:'Georgia',serif
+    .me{background:#12224a}
 
-    }
+    .bot{background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.2)}
 
-    #chat-log{max-height:400px;overflow-y:auto;margin-bottom:15px}
+    .row{display:flex;gap:10px;margin-top:10px}
 
-    .msg{padding:10px 14px;border-radius:8px;margin:8px 0;line-height:1.4}
-
-    .user{background:#1e2636;text-align:right}
-
-    .ai{background:#142042}
-
-    .msg strong{color:#d4af37}
-
-    #user-input{width:75%;padding:10px;border-radius:8px;border:1px solid #555;background:#101827;color:#fff}
-
-    #send-btn{padding:10px 18px;border:none;border-radius:8px;background:#d4af37;color:#000;font-weight:bold;cursor:pointer}
-
-    #send-btn:active{transform:scale(.97)}
+    .row input{flex:1;padding:12px;border-radius:10px;border:1px solid rgba(212,175,55,.3);background:#0f2147;color:#fff}
 
   </style>
 
@@ -46,23 +36,41 @@
 
 <body>
 
-  <div class="chat-container">
+  <nav class="nav">
 
-    <h2 style="text-align:center;color:#d4af37;margin-top:0">🤖 Asking TailorMe</h2>
+    <div class="container nav-inner">
 
+      <a href="index.html" class="logo"><img src="images/logo.svg" alt="TailorMe"/> <strong>TailorMe</strong></a>
 
+      <div class="links">
 
-    <div id="chat-log"></div>
+        <a class="btn" href="price-list.html">Price List</a>
 
+        <a class="btn" href="appointment.html">Book</a>
 
-
-    <div style="display:flex;gap:10px">
-
-      <input id="user-input" type="text" placeholder="Ask TailorMe..." />
-
-      <button id="send-btn" onclick="sendMessage()">Send</button>
+      </div>
 
     </div>
+
+  </nav>
+
+
+
+  <div class="container section chat">
+
+    <h2>Asking TailorMe</h2>
+
+    <div id="log" class="chat-log"></div>
+
+    <div class="row">
+
+      <input id="q" placeholder="Ask about alterations, fabrics, fit…"/>
+
+      <button class="btn-gold" id="send">Ask</button>
+
+    </div>
+
+    <p class="notice">Tip: Keep it short (“How to shorten jacket sleeves?”).</p>
 
   </div>
 
@@ -70,118 +78,51 @@
 
   <script>
 
-    // ==========  Configuration ==========
+    const API_URL = "<ASKING_TAILORME_API_URL>"; // ✅ ضع رابط الBackend هنا
 
-    
+    const log = document.getElementById('log');
 
+    const q = document.getElementById('q');
 
+    document.getElementById('send').onclick = async () => {
 
-    // ==========  Chat Logic  ==========
-
-    async function sendMessage(){
-
-      const input=document.getElementById("user-input");
-
-      const text=input.value.trim();
+      const text = q.value.trim();
 
       if(!text) return;
 
-      appendMessage("user", text);
+      append('me', text);
 
-      input.value="";
-
-
-
-      appendMessage("ai","<em>TailorMe is typing...</em>");
-
-      const assistantIndex = document.querySelectorAll(".ai").length - 1;
-
-
+      q.value = '';
 
       try{
 
-        const res = await fetch("https://tailorme-backend.vercel.app/api/chat", {
+        const res = await fetch(API_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({question:text}) });
 
-  method: "POST",
+        const data = await res.json();
 
-  headers: { "Content-Type": "application/json" },
+        append('bot', data.answer || 'No answer.');
 
-  body: JSON.stringify({ prompt: text })
+      }catch(err){
 
-});
-
-const data = await res.json();
-
-const reply = data.reply;
-try {
-
-  const res = await fetch("https://tailorme-backend.vercel.app/api/chat", {
-
-    method: "POST",
-
-    headers: { "Content-Type": "application/json" },
-
-    body: JSON.stringify({ prompt: text })
-
-  });
-
-
-
-  const data = await res.json();
-
-  const reply = data.reply;
-
-
-
-  document.querySelectorAll(".ai")[assistantIndex].innerHTML = reply;
-
-} catch (e) {
-
-  document.querySelectorAll(".ai")[assistantIndex].innerHTML = "<strong>Error:</strong> Unable to fetch response.";
-
-}
-
-        document.querySelectorAll(".ai")[assistantIndex].innerHTML = reply;
-
-      }catch(e){
-
-        document.querySelectorAll(".ai")[assistantIndex].innerHTML = "<strong>Error:</strong> Unable to fetch response.";
+        append('bot', 'Connection issue. Try again later.');
 
       }
 
-    }
+    };
 
+    function append(role, text){
 
+      const div = document.createElement('div');
 
-    function appendMessage(role, text){
+      div.className = 'msg ' + (role==='me' ? 'me':'bot');
 
-      const log=document.getElementById("chat-log");
-
-      const div=document.createElement("div");
-
-      div.className=`msg ${role}`;
-
-      div.innerHTML = role==="user"
-
-        ? `<strong>You:</strong> ${text}`
-
-        : `<strong>TailorMe:</strong> ${text}`;
+      div.textContent = text;
 
       log.appendChild(div);
 
       log.scrollTop = log.scrollHeight;
 
     }
-
-
-
-    // Enter key shortcut
-
-    document.getElementById("user-input").addEventListener("keydown",e=>{
-
-      if(e.key==="Enter") sendMessage();
-
-    });
 
   </script>
 
