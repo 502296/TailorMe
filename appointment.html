@@ -10,21 +10,7 @@
 
   <title>Book an Appointment</title>
 
-  <link rel="stylesheet" href="appointment.css"/>
-
-  <style>
-
-    /* Honeypot (ضد السبام) */
-
-    .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-
-    .msg{margin-top:10px;font-size:0.95rem}
-
-    .msg.ok{color:#2ecc71}
-
-    .msg.err{color:#e74c3c}
-
-  </style>
+  <link rel="stylesheet" href="../assets/css/main.css"/>
 
 </head>
 
@@ -34,83 +20,59 @@
 
     <h1>Book an Appointment</h1>
 
-
-
     <form id="appointmentForm">
 
-      <label for="name">Name:</label>
+      <label for="name">Name</label>
 
-      <input type="text" id="name" name="name" required/>
+      <input id="name" name="name" required>
 
+      <label for="phone">Phone</label>
 
+      <input id="phone" name="phone" type="tel" required>
 
-      <label for="phone">Phone:</label>
+      <label for="address">Address</label>
 
-      <input type="tel" id="phone" name="phone" required/>
+      <input id="address" name="address" required>
 
-
-
-      <label for="address">Address:</label>
-
-      <input type="text" id="address" name="address" required/>
-
-
-
-      <label for="service">Service Type:</label>
+      <label for="service">Service Type</label>
 
       <select id="service" name="service" required>
 
         <option value="">-- Select --</option>
 
-        <option value="Alteration">Alteration</option>
+        <option>Alteration</option>
 
-        <option value="Custom Tailoring">Custom Tailoring</option>
+        <option>Custom Tailoring</option>
 
       </select>
 
+      <label for="pieces">Number of Pieces</label>
 
+      <input id="pieces" name="pieces" type="number" min="1" required>
 
-      <label for="pieces">Number of Pieces:</label>
+      <label for="pickup_date">Pickup Date</label>
 
-      <input type="number" id="pieces" name="pieces" required min="1"/>
+      <input id="pickup_date" name="pickup_date" type="date" required>
 
+      <label for="pickup_time">Pickup Time</label>
 
+      <input id="pickup_time" name="pickup_time" type="time" required>
 
-      <label for="pickup_date">Pickup Date:</label>
+      <label for="delivery_date">Delivery Date</label>
 
-      <input type="date" id="pickup_date" name="pickup_date" required/>
+      <input id="delivery_date" name="delivery_date" type="date" required>
 
+      <label for="delivery_time">Delivery Time</label>
 
+      <input id="delivery_time" name="delivery_time" type="time" required>
 
-      <label for="pickup_time">Pickup Time:</label>
+      <label for="notes">Additional Notes (optional)</label>
 
-      <input type="time" id="pickup_time" name="pickup_time" required/>
+      <textarea id="notes" name="notes" rows="3" placeholder="e.g., Please ring the doorbell"></textarea>
 
+      <!-- honeypot -->
 
-
-      <label for="delivery_date">Delivery Date:</label>
-
-      <input type="date" id="delivery_date" name="delivery_date" required/>
-
-
-
-      <label for="delivery_time">Delivery Time:</label>
-
-      <input type="time" id="delivery_time" name="delivery_time" required/>
-
-
-
-      <label for="notes">Additional Notes (optional):</label>
-
-      <textarea id="notes" name="notes" placeholder="e.g., Please ring the doorbell"></textarea>
-
-
-
-      <!-- Honeypot (مخفي) -->
-
-      <input type="text" id="company" name="company" class="hp" autocomplete="off" tabindex="-1" aria-hidden="true"/>
-
-
+      <input id="company" name="company" class="hp" autocomplete="off" tabindex="-1" aria-hidden="true">
 
       <button type="submit" id="submitBtn">Submit</button>
 
@@ -118,121 +80,13 @@
 
     </form>
 
-
-
     <a href="index.html" class="back-link">← Back to Home</a>
 
   </div>
 
+  <script src="../assets/js/config.js"></script>
 
-
-  <script>
-
-    // رابط الويب آب الحقيقي:
-
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxF6kjQC8k-QZsYsrSbf7vWlVZLjR2nTSWWHkeL1dmzoCUt0qXwdwhEURtXBphyoR6_/exec";
-
-
-
-    const form = document.getElementById("appointmentForm");
-
-    const btn  = document.getElementById("submitBtn");
-
-    const msg  = document.getElementById("msg");
-
-
-
-    form.addEventListener("submit", async (e) => {
-
-      e.preventDefault();
-
-
-
-      // Honeypot: إذا امتلأ الحقل المخفي نعتبره بوت وننهي بصمت
-
-      if (document.getElementById("company").value.trim() !== "") {
-
-        form.reset(); return;
-
-      }
-
-
-
-      if (!form.name.value.trim() || !form.phone.value.trim()) {
-
-        msg.textContent = "Please enter your name and phone.";
-
-        msg.className = "msg err";
-
-        return;
-
-      }
-
-
-
-      // إرسال بـ FormData + no-cors لتفادي CORS/Preflight
-
-      const fd = new FormData();
-
-      fd.append("name",         form.name.value.trim());
-
-      fd.append("phone",        form.phone.value.trim());
-
-      fd.append("address",      form.address.value.trim());
-
-      fd.append("serviceType",  form.service.value);
-
-      fd.append("pieces",       form.pieces.value);
-
-      fd.append("pickupDate",   form.pickup_date.value);
-
-      fd.append("pickupTime",   form.pickup_time.value);
-
-      fd.append("deliveryDate", form.delivery_date.value);
-
-      fd.append("deliveryTime", form.delivery_time.value);
-
-      fd.append("notes",        form.notes.value.trim());
-
-
-
-      if (btn) { btn.disabled = true; btn.textContent = "Submitting…"; }
-
-      msg.textContent = ""; msg.className = "msg";
-
-
-
-      try {
-
-        await fetch(WEB_APP_URL, { method: "POST", body: fd, mode: "no-cors" });
-
-        // لا نقرأ الاستجابة مع no-cors، نعرض نجاحًا متفائلاً
-
-        msg.textContent = "Appointment submitted successfully! A confirmation email was sent.";
-
-        msg.className = "msg ok";
-
-        form.reset();
-
-        window.scrollTo({ top: 0, behavior: "smooth" });
-
-      } catch (err) {
-
-        console.error(err);
-
-        msg.textContent = "Network error. Please try again.";
-
-        msg.className = "msg err";
-
-      } finally {
-
-        if (btn) { btn.disabled = false; btn.textContent = "Submit"; }
-
-      }
-
-    });
-
-  </script>
+  <script src="../assets/js/app.js"></script>
 
 </body>
 
