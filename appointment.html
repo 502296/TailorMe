@@ -1,17 +1,30 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
 
 <head>
 
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <title>Book an Appointment</title>
 
-  <link rel="stylesheet" href="appointment.css" />
+  <link rel="stylesheet" href="appointment.css"/>
+
+  <style>
+
+    /* Honeypot (ضد السبام) */
+
+    .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+
+    .msg{margin-top:10px;font-size:0.95rem}
+
+    .msg.ok{color:#2ecc71}
+
+    .msg.err{color:#e74c3c}
+
+  </style>
 
 </head>
 
@@ -21,23 +34,25 @@
 
     <h1>Book an Appointment</h1>
 
+
+
     <form id="appointmentForm">
 
       <label for="name">Name:</label>
 
-      <input type="text" id="name" name="name" required />
+      <input type="text" id="name" name="name" required/>
 
 
 
       <label for="phone">Phone:</label>
 
-      <input type="tel" id="phone" name="phone" required />
+      <input type="tel" id="phone" name="phone" required/>
 
 
 
       <label for="address">Address:</label>
 
-      <input type="text" id="address" name="address" required />
+      <input type="text" id="address" name="address" required/>
 
 
 
@@ -57,31 +72,31 @@
 
       <label for="pieces">Number of Pieces:</label>
 
-      <input type="number" id="pieces" name="pieces" required min="1" />
+      <input type="number" id="pieces" name="pieces" required min="1"/>
 
 
 
       <label for="pickup_date">Pickup Date:</label>
 
-      <input type="date" id="pickup_date" name="pickup_date" required />
+      <input type="date" id="pickup_date" name="pickup_date" required/>
 
 
 
       <label for="pickup_time">Pickup Time:</label>
 
-      <input type="time" id="pickup_time" name="pickup_time" required />
+      <input type="time" id="pickup_time" name="pickup_time" required/>
 
 
 
       <label for="delivery_date">Delivery Date:</label>
 
-      <input type="date" id="delivery_date" name="delivery_date" required />
+      <input type="date" id="delivery_date" name="delivery_date" required/>
 
 
 
       <label for="delivery_time">Delivery Time:</label>
 
-      <input type="time" id="delivery_time" name="delivery_time" required />
+      <input type="time" id="delivery_time" name="delivery_time" required/>
 
 
 
@@ -91,9 +106,19 @@
 
 
 
-      <button type="submit">Submit</button>
+      <!-- Honeypot (مخفي) -->
+
+      <input type="text" id="company" name="company" class="hp" autocomplete="off" tabindex="-1" aria-hidden="true"/>
+
+
+
+      <button type="submit" id="submitBtn">Submit</button>
+
+      <p id="msg" class="msg"></p>
 
     </form>
+
+
 
     <a href="index.html" class="back-link">← Back to Home</a>
 
@@ -103,67 +128,105 @@
 
   <script>
 
+    // رابط الويب آب الحقيقي:
+
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxF6kjQC8k-QZsYsrSbf7vWlVZLjR2nTSWWHkeL1dmzoCUt0qXwdwhEURtXBphyoR6_/exec";
+
+
+
     const form = document.getElementById("appointmentForm");
 
+    const btn  = document.getElementById("submitBtn");
+
+    const msg  = document.getElementById("msg");
 
 
-    form.addEventListener("submit", async function (e) {
+
+    form.addEventListener("submit", async (e) => {
 
       e.preventDefault();
 
 
 
-      const data = {
+      // Honeypot: إذا امتلأ الحقل المخفي نعتبره بوت وننهي بصمت
 
-        name: form.name.value,
+      if (document.getElementById("company").value.trim() !== "") {
 
-        phone: form.phone.value,
+        form.reset(); return;
 
-        address: form.address.value,
+      }
 
-        service: form.service.value,
 
-        pieces: form.pieces.value,
 
-        pickup_date: form.pickup_date.value,
+      if (!form.name.value.trim() || !form.phone.value.trim()) {
 
-        pickup_time: form.pickup_time.value,
+        msg.textContent = "Please enter your name and phone.";
 
-        delivery_date: form.delivery_date.value,
+        msg.className = "msg err";
 
-        delivery_time: form.delivery_time.value,
+        return;
 
-        notes: form.notes.value,
+      }
 
-      };
+
+
+      // إرسال بـ FormData + no-cors لتفادي CORS/Preflight
+
+      const fd = new FormData();
+
+      fd.append("name",         form.name.value.trim());
+
+      fd.append("phone",        form.phone.value.trim());
+
+      fd.append("address",      form.address.value.trim());
+
+      fd.append("serviceType",  form.service.value);
+
+      fd.append("pieces",       form.pieces.value);
+
+      fd.append("pickupDate",   form.pickup_date.value);
+
+      fd.append("pickupTime",   form.pickup_time.value);
+
+      fd.append("deliveryDate", form.delivery_date.value);
+
+      fd.append("deliveryTime", form.delivery_time.value);
+
+      fd.append("notes",        form.notes.value.trim());
+
+
+
+      if (btn) { btn.disabled = true; btn.textContent = "Submitting…"; }
+
+      msg.textContent = ""; msg.className = "msg";
 
 
 
       try {
 
-        const response = await fetch("https://script.google.com/macros/s/YOUR_WEB_APP_URL/exec", {
+        await fetch(WEB_APP_URL, { method: "POST", body: fd, mode: "no-cors" });
 
-          method: "POST",
+        // لا نقرأ الاستجابة مع no-cors، نعرض نجاحًا متفائلاً
 
-          mode: "no-cors",
+        msg.textContent = "Appointment submitted successfully! A confirmation email was sent.";
 
-          headers: { "Content-Type": "application/json" },
-
-          body: JSON.stringify(data),
-
-        });
-
-
-
-        alert("Appointment submitted successfully!");
+        msg.className = "msg ok";
 
         form.reset();
 
-      } catch (error) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
 
-        alert("❌ Error! Please try again.\nLoad failed");
+      } catch (err) {
 
-        console.error("Error:", error);
+        console.error(err);
+
+        msg.textContent = "Network error. Please try again.";
+
+        msg.className = "msg err";
+
+      } finally {
+
+        if (btn) { btn.disabled = false; btn.textContent = "Submit"; }
 
       }
 
