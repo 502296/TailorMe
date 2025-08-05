@@ -8,259 +8,97 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Book an Appointment</title>
+  <title>Book Appointment - TailorMe</title>
 
-  <link rel="stylesheet" href="appointment.css" />
-
-  <style>
-
-    /* honeypot hidden */
-
-    .hp { position:absolute !important; left:-9999px !important; opacity:0 !important; height:0 !important; width:0 !important; }
-
-    .msg { margin-top:12px; font-size:0.95rem; }
-
-    .msg.ok { color: #0a8754; }
-
-    .msg.err { color: #b00020; }
-
-    button[disabled] { opacity: .6; cursor: not-allowed; }
-
-  </style>
+  <link rel="stylesheet" href="style.css">
 
 </head>
 
-
-
 <body>
 
-  <div class="form-container">
-
-    <h1>Book an Appointment</h1>
 
 
+  <div class="container">
 
-    <form id="appointmentForm" novalidate>
-
-      <label for="name">Name:</label>
-
-      <input type="text" id="name" name="name" required />
+    <h1 class="logo">Book an Appointment</h1>
 
 
 
-      <label for="phone">Phone:</label>
+    <form id="bookingForm" class="form">
 
-      <input type="tel" id="phone" name="phone" required />
+      <label>Full Name</label>
 
-
-
-      <label for="address">Address:</label>
-
-      <input type="text" id="address" name="address" required />
+      <input type="text" name="name" required>
 
 
 
-      <label for="service">Service Type:</label>
+      <label>Phone Number</label>
 
-      <select id="service" name="service" required>
+      <input type="tel" name="phone" required>
+
+
+
+      <label>Service Type</label>
+
+      <select name="service" required>
 
         <option value="">-- Select --</option>
 
         <option value="Alteration">Alteration</option>
 
-        <option value="Custom Tailoring">Custom Tailoring</option>
+        <option value="Tailoring">Tailoring</option>
 
       </select>
 
 
 
-      <label for="pieces">Number of Pieces:</label>
+      <label>Number of Pieces</label>
 
-      <input type="number" id="pieces" name="pieces" required min="1" />
-
-
-
-      <label for="pickup_date">Pickup Date:</label>
-
-      <input type="date" id="pickup_date" name="pickup_date" required />
+      <input type="number" name="pieces" required>
 
 
 
-      <label for="pickup_time">Pickup Time:</label>
+      <label>Pickup Date</label>
 
-      <input type="time" id="pickup_time" name="pickup_time" required />
-
-
-
-      <label for="delivery_date">Delivery Date:</label>
-
-      <input type="date" id="delivery_date" name="delivery_date" required />
+      <input type="date" name="pickup_date" required>
 
 
 
-      <label for="delivery_time">Delivery Time:</label>
+      <label>Pickup Time</label>
 
-      <input type="time" id="delivery_time" name="delivery_time" required />
-
-
-
-      <label for="notes">Additional Notes (optional):</label>
-
-      <textarea id="notes" name="notes" placeholder="e.g., Please ring the doorbell"></textarea>
+      <input type="time" name="pickup_time" required>
 
 
 
-      <!-- Honeypot (bots will fill it; humans won't) -->
+      <label>Delivery Date</label>
 
-      <input type="text" id="company" name="company" autocomplete="off" class="hp" tabindex="-1" aria-hidden="true"/>
+      <input type="date" name="delivery_date" required>
 
 
 
-      <button type="submit" id="submitBtn">Submit</button>
+      <label>Delivery Time</label>
 
-      <p id="msg" class="msg"></p>
+      <input type="time" name="delivery_time" required>
+
+
+
+      <label>Additional Notes</label>
+
+      <textarea name="notes" rows="4"></textarea>
+
+
+
+      <button type="submit" class="btn-main">Submit Booking</button>
 
     </form>
 
 
 
-    <a href="index.html" class="back-link">← Back to Home</a>
+    <p class="back-link"><a href="index.html">← Back to Home</a></p>
 
   </div>
 
 
-
-  <script>
-
-    // === Your Apps Script Web App URL (live) ===
-
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxF6kjQC8k-QZsYsrSbf7vWlVZLjR2nTSWWHkeL1dmzoCUt0qXwdwhEURtXBphyoR6_/exec";
-
-
-
-    const form = document.getElementById("appointmentForm");
-
-    const btn  = document.getElementById("submitBtn");
-
-    const msg  = document.getElementById("msg");
-
-
-
-    function setMsg(text, ok=false) {
-
-      msg.textContent = text || "";
-
-      msg.className = "msg " + (ok ? "ok" : "err");
-
-    }
-
-
-
-    form.addEventListener("submit", async (e) => {
-
-      e.preventDefault();
-
-
-
-      // Honeypot: إذا ممتلئ، نعمل نجاح صوري وننهي (لا نرسل للخادم)
-
-      if (document.getElementById("company").value.trim() !== "") {
-
-        setMsg("Thank you — your request was received.", true);
-
-        form.reset();
-
-        return;
-
-      }
-
-
-
-      // تأكيد الحقول المطلوبة من المتصفح
-
-      if (!form.checkValidity()) {
-
-        setMsg("Please complete all required fields.");
-
-        return;
-
-      }
-
-
-
-      const payload = {
-
-        name: form.name.value.trim(),
-
-        phone: form.phone.value.trim(),
-
-        address: form.address.value.trim(),
-
-        serviceType: form.service.value,
-
-        pieces: form.pieces.value,
-
-        pickupDate: form.pickup_date.value,
-
-        pickupTime: form.pickup_time.value,
-
-        deliveryDate: form.delivery_date.value,
-
-        deliveryTime: form.delivery_time.value,
-
-        notes: form.notes.value.trim()
-
-      };
-
-
-
-      btn.disabled = true;
-
-      btn.textContent = "Submitting…";
-
-      setMsg("");
-
-
-
-      try {
-
-        // استخدام no-cors لأن معظم Web Apps في Apps Script لا تُمكّن CORS افتراضيًا
-
-        await fetch(WEB_APP_URL, {
-
-          method: "POST",
-
-          mode: "no-cors",
-
-          headers: { "Content-Type": "application/json" },
-
-          body: JSON.stringify(payload)
-
-        });
-
-
-
-        setMsg("✅ Appointment submitted successfully! You'll get an email confirmation.", true);
-
-        form.reset();
-
-      } catch (err) {
-
-        console.error(err);
-
-        setMsg("❌ Network error. Please try again.");
-
-      } finally {
-
-        btn.disabled = false;
-
-        btn.textContent = "Submit";
-
-      }
-
-    });
-
-  </script>
 
 </body>
 
