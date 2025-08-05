@@ -8,9 +8,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Book Appointment - TailorMe</title>
+  <title>Book Appointment – TailorMe</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 
 </head>
 
@@ -20,45 +20,41 @@
 
   <div class="container">
 
-    <div class="logo-wrapper">
 
-      <img src="images/logo-tailorme.png" alt="TailorMe Logo" class="logo-img">
 
-      <div class="logo-text">
+    <!-- الشعار والاسم -->
 
-        <h1>TailorMe</h1>
+    <img src="logo.png" alt="TailorMe Logo" class="logo" />
 
-        <p class="subtitle">Delivered to Your Door</p>
+    <h1 class="title">TailorMe</h1>
 
-        <p class="subsubtitle">Mobile Alterations & Custom Tailoring</p>
+    <p class="subtitle">Delivered to Your Door</p>
 
-      </div>
-
-    </div>
+    <p class="tagline">Mobile Alterations & Custom Tailoring</p>
 
 
 
-    <h2 style="margin-bottom: 25px;">Book an Appointment</h2>
+    <!-- نموذج الحجز -->
+
+    <form class="form">
 
 
-
-    <form id="bookingForm" class="form">
 
       <label for="name">Full Name</label>
 
-      <input type="text" name="name" id="name" required>
+      <input type="text" id="name" name="name" required>
 
 
 
       <label for="phone">Phone Number</label>
 
-      <input type="tel" name="phone" id="phone" required>
+      <input type="tel" id="phone" name="phone" required>
 
 
 
       <label for="service">Service Type</label>
 
-      <select name="service" id="service" required>
+      <select id="service" name="service" required>
 
         <option value="">-- Select --</option>
 
@@ -72,51 +68,51 @@
 
       <label for="pieces">Number of Pieces</label>
 
-      <input type="number" name="pieces" id="pieces" required>
+      <input type="number" id="pieces" name="pieces" required>
 
 
 
       <label for="pickup_date">Pickup Date</label>
 
-      <input type="date" name="pickup_date" id="pickup_date" required>
+      <input type="date" id="pickup_date" name="pickup_date" required>
 
 
 
       <label for="pickup_time">Pickup Time</label>
 
-      <input type="time" name="pickup_time" id="pickup_time" required>
+      <input type="time" id="pickup_time" name="pickup_time" required>
 
 
 
       <label for="delivery_date">Delivery Date</label>
 
-      <input type="date" name="delivery_date" id="delivery_date" required>
+      <input type="date" id="delivery_date" name="delivery_date" required>
 
 
 
       <label for="delivery_time">Delivery Time</label>
 
-      <input type="time" name="delivery_time" id="delivery_time" required>
+      <input type="time" id="delivery_time" name="delivery_time" required>
 
 
 
       <label for="notes">Additional Notes</label>
 
-      <textarea name="notes" id="notes" rows="4"></textarea>
+      <textarea id="notes" name="notes" rows="4"></textarea>
 
 
 
-      <button type="submit" class="btn-main">Submit Booking</button>
+      <input type="submit" value="Submit Booking" class="book-btn">
 
     </form>
 
 
 
-    <p class="back-link" style="margin-top: 30px;">
+    <!-- رابط الرجوع -->
 
-      <a href="index.html">← Back to Home</a>
+    <p class="back-link"><a href="index.html">← Back to Home</a></p>
 
-    </p>
+
 
   </div>
 
