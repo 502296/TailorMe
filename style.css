@@ -18,7 +18,7 @@ body {
 
   font-family: 'Georgia', serif;
 
-  background-color: #0c2b6b; /* Royal blue */
+  background-color: #0c2b6b; /* Royal Blue */
 
   color: #ffffff;
 
@@ -46,11 +46,53 @@ body {
 
 
 
-.logo {
+.hero-content {
 
-  max-width: 160px;
+  max-width: 800px;
+
+  margin: auto;
+
+}
+
+
+
+/* شعار TailorMe */
+
+.tailorme-logo {
+
+  font-family: 'Georgia', serif;
+
+  font-size: 42px;
+
+  color: #f5f5f5;
+
+  font-weight: bold;
+
+  position: relative;
 
   margin-bottom: 25px;
+
+}
+
+
+
+.tailorme-logo span {
+
+  color: #d4af37; /* ذهبية لـ Me */
+
+}
+
+
+
+.tailorme-logo .needle {
+
+  font-size: 22px;
+
+  margin-left: 10px;
+
+  position: relative;
+
+  top: -4px;
 
 }
 
@@ -60,7 +102,7 @@ body {
 
 .subtitle {
 
-  font-size: 28px;
+  font-size: 26px;
 
   color: #ffffff;
 
@@ -164,7 +206,7 @@ body {
 
 
 
-/* Responsive Design */
+/* Responsive */
 
 @media (max-width: 600px) {
 
