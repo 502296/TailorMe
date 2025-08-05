@@ -1,182 +1,166 @@
-/* ====== TailorMe Appointment Styles ====== */
+/* === TailorMe Appointment Page Styling === */
 
 
 
 body {
 
-  background-color: #f9f9fb;
-
-  color: #111;
-
-  font-family: 'Georgia', serif;
-
   margin: 0;
 
   padding: 0;
 
-}
+  background-color: #0c0c0c; /* Black background */
 
+  color: white;
 
-
-/* Logo & Title */
-
-.header-logo {
-
-  height: 60px;
-
-  margin-bottom: 10px;
+  font-family: 'Georgia', serif;
 
 }
 
 
 
-.title-section {
+/* Logo Section with Sewing Machine */
+
+.logo-section {
+
+  background-image: url("images/golden-machine.png");
+
+  background-repeat: no-repeat;
+
+  background-position: center top;
+
+  background-size: 120px; /* Adjust as needed */
+
+  padding-top: 140px; /* Add space for the image */
 
   text-align: center;
 
-  margin: 30px 0 10px;
-
 }
 
 
 
-.title-section h1 {
+/* TailorMe Title Text */
 
-  font-size: 32px;
+.logo-section h1 {
+
+  font-size: 36px;
+
+  color: #d4af37; /* Gold */
 
   margin: 0;
 
-  color: #222;
-
 }
 
 
 
-.title-section p {
+.logo-section p {
 
   font-size: 16px;
 
-  margin: 5px 0;
+  color: silver;
 
-  color: #777;
+  margin-top: 8px;
 
 }
 
 
 
-/* Form Container */
+/* Booking Form */
 
 .form-container {
 
-  max-width: 700px;
+  background-color: #1a1a1a;
 
-  margin: 0 auto;
+  border: 1px solid #d4af37;
 
-  background-color: #fff;
+  padding: 30px;
 
-  padding: 40px 30px;
+  margin: 40px auto;
 
-  border-radius: 20px;
+  width: 90%;
 
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+  max-width: 500px;
+
+  border-radius: 12px;
 
 }
 
 
-
-/* Form Labels & Inputs */
 
 label {
 
   display: block;
 
-  margin-bottom: 5px;
+  margin: 12px 0 6px;
 
   font-weight: bold;
 
+  color: #ccc;
+
 }
 
 
 
-input[type="text"],
-
-input[type="tel"],
-
-input[type="date"],
-
-input[type="time"],
-
-select,
-
-textarea {
+input, select, textarea {
 
   width: 100%;
 
-  padding: 12px;
+  padding: 10px;
 
-  margin-bottom: 18px;
-
-  border: 1px solid #ccc;
-
-  border-radius: 10px;
-
-  font-size: 16px;
-
-  box-sizing: border-box;
-
-}
-
-
-
-textarea {
-
-  resize: vertical;
-
-  min-height: 100px;
-
-}
-
-
-
-/* Button */
-
-button,
-
-input[type="submit"] {
-
-  background-color: #004aad;
-
-  color: #fff;
-
-  padding: 15px 30px;
-
-  font-size: 18px;
+  border-radius: 6px;
 
   border: none;
 
-  border-radius: 10px;
+  background-color: #333;
+
+  color: white;
+
+  font-size: 16px;
+
+}
+
+
+
+input::placeholder,
+
+textarea::placeholder {
+
+  color: #aaa;
+
+}
+
+
+
+button, .submit-btn {
+
+  background: linear-gradient(to right, #d4af37, #b8860b);
+
+  color: black;
+
+  padding: 12px 20px;
+
+  border: none;
+
+  font-weight: bold;
+
+  border-radius: 8px;
 
   cursor: pointer;
 
   width: 100%;
 
-  transition: background-color 0.3s;
+  margin-top: 20px;
 
 }
 
 
 
-button:hover,
+button:hover {
 
-input[type="submit"]:hover {
-
-  background-color: #00368a;
+  opacity: 0.9;
 
 }
 
 
-
-/* Back Link */
 
 .back-link {
 
@@ -186,9 +170,7 @@ input[type="submit"]:hover {
 
   margin-top: 20px;
 
-  color: #004aad;
-
-  font-weight: bold;
+  color: #ccc;
 
   text-decoration: none;
 
@@ -198,56 +180,6 @@ input[type="submit"]:hover {
 
 .back-link:hover {
 
-  text-decoration: underline;
-
-}
-
-
-
-/* Responsive Layout */
-
-@media (max-width: 600px) {
-
-  .form-container {
-
-    padding: 25px 20px;
-
-  }
-
-
-
-  input[type="text"],
-
-  input[type="tel"],
-
-  input[type="date"],
-
-  input[type="time"],
-
-  select,
-
-  textarea {
-
-    font-size: 15px;
-
-  }
-
-
-
-  input[type="submit"] {
-
-    font-size: 16px;
-
-    padding: 12px 24px;
-
-  }
-
-
-
-  .title-section h1 {
-
-    font-size: 26px;
-
-  }
+  color: #d4af37;
 
 }
