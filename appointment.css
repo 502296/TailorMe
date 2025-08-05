@@ -1,8 +1,12 @@
+/* ====== TailorMe Appointment Styles ====== */
+
+
+
 body {
 
-  background-color: #0c1220;
+  background-color: #f9f9fb;
 
-  color: white;
+  color: #111;
 
   font-family: 'Georgia', serif;
 
@@ -14,118 +18,236 @@ body {
 
 
 
-.form-container {
+/* Logo & Title */
 
-  max-width: 600px;
+.header-logo {
 
-  margin: auto;
+  height: 60px;
 
-  padding: 30px;
-
-  border: 2px solid gold;
-
-  background-color: #1c2233;
-
-  border-radius: 12px;
-
-  margin-top: 50px;
+  margin-bottom: 10px;
 
 }
 
 
 
-h1 {
-
-  color: gold;
+.title-section {
 
   text-align: center;
 
-  margin-bottom: 25px;
+  margin: 30px 0 10px;
 
 }
 
 
+
+.title-section h1 {
+
+  font-size: 32px;
+
+  margin: 0;
+
+  color: #222;
+
+}
+
+
+
+.title-section p {
+
+  font-size: 16px;
+
+  margin: 5px 0;
+
+  color: #777;
+
+}
+
+
+
+/* Form Container */
+
+.form-container {
+
+  max-width: 700px;
+
+  margin: 0 auto;
+
+  background-color: #fff;
+
+  padding: 40px 30px;
+
+  border-radius: 20px;
+
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+
+}
+
+
+
+/* Form Labels & Inputs */
 
 label {
 
   display: block;
 
-  margin-top: 12px;
+  margin-bottom: 5px;
 
   font-weight: bold;
-
-  color: #f0f0f0;
 
 }
 
 
 
-input, select, textarea {
+input[type="text"],
+
+input[type="tel"],
+
+input[type="date"],
+
+input[type="time"],
+
+select,
+
+textarea {
 
   width: 100%;
-
-  padding: 10px;
-
-  margin-top: 5px;
-
-  border-radius: 6px;
-
-  border: 1px solid #ccc;
-
-  background-color: #f8f8f8;
-
-  font-size: 16px;
-
-}
-
-
-
-button {
-
-  background: linear-gradient(to right, #d4af37, #b8860b);
-
-  color: black;
-
-  font-weight: bold;
 
   padding: 12px;
 
-  border: none;
+  margin-bottom: 18px;
 
-  border-radius: 8px;
+  border: 1px solid #ccc;
 
-  margin-top: 20px;
+  border-radius: 10px;
 
-  width: 100%;
+  font-size: 16px;
+
+  box-sizing: border-box;
+
+}
+
+
+
+textarea {
+
+  resize: vertical;
+
+  min-height: 100px;
+
+}
+
+
+
+/* Button */
+
+button,
+
+input[type="submit"] {
+
+  background-color: #004aad;
+
+  color: #fff;
+
+  padding: 15px 30px;
 
   font-size: 18px;
 
+  border: none;
+
+  border-radius: 10px;
+
   cursor: pointer;
 
-  transition: 0.3s ease;
+  width: 100%;
+
+  transition: background-color 0.3s;
 
 }
 
 
 
-button:hover {
+button:hover,
 
-  box-shadow: 0 0 10px gold;
+input[type="submit"]:hover {
+
+  background-color: #00368a;
 
 }
 
 
+
+/* Back Link */
 
 .back-link {
 
   display: block;
 
-  margin-top: 20px;
-
   text-align: center;
 
-  color: lightblue;
+  margin-top: 20px;
+
+  color: #004aad;
+
+  font-weight: bold;
 
   text-decoration: none;
+
+}
+
+
+
+.back-link:hover {
+
+  text-decoration: underline;
+
+}
+
+
+
+/* Responsive Layout */
+
+@media (max-width: 600px) {
+
+  .form-container {
+
+    padding: 25px 20px;
+
+  }
+
+
+
+  input[type="text"],
+
+  input[type="tel"],
+
+  input[type="date"],
+
+  input[type="time"],
+
+  select,
+
+  textarea {
+
+    font-size: 15px;
+
+  }
+
+
+
+  input[type="submit"] {
+
+    font-size: 16px;
+
+    padding: 12px 24px;
+
+  }
+
+
+
+  .title-section h1 {
+
+    font-size: 26px;
+
+  }
 
 }
