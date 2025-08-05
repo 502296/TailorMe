@@ -1,28 +1,40 @@
-/* ====== TailorMe Appointment Styles ====== */
-
-
-
 body {
-
-  background-color: #f9f9fb;
-
-  color: #111;
-
-  font-family: 'Georgia', serif;
 
   margin: 0;
 
   padding: 0;
 
+  font-family: 'Segoe UI', sans-serif;
+
+  background-color: #ffffff;
+
+  color: #222;
+
+  text-align: center;
+
 }
 
 
 
-/* Logo & Title */
+.container {
 
-.header-logo {
+  padding: 40px 20px;
 
-  height: 60px;
+  max-width: 600px;
+
+  margin: 0 auto;
+
+}
+
+
+
+.logo {
+
+  width: 100px;
+
+  max-width: 30%;
+
+  height: auto;
 
   margin-bottom: 10px;
 
@@ -30,189 +42,91 @@ body {
 
 
 
-.title-section {
+.title {
 
-  text-align: center;
-
-  margin: 30px 0 10px;
-
-}
-
-
-
-.title-section h1 {
-
-  font-size: 32px;
+  font-size: 2.5em;
 
   margin: 0;
 
-  color: #222;
-
-}
-
-
-
-.title-section p {
-
-  font-size: 16px;
-
-  margin: 5px 0;
-
-  color: #777;
-
-}
-
-
-
-/* Form Container */
-
-.form-container {
-
-  max-width: 600px;
-
-  margin: 20px auto;
-
-  background-color: #fff;
-
-  padding: 30px;
-
-  border-radius: 16px;
-
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-
-  box-sizing: border-box;
-
-}
-
-
-
-/* Grid for two fields in one row */
-
-.two-columns {
-
-  display: flex;
-
-  gap: 10px;
-
-}
-
-
-
-.two-columns > div {
-
-  flex: 1;
-
-}
-
-
-
-/* Labels & Inputs */
-
-label {
-
-  display: block;
-
-  margin-bottom: 6px;
-
   font-weight: bold;
 
-  font-size: 15px;
+}
+
+
+
+.subtitle {
+
+  font-size: 1.2em;
+
+  color: #444;
+
+  margin-top: 5px;
 
 }
 
 
 
-input[type="text"],
+.tagline {
 
-input[type="tel"],
+  font-size: 1em;
 
-input[type="date"],
+  color: #666;
 
-input[type="time"],
-
-select,
-
-textarea {
-
-  width: 100%;
-
-  padding: 10px 14px;
-
-  margin-bottom: 18px;
-
-  border: 1px solid #ccc;
-
-  border-radius: 8px;
-
-  font-size: 16px;
-
-  box-sizing: border-box;
+  margin: 15px 0 25px;
 
 }
 
 
 
-textarea {
+.book-btn {
 
-  resize: vertical;
+  display: inline-block;
 
-  min-height: 90px;
+  padding: 12px 30px;
 
-}
-
-
-
-/* Button */
-
-button,
-
-input[type="submit"] {
-
-  background-color: #004aad;
+  background-color: royalblue;
 
   color: white;
 
-  padding: 14px 28px;
+  font-weight: bold;
 
-  font-size: 17px;
+  font-size: 1em;
 
   border: none;
 
-  border-radius: 10px;
+  border-radius: 8px;
 
-  cursor: pointer;
+  text-decoration: none;
 
-  width: 100%;
-
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 
 }
 
 
 
-button:hover,
+.book-btn:hover {
 
-input[type="submit"]:hover {
-
-  background-color: #003885;
+  background-color: #003f99;
 
 }
 
 
 
-/* Back Link */
+.contact {
 
-.back-link {
+  margin-top: 25px;
 
-  display: block;
+  font-size: 0.95em;
 
-  text-align: center;
+  color: #444;
 
-  margin-top: 20px;
+}
 
-  color: #004aad;
 
-  font-weight: bold;
+
+.contact a {
+
+  color: #0066cc;
 
   text-decoration: none;
 
@@ -220,7 +134,7 @@ input[type="submit"]:hover {
 
 
 
-.back-link:hover {
+.contact a:hover {
 
   text-decoration: underline;
 
@@ -228,59 +142,43 @@ input[type="submit"]:hover {
 
 
 
-/* === Responsive Fixes for Mobile === */
+/* Responsive */
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
-  .form-container {
+  .title {
 
-    padding: 20px;
-
-    margin: 10px;
+    font-size: 2em;
 
   }
 
 
 
-  .two-columns {
+  .subtitle,
 
-    flex-direction: column;
+  .tagline {
 
-  }
-
-
-
-  input[type="text"],
-
-  input[type="tel"],
-
-  input[type="date"],
-
-  input[type="time"],
-
-  select,
-
-  textarea {
-
-    font-size: 15px;
+    font-size: 1em;
 
   }
 
 
 
-  .title-section h1 {
+  .book-btn {
 
-    font-size: 24px;
+    width: 100%;
+
+    padding: 14px;
+
+    font-size: 1em;
 
   }
 
 
 
-  input[type="submit"] {
+  .logo {
 
-    font-size: 16px;
-
-    padding: 12px 24px;
+    max-width: 40%;
 
   }
 
