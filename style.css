@@ -34,83 +34,41 @@ body {
 
 
 
-.logo {
+.logo-wrapper {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 15px;
+
+  margin-bottom: 20px;
+
+  flex-wrap: wrap;
+
+}
+
+
+
+.logo-img {
+
+  width: 60px;
+
+  height: auto;
+
+}
+
+
+
+.logo-text h1 {
 
   font-size: 32px;
 
   font-weight: bold;
 
-  margin-bottom: 10px;
-
-  position: relative;
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-}
-
-
-
-.needle-container {
-
-  position: relative;
-
-  display: inline-block;
-
-  margin-right: -8px;
-
-}
-
-
-
-.needle {
-
-  font-size: 32px;
-
-  transform: rotate(-20deg);
-
-  display: inline-block;
-
-  color: #555;
-
-}
-
-
-
-.thread {
-
-  position: absolute;
-
-  top: 0;
-
-  left: 6px;
-
-  width: 30px;
-
-  height: 30px;
-
-  border: 2px solid #007B83;
-
-  border-radius: 50%;
-
-  border-top-color: transparent;
-
-  border-right-color: transparent;
-
-  animation: spin 3s linear infinite;
-
-}
-
-
-
-@keyframes spin {
-
-  0% { transform: rotate(0deg); }
-
-  100% { transform: rotate(360deg); }
+  margin: 0;
 
 }
 
@@ -118,11 +76,11 @@ body {
 
 .subtitle {
 
-  font-size: 18px;
+  font-size: 16px;
 
   color: #666;
 
-  margin-bottom: 30px;
+  margin: 5px 0 0;
 
 }
 
