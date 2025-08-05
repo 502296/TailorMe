@@ -20,27 +20,43 @@
 
   <div class="container">
 
-    <h1 class="logo">Book an Appointment</h1>
+    <div class="logo-wrapper">
+
+      <img src="images/logo-tailorme.png" alt="TailorMe Logo" class="logo-img">
+
+      <div class="logo-text">
+
+        <h1>TailorMe</h1>
+
+        <p class="subtitle">Delivered to Your Door</p>
+
+      </div>
+
+    </div>
+
+
+
+    <h2 style="margin-bottom: 25px;">Book an Appointment</h2>
 
 
 
     <form id="bookingForm" class="form">
 
-      <label>Full Name</label>
+      <label for="name">Full Name</label>
 
-      <input type="text" name="name" required>
-
-
-
-      <label>Phone Number</label>
-
-      <input type="tel" name="phone" required>
+      <input type="text" name="name" id="name" required>
 
 
 
-      <label>Service Type</label>
+      <label for="phone">Phone Number</label>
 
-      <select name="service" required>
+      <input type="tel" name="phone" id="phone" required>
+
+
+
+      <label for="service">Service Type</label>
+
+      <select name="service" id="service" required>
 
         <option value="">-- Select --</option>
 
@@ -52,39 +68,39 @@
 
 
 
-      <label>Number of Pieces</label>
+      <label for="pieces">Number of Pieces</label>
 
-      <input type="number" name="pieces" required>
-
-
-
-      <label>Pickup Date</label>
-
-      <input type="date" name="pickup_date" required>
+      <input type="number" name="pieces" id="pieces" required>
 
 
 
-      <label>Pickup Time</label>
+      <label for="pickup_date">Pickup Date</label>
 
-      <input type="time" name="pickup_time" required>
-
-
-
-      <label>Delivery Date</label>
-
-      <input type="date" name="delivery_date" required>
+      <input type="date" name="pickup_date" id="pickup_date" required>
 
 
 
-      <label>Delivery Time</label>
+      <label for="pickup_time">Pickup Time</label>
 
-      <input type="time" name="delivery_time" required>
+      <input type="time" name="pickup_time" id="pickup_time" required>
 
 
 
-      <label>Additional Notes</label>
+      <label for="delivery_date">Delivery Date</label>
 
-      <textarea name="notes" rows="4"></textarea>
+      <input type="date" name="delivery_date" id="delivery_date" required>
+
+
+
+      <label for="delivery_time">Delivery Time</label>
+
+      <input type="time" name="delivery_time" id="delivery_time" required>
+
+
+
+      <label for="notes">Additional Notes</label>
+
+      <textarea name="notes" id="notes" rows="4"></textarea>
 
 
 
@@ -94,7 +110,11 @@
 
 
 
-    <p class="back-link"><a href="index.html">← Back to Home</a></p>
+    <p class="back-link" style="margin-top: 30px;">
+
+      <a href="index.html">← Back to Home</a>
+
+    </p>
 
   </div>
 
