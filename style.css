@@ -1,3 +1,5 @@
+/* === Global Styles === */
+
 body {
 
   margin: 0;
@@ -14,6 +16,8 @@ body {
 
 
 
+/* === Container === */
+
 .container {
 
   max-width: 600px;
@@ -26,7 +30,7 @@ body {
 
   border-radius: 12px;
 
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 
   text-align: center;
 
@@ -34,45 +38,25 @@ body {
 
 
 
-.logo-wrapper {
+/* === Logo Image (Full) === */
 
-  display: flex;
+.logo-img-full {
 
-  align-items: center;
+  width: 220px;
 
-  justify-content: center;
-
-  gap: 15px;
-
-  margin-bottom: 20px;
-
-  flex-wrap: wrap;
-
-}
-
-
-
-.logo-img {
-
-  width: 60px;
+  max-width: 100%;
 
   height: auto;
 
-}
+  margin: 20px auto 10px;
 
-
-
-.logo-text h1 {
-
-  font-size: 32px;
-
-  font-weight: bold;
-
-  margin: 0;
+  display: block;
 
 }
 
 
+
+/* === Slogan Line === */
 
 .subsubtitle {
 
@@ -82,8 +66,13 @@ body {
 
   margin-top: 4px;
 
+  margin-bottom: 25px;
+
 }
 
+
+
+/* === Buttons === */
 
 .btn-main {
 
@@ -117,6 +106,8 @@ body {
 
 
 
+/* === Contact Info === */
+
 .contact {
 
   margin-top: 40px;
@@ -134,5 +125,91 @@ body {
   color: #0066cc;
 
   text-decoration: none;
+
+}
+
+
+
+/* === Form Styling (appointment.html) === */
+
+.form {
+
+  display: flex;
+
+  flex-direction: column;
+
+  text-align: left;
+
+}
+
+
+
+.form label {
+
+  margin: 12px 0 5px;
+
+  font-weight: 500;
+
+}
+
+
+
+.form input,
+
+.form select,
+
+.form textarea {
+
+  padding: 10px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 6px;
+
+  font-size: 16px;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  margin-bottom: 10px;
+
+}
+
+
+
+.form textarea {
+
+  resize: vertical;
+
+}
+
+
+
+button[type="submit"] {
+
+  width: 100%;
+
+  margin-top: 15px;
+
+}
+
+
+
+/* === Back link === */
+
+.back-link {
+
+  margin-top: 30px;
+
+}
+
+
+
+.back-link a {
+
+  text-decoration: none;
+
+  color: #0066cc;
 
 }
