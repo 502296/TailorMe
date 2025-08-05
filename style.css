@@ -42,6 +42,76 @@ body {
 
   margin-bottom: 10px;
 
+  position: relative;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+}
+
+
+
+.needle-container {
+
+  position: relative;
+
+  display: inline-block;
+
+  margin-right: -8px;
+
+}
+
+
+
+.needle {
+
+  font-size: 32px;
+
+  transform: rotate(-20deg);
+
+  display: inline-block;
+
+  color: #555;
+
+}
+
+
+
+.thread {
+
+  position: absolute;
+
+  top: 0;
+
+  left: 6px;
+
+  width: 30px;
+
+  height: 30px;
+
+  border: 2px solid #007B83;
+
+  border-radius: 50%;
+
+  border-top-color: transparent;
+
+  border-right-color: transparent;
+
+  animation: spin 3s linear infinite;
+
+}
+
+
+
+@keyframes spin {
+
+  0% { transform: rotate(0deg); }
+
+  100% { transform: rotate(360deg); }
+
 }
 
 
@@ -107,75 +177,5 @@ body {
   color: #0066cc;
 
   text-decoration: none;
-
-}
-
-
-
-.form {
-
-  display: flex;
-
-  flex-direction: column;
-
-  text-align: left;
-
-}
-
-
-
-.form label {
-
-  margin: 10px 0 5px;
-
-  font-weight: 500;
-
-}
-
-
-
-.form input,
-
-.form select,
-
-.form textarea {
-
-  padding: 10px;
-
-  border: 1px solid #ccc;
-
-  border-radius: 6px;
-
-  font-size: 16px;
-
-  width: 100%;
-
-  box-sizing: border-box;
-
-}
-
-
-
-.form textarea {
-
-  resize: vertical;
-
-}
-
-
-
-.back-link {
-
-  margin-top: 30px;
-
-}
-
-
-
-.back-link a {
-
-  text-decoration: none;
-
-  color: #0066cc;
 
 }
