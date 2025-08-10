@@ -16,15 +16,23 @@
 
     :root{
 
-      --royal:#0c1220; --gold:#d4af37; --gold2:#b8860b;
+      --royal:#0c1220; --ink:#0b1630;
 
-      --silver:#cfd3da; --silver2:#9aa4b2; --text:#eef1f7;
+      --gold:#d4af37; --gold2:#b8860b;
+
+      --silver:#cfd3da; --silver2:#9aa4b2;
+
+      --text:#eef1f7; --muted:#9aa4b2; --radius:14px;
 
     }
 
     *{box-sizing:border-box}
 
     html,body{margin:0;padding:0;background:linear-gradient(180deg,#0c1220,#0b142a);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+
+
+
+    /* شعار بالوسط */
 
     .brand{display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 16px 10px;text-decoration:none}
 
@@ -36,23 +44,71 @@
 
     .gold{background:linear-gradient(90deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
 
-    .wrap{max-width:900px;margin:12px auto 32px;padding:0 16px}
+
+
+    /* كارد النموذج */
+
+    .wrap{max-width:760px;margin:12px auto 32px;padding:0 16px}
+
+    .card{background:linear-gradient(180deg,#101a31,#0b1429);border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 10px 28px rgba(0,0,0,.35);padding:18px}
 
     h1{margin:0 0 6px;text-align:center;color:var(--gold);font-size:28px}
 
-    .sub{margin:0 0 14px;text-align:center;opacity:.9}
+    .sub{text-align:center;color:#dbe3f4;opacity:.9;margin:0 0 18px}
 
-    .card{background:linear-gradient(180deg,#101a31,#0b1429);border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 10px 28px rgba(0,0,0,.35);padding:10px}
 
-    iframe{width:100%;height:1988px;border:0;border-radius:12px;background:#fff}
 
-    @media (max-width:640px){iframe{height:2200px}}
+    /* الحقول */
 
-    .back{display:block;width:max-content;margin:18px auto 0;padding:12px 16px;border-radius:12px;text-decoration:none;font-weight:800;background:linear-gradient(90deg,var(--gold),var(--gold2));color:#1b1200}
+    label{display:block;margin:10px 0 6px;font-weight:700;color:var(--silver)}
 
-    .back:hover{filter:brightness(1.05)}
+    input,select,textarea{
 
-    footer{max-width:900px;margin:22px auto 24px;padding:0 16px;text-align:center;color:#b8bfcd}
+      width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);
+
+      background:#0d1733;color:#e8eeff;font-size:15px
+
+    }
+
+    input::placeholder,textarea::placeholder{color:rgba(255,255,255,.6)}
+
+    textarea{min-height:110px;resize:vertical}
+
+    input:focus,select:focus,textarea:focus{outline:none;box-shadow:0 0 0 2px rgba(212,175,55,.25)}
+
+
+
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+    @media (max-width:640px){.grid{grid-template-columns:1fr}}
+
+
+
+    .consent{display:flex;align-items:center;gap:10px;margin:8px 0 4px;color:#dbe3f4}
+
+
+
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:800;transition:transform .15s,filter .15s,box-shadow .15s}
+
+    .btn.gold{background:linear-gradient(90deg,var(--gold),var(--gold2));color:#1b1200}
+
+    .btn.outline{background:transparent;border:1px solid rgba(255,255,255,.22);color:#fff}
+
+    .btn.small{padding:10px 14px;font-weight:700}
+
+    .btn:hover{transform:translateY(-1px);filter:brightness(1.03);box-shadow:0 8px 24px rgba(212,175,55,.25)}
+
+
+
+    .hint{color:var(--muted);font-size:12px;margin-top:10px}
+
+    .success{margin-top:16px;padding:14px;border:1px solid rgba(212,175,55,.35);border-radius:12px;background:rgba(212,175,55,.08)}
+
+    .success h3{margin:0 0 6px}
+
+    .foot{max-width:760px;margin:20px auto 24px;padding:0 16px;color:#b8bfcd;text-align:center}
 
   </style>
 
@@ -62,7 +118,7 @@
 
 
 
-  <!-- Logo centered -->
+  <!-- الشعار في المنتصف -->
 
   <a href="index.html" class="brand" aria-label="Back to Home">
 
@@ -76,39 +132,217 @@
 
   <main class="wrap">
 
-    <h1>Book an Appointment</h1>
-
-    <p class="sub">Please fill the form below. We’ll confirm your visit shortly.</p>
-
-
-
     <div class="card">
 
-      <!-- Google Form (embedded) -->
+      <h1>Book an Appointment</h1>
 
-      <iframe
+      <p class="sub">Fill the details below. We’ll confirm your visit shortly.</p>
 
-        src="https://docs.google.com/forms/d/e/1FAIpQLSf_BiW9KLCADI3r2wjjZra53DCg_tyUAamuMPHWMehuoSYAHg/viewform?embedded=true">
 
-        Loading…
 
-      </iframe>
+      <form id="bookingForm" novalidate>
+
+        <input type="hidden" name="source" value="website"/>
+
+
+
+        <label>Full Name
+
+          <input name="name" type="text" placeholder="Your full name" required/>
+
+        </label>
+
+        <label>Phone
+
+          <input name="phone" type="tel" placeholder="(502) 296-8168" required/>
+
+        </label>
+
+        <label>Email
+
+          <input name="email" type="email" placeholder="you@example.com" required/>
+
+        </label>
+
+        <label>Address
+
+          <input name="address" type="text" placeholder="Street, City, ZIP" required/>
+
+        </label>
+
+
+
+        <div class="grid">
+
+          <label>Service
+
+            <select name="service" required>
+
+              <option value="" disabled selected>Select a service</option>
+
+              <option>Alterations (hems, waist, taper…)</option>
+
+              <option>Custom Tailoring (made-to-measure)</option>
+
+              <option>Premium Care (buttons, repairs)</option>
+
+              <option>Multiple items (mix)</option>
+
+            </select>
+
+          </label>
+
+          <label>Pieces
+
+            <input name="pieces" type="number" min="1" placeholder="1" required/>
+
+          </label>
+
+        </div>
+
+
+
+        <div class="grid">
+
+          <label>Preferred Date
+
+            <input name="pickupDate" type="date" required/>
+
+          </label>
+
+          <label>Preferred Time
+
+            <select name="pickupTime" required>
+
+              <option value="" disabled selected>Select a time</option>
+
+              <option>09:00–11:00</option>
+
+              <option>11:00–13:00</option>
+
+              <option>13:00–15:00</option>
+
+              <option>15:00–17:00</option>
+
+              <option>After 5pm</option>
+
+            </select>
+
+          </label>
+
+        </div>
+
+
+
+        <label>Notes
+
+          <textarea name="notes" placeholder="Garment details, deadlines, special requests…"></textarea>
+
+        </label>
+
+
+
+        <label class="consent">
+
+          <input type="checkbox" required/> I agree to the scheduling window & pickup/delivery terms.
+
+        </label>
+
+
+
+        <div class="actions">
+
+          <button class="btn gold" type="submit">Request Booking</button>
+
+          <a class="btn outline" href="tel:+15022968168">Call Instead</a>
+
+        </div>
+
+
+
+        <p class="hint">You’ll receive a confirmation by text/email.</p>
+
+
+
+        <div id="success" class="success" hidden>
+
+          <h3>Request received 🎉</h3>
+
+          <p>Thank you! We’ll confirm your appointment shortly.</p>
+
+          <a class="btn small outline" href="index.html">Back to Home</a>
+
+        </div>
+
+      </form>
 
     </div>
-
-
-
-    <a href="index.html" class="back">← Back to Home</a>
 
   </main>
 
 
 
-  <footer>© <span id="year"></span> TailorMe. All rights reserved.</footer>
+  <footer class="foot">© <span id="year"></span> TailorMe. All rights reserved.</footer>
 
 
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+
+
+    const WEB_APP_URL = 'YOUR_WEB_APP_URL'; // ← ضع رابط الويب آب من Google Apps Script
+
+
+
+    const form = document.getElementById('bookingForm');
+
+    form.addEventListener('submit', async (e)=>{
+
+      e.preventDefault();
+
+      const data = Object.fromEntries(new FormData(form).entries());
+
+
+
+      try{
+
+        const res = await fetch(WEB_APP_URL, {
+
+          method: 'POST',
+
+          headers: { 'Content-Type': 'application/json' },
+
+          body: JSON.stringify(data)
+
+        });
+
+        const json = await res.json();
+
+        if(json.ok){
+
+          form.querySelector('#success').hidden = false;
+
+          form.reset();
+
+          form.scrollIntoView({behavior:'smooth'});
+
+        }else{
+
+          alert('Submission failed. Please try again.');
+
+        }
+
+      }catch(err){
+
+        alert('Network error. Please try again.');
+
+      }
+
+    });
+
+  </script>
 
 </body>
 
