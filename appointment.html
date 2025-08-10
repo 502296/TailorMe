@@ -4,93 +4,57 @@
 
 <head>
 
-    <meta charset="UTF-8">
+  <meta charset="UTF-8"/>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title>Book an Appointment - TailorMe</title>
+  <title>Book an Appointment – TailorMe</title>
 
-    <style>
+  <meta name="description" content="Book mobile alterations and custom tailoring with TailorMe."/>
 
-        body {
+  <style>
 
-            background-color: #0c1220;
+    :root{
 
-            font-family: 'Georgia', serif;
+      --royal:#0c1220; --gold:#d4af37; --gold2:#b8860b;
 
-            margin: 0;
+      --silver:#cfd3da; --silver2:#9aa4b2; --text:#eef1f7;
 
-            padding: 0;
+    }
 
-            color: white;
+    *{box-sizing:border-box}
 
-            text-align: center;
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0c1220,#0b142a);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 
-        }
+    .brand{display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 16px 10px;text-decoration:none}
 
-        h1 {
+    .brand img{height:72px;width:86px;object-fit:cover;object-position:top center;border-radius:10px;filter:drop-shadow(0 0 10px rgba(212,175,55,.28))}
 
-            color: #d4af37;
+    .wordmark{font-weight:800;letter-spacing:.5px;font-size:26px;line-height:1}
 
-            margin-top: 20px;
+    .silver{background:linear-gradient(90deg,var(--silver),var(--silver2));-webkit-background-clip:text;background-clip:text;color:transparent;margin-right:3px}
 
-        }
+    .gold{background:linear-gradient(90deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
 
-        .form-container {
+    .wrap{max-width:900px;margin:12px auto 32px;padding:0 16px}
 
-            max-width: 90%;
+    h1{margin:0 0 6px;text-align:center;color:var(--gold);font-size:28px}
 
-            margin: auto;
+    .sub{margin:0 0 14px;text-align:center;opacity:.9}
 
-            padding: 20px;
+    .card{background:linear-gradient(180deg,#101a31,#0b1429);border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 10px 28px rgba(0,0,0,.35);padding:10px}
 
-            background-color: rgba(255, 255, 255, 0.05);
+    iframe{width:100%;height:1988px;border:0;border-radius:12px;background:#fff}
 
-            border-radius: 12px;
+    @media (max-width:640px){iframe{height:2200px}}
 
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    .back{display:block;width:max-content;margin:18px auto 0;padding:12px 16px;border-radius:12px;text-decoration:none;font-weight:800;background:linear-gradient(90deg,var(--gold),var(--gold2));color:#1b1200}
 
-        }
+    .back:hover{filter:brightness(1.05)}
 
-        iframe {
+    footer{max-width:900px;margin:22px auto 24px;padding:0 16px;text-align:center;color:#b8bfcd}
 
-            border: none;
-
-            width: 100%;
-
-            height: 2000px;
-
-        }
-
-        .back-btn {
-
-            display: inline-block;
-
-            margin-top: 20px;
-
-            padding: 10px 20px;
-
-            background: linear-gradient(to right, #d4af37, #b8860b);
-
-            color: black;
-
-            font-weight: bold;
-
-            border-radius: 8px;
-
-            text-decoration: none;
-
-            box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
-
-        }
-
-        .back-btn:hover {
-
-            background: linear-gradient(to right, #b8860b, #d4af37);
-
-        }
-
-    </style>
+  </style>
 
 </head>
 
@@ -98,25 +62,53 @@
 
 
 
+  <!-- Logo centered -->
+
+  <a href="index.html" class="brand" aria-label="Back to Home">
+
+    <img src="images/logo.png" alt="TailorMe"/>
+
+    <div class="wordmark"><span class="silver">Tailor</span><span class="gold">Me</span></div>
+
+  </a>
+
+
+
+  <main class="wrap">
+
     <h1>Book an Appointment</h1>
 
+    <p class="sub">Please fill the form below. We’ll confirm your visit shortly.</p>
 
 
-    <div class="form-container">
 
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf_BiW9KLCADI3r2wjjZra53DCg_tyUAamuMPHWMehuoSYAHg/viewform?embedded=true">
+    <div class="card">
 
-            Loading…
+      <!-- Google Form (embedded) -->
 
-        </iframe>
+      <iframe
+
+        src="https://docs.google.com/forms/d/e/1FAIpQLSf_BiW9KLCADI3r2wjjZra53DCg_tyUAamuMPHWMehuoSYAHg/viewform?embedded=true">
+
+        Loading…
+
+      </iframe>
 
     </div>
 
 
 
-    <a href="index.html" class="back-btn">⬅ Back to Home</a>
+    <a href="index.html" class="back">← Back to Home</a>
+
+  </main>
 
 
+
+  <footer>© <span id="year"></span> TailorMe. All rights reserved.</footer>
+
+
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 
 </body>
 
