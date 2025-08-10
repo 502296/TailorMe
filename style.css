@@ -4,23 +4,15 @@
 
   --royal-ink:#0b1630;
 
-  --gold:#d4af37;
+  --gold:#d4af37; --gold-deep:#b8860b;
 
-  --gold-deep:#b8860b;
+  --silver:#c0c0c0; --silver-deep:#9aa4b2;
 
-  --silver:#c0c0c0;
-
-  --silver-deep:#9aa4b2;
-
-  --text:#f2f4f7;
-
-  --muted:#9aa4b2;
+  --text:#f2f4f7; --muted:#9aa4b2;
 
   --card:#121a2f;
 
-  --maxw:1200px;
-
-  --radius:14px;
+  --maxw:1200px; --radius:14px;
 
   --shadow:0 12px 30px rgba(0,0,0,.35);
 
@@ -62,11 +54,7 @@ a{text-decoration:none;color:inherit}
 
 .preview-wrap{margin:14px auto;transition:max-width .25s ease}
 
-.w-desktop{max-width:1200px}
-
-.w-tablet{max-width:900px}
-
-.w-mobile{max-width:430px}
+.w-desktop{max-width:1200px}.w-tablet{max-width:900px}.w-mobile{max-width:430px}
 
 
 
@@ -80,17 +68,15 @@ header{position:sticky;top:48px;z-index:999;background:rgba(12,18,32,.75);backdr
 
 
 
-/* شعار أعلى اليسار - إبراز كبير مع قص بصري للجزء العلوي فقط */
+/* الشعار يسار الهيدر – كبير وبارز */
 
 .tm-emblem{
 
-  height:72px; width:88px; /* مستطيل واسع قليلًا */
+  height:72px; width:88px;
 
-  object-fit:cover; object-position:top center; /* قص بصري ليظهر التاج + الإبرة فقط */
+  object-fit:cover; object-position:top center;
 
   display:block; border-radius:8px;
-
-  background:transparent;
 
   filter: drop-shadow(0 0 10px rgba(212,175,55,.25));
 
@@ -184,7 +170,7 @@ h1{margin:10px 0 14px;font-size:44px;line-height:1.08}
 
   padding:14px 18px;border-radius:12px;font-weight:800;cursor:pointer;border:0;
 
-  box-shadow:var(--shadow);transform: translateZ(0);transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease
+  box-shadow:var(--shadow);transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease
 
 }
 
@@ -201,6 +187,8 @@ h1{margin:10px 0 14px;font-size:44px;line-height:1.08}
 .btn-glass{background:rgba(255,255,255,.08);color:white;border:1px solid rgba(255,255,255,.2)}
 
 
+
+/* Cards beside hero */
 
 .right-cards{display:grid; grid-template-columns:1fr; gap:14px}
 
@@ -262,8 +250,6 @@ section{max-width:var(--maxw);margin:0 auto;padding:40px 18px}
 
 .contact-form .btn{grid-column:1/-1;justify-self:start}
 
-
-
 .hint{font-size:12px;color:var(--muted)}
 
 
@@ -293,10 +279,6 @@ footer{
 .foot small{color:var(--muted)}
 
 .mini-logo{display:flex;align-items:center;gap:10px}
-
-
-
-/* شعار الفوتر: أصغر قليلاً */
 
 .footer-emblem{
 
