@@ -4,7 +4,7 @@
 
 <head>
 
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
@@ -16,19 +16,21 @@
 
     :root{
 
-      --royal:#0c1220;          /* velvety royal blue (dark) */
+      --royal:#0c1220;       /* Royal blue (velvety dark) */
 
-      --royal-ink:#0b1630;      /* lighter section tone */
+      --royal-ink:#0b1630;   /* Slightly lighter for sections */
 
-      --silver:#cfd3da;         /* primary accent */
+      --gold:#d4af37;        /* Royal gold */
 
-      --silver-deep:#9aa4b2;    /* gradient partner */
+      --gold-deep:#b8860b;   /* Gradient partner */
 
-      --text:#eef1f7;
+      --silver:#c0c0c0;      /* Silver text */
+
+      --text:#f2f4f7;        /* Body text */
 
       --muted:#9aa4b2;
 
-      --card:#101a31;
+      --card:#121a2f;
 
       --maxw:1200px;
 
@@ -36,7 +38,7 @@
 
       --shadow:0 12px 30px rgba(0,0,0,.35);
 
-      --ring:0 0 0 2px rgba(207,211,218,.25), 0 0 28px rgba(207,211,218,.22);
+      --ring:0 0 0 2px rgba(212,175,55,.25), 0 0 32px rgba(212,175,55,.2);
 
     }
 
@@ -48,13 +50,13 @@
 
 
 
-    /* Preview toolbar (for local testing) */
+    /* Top preview toolbar (local only) */
 
     .preview-toolbar{
 
       position:sticky;top:0;z-index:1000;
 
-      background:linear-gradient(90deg,#0f1d3f,#0a1430);
+      background:linear-gradient(90deg,#0e1a3a,#0b1430);
 
       padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.06);
 
@@ -70,7 +72,7 @@
 
     }
 
-    .preview-toolbar button.active{border-color:var(--silver);box-shadow:var(--ring);color:white}
+    .preview-toolbar button.active{border-color:var(--gold);box-shadow:var(--ring);color:white}
 
 
 
@@ -88,7 +90,7 @@
 
     /* Navbar */
 
-    header{position:sticky;top:48px;z-index:999;background:rgba(12,18,32,.75);backdrop-filter: blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+    header{position:sticky;top:48px; /* below toolbar */ z-index:999;background:rgba(12,18,32,.75);backdrop-filter: blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
 
     .nav{max-width:var(--maxw);margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 
@@ -96,17 +98,19 @@
 
     .logo{
 
-      width:44px;height:44px;border-radius:10px;display:grid;place-items:center;
+      width:48px;height:48px;border-radius:12px;display:grid;place-items:center;
 
-      background:radial-gradient(120% 120% at 20% 20%,#2a365f 0%, #0f1b3b 60%, #09122a 100%);
+      background:
 
-      box-shadow: inset 0 0 30px rgba(255,255,255,.05), 0 6px 22px rgba(0,0,0,.45);
+        radial-gradient(140% 140% at 20% 20%,#2a365f 0%, #0f1b3b 60%, #09122a 100%);
+
+      box-shadow: inset 0 0 30px rgba(255,255,255,.07), 0 6px 22px rgba(0,0,0,.45);
 
     }
 
-    .logo svg{width:28px;height:28px;filter: drop-shadow(0 0 10px rgba(207,211,218,.35))}
+    .logo svg{width:30px;height:30px;filter: drop-shadow(0 0 10px rgba(212,175,55,.35))}
 
-    .title{font-size:20px;font-weight:800;color:var(--silver);letter-spacing:.5px}
+    .title{font-size:22px;font-weight:800;color:var(--silver);letter-spacing:.5px}
 
     nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
 
@@ -128,9 +132,9 @@
 
     .hero::before{
 
-      content:"";position:absolute;inset:-40% -10% auto -10%;height:120%;
+      content:"";position:absolute;inset:-40% -10% auto -10%;
 
-      background:radial-gradient(60% 100% at 50% 0, rgba(207,211,218,.09), transparent 60%);
+      height:120%;background:radial-gradient(60% 100% at 50% 0, rgba(212,175,55,.08), transparent 60%);
 
       z-index:-1;filter: blur(10px);
 
@@ -140,15 +144,13 @@
 
     @media (max-width:900px){.hero-inner{grid-template-columns:1fr}}
 
-    .kicker{color:var(--silver);font-weight:800;letter-spacing:.22em;font-size:12px;text-transform:uppercase;opacity:.95}
+    .kicker{color:var(--gold);font-weight:700;letter-spacing:.2em;font-size:12px;text-transform:uppercase}
 
     h1{margin:10px 0 14px;font-size:44px;line-height:1.08}
 
     .lead{color:#dbe3f4;opacity:.9;max-width:60ch}
 
     .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
-
-
 
     .btn{
 
@@ -162,69 +164,31 @@
 
     .btn:active{transform: translateY(1px)}
 
-    .btn-primary{background:linear-gradient(90deg,var(--silver),var(--silver-deep));color:#0b1020}
+    .btn-primary{background:linear-gradient(90deg,var(--gold),var(--gold-deep));color:#201400}
 
-    .btn-primary:hover{box-shadow:0 10px 30px rgba(207,211,218,.35)}
+    .btn-primary:hover{box-shadow:0 10px 30px rgba(212,175,55,.35)}
 
-    .btn-ghost{background:rgba(255,255,255,.08);color:white;border:1px solid rgba(255,255,255,.2)}
+    .btn-secondary{background:linear-gradient(90deg,#bdc1c9,#9198a1);color:#0b1020}
+
+    .btn-glass{background:rgba(255,255,255,.08);color:white;border:1px solid rgba(255,255,255,.2)}
 
     .btn svg{width:18px;height:18px}
 
 
 
-    /* Trust row */
-
-    .trust{max-width:var(--maxw);margin:0 auto;padding:18px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
-
-    .trust .pill{
-
-      display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.08);padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.04)
-
-    }
-
-
-
-    /* Sections */
+    /* About */
 
     section{max-width:var(--maxw);margin:0 auto;padding:40px 18px}
 
     .section-title{font-size:28px;margin:0 0 16px}
 
-    .grid{display:grid;gap:16px}
-
-    .grid-3{grid-template-columns:repeat(3,1fr)}
-
-    @media (max-width:900px){.grid-3{grid-template-columns:1fr 1fr}}
-
-    @media (max-width:600px){.grid-3{grid-template-columns:1fr}}
-
-    .card{
-
-      background:linear-gradient(180deg,#0f1a35,#0b1429 40%, #091225);
-
-      border:1px solid rgba(255,255,255,.08);
-
-      border-radius:var(--radius);padding:18px;min-height:130px;
-
-      box-shadow: 0 8px 24px rgba(0,0,0,.38);
-
-    }
-
-    .card h3{margin:0 0 6px}
-
-    .card p{margin:0;color:#d3d9ea;opacity:.9}
-
-
-
-    /* About */
-
     .about{
 
       display:grid;gap:24px;grid-template-columns:1.2fr 1fr;
 
-      background:linear-gradient(180deg,var(--royal),#0a1327 60%, #081020);
+      background:linear-gradient(180deg,var(--royal),#0a1327 60%, #081020)
 
-      border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:22px
+      ;border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:22px
 
     }
 
@@ -254,7 +218,7 @@
 
       margin-top:24px;border-top:1px solid rgba(255,255,255,.06);
 
-      background:radial-gradient(120% 180% at 50% -20%,rgba(207,211,218,.08),transparent 60%),
+      background:radial-gradient(120% 180% at 50% -20%,rgba(212,175,55,.08),transparent 60%),
 
                  linear-gradient(180deg,#0a1326,#081021);
 
@@ -268,17 +232,17 @@
 
 
 
-    /* Helpers */
+    /* helpers */
 
     .hint{font-size:12px;color:var(--muted)}
-
-    .divider{height:1px;background:linear-gradient(90deg,transparent, rgba(255,255,255,.08), transparent);margin:22px 0}
 
   </style>
 
 </head>
 
 <body>
+
+
 
   <!-- Local preview toolbar -->
 
@@ -312,21 +276,45 @@
 
           <div class="logo" aria-label="TailorMe logo">
 
-            <!-- Silver sewing machine -->
+            <!-- PRO GOLD LOGO: Crown + Needle + Thread -->
 
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TailorMe mark">
 
               <defs>
 
-                <linearGradient id="s" x1="0" y1="0" x2="1" y2="1">
+                <linearGradient id="goldG" x1="0" y1="0" x2="1" y2="1">
 
-                  <stop offset="0" stop-color="#cfd3da"/><stop offset=".7" stop-color="#9aa4b2"/>
+                  <stop offset="0" stop-color="#d4af37"/>
+
+                  <stop offset="1" stop-color="#b8860b"/>
 
                 </linearGradient>
 
+                <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+
+                  <feDropShadow dx="0" dy="0" stdDeviation="1.4" flood-color="#d4af37" flood-opacity=".35"/>
+
+                </filter>
+
               </defs>
 
-              <path fill="url(#s)" d="M3 17h9v2H2.5a.5.5 0 0 1-.5-.5V14a2 2 0 0 1 2-2h1v-1a3 3 0 0 1 3-3h2.5c1.1 0 2 .9 2 2V12h1.5c.8 0 1.5-.7 1.5-1.5V9h2v1.5c0 1.9-1.6 3.5-3.5 3.5H13v3h8v2H3v-2Zm3-7h2V8H8a1 1 0 0 0-1 1v1Z"/>
+              <!-- Circular medallion (subtle) -->
+
+              <circle cx="32" cy="32" r="27" fill="none" stroke="url(#goldG)" stroke-opacity=".35" stroke-width="1.2"/>
+
+              <!-- Crown -->
+
+              <path d="M18 22l5 6 9-6 9 6 5-6  -1 10H19z" fill="url(#goldG)" filter="url(#soft)"/>
+
+              <!-- Needle (diagonal) -->
+
+              <path d="M22 42c8-9 18-18 24-22" stroke="url(#goldG)" stroke-width="2" stroke-linecap="round"/>
+
+              <circle cx="46" cy="20" r="1.4" fill="#0c1220" stroke="url(#goldG)" stroke-width="1"/> <!-- needle eye -->
+
+              <!-- Thread curve -->
+
+              <path d="M16 46c6 3 14 3 22-2" fill="none" stroke="url(#goldG)" stroke-width="2" stroke-linecap="round"/>
 
             </svg>
 
@@ -408,13 +396,17 @@
 
           <p class="lead">
 
-            On-site fittings, precise alterations, and bespoke craftsmanship—brought to you in Louisville and beyond.
+            Premium on-site fittings, precise alterations, and bespoke craftsmanship.
+
+            TailorMe brings the atelier experience to your home or office—fast, polished, unforgettable.
 
           </p>
 
           <div class="cta">
 
             <a class="btn btn-primary" href="appointment.html">
+
+              <!-- calendar -->
 
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 
@@ -426,7 +418,9 @@
 
             </a>
 
-            <a class="btn btn-primary" id="ai" href="asking-tailorme.html" style="background:linear-gradient(90deg,#d1d6dd,#9aa4b2)">
+            <a class="btn btn-secondary" id="ai" href="asking-tailorme.html">
+
+              <!-- AI chip -->
 
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 3h6v2h3v3h2v6h-2v3h-3v2H9v-2H6v-3H4V8h2V5h3V3zm1 4v10h4V7h-4z"/></svg>
 
@@ -434,7 +428,9 @@
 
             </a>
 
-            <a class="btn btn-ghost" href="price-list.html" id="price">
+            <a class="btn btn-glass" href="price-list.html" id="price">
+
+              <!-- bag -->
 
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 7V6a6 6 0 1 1 12 0v1h2a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2zm2-1a4 4 0 1 1 8 0v1H8V6z"/></svg>
 
@@ -444,17 +440,39 @@
 
           </div>
 
-          <p class="hint">Buttons point to your internal pages—swap the hrefs anytime.</p>
+          <p class="hint">Buttons are wired to placeholder pages—swap with your real links anytime.</p>
 
         </div>
 
-        <div class="grid grid-3" style="grid-template-columns:1fr; gap:14px">
 
-          <div class="card"><h3>On-site Fittings</h3><p>We come to you. Pinning, measuring, and styling—done with precision.</p></div>
 
-          <div class="card"><h3>Signature Finish</h3><p>Clean hems, sharp lines, and couture-level details.</p></div>
+        <!-- right-side highlight cards (kept from hero) -->
 
-          <div class="card"><h3>Clear Scheduling</h3><p>Pickup & delivery windows you can count on.</p></div>
+        <div class="grid" style="display:grid; grid-template-columns:1fr; gap:14px">
+
+          <div class="card">
+
+            <h3>On-site Fittings</h3>
+
+            <p>We come to you. Pinning, measuring, and styling—done with precision and care.</p>
+
+          </div>
+
+          <div class="card">
+
+            <h3>Luxury Finish</h3>
+
+            <p>Hand-pressed seams, clean hems, and couture-level details worthy of your wardrobe.</p>
+
+          </div>
+
+          <div class="card">
+
+            <h3>Fast Turnaround</h3>
+
+            <p>Smart scheduling with clear pickup & delivery windows—no guesswork.</p>
+
+          </div>
 
         </div>
 
@@ -462,13 +480,13 @@
 
 
 
-      <div class="trust">
+      <div class="trust" style="max-width:var(--maxw);margin:0 auto;padding:18px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap">
 
-        <div class="pill">✔️ Free pickup & delivery in Louisville</div>
+        <div class="pill" style="display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.08);padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.04)">✔️ Free pickup & delivery in Louisville</div>
 
-        <div class="pill">🧵 Since 1996 tailoring experience</div>
+        <div class="pill" style="display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.08);padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.04)">🧵 Since 1996 tailoring experience</div>
 
-        <div class="pill">🇺🇸 Proudly serving Kentucky</div>
+        <div class="pill" style="display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.08);padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.04)">🇺🇸 Proudly serving Kentucky</div>
 
       </div>
 
@@ -476,27 +494,7 @@
 
 
 
-    <!-- SERVICES -->
-
-    <section id="services">
-
-      <h2 class="section-title">Our Services</h2>
-
-      <div class="grid grid-3">
-
-        <div class="card"><h3>Alterations</h3><p>Hems, waist, taper, sleeves, shoulders, zippers—done right the first time.</p></div>
-
-        <div class="card"><h3>Custom Tailoring</h3><p>Made-to-measure garments with premium canvases and linings.</p></div>
-
-        <div class="card"><h3>Premium Care</h3><p>Buttons, small repairs, and fabric refresh to keep pieces looking new.</p></div>
-
-      </div>
-
-      <div class="divider"></div>
-
-      <a class="btn btn-primary" href="appointment.html">Book Now</a>
-
-    </section>
+    <!-- ===== Our Services section was removed per request ===== -->
 
 
 
@@ -512,9 +510,11 @@
 
           <p>
 
-            TailorMe is a mobile tailoring service founded by <strong>Ali Kathem</strong>, blending classic craftsmanship
+            TailorMe is a royal-style mobile tailoring service founded by <strong>Ali Kathem</strong>.
 
-            with modern convenience. We bring fittings and couture-level alterations straight to your door.
+            We blend classic craftsmanship with modern convenience, bringing fittings and couture-level
+
+            alterations straight to your door.
 
           </p>
 
@@ -526,7 +526,7 @@
 
           </p>
 
-          <a class="btn btn-primary" href="price-list.html">Explore Price List</a>
+          <a class="btn btn-secondary" href="price-list.html">Explore Price List</a>
 
         </div>
 
@@ -560,7 +560,7 @@
 
       <h2 class="section-title">Contact</h2>
 
-      <form class="contact-form" onsubmit="event.preventDefault(); alert('Demo only. Connect this to your backend or Google Apps Script.');">
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Demo only. Wire this to your backend or Google Apps Script.');">
 
         <input type="text" name="name" placeholder="Full Name" required/>
 
@@ -572,7 +572,7 @@
 
         <textarea name="message" placeholder="Tell us about your request…" required></textarea>
 
-        <button class="btn btn-ghost" type="submit">Send Message</button>
+        <button class="btn btn-glass" type="submit">Send Message</button>
 
       </form>
 
@@ -596,7 +596,33 @@
 
           <div class="logo" aria-hidden="true">
 
-            <svg viewBox="0 0 24 24" fill="none"><defs><linearGradient id="s2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cfd3da"/><stop offset=".7" stop-color="#9aa4b2"/></linearGradient></defs><path fill="url(#s2)" d="M3 17h9v2H2.5a.5.5 0 0 1-.5-.5V14a2 2 0 0 1 2-2h1v-1a3 3 0 0 1 3-3h2.5c1.1 0 2 .9 2 2V12h1.5c.8 0 1.5-.7 1.5-1.5V9h2v1.5c0 1.9-1.6 3.5-3.5 3.5H13v3h8v2H3v-2Z"/></svg>
+            <!-- reuse the same SVG mark -->
+
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="">
+
+              <defs>
+
+                <linearGradient id="goldG2" x1="0" y1="0" x2="1" y2="1">
+
+                  <stop offset="0" stop-color="#d4af37"/>
+
+                  <stop offset="1" stop-color="#b8860b"/>
+
+                </linearGradient>
+
+              </defs>
+
+              <circle cx="32" cy="32" r="27" fill="none" stroke="url(#goldG2)" stroke-opacity=".35" stroke-width="1.2"/>
+
+              <path d="M18 22l5 6 9-6 9 6 5-6 -1 10H19z" fill="url(#goldG2)"/>
+
+              <path d="M22 42c8-9 18-18 24-22" stroke="url(#goldG2)" stroke-width="2" stroke-linecap="round"/>
+
+              <circle cx="46" cy="20" r="1.4" fill="#0c1220" stroke="url(#goldG2)" stroke-width="1"/>
+
+              <path d="M16 46c6 3 14 3 22-2" fill="none" stroke="url(#goldG2)" stroke-width="2" stroke-linecap="round"/>
+
+            </svg>
 
           </div>
 
