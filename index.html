@@ -12,165 +12,13 @@
 
   <meta name="description" content="TailorMe – Mobile alterations & custom tailoring delivered to your door."/>
 
-  <style>
-
-    :root{
-
-      --royal:#0c1220; --royal-ink:#0b1630;
-
-      --gold:#d4af37; --gold-deep:#b8860b;
-
-      --silver:#c0c0c0; --silver-deep:#9aa4b2;
-
-      --text:#f2f4f7; --muted:#9aa4b2; --card:#121a2f;
-
-      --maxw:1200px; --radius:14px; --shadow:0 12px 30px rgba(0,0,0,.35);
-
-      --ring:0 0 0 2px rgba(212,175,55,.25), 0 0 32px rgba(212,175,55,.2);
-
-    }
-
-    *{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--royal);color:var(--text);font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-
-    a{text-decoration:none;color:inherit}
-
-
-
-    /* Preview toolbar (اختياري) */
-
-    .preview-toolbar{position:sticky;top:0;z-index:1000;background:linear-gradient(90deg,#0e1a3a,#0b1430);padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;gap:8px;align-items:center;justify-content:center}
-
-    .preview-toolbar button{background:#162347;color:#e6e8ef;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:8px 14px;cursor:pointer}
-
-    .preview-toolbar button.active{border-color:var(--gold);box-shadow:var(--ring);color:white}
-
-    .preview-wrap{margin:14px auto;transition:max-width .25s ease}
-
-    .w-desktop{max-width:1200px}.w-tablet{max-width:900px}.w-mobile{max-width:430px}
-
-
-
-    /* Navbar */
-
-    header{position:sticky;top:48px;z-index:999;background:rgba(12,18,32,.75);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
-
-    .nav{max-width:var(--maxw);margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-
-    .brand{display:flex;align-items:center;gap:12px}
-
-    .tm-emblem{height:72px;width:88px;object-fit:cover;object-position:top center;display:block;border-radius:8px;filter:drop-shadow(0 0 10px rgba(212,175,55,.25))}
-
-    @media (min-width:1200px){.tm-emblem{height:78px;width:96px}}
-
-    @media (max-width:600px){.tm-emblem{height:64px;width:78px}}
-
-
-
-    .tm-wordmark{font-family:Georgia,"Times New Roman",serif;font-weight:800;letter-spacing:.5px;font-size:30px;line-height:1}
-
-    @media (max-width:600px){.tm-wordmark{font-size:26px}}
-
-    .t-silver{background:linear-gradient(90deg,var(--silver),var(--silver-deep));-webkit-background-clip:text;background-clip:text;color:transparent;margin-right:2px}
-
-    .m-gold{background:linear-gradient(90deg,var(--gold),var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
-
-
-
-    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
-
-    nav a{color:#e8ecf6;font-weight:600;opacity:.9} nav a:hover{color:white}
-
-    .lang{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
-
-    .flag{width:18px;height:12px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.2)}
-
-    .flag svg{display:block;width:100%;height:auto}
-
-
-
-    /* Hero */
-
-    .hero{position:relative;isolation:isolate;overflow:hidden}
-
-    .hero::before{content:"";position:absolute;inset:-40% -10% auto -10%;height:120%;background:radial-gradient(60% 100% at 50% 0, rgba(212,175,55,.08), transparent 60%);z-index:-1;filter:blur(10px)}
-
-    .hero-inner{max-width:var(--maxw);margin:0 auto;padding:72px 18px 54px;display:grid;grid-template-columns:1.35fr 1fr;gap:28px}
-
-    @media (max-width:900px){.hero-inner{grid-template-columns:1fr}}
-
-    .kicker{color:var(--gold);font-weight:700;letter-spacing:.2em;font-size:12px;text-transform:uppercase}
-
-    h1{margin:10px 0 14px;font-size:44px;line-height:1.08}
-
-    .lead{color:#dbe3f4;opacity:.9;max-width:60ch}
-
-    .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
-
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;border-radius:12px;font-weight:800;cursor:pointer;border:0;box-shadow:var(--shadow);transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease}
-
-    .btn:active{transform:translateY(1px)} .btn svg{width:18px;height:18px}
-
-    .btn-primary{background:linear-gradient(90deg,var(--gold),var(--gold-deep));color:#201400}
-
-    .btn-primary:hover{box-shadow:0 10px 30px rgba(212,175,55,.35)}
-
-    .btn-secondary{background:linear-gradient(90deg,#bdc1c9,#9198a1);color:#0b1020}
-
-    .btn-glass{background:rgba(255,255,255,.08);color:white;border:1px solid rgba(255,255,255,.2)}
-
-
-
-    /* side cards */
-
-    .right-cards{display:grid;grid-template-columns:1fr;gap:14px}
-
-    .card{background:linear-gradient(180deg,#111a2f,#0b1327 40%,#091225);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:18px;min-height:130px;box-shadow:0 8px 24px rgba(0,0,0,.38)}
-
-    .card h3{margin:0 0 6px}.card p{margin:0;color:#d3d9ea;opacity:.9}
-
-
-
-    /* sections */
-
-    section{max-width:var(--maxw);margin:0 auto;padding:40px 18px}
-
-    .section-title{font-size:28px;margin:0 0 16px}
-
-    .about{display:grid;gap:24px;grid-template-columns:1.2fr 1fr;background:linear-gradient(180deg,var(--royal),#0a1327 60%,#081020);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:22px}
-
-    @media (max-width:900px){.about{grid-template-columns:1fr}}
-
-    .contact-form{display:grid;gap:12px;grid-template-columns:1fr 1fr}
-
-    .contact-form input,.contact-form textarea{background:#0d1733;color:#e8eeff;border:1px solid rgba(255,255,255,.12);padding:12px;border-radius:10px}
-
-    .contact-form textarea{grid-column:1/-1;min-height:120px}
-
-    .contact-form .btn{grid-column:1/-1;justify-self:start}
-
-    .hint{font-size:12px;color:var(--muted)}
-
-    .trust{max-width:var(--maxw);margin:0 auto;padding:18px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
-
-    .pill{display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.08);padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.04)}
-
-
-
-    /* footer */
-
-    footer{margin-top:24px;border-top:1px solid rgba(255,255,255,.06);background:radial-gradient(120% 180% at 50% -20%,rgba(212,175,55,.08),transparent 60%),linear-gradient(180deg,#0a1326,#081021)}
-
-    .foot{max-width:var(--maxw);margin:0 auto;padding:24px 18px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;color:#d5d9e6}
-
-    .foot small{color:var(--muted)}
-
-    .footer-emblem{height:40px;width:46px;object-fit:cover;object-position:top center;border-radius:6px;filter:drop-shadow(0 0 6px rgba(212,175,55,.2))}
-
-  </style>
+  <link rel="stylesheet" href="style.css"/>
 
 </head>
 
 <body>
+
+  <!-- Preview toolbar (اختياري) -->
 
   <div class="preview-toolbar" aria-hidden="true">
 
@@ -196,9 +44,13 @@
 
         <a class="brand" href="#home" aria-label="TailorMe Home">
 
-          <img class="tm-emblem" src="images/tailorme-logo.png" alt="TailorMe emblem"/>
+          <img class="tm-emblem" src="images/logo.png" alt="TailorMe logo"/>
 
-          <span class="tm-wordmark"><span class="t-silver">Tailor</span><span class="m-gold">Me</span></span>
+          <span class="tm-wordmark">
+
+            <span class="t-silver">Tailor</span><span class="m-gold">Me</span>
+
+          </span>
 
         </a>
 
@@ -225,8 +77,6 @@
         <div class="lang" title="Language">
 
           <span class="flag" aria-hidden="true">
-
-            <!-- small US flag -->
 
             <svg viewBox="0 0 19 13" xmlns="http://www.w3.org/2000/svg">
 
@@ -280,11 +130,15 @@
 
           <div class="cta">
 
-            <!-- حولت الزر للاتصال المباشر؛ أرسل لي رابط الحجز لنبدله -->
+            <!-- مؤقتًا يتصل مباشرة؛ بدّل الرابط لصفحة الحجز عندك -->
 
             <a class="btn btn-primary" href="tel:+15022968168">
 
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v3H2V6a2 2 0 0 1 2-2h3V2zm15 8v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10h20z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+
+                <path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v3H2V6a2 2 0 0 1 2-2h3V2zm15 8v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10h20z"/>
+
+              </svg>
 
               Book an Appointment
 
@@ -292,7 +146,11 @@
 
             <a class="btn btn-secondary" id="ai" href="asking-tailorme.html">
 
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 3h6v2h3v3h2v6h-2v3h-3v2H9v-2H6v-3H4V8h2V5h3V3zm1 4v10h4V7h-4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+
+                <path d="M9 3h6v2h3v3h2v6h-2v3h-3v2H9v-2H6v-3H4V8h2V5h3V3zm1 4v10h4V7h-4z"/>
+
+              </svg>
 
               Asking TailorMe
 
@@ -300,7 +158,11 @@
 
             <a class="btn btn-glass" href="price-list.html" id="price">
 
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 7V6a6 6 0 1 1 12 0v1h2a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2zm2-1a4 4 0 1 1 8 0v1H8V6z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+
+                <path d="M6 7V6a6 6 0 1 1 12 0v1h2a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2zm2-1a4 4 0 1 1 8 0v1H8V6z"/>
+
+              </svg>
 
               View Price List
 
@@ -313,6 +175,8 @@
         </div>
 
 
+
+        <!-- بطاقات مختصرة يمين الهيرو -->
 
         <div class="right-cards">
 
@@ -342,6 +206,10 @@
 
 
 
+    <!-- (تم حذف Our Services حسب طلبك) -->
+
+
+
     <!-- ABOUT -->
 
     <section id="about">
@@ -352,9 +220,23 @@
 
         <div>
 
-          <p>TailorMe is a royal-style mobile tailoring service founded by <strong>Ali Kathem</strong>. We blend classic craftsmanship with modern convenience, bringing fittings and couture-level alterations straight to your door.</p>
+          <p>
 
-          <p>From suits and dresses to leather and denim, we perfect fit and finish with an artist’s eye. Your time matters—so we come to you, keep everything scheduled, and save every detail on your client page.</p>
+            TailorMe is a royal-style mobile tailoring service founded by <strong>Ali Kathem</strong>.
+
+            We blend classic craftsmanship with modern convenience, bringing fittings and couture-level
+
+            alterations straight to your door.
+
+          </p>
+
+          <p>
+
+            From suits and dresses to leather and denim, we perfect fit and finish with an artist’s eye.
+
+            Your time matters—so we come to you, keep everything scheduled, and save every detail on your client page.
+
+          </p>
 
           <a class="btn btn-secondary" href="price-list.html">Explore Price List</a>
 
@@ -364,9 +246,15 @@
 
           <h3>Why TailorMe</h3>
 
-          <ul style="margin:8px 0 0 18px; line-height:1.6">
+          <ul class="why">
 
-            <li>Door-to-door service</li><li>Royal design & UX</li><li>Smart booking & signatures</li><li>Client history saved securely</li>
+            <li>Door-to-door service</li>
+
+            <li>Royal design & UX</li>
+
+            <li>Smart booking & signatures</li>
+
+            <li>Client history saved securely</li>
 
           </ul>
 
@@ -414,9 +302,13 @@
 
         <div class="mini-logo">
 
-          <img class="footer-emblem" src="images/tailorme-logo.png" alt=""/>
+          <img class="footer-emblem" src="images/logo.png" alt=""/>
 
-          <strong class="tm-wordmark" style="font-size:22px"><span class="t-silver">Tailor</span><span class="m-gold">Me</span></strong>
+          <strong class="tm-wordmark tm-wordmark-sm">
+
+            <span class="t-silver">Tailor</span><span class="m-gold">Me</span>
+
+          </strong>
 
         </div>
 
@@ -436,17 +328,21 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
+
+
     // Preview toolbar logic
 
     const wrap = document.getElementById('previewWrap');
 
-    document.querySelectorAll('.preview-toolbar button').forEach(b=>{
+    document.querySelectorAll('.preview-toolbar button').forEach(btn=>{
 
-      b.addEventListener('click', ()=>{
+      btn.addEventListener('click', ()=>{
 
         document.querySelectorAll('.preview-toolbar button').forEach(x=>x.classList.remove('active'));
 
-        b.classList.add('active'); wrap.className = 'preview-wrap w-' + b.dataset.w;
+        btn.classList.add('active');
+
+        wrap.className = 'preview-wrap w-' + btn.dataset.w;
 
         window.scrollTo({top:0, behavior:'smooth'});
 
