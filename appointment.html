@@ -4,167 +4,273 @@
 
 <head>
 
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-  <title>Book Appointment | TailorMe</title>
+  <title>Book an Appointment – TailorMe</title>
 
-  <link rel="stylesheet" href="appointment.css" />
+  <link rel="stylesheet" href="appointment.css"/>
+
+  <meta name="description" content="Book mobile alterations and custom tailoring with TailorMe."/>
 
 </head>
 
 <body>
 
+  <header class="book-header">
 
+    <a href="index.html" class="brand">
 
-  <section class="form-section">
+      <img src="images/logo.png" alt="TailorMe" class="brand-logo"/>
 
-    <div class="form-container">
+      <span class="brand-name"><span class="silver">Tailor</span><span class="gold">Me</span></span>
 
+    </a>
 
+    <a class="back-home" href="index.html">← Back to Home</a>
 
-      <!-- شعار -->
-
-      <h1 class="logo">Tailor<span>Me</span></h1>
-
-      <h2 class="subtitle">Delivered to Your Door</h2>
-
-      <p class="tagline">Mobile Alterations & Custom Tailoring</p>
-
-
-
-      <!-- نموذج الحجز -->
-
-      <form id="appointmentForm">
+  </header>
 
 
 
-        <div class="form-group">
+  <main class="container">
 
-          <label for="name">Full Name:</label>
+    <h1>Book an Appointment</h1>
 
-          <input type="text" id="name" name="name" required />
-
-        </div>
+    <p class="sub">Fast, comfortable, and on your schedule. We’ll come to you.</p>
 
 
 
-        <div class="form-group">
+    <form id="bookingForm" novalidate>
 
-          <label for="phone">Phone Number:</label>
+      <!-- Contact -->
 
-          <input type="tel" id="phone" name="phone" required />
+      <fieldset>
 
-        </div>
+        <legend>Contact</legend>
 
+        <div class="grid">
 
+          <label>Full Name
 
-        <div class="form-group">
+            <input name="name" type="text" required placeholder="Your full name"/>
 
-          <label for="address">Address:</label>
+          </label>
 
-          <input type="text" id="address" name="address" required />
+          <label>Phone
 
-        </div>
+            <input name="phone" type="tel" required placeholder="(502) 296-8168"/>
 
+          </label>
 
+          <label>Email
 
-        <div class="form-group">
+            <input name="email" type="email" required placeholder="you@example.com"/>
 
-          <label for="service">Service Type:</label>
-
-          <select id="service" name="service" required>
-
-            <option value="">-- Select --</option>
-
-            <option value="Alteration">Alteration</option>
-
-            <option value="Custom Tailoring">Custom Tailoring</option>
-
-          </select>
+          </label>
 
         </div>
 
-
-
-        <div class="form-group">
-
-          <label for="pieces">Number of Pieces:</label>
-
-          <input type="number" id="pieces" name="pieces" required />
-
-        </div>
+      </fieldset>
 
 
 
-        <div class="form-group">
+      <!-- Service & Timing -->
 
-          <label for="pickup_date">Pickup Date:</label>
+      <fieldset>
 
-          <input type="date" id="pickup_date" name="pickup_date" required />
+        <legend>Service & Timing</legend>
 
-        </div>
+        <div class="grid">
 
+          <label>Preferred Date
 
+            <input name="date" type="date" required/>
 
-        <div class="form-group">
+          </label>
 
-          <label for="pickup_time">Pickup Time:</label>
+          <label>Preferred Time
 
-          <input type="time" id="pickup_time" name="pickup_time" required />
+            <select name="time" required>
 
-        </div>
+              <option value="" disabled selected>Select a time</option>
 
+              <option>09:00–11:00</option>
 
+              <option>11:00–13:00</option>
 
-        <div class="form-group">
+              <option>13:00–15:00</option>
 
-          <label for="delivery_date">Delivery Date:</label>
+              <option>15:00–17:00</option>
 
-          <input type="date" id="delivery_date" name="delivery_date" required />
+              <option>After 5pm</option>
 
-        </div>
+            </select>
 
+          </label>
 
+          <label>Service
 
-        <div class="form-group">
+            <select name="service" required>
 
-          <label for="delivery_time">Delivery Time:</label>
+              <option value="" disabled selected>Select a service</option>
 
-          <input type="time" id="delivery_time" name="delivery_time" required />
+              <option>Alterations (hems, waist, taper…)</option>
 
-        </div>
+              <option>Custom Tailoring (made-to-measure)</option>
 
+              <option>Premium Care (buttons, repairs)</option>
 
+              <option>Multiple items (mix)</option>
 
-        <div class="form-group">
+            </select>
 
-          <label for="notes">Additional Notes:</label>
-
-          <textarea id="notes" name="notes" rows="3"></textarea>
+          </label>
 
         </div>
 
+      </fieldset>
 
 
-        <button type="submit" class="btn-submit">Submit Booking</button>
 
-        <div class="back-link">
+      <!-- Visit type -->
 
-          <a href="index.html">&larr; Back to Home</a>
+      <fieldset>
+
+        <legend>Visit Type</legend>
+
+        <div class="chips">
+
+          <label class="chip"><input type="radio" name="visit" value="Home Visit" checked/> Home Visit</label>
+
+          <label class="chip"><input type="radio" name="visit" value="Office Visit"/> Office Visit</label>
+
+          <label class="chip"><input type="radio" name="visit" value="Pickup & Delivery"/> Pickup & Delivery</label>
 
         </div>
 
+      </fieldset>
 
 
-      </form>
 
-    </div>
+      <!-- Address -->
 
-  </section>
+      <fieldset>
+
+        <legend>Address</legend>
+
+        <div class="grid">
+
+          <label>Street Address
+
+            <input name="address" type="text" required placeholder="123 Main St"/>
+
+          </label>
+
+          <label>City
+
+            <input name="city" type="text" required placeholder="Louisville"/>
+
+          </label>
+
+          <label>ZIP
+
+            <input name="zip" type="text" required placeholder="40202"/>
+
+          </label>
+
+        </div>
+
+      </fieldset>
 
 
+
+      <!-- Notes -->
+
+      <fieldset>
+
+        <legend>Notes</legend>
+
+        <textarea name="notes" rows="4" placeholder="Tell us about the garments, deadlines, or special requests…"></textarea>
+
+      </fieldset>
+
+
+
+      <div class="consent">
+
+        <label><input type="checkbox" required/> I agree to the scheduling window &amp; pickup/delivery terms.</label>
+
+      </div>
+
+
+
+      <div class="actions">
+
+        <button type="submit" class="btn gold">Request Booking</button>
+
+        <a class="btn outline" href="tel:+15022968168">Call Instead</a>
+
+      </div>
+
+
+
+      <p class="hint">You’ll get a confirmation text/email with exact time and pickup/delivery details.</p>
+
+
+
+      <!-- Success message -->
+
+      <div id="success" class="success" hidden>
+
+        <h3>Request received 🎉</h3>
+
+        <p>Thank you! We’ll confirm your appointment shortly.</p>
+
+        <a class="btn small" href="index.html">Back to Home</a>
+
+      </div>
+
+    </form>
+
+  </main>
+
+
+
+  <footer class="foot">
+
+    <small>© <span id="year"></span> TailorMe. All rights reserved.</small>
+
+  </footer>
+
+
+
+  <script>
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+
+
+    // simple client-side "submit"
+
+    const form = document.getElementById('bookingForm');
+
+    form.addEventListener('submit', (e)=>{
+
+      e.preventDefault();
+
+      // TODO: connect to backend or Formspree/Google Form later
+
+      form.querySelector('#success').hidden = false;
+
+      form.scrollIntoView({behavior:'smooth'});
+
+      form.reset();
+
+    });
+
+  </script>
 
 </body>
 
