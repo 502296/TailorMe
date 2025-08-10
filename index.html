@@ -12,321 +12,9 @@
 
   <meta name="description" content="TailorMe – Mobile alterations & custom tailoring delivered to your door."/>
 
-  <!-- Inline SVG favicon (square crown+needle icon) -->
+  <link rel="icon" type="image/png" href="images/tailorme-logo.png"/>
 
-  <link rel="icon" type="image/svg+xml"
-
-    href='data:image/svg+xml;utf8,
-
-    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 1024 1024">
-
-      <defs>
-
-        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-
-          <stop offset="0" stop-color="%23d4af37"/><stop offset="1" stop-color="%23b8860b"/>
-
-        </linearGradient>
-
-      </defs>
-
-      <circle cx="512" cy="512" r="440" fill="none" stroke="url(%23g)" stroke-opacity=".38" stroke-width="42"/>
-
-      <path d="M300 340 L380 460 L512 360 L644 460 L724 340 L708 520 L316 520 Z" fill="url(%23g)"/>
-
-      <path d="M340 700 C 480 520, 660 410, 750 360" stroke="url(%23g)" stroke-width="28" stroke-linecap="round" fill="none"/>
-
-      <circle cx="770" cy="350" r="14" fill="none" stroke="url(%23g)" stroke-width="10"/>
-
-      <path d="M280 760 C 400 820, 560 820, 720 730" stroke="url(%23g)" stroke-width="28" stroke-linecap="round" fill="none"/>
-
-    </svg>'>
-
-
-
-  <style>
-
-    :root{
-
-      --royal:#0c1220;       /* Royal blue (velvety dark) */
-
-      --royal-ink:#0b1630;   /* Slightly lighter for sections */
-
-      --gold:#d4af37;        /* Royal gold */
-
-      --gold-deep:#b8860b;   /* Gradient partner */
-
-      --silver:#c0c0c0;      /* Silver text */
-
-      --silver-deep:#9aa4b2; /* Silver gradient partner */
-
-      --text:#f2f4f7;
-
-      --muted:#9aa4b2;
-
-      --card:#121a2f;
-
-      --maxw:1200px;
-
-      --radius:14px;
-
-      --shadow:0 12px 30px rgba(0,0,0,.35);
-
-      --ring:0 0 0 2px rgba(212,175,55,.25), 0 0 32px rgba(212,175,55,.2);
-
-    }
-
-    *{box-sizing:border-box}
-
-    html,body{margin:0;padding:0;background:var(--royal);color:var(--text);font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-
-    a{text-decoration:none;color:inherit}
-
-
-
-    /* Local preview toolbar (optional) */
-
-    .preview-toolbar{
-
-      position:sticky;top:0;z-index:1000;
-
-      background:linear-gradient(90deg,#0e1a3a,#0b1430);
-
-      padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.06);
-
-      display:flex;gap:8px;align-items:center;justify-content:center
-
-    }
-
-    .preview-toolbar button{
-
-      background:#162347;color:#e6e8ef;border:1px solid rgba(255,255,255,.12);
-
-      border-radius:10px;padding:8px 14px;cursor:pointer
-
-    }
-
-    .preview-toolbar button.active{border-color:var(--gold);box-shadow:var(--ring);color:white}
-
-    .preview-wrap{margin:14px auto;transition:max-width .25s ease}
-
-    .w-desktop{max-width:1200px}
-
-    .w-tablet{max-width:900px}
-
-    .w-mobile{max-width:430px}
-
-
-
-    /* Navbar */
-
-    header{position:sticky;top:48px;z-index:999;background:rgba(12,18,32,.75);backdrop-filter: blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
-
-    .nav{max-width:var(--maxw);margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-
-    .brand{display:flex;align-items:center;gap:14px}
-
-    .logo-wrap{display:grid;place-items:center;border-radius:14px;
-
-      background:radial-gradient(140% 140% at 20% 20%,#2a365f 0%, #0f1b3b 60%, #09122a 100%);
-
-      box-shadow: inset 0 0 30px rgba(255,255,255,.07), 0 6px 22px rgba(0,0,0,.45);
-
-      padding:6px
-
-    }
-
-    /* BIGGER logo per your request */
-
-    .logo-wrap svg{height:72px;width:auto;filter: drop-shadow(0 0 10px rgba(212,175,55,.35))}
-
-    @media (min-width:1200px){ .logo-wrap svg{height:78px} }
-
-    @media (max-width:600px){ .logo-wrap svg{height:64px} }
-
-
-
-    .wordmark{
-
-      display:flex;align-items:baseline;gap:0;
-
-      font-family: Georgia, "Times New Roman", serif;
-
-      font-weight:800;letter-spacing:.5px;font-size:30px;line-height:1;
-
-    }
-
-    .wm-tailor{
-
-      background: linear-gradient(90deg,var(--silver),var(--silver-deep));
-
-      -webkit-background-clip:text;background-clip:text;color:transparent;
-
-      margin-right:2px;
-
-    }
-
-    .wm-me{
-
-      background: linear-gradient(90deg,var(--gold),var(--gold-deep));
-
-      -webkit-background-clip:text;background-clip:text;color:transparent;
-
-    }
-
-    @media (max-width:600px){ .wordmark{font-size:26px} }
-
-
-
-    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
-
-    nav a{color:#e8ecf6;font-weight:600;opacity:.9}
-
-    nav a:hover{color:white}
-
-
-
-    .lang{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
-
-    .flag{width:18px;height:12px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.2)}
-
-    .flag svg{display:block}
-
-
-
-    /* Hero */
-
-    .hero{position:relative;isolation:isolate;overflow:hidden}
-
-    .hero::before{
-
-      content:"";position:absolute;inset:-40% -10% auto -10%;
-
-      height:120%;background:radial-gradient(60% 100% at 50% 0, rgba(212,175,55,.08), transparent 60%);
-
-      z-index:-1;filter: blur(10px);
-
-    }
-
-    .hero-inner{max-width:var(--maxw);margin:0 auto;padding:72px 18px 54px;display:grid;grid-template-columns:1.35fr 1fr;gap:28px}
-
-    @media (max-width:900px){.hero-inner{grid-template-columns:1fr}}
-
-    .kicker{color:var(--gold);font-weight:700;letter-spacing:.2em;font-size:12px;text-transform:uppercase}
-
-    h1{margin:10px 0 14px;font-size:44px;line-height:1.08}
-
-    .lead{color:#dbe3f4;opacity:.9;max-width:60ch}
-
-    .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
-
-    .btn{
-
-      display:inline-flex;align-items:center;gap:10px;
-
-      padding:14px 18px;border-radius:12px;font-weight:800;cursor:pointer;border:0;
-
-      box-shadow:var(--shadow);transform: translateZ(0);transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease
-
-    }
-
-    .btn:active{transform: translateY(1px)}
-
-    .btn-primary{background:linear-gradient(90deg,var(--gold),var(--gold-deep));color:#201400}
-
-    .btn-primary:hover{box-shadow:0 10px 30px rgba(212,175,55,.35)}
-
-    .btn-secondary{background:linear-gradient(90deg,#bdc1c9,#9198a1);color:#0b1020}
-
-    .btn-glass{background:rgba(255,255,255,.08);color:white;border:1px solid rgba(255,255,255,.2)}
-
-    .btn svg{width:18px;height:18px}
-
-
-
-    /* Cards (right of hero) */
-
-    .card{
-
-      background:linear-gradient(180deg,#111a2f,#0b1327 40%, #091225);
-
-      border:1px solid rgba(255,255,255,.08);
-
-      border-radius:var(--radius);padding:18px;min-height:130px;
-
-      box-shadow: 0 8px 24px rgba(0,0,0,.38);
-
-    }
-
-    .card h3{margin:0 0 6px}
-
-    .card p{margin:0;color:#d3d9ea;opacity:.9}
-
-
-
-    /* Sections */
-
-    section{max-width:var(--maxw);margin:0 auto;padding:40px 18px}
-
-    .section-title{font-size:28px;margin:0 0 16px}
-
-
-
-    /* About */
-
-    .about{
-
-      display:grid;gap:24px;grid-template-columns:1.2fr 1fr;
-
-      background:linear-gradient(180deg,var(--royal),#0a1327 60%, #081020);
-
-      border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:22px
-
-    }
-
-    @media (max-width:900px){.about{grid-template-columns:1fr}}
-
-
-
-    /* Contact */
-
-    .contact-form{display:grid;gap:12px;grid-template-columns:1fr 1fr}
-
-    .contact-form input,.contact-form textarea{
-
-      background:#0d1733;color:#e8eeff;border:1px solid rgba(255,255,255,.12);padding:12px;border-radius:10px
-
-    }
-
-    .contact-form textarea{grid-column:1/-1;min-height:120px}
-
-    .contact-form .btn{grid-column:1/-1;justify-self:start}
-
-
-
-    /* Footer */
-
-    footer{
-
-      margin-top:24px;border-top:1px solid rgba(255,255,255,.06);
-
-      background:radial-gradient(120% 180% at 50% -20%,rgba(212,175,55,.08),transparent 60%),
-
-                 linear-gradient(180deg,#0a1326,#081021);
-
-    }
-
-    .foot{max-width:var(--maxw);margin:0 auto;padding:24px 18px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;color:#d5d9e6}
-
-    .foot small{color:var(--muted)}
-
-    .mini-logo{display:flex;align-items:center;gap:10px}
-
-    .hint{font-size:12px;color:var(--muted)}
-
-    .pill{display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.08);padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.04)}
-
-  </style>
+  <link rel="stylesheet" href="style.css"/>
 
 </head>
 
@@ -334,7 +22,7 @@
 
 
 
-  <!-- Preview toolbar -->
+  <!-- Preview toolbar (اختياري للمعاينة) -->
 
   <div class="preview-toolbar" aria-hidden="true">
 
@@ -360,55 +48,19 @@
 
       <div class="nav">
 
-        <div class="brand">
+        <a class="brand" href="#home" aria-label="TailorMe Home">
 
-          <!-- Inline emblem (crown + needle + thread) -->
+          <!-- نعرض الجزء العلوي من الشعار (التاج + الإبرة والخيط) ونقلم الباقي بصريًا -->
 
-          <div class="logo-wrap" aria-label="TailorMe logo">
+          <img class="tm-emblem" src="images/tailorme-logo.png" alt="TailorMe emblem"/>
 
-            <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" role="img">
+          <span class="tm-wordmark">
 
-              <defs>
+            <span class="t-silver">Tailor</span><span class="m-gold">Me</span>
 
-                <linearGradient id="goldG" x1="0" y1="0" x2="1" y2="1">
+          </span>
 
-                  <stop offset="0" stop-color="#d4af37"/>
-
-                  <stop offset="1" stop-color="#b8860b"/>
-
-                </linearGradient>
-
-                <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
-
-                  <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#d4af37" flood-opacity=".35"/>
-
-                </filter>
-
-              </defs>
-
-              <circle cx="160" cy="160" r="140" fill="none" stroke="url(#goldG)" stroke-opacity=".38" stroke-width="4"/>
-
-              <path d="M90 105 L115 140 L160 110 L205 140 L230 105 L224 165 L96 165 Z" fill="url(#goldG)" filter="url(#soft)"/>
-
-              <path d="M105 215 C 160 150, 225 115, 245 100" stroke="url(#goldG)" stroke-width="6" stroke-linecap="round" fill="none"/>
-
-              <circle cx="252" cy="96" r="5.5" fill="none" stroke="url(#goldG)" stroke-width="3"/>
-
-              <path d="M84 236 C 130 258, 190 258, 242 226" stroke="url(#goldG)" stroke-width="6" stroke-linecap="round" fill="none"/>
-
-            </svg>
-
-          </div>
-
-          <!-- Wordmark: Tailor (silver) + Me (gold) -->
-
-          <div class="wordmark" aria-label="TailorMe">
-
-            <span class="wm-tailor">Tailor</span><span class="wm-me">Me</span>
-
-          </div>
-
-        </div>
+        </a>
 
 
 
@@ -430,7 +82,7 @@
 
 
 
-        <div class="lang" title="Language">
+        <div class="lang">
 
           <span class="flag" aria-hidden="true">
 
@@ -440,17 +92,11 @@
 
               <g fill="#fff">
 
-                <rect y="1" width="19" height="1"/>
+                <rect y="1" width="19" height="1"/><rect y="3" width="19" height="1"/>
 
-                <rect y="3" width="19" height="1"/>
+                <rect y="5" width="19" height="1"/><rect y="7" width="19" height="1"/>
 
-                <rect y="5" width="19" height="1"/>
-
-                <rect y="7" width="19" height="1"/>
-
-                <rect y="9" width="19" height="1"/>
-
-                <rect y="11" width="19" height="1"/>
+                <rect y="9" width="19" height="1"/><rect y="11" width="19" height="1"/>
 
               </g>
 
@@ -528,9 +174,9 @@
 
 
 
-        <!-- cards -->
+        <!-- بطاقات جانبية قصيرة -->
 
-        <div class="grid" style="display:grid; grid-template-columns:1fr; gap:14px">
+        <div class="right-cards">
 
           <div class="card"><h3>On-site Fittings</h3><p>We come to you. Pinning, measuring, and styling—done with precision and care.</p></div>
 
@@ -544,7 +190,7 @@
 
 
 
-      <div style="max-width:var(--maxw);margin:0 auto;padding:18px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap">
+      <div class="trust">
 
         <div class="pill">✔️ Free pickup & delivery in Louisville</div>
 
@@ -558,7 +204,7 @@
 
 
 
-    <!-- ===== Our Services section was removed per your request ===== -->
+    <!-- (تم إلغاء قسم Our Services حسب طلبك) -->
 
 
 
@@ -598,7 +244,7 @@
 
           <h3>Why TailorMe</h3>
 
-          <ul style="margin:8px 0 0 18px; line-height:1.6">
+          <ul class="why">
 
             <li>Door-to-door service</li>
 
@@ -632,7 +278,7 @@
 
         <input type="tel" name="phone" placeholder="Phone" required/>
 
-        <input type="text" name="subject" placeholder="Subject" />
+        <input type="text" name="subject" placeholder="Subject"/>
 
         <textarea name="message" placeholder="Tell us about your request…" required></textarea>
 
@@ -640,11 +286,7 @@
 
       </form>
 
-      <p class="hint" style="margin-top:8px">
-
-        Email: <a href="mailto:contact@tailorme.me">contact@tailorme.me</a> · Phone: (502) 296-8168
-
-      </p>
+      <p class="hint">Email: <a href="mailto:contact@tailorme.me">contact@tailorme.me</a> · Phone: (502) 296-8168</p>
 
     </section>
 
@@ -658,39 +300,11 @@
 
         <div class="mini-logo">
 
-          <!-- smaller inline emblem for footer -->
+          <img class="tm-emblem footer-emblem" src="images/tailorme-logo.png" alt="" />
 
-          <div class="logo-wrap" aria-hidden="true" style="padding:4px">
+          <strong class="tm-wordmark tm-wordmark-sm">
 
-            <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" role="img" style="height:40px">
-
-              <defs>
-
-                <linearGradient id="goldG2" x1="0" y1="0" x2="1" y2="1">
-
-                  <stop offset="0" stop-color="#d4af37"/><stop offset="1" stop-color="#b8860b"/>
-
-                </linearGradient>
-
-              </defs>
-
-              <circle cx="160" cy="160" r="140" fill="none" stroke="url(#goldG2)" stroke-opacity=".38" stroke-width="4"/>
-
-              <path d="M90 105 L115 140 L160 110 L205 140 L230 105 L224 165 L96 165 Z" fill="url(#goldG2)"/>
-
-              <path d="M105 215 C 160 150, 225 115, 245 100" stroke="url(#goldG2)" stroke-width="6" stroke-linecap="round" fill="none"/>
-
-              <circle cx="252" cy="96" r="5.5" fill="none" stroke="url(#goldG2)" stroke-width="3"/>
-
-              <path d="M84 236 C 130 258, 190 258, 242 226" stroke="url(#goldG2)" stroke-width="6" stroke-linecap="round" fill="none"/>
-
-            </svg>
-
-          </div>
-
-          <strong class="wordmark" style="font-size:22px">
-
-            <span class="wm-tailor">Tailor</span><span class="wm-me">Me</span>
+            <span class="t-silver">Tailor</span><span class="m-gold">Me</span>
 
           </strong>
 
