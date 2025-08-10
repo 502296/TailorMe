@@ -10,17 +10,43 @@
 
   <title>Book an Appointment – TailorMe</title>
 
+  <meta name="description" content="Book mobile alterations and custom tailoring with TailorMe."/>
+
   <link rel="stylesheet" href="appointment.css"/>
 
 </head>
 
 <body>
 
-  <div class="form-container">
+
+
+  <!-- Brand (centered) -->
+
+  <header class="brand-center">
+
+    <a href="index.html" class="brand-link" aria-label="Back to Home">
+
+      <img src="images/logo.png" alt="TailorMe" class="brand-logo"/>
+
+      <div class="brand-wordmark">
+
+        <span class="silver">Tailor</span><span class="gold">Me</span>
+
+      </div>
+
+    </a>
+
+  </header>
+
+
+
+  <!-- Form -->
+
+  <main class="form-container">
 
     <h1>Book an Appointment</h1>
 
-    <p class="subtitle">Fill in the details below to schedule your tailoring service.</p>
+    <p class="subtitle">Fill in the details below and we’ll confirm your visit.</p>
 
 
 
@@ -34,7 +60,7 @@
 
       <label for="phone">Phone Number</label>
 
-      <input type="tel" id="phone" name="phone" placeholder="(502) 123-4567" required/>
+      <input type="tel" id="phone" name="phone" placeholder="(502) 296-8168" required/>
 
 
 
@@ -46,95 +72,151 @@
 
       <label for="address">Address</label>
 
-      <input type="text" id="address" name="address" placeholder="Street, City, State" required/>
+      <input type="text" id="address" name="address" placeholder="Street, City, ZIP" required/>
 
 
 
-      <label for="service">Service Type</label>
+      <div class="grid">
 
-      <select id="service" name="service" required>
+        <div>
 
-        <option value="">-- Select --</option>
+          <label for="service">Service Type</label>
 
-        <option value="Alteration">Alteration</option>
+          <select id="service" name="service" required>
 
-        <option value="Custom Tailoring">Custom Tailoring</option>
+            <option value="">-- Select --</option>
 
-      </select>
+            <option>Alterations (hems, waist, taper…)</option>
 
+            <option>Custom Tailoring (made-to-measure)</option>
 
+            <option>Premium Care (buttons, repairs)</option>
 
-      <label for="pieces">Number of Pieces</label>
+            <option>Multiple items (mix)</option>
 
-      <input type="number" id="pieces" name="pieces" min="1" required/>
+          </select>
 
+        </div>
 
+        <div>
 
-      <label for="pickupDate">Pickup Date</label>
+          <label for="pieces">Number of Pieces</label>
 
-      <input type="date" id="pickupDate" name="pickupDate" required/>
+          <input type="number" id="pieces" name="pieces" min="1" placeholder="1" required/>
 
+        </div>
 
-
-      <label for="pickupTime">Pickup Time</label>
-
-      <input type="time" id="pickupTime" name="pickupTime" required/>
-
-
-
-      <label for="deliveryDate">Delivery Date</label>
-
-      <input type="date" id="deliveryDate" name="deliveryDate" required/>
+      </div>
 
 
 
-      <label for="deliveryTime">Delivery Time</label>
+      <div class="grid">
 
-      <input type="time" id="deliveryTime" name="deliveryTime" required/>
+        <div>
+
+          <label for="pickupDate">Preferred Date</label>
+
+          <input type="date" id="pickupDate" name="pickupDate" required/>
+
+        </div>
+
+        <div>
+
+          <label for="pickupTime">Preferred Time</label>
+
+          <select id="pickupTime" name="pickupTime" required>
+
+            <option value="">Select a time</option>
+
+            <option>09:00–11:00</option>
+
+            <option>11:00–13:00</option>
+
+            <option>13:00–15:00</option>
+
+            <option>15:00–17:00</option>
+
+            <option>After 5pm</option>
+
+          </select>
+
+        </div>
+
+      </div>
 
 
 
       <label for="notes">Additional Notes</label>
 
-      <textarea id="notes" name="notes" placeholder="Any special requests or instructions"></textarea>
+      <textarea id="notes" name="notes" placeholder="Garment details, deadlines, special requests…"></textarea>
 
 
 
-      <button type="submit" class="btn">Submit Booking</button>
+      <label class="consent">
+
+        <input type="checkbox" required/> I agree to the scheduling window & pickup/delivery terms.
+
+      </label>
+
+
+
+      <div class="actions">
+
+        <button type="submit" class="btn gold">Request Booking</button>
+
+        <a class="btn outline" href="tel:+15022968168">Call Instead</a>
+
+      </div>
+
+
+
+      <p class="hint">You’ll receive a confirmation by text/email.</p>
+
+
+
+      <div id="success" class="success" hidden>
+
+        <h3>Request received 🎉</h3>
+
+        <p>Thank you! We’ll confirm your appointment shortly.</p>
+
+        <a class="btn small" href="index.html">Back to Home</a>
+
+      </div>
 
     </form>
 
-  </div>
+  </main>
+
+
+
+  <footer class="foot">
+
+    <small>© <span id="year"></span> TailorMe. All rights reserved.</small>
+
+  </footer>
 
 
 
   <script>
 
-    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+
+
+    // Fake submit (client-side). Later: replace with your backend / Google Apps Script URL.
+
+    const form = document.getElementById('appointmentForm');
+
+    form.addEventListener('submit', (e)=>{
 
       e.preventDefault();
 
+      form.querySelector('#success').hidden = false;
 
+      form.scrollIntoView({behavior:'smooth'});
 
-      const formData = new FormData(this);
-
-      const data = {};
-
-      formData.forEach((value, key) => data[key] = value);
-
-
-
-      fetch("YOUR_GOOGLE_SCRIPT_WEBAPP_URL", {
-
-        method: "POST",
-
-        body: JSON.stringify(data)
-
-      })
-
-      .then(response => alert("✅ Booking submitted successfully!"))
-
-      .catch(error => alert("❌ Something went wrong. Please try again."));
+      form.reset();
 
     });
 
