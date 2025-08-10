@@ -1,237 +1,307 @@
-/* Reset */
+:root{
 
-* {
+  --royal:#0c1220;
 
-  margin: 0;
+  --royal-ink:#0b1630;
 
-  padding: 0;
+  --gold:#d4af37;
 
-  box-sizing: border-box;
+  --gold-deep:#b8860b;
 
-}
+  --silver:#c0c0c0;
 
+  --silver-deep:#9aa4b2;
 
+  --text:#f2f4f7;
 
-/* Body */
+  --muted:#9aa4b2;
 
-body {
+  --card:#121a2f;
 
-  font-family: 'Georgia', serif;
+  --maxw:1200px;
 
-  background-color: #0c2b6b; /* Royal Blue */
+  --radius:14px;
 
-  color: #ffffff;
+  --shadow:0 12px 30px rgba(0,0,0,.35);
 
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  min-height: 100vh;
+  --ring:0 0 0 2px rgba(212,175,55,.25), 0 0 32px rgba(212,175,55,.2);
 
 }
 
+*{box-sizing:border-box}
 
+html,body{margin:0;padding:0;background:var(--royal);color:var(--text);font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 
-/* Hero Section */
-
-.hero {
-
-  text-align: center;
-
-  padding: 60px 20px;
-
-}
+a{text-decoration:none;color:inherit}
 
 
 
-.hero-content {
+/* Preview toolbar */
 
-  max-width: 800px;
+.preview-toolbar{
 
-  margin: auto;
+  position:sticky;top:0;z-index:1000;
 
-}
+  background:linear-gradient(90deg,#0e1a3a,#0b1430);
 
+  padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.06);
 
-
-/* شعار TailorMe */
-
-.tailorme-logo {
-
-  font-family: 'Georgia', serif;
-
-  font-size: 42px;
-
-  color: #f5f5f5;
-
-  font-weight: bold;
-
-  position: relative;
-
-  margin-bottom: 25px;
+  display:flex;gap:8px;align-items:center;justify-content:center
 
 }
 
+.preview-toolbar button{
 
+  background:#162347;color:#e6e8ef;border:1px solid rgba(255,255,255,.12);
 
-.tailorme-logo span {
-
-  color: #d4af37; /* ذهبية لـ Me */
-
-}
-
-
-
-.tailorme-logo .needle {
-
-  font-size: 22px;
-
-  margin-left: 10px;
-
-  position: relative;
-
-  top: -4px;
+  border-radius:10px;padding:8px 14px;cursor:pointer
 
 }
 
+.preview-toolbar button.active{border-color:var(--gold);box-shadow:var(--ring);color:white}
 
+.preview-wrap{margin:14px auto;transition:max-width .25s ease}
 
-/* Subtitle */
+.w-desktop{max-width:1200px}
 
-.subtitle {
+.w-tablet{max-width:900px}
 
-  font-size: 26px;
-
-  color: #ffffff;
-
-  margin-bottom: 15px;
-
-}
+.w-mobile{max-width:430px}
 
 
 
-/* Description */
+/* Navbar */
 
-.description {
+header{position:sticky;top:48px;z-index:999;background:rgba(12,18,32,.75);backdrop-filter: blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
 
-  font-size: 16px;
+.nav{max-width:var(--maxw);margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 
-  color: #dcdcdc;
-
-  margin-bottom: 35px;
-
-  line-height: 1.6;
-
-}
+.brand{display:flex;align-items:center;gap:12px}
 
 
 
-/* Buttons */
+/* شعار أعلى اليسار - إبراز كبير مع قص بصري للجزء العلوي فقط */
 
-.hero-buttons {
+.tm-emblem{
 
-  display: flex;
+  height:72px; width:88px; /* مستطيل واسع قليلًا */
 
-  flex-wrap: wrap;
+  object-fit:cover; object-position:top center; /* قص بصري ليظهر التاج + الإبرة فقط */
 
-  gap: 20px;
+  display:block; border-radius:8px;
 
-  justify-content: center;
+  background:transparent;
+
+  filter: drop-shadow(0 0 10px rgba(212,175,55,.25));
 
 }
 
+@media (min-width:1200px){ .tm-emblem{ height:78px; width:96px; } }
+
+@media (max-width:600px){ .tm-emblem{ height:64px; width:78px; } }
 
 
-.btn {
 
-  padding: 14px 28px;
+/* كلمة TailorMe بجانب الشعار */
 
-  font-size: 16px;
+.tm-wordmark{
 
-  font-weight: bold;
+  font-family: Georgia,"Times New Roman",serif;
 
-  text-decoration: none;
-
-  border-radius: 8px;
-
-  transition: 0.3s ease;
+  font-weight:800; letter-spacing:.5px; font-size:30px; line-height:1;
 
 }
 
+.tm-wordmark-sm{ font-size:22px; }
 
+.t-silver{
 
-/* Primary button */
+  background:linear-gradient(90deg,var(--silver),var(--silver-deep));
 
-.btn.primary {
-
-  background-color: #f5f5f5;
-
-  color: #0c2b6b;
-
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  -webkit-background-clip:text;background-clip:text;color:transparent; margin-right:2px;
 
 }
 
+.m-gold{
 
+  background:linear-gradient(90deg,var(--gold),var(--gold-deep));
 
-.btn.primary:hover {
-
-  background-color: #e0e0e0;
-
-}
-
-
-
-/* Outline button */
-
-.btn.outline {
-
-  background: transparent;
-
-  border: 2px solid #f5f5f5;
-
-  color: #f5f5f5;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
 
 }
 
+@media (max-width:600px){ .tm-wordmark{ font-size:26px; } }
 
 
-.btn.outline:hover {
 
-  background-color: rgba(255, 255, 255, 0.1);
+nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+
+nav a{color:#e8ecf6;font-weight:600;opacity:.9}
+
+nav a:hover{color:white}
+
+
+
+.lang{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+
+.flag{width:18px;height:12px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.2)}
+
+.flag svg{display:block}
+
+
+
+/* Hero */
+
+.hero{position:relative;isolation:isolate;overflow:hidden}
+
+.hero::before{
+
+  content:"";position:absolute;inset:-40% -10% auto -10%;
+
+  height:120%;background:radial-gradient(60% 100% at 50% 0, rgba(212,175,55,.08), transparent 60%);
+
+  z-index:-1;filter: blur(10px);
 
 }
 
+.hero-inner{max-width:var(--maxw);margin:0 auto;padding:72px 18px 54px;display:grid;grid-template-columns:1.35fr 1fr;gap:28px}
 
+@media (max-width:900px){.hero-inner{grid-template-columns:1fr}}
 
-/* Responsive */
+.kicker{color:var(--gold);font-weight:700;letter-spacing:.2em;font-size:12px;text-transform:uppercase}
 
-@media (max-width: 600px) {
+h1{margin:10px 0 14px;font-size:44px;line-height:1.08}
 
-  .subtitle {
+.lead{color:#dbe3f4;opacity:.9;max-width:60ch}
 
-    font-size: 22px;
-
-  }
-
-
-
-  .description {
-
-    font-size: 14px;
-
-  }
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
 
 
 
-  .btn {
+.btn{
 
-    width: 100%;
+  display:inline-flex;align-items:center;gap:10px;
 
-    text-align: center;
+  padding:14px 18px;border-radius:12px;font-weight:800;cursor:pointer;border:0;
 
-  }
+  box-shadow:var(--shadow);transform: translateZ(0);transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease
+
+}
+
+.btn:active{transform: translateY(1px)}
+
+.btn svg{width:18px;height:18px}
+
+.btn-primary{background:linear-gradient(90deg,var(--gold),var(--gold-deep));color:#201400}
+
+.btn-primary:hover{box-shadow:0 10px 30px rgba(212,175,55,.35)}
+
+.btn-secondary{background:linear-gradient(90deg,#bdc1c9,#9198a1);color:#0b1020}
+
+.btn-glass{background:rgba(255,255,255,.08);color:white;border:1px solid rgba(255,255,255,.2)}
+
+
+
+.right-cards{display:grid; grid-template-columns:1fr; gap:14px}
+
+.card{
+
+  background:linear-gradient(180deg,#111a2f,#0b1327 40%, #091225);
+
+  border:1px solid rgba(255,255,255,.08);
+
+  border-radius:var(--radius);padding:18px;min-height:130px;
+
+  box-shadow: 0 8px 24px rgba(0,0,0,.38);
+
+}
+
+.card h3{margin:0 0 6px}
+
+.card p{margin:0;color:#d3d9ea;opacity:.9}
+
+
+
+/* Sections */
+
+section{max-width:var(--maxw);margin:0 auto;padding:40px 18px}
+
+.section-title{font-size:28px;margin:0 0 16px}
+
+
+
+/* About */
+
+.about{
+
+  display:grid;gap:24px;grid-template-columns:1.2fr 1fr;
+
+  background:linear-gradient(180deg,var(--royal),#0a1327 60%, #081020);
+
+  border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:22px
+
+}
+
+@media (max-width:900px){.about{grid-template-columns:1fr}}
+
+.why{margin:8px 0 0 18px; line-height:1.6}
+
+
+
+/* Contact */
+
+.contact-form{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+
+.contact-form input,.contact-form textarea{
+
+  background:#0d1733;color:#e8eeff;border:1px solid rgba(255,255,255,.12);padding:12px;border-radius:10px
+
+}
+
+.contact-form textarea{grid-column:1/-1;min-height:120px}
+
+.contact-form .btn{grid-column:1/-1;justify-self:start}
+
+
+
+.hint{font-size:12px;color:var(--muted)}
+
+
+
+/* Trust row */
+
+.trust{max-width:var(--maxw);margin:0 auto;padding:18px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
+
+.pill{display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.08);padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.04)}
+
+
+
+/* Footer */
+
+footer{
+
+  margin-top:24px;border-top:1px solid rgba(255,255,255,.06);
+
+  background:radial-gradient(120% 180% at 50% -20%,rgba(212,175,55,.08),transparent 60%),
+
+             linear-gradient(180deg,#0a1326,#081021);
+
+}
+
+.foot{max-width:var(--maxw);margin:0 auto;padding:24px 18px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;color:#d5d9e6}
+
+.foot small{color:var(--muted)}
+
+.mini-logo{display:flex;align-items:center;gap:10px}
+
+
+
+/* شعار الفوتر: أصغر قليلاً */
+
+.footer-emblem{
+
+  height:40px; width:46px; object-fit:cover; object-position:top center;
+
+  border-radius:6px; filter: drop-shadow(0 0 6px rgba(212,175,55,.2));
 
 }
