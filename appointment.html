@@ -16,9 +16,19 @@
 
   <title>Book an Appointment – TailorMe</title>
 
-  <!-- استخدم نفس ملف التنسيق الذي أرسلته لك -->
-
   <link rel="stylesheet" href="appointment.css" />
+
+  <style>
+
+    /* تأكيد منع الانزلاق يمين/يسار لو نسيت إضافته في CSS العام */
+
+    html, body { overflow-x: hidden; }
+
+    * { box-sizing: border-box; }
+
+    img, video, canvas, svg { max-width: 100%; height: auto; display: block; }
+
+  </style>
 
 </head>
 
@@ -180,9 +190,9 @@
 
   <script>
 
-    // رابط الويب الذي أرسلته
+    // رابط الويب الجديد:
 
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby-QQDaS4z8jvircGit-1XR73DaVm-3CsNP5lQeEPHBx20BpQNt5taA2yvSgZ1vlQlChQ/exec';
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwBQfb0Va_2o2htR0rID0wW_Rh59d0480yltgtN5KMZRSoSl1h7IyVf8qrEtJgG-pTR4g/exec';
 
 
 
@@ -203,6 +213,48 @@
       statusEl.textContent = msg;
 
       statusEl.className = 'form-status ' + (ok ? 'ok' : 'err');
+
+    }
+
+
+
+    async function postAsTextPlain_(payload) {
+
+      // نص بسيط يُقرأ في GAS عبر e.postData.contents
+
+      return fetch(WEB_APP_URL, {
+
+        method: 'POST',
+
+        mode: 'no-cors',
+
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+
+        body: JSON.stringify(payload)
+
+      });
+
+    }
+
+
+
+    async function postAsForm_(payload) {
+
+      // بديل يوصل القيم في e.parameter (احتياطي)
+
+      const params = new URLSearchParams(payload);
+
+      return fetch(WEB_APP_URL, {
+
+        method: 'POST',
+
+        mode: 'no-cors',
+
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
+
+        body: params.toString()
+
+      });
 
     }
 
@@ -256,21 +308,13 @@
 
       try {
 
-        // لا نضع هيدر Content-Type مع no-cors لتفادي أي منع من المتصفح
+        await postAsTextPlain_(payload);
 
-        await fetch(WEB_APP_URL, {
+        // احتياطي: بعد 700ms جرّب كـ x-www-form-urlencoded أيضًا
 
-          method: 'POST',
-
-          mode: 'no-cors',
-
-          body: JSON.stringify(payload)
-
-        });
+        setTimeout(() => postAsForm_(payload), 700);
 
 
-
-        // بما أن no-cors يرجّع استجابة "opaque"، نعرض نجاح مبدئي
 
         setStatus('Thank you! Your booking was received. A confirmation will be emailed to you shortly.');
 
