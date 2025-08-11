@@ -10,25 +10,25 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
+  <!-- نستخدم نفس ستايل الثيم -->
+
   <link rel="stylesheet" href="/appointment.css" />
 
   <style>
 
     :root{ --bg:#0b1324; --panel:#0f1a34; --blue:#3b6ff5; --silver:#cfd6e3; --text:#eef3ff; }
 
-    body { background:var(--bg); color:var(--text); overflow-x:hidden; }
+    body.payment-page{ background:var(--bg); color:var(--text); overflow-x:hidden; }
 
+    .nav{ max-width:1100px; margin:12px auto 0; padding:0 16px; display:flex; align-items:center; gap:12px; }
 
-
-    .nav { max-width:1100px; margin:12px auto 0; padding:0 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
-
-    .brand { display:flex; align-items:center; gap:10px; }
+    .brand{ display:flex; align-items:center; gap:10px; }
 
     .brand-logo{ width:42px; height:42px; object-fit:contain; }
 
     .brand-name{ color:var(--silver); font-weight:700; font-size:clamp(18px,4vw,26px); }
 
-    .nav ul{ list-style:none; display:flex; gap:10px; margin:0 0 0 auto; padding:0; }
+    .nav ul{ list-style:none; display:flex; gap:10px; margin-left:auto; padding:0; }
 
     .nav a{ display:inline-block; padding:10px 14px; text-decoration:none; font-weight:600; color:var(--silver);
 
@@ -40,51 +40,61 @@
 
 
 
-    .wrap{ max-width:900px; margin:30px auto; padding:0 16px; }
+    .page-hero{ max-width:900px; margin:22px auto 0; padding:0 16px; }
 
-    .panel{ background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:20px; box-shadow:0 10px 26px rgba(0,0,0,.25); }
+    .card{ border:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
 
-    .title{ margin:0 0 10px; color:var(--silver); font-size:clamp(22px,5vw,32px); text-align:center; }
+      border-radius:14px; padding:20px; box-shadow:0 10px 26px rgba(0,0,0,.25); }
 
-    .lead{ color:#9fb0d8; text-align:center; margin:0 0 16px; }
+    .card h1{ margin:0 0 8px; color:var(--silver); font-size:clamp(22px,5vw,32px); }
 
-
-
-    .btn{
-
-      display:inline-block; padding:12px 18px; border-radius:12px; font-weight:800; text-decoration:none; color:#0a1222;
-
-      background:linear-gradient(135deg, var(--silver), #e5ebf5); box-shadow:0 8px 24px rgba(59,111,245,.18); transition:.08s;
-
-    }
-
-    .btn:hover{ transform:translateY(-1px); }
-
-    .btn.is-pay:hover{
-
-      background:linear-gradient(135deg,#f5e5b8,#d4af37);
-
-      box-shadow:0 10px 28px rgba(212,175,55,.35);
-
-    }
+    .muted{ color:#cdd7ec; }
 
 
 
-    .cta-row{ display:flex; gap:12px; justify-content:center; margin-top:14px; flex-wrap:wrap; }
+    .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
 
-    .note{ color:#cdd7ec; text-align:center; margin:14px auto 0; max-width:680px; }
+    .cta-btn{ display:inline-block; padding:12px 16px; border-radius:12px; font-weight:800; text-decoration:none; color:#0a1222;
+
+      background:linear-gradient(135deg, var(--silver), #e5ebf5); box-shadow:0 8px 24px rgba(59,111,245,.18); transition:.08s; }
+
+    .cta-btn:hover{ transform:translateY(-1px); }
+
+
+
+    /* زر الدفع الذهبي (جاهز للمستقبل) */
+
+    .cta-btn.is-pay{ background:linear-gradient(135deg,#f5e5b8,#d4af37); box-shadow:0 10px 28px rgba(212,175,55,.35); }
+
+    .cta-btn.is-pay:hover{ transform:translateY(-1px); }
+
+
+
+    .note{ margin-top:10px; padding:10px 12px; border-radius:10px; background:rgba(59,111,245,.08); border:1px solid rgba(59,111,245,.25); color:#dbe6ff; }
+
+    .hidden{ display:none !important; }
+
+
+
+    .footer{ max-width:900px; margin:24px auto; padding:0 16px; text-align:center; color:var(--silver); }
+
+    .footer a{ color:var(--blue); text-decoration:none; }
+
+    .footer a:hover{ text-decoration:underline; }
 
   </style>
 
 </head>
 
-<body>
+<body class="payment-page">
+
+  <!-- Nav -->
 
   <nav class="nav">
 
     <div class="brand">
 
-      <img src="/images/logo.png" class="brand-logo" alt="TailorMe Logo" />
+      <img src="/images/logo.png" alt="TailorMe Logo" class="brand-logo" />
 
       <span class="brand-name">TailorMe</span>
 
@@ -98,7 +108,7 @@
 
       <li><a class="active" href="/payment.html">Payment</a></li>
 
-      <li><a class="btn" href="/appointment.html">Book an Appointment</a></li>
+      <li><a class="cta-btn" href="/appointment.html">Book an Appointment</a></li>
 
     </ul>
 
@@ -106,41 +116,101 @@
 
 
 
-  <main class="wrap">
+  <!-- Content -->
 
-    <div class="panel">
+  <main class="page-hero">
 
-      <h1 class="title">Secure Payment</h1>
+    <section class="card">
 
-      <p class="lead">Pay your TailorMe booking fee safely via Stripe Checkout.</p>
+      <h1>Secure Payment</h1>
+
+      <p class="muted">
+
+        Online payments are <strong>temporarily disabled</strong>. You do <em>not</em> need to pay a booking fee.
+
+        Full payment will be collected in person at your visit.
+
+      </p>
 
 
 
-      <div class="cta-row">
+      <div id="payRow" class="actions hidden">
 
-        <a class="btn is-pay" target="_blank" rel="noopener"
+        <!-- سيظهر تلقائيًا إذا أضفت رابط Stripe في السكربت أسفل -->
 
-           href="https://buy.stripe.com/fZu5kxg2QcmFa5P0Di9ws00">
-
-          💳 Pay the $20 Booking Fee
-
-        </a>
+        <a id="payBtn" class="cta-btn is-pay" href="#" target="_blank" rel="noopener">Pay Now</a>
 
       </div>
 
 
 
-      <p class="note">
+      <div class="actions">
 
-        Why a $20 booking fee? It reserves your appointment, helps us prepare in advance,
+        <a class="cta-btn" href="/appointment.html">Book an Appointment</a>
 
-        and is fully deducted from your final bill.
+        <a class="cta-btn" href="/price-list.html">View Price List</a>
 
-      </p>
+      </div>
 
-    </div>
+
+
+      <div id="payNote" class="note">
+
+        ✅ You can still book normally — no prepayment required. If you prefer to pay online in the future,
+
+        we’ll re-enable secure Stripe checkout here.
+
+      </div>
+
+    </section>
 
   </main>
+
+
+
+  <footer class="footer">
+
+    Questions? <a href="mailto:contact@tailorme.me">contact@tailorme.me</a> • (502) 296-8168
+
+  </footer>
+
+
+
+  <script>
+
+    // إذا أردت لاحقًا تفعيل الدفع الأونلاين بدون تعديل التصميم:
+
+    // ضع رابط Stripe Payment Link هنا، وسيظهر زر "Pay Now" تلقائيًا.
+
+    const STRIPE_LINK = ""; // مثال لاحقًا: "https://buy.stripe.com/xxxxxx"
+
+
+
+    (function(){
+
+      const payRow = document.getElementById('payRow');
+
+      const payBtn = document.getElementById('payBtn');
+
+      const payNote = document.getElementById('payNote');
+
+
+
+      if (STRIPE_LINK && /^https?:\/\//.test(STRIPE_LINK)) {
+
+        payBtn.href = STRIPE_LINK;
+
+        payRow.classList.remove('hidden');
+
+        // أخفي الملاحظة لأن الدفع صار متاح
+
+        payNote.classList.add('hidden');
+
+      }
+
+    })();
+
+  </script>
 
 </body>
 
