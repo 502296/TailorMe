@@ -10,6 +10,8 @@
 
   <title>Book an Appointment | TailorMe</title>
 
+  <!-- سنضيف appointment.css في الخطوة القادمة -->
+
   <link rel="stylesheet" href="appointment.css"/>
 
 </head>
@@ -26,43 +28,15 @@
 
       <div class="grid">
 
-        <label>
+        <label><span>Full Name</span><input id="name" name="name" type="text"/></label>
 
-          <span>Full Name</span>
+        <label><span>Email</span><input id="email" name="email" type="email"/></label>
 
-          <input id="name" name="name" type="text" required/>
-
-        </label>
+        <label><span>Phone</span><input id="phone" name="phone" type="tel" inputmode="tel"/></label>
 
 
 
-        <label>
-
-          <span>Email</span>
-
-          <input id="email" name="email" type="email" required/>
-
-        </label>
-
-
-
-        <label>
-
-          <span>Phone</span>
-
-          <input id="phone" name="phone" type="tel" required/>
-
-        </label>
-
-
-
-        <label class="wide">
-
-          <span>Address</span>
-
-          <input id="address" name="address" type="text" required/>
-
-        </label>
+        <label class="wide"><span>Address</span><input id="address" name="address" type="text"/></label>
 
 
 
@@ -70,7 +44,7 @@
 
           <span>Service Type</span>
 
-          <select id="service" name="service" required>
+          <select id="service" name="service">
 
             <option value="">-- Select --</option>
 
@@ -84,63 +58,23 @@
 
 
 
-        <label>
-
-          <span>Number of Pieces</span>
-
-          <input id="pieces" name="pieces" type="number" min="1" required/>
-
-        </label>
+        <label><span>Number of Pieces</span><input id="pieces" name="pieces" type="number" min="1"/></label>
 
 
 
-        <label>
+        <!-- نترك التاريخ/الوقت بدون required لتجنب مشكلة الصيغ -->
 
-          <span>Pickup Date</span>
+        <label><span>Pickup Date</span><input id="pickup_date" name="pickup_date" type="date"/></label>
 
-          <input id="pickup_date" name="pickup_date" type="date" required/>
+        <label><span>Pickup Time</span><input id="pickup_time" name="pickup_time" type="time"/></label>
 
-        </label>
+        <label><span>Delivery Date</span><input id="delivery_date" name="delivery_date" type="date"/></label>
 
-
-
-        <label>
-
-          <span>Pickup Time</span>
-
-          <input id="pickup_time" name="pickup_time" type="time" required/>
-
-        </label>
+        <label><span>Delivery Time</span><input id="delivery_time" name="delivery_time" type="time"/></label>
 
 
 
-        <label>
-
-          <span>Delivery Date</span>
-
-          <input id="delivery_date" name="delivery_date" type="date" required/>
-
-        </label>
-
-
-
-        <label>
-
-          <span>Delivery Time</span>
-
-          <input id="delivery_time" name="delivery_time" type="time" required/>
-
-        </label>
-
-
-
-        <label class="wide">
-
-          <span>Additional Notes (optional)</span>
-
-          <textarea id="notes" name="notes" rows="3"></textarea>
-
-        </label>
+        <label class="wide"><span>Additional Notes (optional)</span><textarea id="notes" name="notes" rows="3"></textarea></label>
 
       </div>
 
@@ -158,9 +92,9 @@
 
   <script>
 
-  // ✅ رابط Web App الخاص بك
+  // رابط Web App الخاص بك
 
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxfu7uMnPGmql7JO1FLl6hZTUlOmi4st3ppTFa1T4124kbK-RfomtZN2qEh_e_cKGb8DA/exec";
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwHXbD-VgLrGl-S0_sponOlfC2Gpuz0jtZ8EggCj-nmDlrI8epmQ65SgjQanU_0PN7EVQ/exec";
 
 
 
@@ -172,41 +106,33 @@
 
 
 
+  const val = v => String(v || '').trim();
+
+
+
   form.addEventListener('submit', async (e) => {
 
     e.preventDefault();
 
     msg.textContent = "";
 
-    if (!form.checkValidity()) {
-
-      msg.textContent = "Please fill all required fields.";
-
-      return;
-
-    }
-
-    btn.disabled = true;
-
-    btn.textContent = "Submitting...";
-
 
 
     const payload = {
 
-      name: form.name.value.trim(),
+      name: val(form.name.value),
 
-      email: form.email.value.trim(),
+      email: val(form.email.value),
 
-      phone: form.phone.value.trim(),
+      phone: val(form.phone.value),
 
-      address: form.address.value.trim(),
+      address: val(form.address.value),
 
-      service: form.service.value,
+      service: val(form.service.value),
 
-      pieces: form.pieces.value,
+      pieces: val(form.pieces.value),
 
-      pickup_date: form.pickup_date.value,
+      pickup_date: form.pickup_date.value,   // يبقى ISO من المتصفح
 
       pickup_time: form.pickup_time.value,
 
@@ -214,9 +140,45 @@
 
       delivery_time: form.delivery_time.value,
 
-      notes: form.notes.value.trim()
+      notes: val(form.notes.value),
+
+      source: location.href
 
     };
+
+
+
+    // تحقق يدوي (عشان نتفادى مشكلة required مع التاريخ/الوقت)
+
+    const required = {
+
+      name:'Full Name', email:'Email', phone:'Phone', address:'Address',
+
+      service:'Service Type', pieces:'Number of Pieces',
+
+      pickup_date:'Pickup Date', pickup_time:'Pickup Time',
+
+      delivery_date:'Delivery Date', delivery_time:'Delivery Time'
+
+    };
+
+    for (const k in required) {
+
+      if (!payload[k]) { msg.textContent = `Please fill: ${required[k]}.`; return; }
+
+    }
+
+    // تحقق سريع للإيميل
+
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(payload.email)) {
+
+      msg.textContent = "Please enter a valid email."; return;
+
+    }
+
+
+
+    btn.disabled = true; btn.textContent = "Submitting...";
 
 
 
@@ -232,9 +194,15 @@
 
       });
 
-      const data = await res.json();
 
-      if (data?.ok) {
+
+      let ok = false;
+
+      try { const data = await res.json(); ok = !!data.ok; } catch (_) { ok = res.ok; }
+
+
+
+      if (ok) {
 
         msg.textContent = "✅ Booking received! A confirmation email has been sent.";
 
@@ -242,7 +210,7 @@
 
       } else {
 
-        msg.textContent = "⚠️ Submitted, but email may not have been sent.";
+        msg.textContent = "⚠️ Submitted, but something looked off. We will confirm shortly.";
 
       }
 
@@ -254,9 +222,7 @@
 
     } finally {
 
-      btn.disabled = false;
-
-      btn.textContent = "Submit Booking";
+      btn.disabled = false; btn.textContent = "Submit Booking";
 
     }
 
