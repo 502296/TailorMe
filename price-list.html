@@ -1,20 +1,86 @@
 <!DOCTYPE html>
 
+
+
 <html lang="en">
+
+
 
 <head>
 
+
+
   <meta charset="utf-8" />
+
+
 
   <title>TailorMe – Price List</title>
 
+
+
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+
 
   <link rel="stylesheet" href="/appointment.css" />
 
+
+
   <style>
 
+
+
+    /* زر الدفع الذهبي */
+
+
+
+.cta-btn.is-pay { transition: transform .08s, opacity .2s, box-shadow .2s; }
+
+
+
+.cta-btn.is-pay:hover {
+
+
+
+  background: linear-gradient(135deg, #f5e5b8, #d4af37);
+
+
+
+  box-shadow: 0 10px 28px rgba(212,175,55,.35);
+
+
+
+}
+
+
+
+
+
+
+
+/* جداول أكثر سلاسة على الموبايل */
+
+
+
+@media (max-width:520px){
+
+
+
+  .price-table { display:block; overflow-x:auto; -webkit-overflow-scrolling: touch; }
+
+
+
+  .price-table thead th, .price-table tbody td { white-space:nowrap; }
+
+
+
+}
+
+
+
     :root{ --bg:#0b1324; --panel:#0f1a34; --blue:#3b6ff5; --silver:#cfd6e3; --text:#eef3ff; }
+
+
 
     body.price-page { background:var(--bg); color:var(--text); overflow-x:hidden; }
 
@@ -22,53 +88,71 @@
 
     .nav { max-width:1100px; margin:12px auto 0; padding:0 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
 
+
+
     .brand { display:flex; align-items:center; gap:10px; }
+
+
 
     .brand-logo{ width:42px; height:42px; object-fit:contain; }
 
+
+
     .brand-name{ color:var(--silver); font-weight:700; font-size:clamp(18px,4vw,26px); }
+
+
 
     .nav ul{ list-style:none; display:flex; gap:10px; margin:0 0 0 auto; padding:0; }
 
+
+
     .nav a{ display:inline-block; padding:10px 14px; text-decoration:none; font-weight:600; color:var(--silver);
+
+
 
       background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.08); border-radius:10px; transition:.2s; white-space:nowrap; }
 
+
+
     .nav a:hover{ border-color:var(--blue); box-shadow:0 0 0 3px rgba(59,111,245,.2); transform:translateY(-1px); }
+
+
 
     .nav a.active{ color:#0a1222; background:linear-gradient(135deg, var(--silver), #e5ebf5); border-color:transparent; }
 
 
 
-    .cta-btn{
+    .cta-btn{ display:inline-block; padding:10px 16px; border-radius:12px; font-weight:700; text-decoration:none; color:#0a1222;
 
-      display:inline-block; padding:10px 16px; border-radius:12px; font-weight:700; text-decoration:none; color:#0a1222;
 
-      background:linear-gradient(135deg, var(--silver), #e5ebf5); box-shadow:0 8px 24px rgba(59,111,245,.18); transition:.08s;
 
-    }
+      background:linear-gradient(135deg, var(--silver), #e5ebf5); box-shadow:0 8px 24px rgba(59,111,245,.18); transition:.08s; }
+
+
 
     .cta-btn:hover{ transform:translateY(-1px); }
-
-    .cta-btn.is-pay:hover{
-
-      background:linear-gradient(135deg,#f5e5b8,#d4af37);
-
-      box-shadow:0 10px 28px rgba(212,175,55,.35);
-
-    }
 
 
 
     .price-hero{ max-width:1100px; margin:18px auto 0; padding:0 16px; text-align:center; }
 
+
+
     .price-hero h1{ color:var(--silver); font-size:clamp(22px,5vw,34px); margin:6px 0 8px; }
+
+
 
     .price-hero p{ color:#9fb0d8; margin:0 0 10px; }
 
+
+
     .price-notice{ max-width:1100px; margin:12px auto 8px; padding:0 16px; }
 
+
+
     .notice-box{ border:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+
+
 
       border-radius:12px; padding:14px; color:var(--silver); }
 
@@ -76,9 +160,15 @@
 
     .price-sections{ max-width:1100px; margin:12px auto 24px; padding:0 16px; }
 
+
+
     .price-section{ margin-top:18px; }
 
+
+
     .price-section h2{ color:var(--silver); font-size:clamp(18px,4.5vw,26px); margin:16px 0 10px; border-left:4px solid var(--blue); padding-left:10px; }
+
+
 
     .price-section h3{ color:var(--silver); margin:12px 0 6px; font-size:clamp(16px,3.6vw,20px); }
 
@@ -86,15 +176,27 @@
 
     .price-table{ width:100%; border-collapse:collapse; margin:6px 0 16px; background:var(--panel);
 
+
+
       border:1px solid rgba(255,255,255,.08); border-radius:12px; overflow:hidden; box-shadow:0 10px 26px rgba(0,0,0,.25); }
+
+
 
     .price-table thead th{ text-align:left; padding:12px; background:linear-gradient(180deg, rgba(59,111,245,.3), rgba(59,111,245,.1));
 
+
+
       color:var(--text); font-weight:700; border-bottom:1px solid rgba(255,255,255,.08); }
+
+
 
     .price-table tbody td{ padding:12px; border-bottom:1px solid rgba(255,255,255,.06); color:var(--text); }
 
+
+
     .price-table tbody tr:nth-child(odd){ background:rgba(255,255,255,.02); }
+
+
 
     .price-table tbody tr:hover{ background:rgba(59,111,245,.08); }
 
@@ -102,102 +204,582 @@
 
     .price-footer{ text-align:center; padding:20px 16px 28px; color:var(--silver); border-top:1px solid rgba(255,255,255,.06);
 
+
+
       background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)); }
 
-    .price-footer a{ color:var(--blue); text-decoration:none; }
-
-    .price-footer a:hover{ text-decoration:underline; }
 
 
+    .price-footer a{ color:var(--blue); text-decoration:none; } .price-footer a:hover{ text-decoration:underline; }
 
-    @media (max-width:520px){
 
-      .price-table{ display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; }
 
-      .price-table thead th, .price-table tbody td { white-space:nowrap; }
+    @media (max-width:640px){ .nav ul{ gap:6px; } .nav a{ padding:8px 10px; }
 
-    }
 
-    @media (max-width:640px){
 
-      .nav ul{ gap:6px; } .nav a{ padding:8px 10px; }
+      .sticky-cta{ position:sticky; bottom:10px; display:flex; gap:8px; justify-content:center; z-index:10; margin:10px 0 0; padding:0 16px; }
 
-    }
+
+
+      .sticky-cta .cta-btn{ flex:1; text-align:center; } }
+
+
 
   </style>
 
+
+
 </head>
+
+
 
 <body class="price-page">
 
+
+
   <nav class="nav">
+
+
 
     <div class="brand">
 
+
+
       <img src="/images/logo.png" class="brand-logo" alt="TailorMe Logo" />
+
+
 
       <span class="brand-name">TailorMe</span>
 
+
+
     </div>
+
+
 
     <ul>
 
+
+
       <li><a href="/index.html">Home</a></li>
 
-      <li><a class="active" href="/price-list.html">Pricing</a></li>
+
+
+      <li><a class="active" href="/pricing.html">Pricing</a></li>
+
+
 
       <li><a href="/payment.html">Payment</a></li>
 
+
+
       <li><a class="cta-btn" href="/appointment.html">Book an Appointment</a></li>
 
-      <li><a class="cta-btn is-pay" target="_blank" rel="noopener"
 
-             href="https://buy.stripe.com/fZu5kxg2QcmFa5P0Di9ws00">Pay Now</a></li>
+
+      <li><a class="cta-btn" href="/payment.html">Pay Now</a></li>
+
+
 
     </ul>
+
+
 
   </nav>
 
 
 
+
+
+
+
   <header class="price-hero">
+
+
 
     <h1>TailorMe Price List</h1>
 
+
+
     <p>Professional alterations &amp; custom work. All prices in USD.</p>
+
+
 
   </header>
 
 
 
+
+
+
+
   <section class="price-notice">
+
+
 
     <div class="notice-box">
 
+
+
       <strong>Heads up:</strong> Listed prices are estimates. Final quotes may vary based on fabric, construction, and complexity.
 
+
+
     </div>
+
+
 
   </section>
 
 
 
+
+
+
+
+  <div class="sticky-cta">
+
+
+
+    <a class="cta-btn" href="/appointment.html">Book an Appointment</a>
+
+
+
+    <a class="cta-btn" href="/payment.html">Pay Now</a>
+
+
+
+  </div>
+
+
+
+
+
+
+
   <main class="price-sections">
 
-    <!-- … (جداول الأسعار نفسها التي لديك) … -->
 
-    <!-- أبقيت المحتوى كما هو عندك بدون تغيير حتى لا أطيل الرد. -->
+
+    <!-- Men -->
+
+
+
+    <section id="mens" class="price-section">
+
+
+
+      <h2>Men’s Alterations</h2>
+
+
+
+      <h3>Jacket</h3>
+
+
+
+      <table class="price-table">
+
+
+
+        <thead><tr><th>Service</th><th>Price</th></tr></thead>
+
+
+
+        <tbody>
+
+
+
+          <tr><td>Sleeve Shortening</td><td>$30</td></tr>
+
+
+
+          <tr><td>Sleeve Tapering</td><td>$20</td></tr>
+
+
+
+          <tr><td>Waist Tapering</td><td>$35</td></tr>
+
+
+
+          <tr><td>Jacket Length Shortening</td><td>$45</td></tr>
+
+
+
+          <tr><td>Shoulder Reduction</td><td>$15</td></tr>
+
+
+
+          <tr><td>Lapel Reduction</td><td>$25</td></tr>
+
+
+
+          <tr><td>Recut Option</td><td>$175</td></tr>
+
+
+
+        </tbody>
+
+
+
+      </table>
+
+
+
+
+
+
+
+      <h3>Pants</h3>
+
+
+
+      <table class="price-table">
+
+
+
+        <thead><tr><th>Service</th><th>Price</th></tr></thead>
+
+
+
+        <tbody>
+
+
+
+          <tr><td>Waist &amp; Seat Tapering</td><td>$30</td></tr>
+
+
+
+          <tr><td>Inseam Adjustment (Shorten/Lengthen)</td><td>$15</td></tr>
+
+
+
+          <tr><td>Rise Adjustment</td><td>$15</td></tr>
+
+
+
+          <tr><td>Leg Tapering</td><td>$25</td></tr>
+
+
+
+          <tr><td>Recut Option</td><td>$55</td></tr>
+
+
+
+        </tbody>
+
+
+
+      </table>
+
+
+
+
+
+
+
+      <h3>Shirt</h3>
+
+
+
+      <table class="price-table">
+
+
+
+        <thead><tr><th>Service</th><th>Price</th></tr></thead>
+
+
+
+        <tbody>
+
+
+
+          <tr><td>Sleeve Shortening</td><td>$30</td></tr>
+
+
+
+          <tr><td>Sleeve Tapering</td><td>$20</td></tr>
+
+
+
+          <tr><td>Waist Tapering</td><td>$20</td></tr>
+
+
+
+          <tr><td>Shirt Length Shortening</td><td>$20</td></tr>
+
+
+
+          <tr><td>Recut Option</td><td>$50</td></tr>
+
+
+
+        </tbody>
+
+
+
+      </table>
+
+
+
+    </section>
+
+
+
+
+
+
+
+    <!-- Women -->
+
+
+
+    <section id="womens" class="price-section">
+
+
+
+      <h2>Women’s Alterations</h2>
+
+
+
+      <h3>Dress</h3>
+
+
+
+      <table class="price-table">
+
+
+
+        <thead><tr><th>Service</th><th>Price Range</th></tr></thead>
+
+
+
+        <tbody>
+
+
+
+          <tr><td>Hem Shortening</td><td>$20–300</td></tr>
+
+
+
+          <tr><td>Side Tapering</td><td>$20–200</td></tr>
+
+
+
+          <tr><td>Strap Shortening</td><td>$20–60</td></tr>
+
+
+
+          <tr><td>Bust Adjustment</td><td>$20–80</td></tr>
+
+
+
+          <tr><td>Zipper Replacement</td><td>$20–120</td></tr>
+
+
+
+        </tbody>
+
+
+
+      </table>
+
+
+
+
+
+
+
+      <h3>Skirt / Blouse / Abaya / Others</h3>
+
+
+
+      <table class="price-table">
+
+
+
+        <thead><tr><th>Service</th><th>Price / Quote</th></tr></thead>
+
+
+
+        <tbody>
+
+
+
+          <tr><td>Hem Shortening</td><td>$20–60</td></tr>
+
+
+
+          <tr><td>Waist Tapering</td><td>$25</td></tr>
+
+
+
+          <tr><td>Side Tapering</td><td>$20</td></tr>
+
+
+
+          <tr><td>Sleeve Adjustments</td><td>$25</td></tr>
+
+
+
+          <tr><td>Custom Request</td><td>Quote</td></tr>
+
+
+
+          <tr><td>Recut Option</td><td>Quote</td></tr>
+
+
+
+        </tbody>
+
+
+
+      </table>
+
+
+
+    </section>
+
+
+
+
+
+
+
+    <!-- Leather -->
+
+
+
+    <section id="leather" class="price-section">
+
+
+
+      <h2>Leather Alterations (Men &amp; Women)</h2>
+
+
+
+      <table class="price-table">
+
+
+
+        <thead><tr><th>Service</th><th>Price Range</th></tr></thead>
+
+
+
+        <tbody>
+
+
+
+          <tr><td>Leather Jacket Adjustment</td><td>$40–120</td></tr>
+
+
+
+          <tr><td>Leather Pants Adjustment</td><td>$20–75</td></tr>
+
+
+
+          <tr><td>Lining Replacement</td><td>$15–60</td></tr>
+
+
+
+          <tr><td>Zipper Repair or Replace</td><td>$10–35</td></tr>
+
+
+
+          <tr><td>Recut Option</td><td>Quote</td></tr>
+
+
+
+        </tbody>
+
+
+
+      </table>
+
+
+
+    </section>
+
+
+
+
+
+
+
+    <!-- Custom -->
+
+
+
+    <section id="custom" class="price-section">
+
+
+
+      <h2>Custom &amp; Design Services</h2>
+
+
+
+      <table class="price-table">
+
+
+
+        <thead><tr><th>Service</th><th>Quote</th></tr></thead>
+
+
+
+        <tbody>
+
+
+
+          <tr><td>Custom Design Request</td><td>Quote</td></tr>
+
+
+
+          <tr><td>Complex Alteration</td><td>Quote</td></tr>
+
+
+
+          <tr><td>Special Fabric Handling</td><td>Quote</td></tr>
+
+
+
+          <tr><td>Recut or Full Remake Option</td><td>Quote</td></tr>
+
+
+
+        </tbody>
+
+
+
+      </table>
+
+
+
+    </section>
+
+
 
   </main>
 
 
 
+
+
+
+
   <footer class="price-footer">
+
+
 
     <p>Questions? <a href="mailto:contact@tailorme.me">contact@tailorme.me</a> • (502) 296-8168</p>
 
+
+
   </footer>
 
+
+
 </body>
+
+
 
 </html>
