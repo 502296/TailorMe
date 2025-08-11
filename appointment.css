@@ -1,195 +1,207 @@
-/* ===== TailorMe Royal Mobile Form ===== */
+/* ===== TailorMe Booking Styles ===== */
 
-:root{
 
-  --bg:#0c1220;
 
-  --gold1:#d4af37;
+body {
 
-  --gold2:#b8860b;
+  background-color: #0c1220;
 
-  --text:#ffffff;
+  font-family: 'Georgia', serif;
 
-  --silver:#c0c0c0;
+  color: #fff;
 
-  --muted:#9aa4b2;
+  margin: 0;
 
-  --radius:14px;
-
-  --gap:14px;
+  padding: 0;
 
 }
 
 
 
-*{box-sizing:border-box}
+.tm-wrap {
 
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,"Segoe UI",Arial}
+  max-width: 800px;
 
+  margin: 0 auto;
 
-
-.tm-wrap{
-
-  max-width: 780px;
-
-  margin: 24px auto;
-
-  padding: 16px;
+  padding: 20px;
 
 }
 
 
 
-.tm-title{
+.tm-title {
 
-  text-align:center;
+  text-align: center;
 
-  font-weight:700;
+  color: gold;
 
-  letter-spacing:.5px;
+  margin-bottom: 25px;
 
-  color: var(--silver);
-
-  margin: 8px 0 18px;
+  font-size: 2rem;
 
 }
 
 
 
-.tm-form{
+.tm-form {
 
-  background: rgba(255,255,255,.04);
+  background-color: rgba(255, 255, 255, 0.05);
 
-  border: 1px solid rgba(212,175,55,.35);
+  border: 1px solid gold;
 
-  border-radius: var(--radius);
+  border-radius: 10px;
 
-  padding: 16px;
-
-  backdrop-filter: blur(4px);
+  padding: 20px;
 
 }
 
 
 
-.grid{
+.grid {
 
-  display:grid;
+  display: grid;
 
-  grid-template-columns:1fr;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 
-  gap: var(--gap);
-
-}
-
-
-
-label span{
-
-  display:block;
-
-  font-size:.95rem;
-
-  color: var(--silver);
-
-  margin-bottom:6px;
+  gap: 15px;
 
 }
 
 
 
-input, select, textarea{
+label {
 
-  width:100%;
+  display: flex;
 
-  border:1px solid rgba(212,175,55,.25);
+  flex-direction: column;
 
-  background: rgba(0,0,0,.25);
-
-  color: var(--text);
-
-  padding:14px 12px;
-
-  border-radius:12px;
-
-  outline:none;
-
-  font-size:1rem;
+  font-size: 0.95rem;
 
 }
 
 
 
-input:focus, select:focus, textarea:focus{
+label span {
 
-  border-color: var(--gold1);
+  margin-bottom: 6px;
 
-  box-shadow: 0 0 0 3px rgba(212,175,55,.18);
+  color: gold;
 
-}
-
-
-
-.tm-btn{
-
-  width:100%;
-
-  margin-top: 6px;
-
-  padding: 14px 18px;
-
-  border:none;
-
-  border-radius: 12px;
-
-  font-weight:800;
-
-  cursor:pointer;
-
-  background: linear-gradient(90deg,var(--gold1),var(--gold2));
-
-  color: #1a1a1a;
-
-  transition: transform .06s ease, box-shadow .2s ease;
-
-}
-
-.tm-btn:active{ transform: translateY(1px) }
-
-.tm-btn:hover{ box-shadow: 0 6px 18px rgba(212,175,55,.25) }
-
-
-
-.tm-msg{
-
-  margin-top:10px;
-
-  color: var(--muted);
-
-  text-align:center;
-
-  min-height: 22px;
+  font-weight: bold;
 
 }
 
 
 
-/* ——— Responsive ——— */
+input, select, textarea {
 
-@media (min-width: 560px){
+  padding: 10px;
 
-  .grid{ grid-template-columns: repeat(2,1fr); }
+  border-radius: 6px;
 
-  .grid .wide{ grid-column: 1 / -1; }
+  border: none;
+
+  font-size: 1rem;
+
+  background-color: #1b2235;
+
+  color: white;
 
 }
 
 
 
-@media (min-width: 860px){
+input:focus, select:focus, textarea:focus {
 
-  .tm-wrap{ padding: 24px; }
+  outline: 2px solid gold;
 
-  .tm-form{ padding: 22px; }
+}
+
+
+
+textarea {
+
+  resize: vertical;
+
+}
+
+
+
+.wide {
+
+  grid-column: span 2;
+
+}
+
+
+
+.tm-btn {
+
+  display: block;
+
+  margin: 20px auto 0;
+
+  background: linear-gradient(to right, gold, goldenrod);
+
+  color: black;
+
+  padding: 12px 30px;
+
+  font-size: 1rem;
+
+  font-weight: bold;
+
+  border: none;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+}
+
+
+
+.tm-btn:hover {
+
+  transform: scale(1.05);
+
+  background: linear-gradient(to right, goldenrod, gold);
+
+}
+
+
+
+.tm-msg {
+
+  text-align: center;
+
+  margin-top: 15px;
+
+  font-size: 1rem;
+
+  min-height: 20px;
+
+}
+
+
+
+/* موبايل */
+
+@media (max-width: 600px) {
+
+  .wide {
+
+    grid-column: span 1;
+
+  }
+
+  .tm-title {
+
+    font-size: 1.5rem;
+
+  }
 
 }
