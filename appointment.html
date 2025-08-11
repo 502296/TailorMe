@@ -6,21 +6,13 @@
 
   <meta charset="UTF-8" />
 
-  <meta
-
-    name="viewport"
-
-    content="width=device-width, initial-scale=1, viewport-fit=cover"
-
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
   <title>Book an Appointment – TailorMe</title>
 
   <link rel="stylesheet" href="appointment.css" />
 
   <style>
-
-    /* تأكيد منع الانزلاق يمين/يسار لو نسيت إضافته في CSS العام */
 
     html, body { overflow-x: hidden; }
 
@@ -59,8 +51,6 @@
 
 
     <form id="appointmentForm" novalidate>
-
-      <!-- Contact -->
 
       <div class="field">
 
@@ -102,8 +92,6 @@
 
 
 
-      <!-- Service -->
-
       <div class="field">
 
         <label for="service">Service Type <span>*</span></label>
@@ -131,8 +119,6 @@
       </div>
 
 
-
-      <!-- Pickup only -->
 
       <div class="field two-col">
 
@@ -176,6 +162,28 @@
 
 
 
+  <!-- Success card -->
+
+  <section id="successCard" class="success-card" aria-live="polite">
+
+    <div class="success-inner">
+
+      <div class="success-icon">✅</div>
+
+      <div>
+
+        <h3 class="success-title">Thank you! Your booking was received.</h3>
+
+        <p class="success-text">We emailed a confirmation to you. We'll follow up shortly to confirm the pickup window.</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
   <!-- Footer -->
 
   <footer class="tm-footer">
@@ -189,8 +197,6 @@
   <!-- Script -->
 
   <script>
-
-    // رابط الويب الجديد:
 
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwBQfb0Va_2o2htR0rID0wW_Rh59d0480yltgtN5KMZRSoSl1h7IyVf8qrEtJgG-pTR4g/exec';
 
@@ -206,6 +212,8 @@
 
     const submitBtn = document.getElementById('submitBtn');
 
+    const successCard = document.getElementById('successCard');
+
 
 
     function setStatus(msg, ok = true) {
@@ -219,8 +227,6 @@
 
 
     async function postAsTextPlain_(payload) {
-
-      // نص بسيط يُقرأ في GAS عبر e.postData.contents
 
       return fetch(WEB_APP_URL, {
 
@@ -239,8 +245,6 @@
 
 
     async function postAsForm_(payload) {
-
-      // بديل يوصل القيم في e.parameter (احتياطي)
 
       const params = new URLSearchParams(payload);
 
@@ -264,8 +268,6 @@
 
       e.preventDefault();
 
-
-
       if (!form.checkValidity()) {
 
         setStatus('Please fill all required fields correctly.', false);
@@ -273,8 +275,6 @@
         return;
 
       }
-
-
 
       submitBtn.disabled = true;
 
@@ -310,15 +310,15 @@
 
         await postAsTextPlain_(payload);
 
-        // احتياطي: بعد 700ms جرّب كـ x-www-form-urlencoded أيضًا
-
-        setTimeout(() => postAsForm_(payload), 700);
-
-
+        setTimeout(() => postAsForm_(payload), 600);
 
         setStatus('Thank you! Your booking was received. A confirmation will be emailed to you shortly.');
 
         form.reset();
+
+        successCard.style.display = 'block';
+
+        successCard.scrollIntoView({ behavior: 'smooth' });
 
       } catch (err) {
 
