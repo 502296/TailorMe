@@ -10,8 +10,6 @@
 
   <title>Book an Appointment | TailorMe</title>
 
-  <!-- سنضيف appointment.css في الخطوة القادمة -->
-
   <link rel="stylesheet" href="appointment.css"/>
 
 </head>
@@ -62,7 +60,7 @@
 
 
 
-        <!-- نترك التاريخ/الوقت بدون required لتجنب مشكلة الصيغ -->
+        <!-- نترك التاريخ/الوقت بدون required لتفادي مشكلة الصيغ بين الأجهزة -->
 
         <label><span>Pickup Date</span><input id="pickup_date" name="pickup_date" type="date"/></label>
 
@@ -92,7 +90,7 @@
 
   <script>
 
-  // رابط Web App الخاص بك
+  // ✅ رابط الـ Web App (exec) — إذا نشرت إصدارًا جديدًا واستلمت رابطًا مختلفًا، حدّثه هنا
 
   const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwHXbD-VgLrGl-S0_sponOlfC2Gpuz0jtZ8EggCj-nmDlrI8epmQ65SgjQanU_0PN7EVQ/exec";
 
@@ -103,8 +101,6 @@
   const msg  = document.getElementById('formMsg');
 
   const btn  = document.getElementById('submitBtn');
-
-
 
   const val = v => String(v || '').trim();
 
@@ -132,7 +128,7 @@
 
       pieces: val(form.pieces.value),
 
-      pickup_date: form.pickup_date.value,   // يبقى ISO من المتصفح
+      pickup_date: form.pickup_date.value,
 
       pickup_time: form.pickup_time.value,
 
@@ -148,7 +144,7 @@
 
 
 
-    // تحقق يدوي (عشان نتفادى مشكلة required مع التاريخ/الوقت)
+    // تحقق يدوي بسيط
 
     const required = {
 
@@ -167,8 +163,6 @@
       if (!payload[k]) { msg.textContent = `Please fill: ${required[k]}.`; return; }
 
     }
-
-    // تحقق سريع للإيميل
 
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(payload.email)) {
 
@@ -210,7 +204,7 @@
 
       } else {
 
-        msg.textContent = "⚠️ Submitted, but something looked off. We will confirm shortly.";
+        msg.textContent = "⚠️ Submitted, but something looked off. We’ll confirm shortly.";
 
       }
 
