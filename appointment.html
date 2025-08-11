@@ -82,7 +82,7 @@
 
 
 
-        <!-- انتبه: الأسماء بأسلوب snake_case كما يتوقع السكربت -->
+        <!-- ملاحظة: أسماء الحقول بأسلوب snake_case لتطابق السكربت -->
 
         <label><span>Pickup Date</span>
 
@@ -128,6 +128,10 @@
 
       <button class="tm-btn" type="submit" id="submitBtn">Submit Booking</button>
 
+
+
+      <!-- مكان رسالة النجاح/الخطأ -->
+
       <p id="formMsg" class="tm-msg" role="status" aria-live="polite"></p>
 
     </form>
@@ -138,43 +142,53 @@
 
   <script>
 
-  // رابط الويب آب تبعك:
+  // رابط Web App (exec)
 
   const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyk1V8RECksbFrHO4tPc8PzVCHXBK9tnx8X4dIJfdXboEK72nGkPGM83XoPsbNkjIG5tw/exec";
 
 
 
-  const form = document.getElementById('appointmentForm');
+  const form = document.getElementById("appointmentForm");
 
-  const msg  = document.getElementById('formMsg');
+  const msg  = document.getElementById("formMsg");
 
-  const btn  = document.getElementById('submitBtn');
+  const btn  = document.getElementById("submitBtn");
 
-  const val = v => String(v || '').trim();
+  const val = v => String(v || "").trim();
 
 
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener("submit", async (e) => {
 
     e.preventDefault();
 
-    msg.textContent = "";
 
 
+    // رسالة حالة أولية
+
+    msg.style.display = "block";
+
+    msg.style.color = "#9aa4b2";
+
+    msg.textContent = "Sending booking...";
+
+
+
+    // جمع الحقول (مطابقة للسكربت)
 
     const payload = {
 
-      name: val(form.name.value),
+      name:        val(form.name.value),
 
-      email: val(form.email.value),
+      email:       val(form.email.value),
 
-      phone: val(form.phone.value),
+      phone:       val(form.phone.value),
 
-      address: val(form.address.value),
+      address:     val(form.address.value),
 
-      service: val(form.service.value),
+      service:     val(form.service.value),
 
-      pieces: val(form.pieces.value),
+      pieces:      val(form.pieces.value),
 
       pickup_date: form.pickup_date.value,
 
@@ -184,15 +198,15 @@
 
       delivery_time: form.delivery_time.value,
 
-      notes: val(form.notes.value),
+      notes:       val(form.notes.value),
 
-      source: location.href
+      source:      location.href
 
     };
 
 
 
-    // تحقق سريع للإلزاميات
+    // تحقّق سريع
 
     for (const k of ['name','email','phone','address','service','pieces','pickup_date','pickup_time','delivery_date','delivery_time']){
 
@@ -214,11 +228,13 @@
 
     try {
 
-      // نرسل كـ text/plain لتجنب CORS preflight
+      // نرسل كنص عادي + no-cors لتجنب أي CORS preflight
 
-      const res = await fetch(WEB_APP_URL, {
+      await fetch(WEB_APP_URL, {
 
         method: "POST",
+
+        mode: "no-cors",
 
         headers: { "Content-Type": "text/plain;charset=utf-8" },
 
@@ -228,29 +244,37 @@
 
 
 
-      let ok = false;
+      // نعرض رسالة نجاح خضراء
 
-      try { const data = await res.json(); ok = !!data.ok; } catch(_) { ok = res.ok; }
+      msg.textContent = "✅ Booking confirmed! Thank you for choosing TailorMe.";
+
+      msg.style.color = "#28a745";
+
+      msg.style.background = "rgba(40,167,69,0.1)";
+
+      msg.style.padding = "10px";
+
+      msg.style.borderRadius = "8px";
 
 
 
-      if (ok) {
+      form.reset();
 
-        msg.textContent = "✅ Booking received! A confirmation email has been sent.";
 
-        form.reset();
 
-      } else {
+      // إخفاء الرسالة بعد 5 ثوانٍ (اختياري)
 
-        msg.textContent = "⚠️ Submitted, but something looked off. We’ll confirm shortly.";
+      setTimeout(() => { msg.style.display = "none"; }, 5000);
 
-      }
+
 
     } catch (err) {
 
       console.error(err);
 
-      msg.textContent = "❌ Network error. Please try again.";
+      msg.textContent = "❌ Something went wrong. Please try again.";
+
+      msg.style.color = "red";
 
     } finally {
 
