@@ -4,191 +4,263 @@
 
 <head>
 
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
   <title>Book an Appointment – TailorMe</title>
 
-  <link rel="stylesheet" href="appointment.css" />
+  <link rel="stylesheet" href="appointment.css"/>
 
 </head>
 
 <body>
 
+  <main class="tm-wrap">
 
-
-  <div class="form-container">
-
-    <h1>Book an Appointment</h1>
-
-    <form id="appointmentForm">
+    <h1 class="tm-title">Book an Appointment</h1>
 
 
 
-      <label for="name">Full Name:</label>
+    <form id="appointmentForm" class="tm-form" novalidate>
 
-      <input type="text" id="name" name="name" required />
+      <div class="grid">
 
+        <label><span>Full Name</span>
 
+          <input id="name" name="name" type="text" required/>
 
-      <label for="phone">Phone Number:</label>
-
-      <input type="tel" id="phone" name="phone" required />
-
-
-
-      <label for="address">Address:</label>
-
-      <input type="text" id="address" name="address" required />
+        </label>
 
 
 
-      <label for="service">Service Type:</label>
+        <label><span>Email</span>
 
-      <select id="service" name="service" required>
+          <input id="email" name="email" type="email" required/>
 
-        <option value="">-- Select --</option>
-
-        <option value="Alteration">Alteration</option>
-
-        <option value="Custom Tailoring">Custom Tailoring</option>
-
-      </select>
+        </label>
 
 
 
-      <label for="pieces">Number of Pieces:</label>
+        <label><span>Phone</span>
 
-      <input type="number" id="pieces" name="pieces" required />
+          <input id="phone" name="phone" type="tel" inputmode="tel" required/>
 
-
-
-      <label for="pickupDate">Pickup Date:</label>
-
-      <input type="date" id="pickupDate" name="pickupDate" required />
+        </label>
 
 
 
-      <label for="pickupTime">Pickup Time:</label>
+        <label class="wide"><span>Address</span>
 
-      <input type="time" id="pickupTime" name="pickupTime" required />
+          <input id="address" name="address" type="text" required/>
 
-
-
-      <label for="deliveryDate">Delivery Date:</label>
-
-      <input type="date" id="deliveryDate" name="deliveryDate" required />
+        </label>
 
 
 
-      <label for="deliveryTime">Delivery Time:</label>
+        <label><span>Service Type</span>
 
-      <input type="time" id="deliveryTime" name="deliveryTime" required />
+          <select id="service" name="service" required>
+
+            <option value="">-- Select --</option>
+
+            <option value="Alteration">Alteration</option>
+
+            <option value="Custom Tailoring">Custom Tailoring</option>
+
+          </select>
+
+        </label>
 
 
 
-      <label for="notes">Additional Notes:</label>
+        <label><span>Number of Pieces</span>
 
-      <textarea id="notes" name="notes"></textarea>
+          <input id="pieces" name="pieces" type="number" min="1" required/>
+
+        </label>
 
 
 
-      <button type="submit">Submit Booking</button>
+        <!-- انتبه: الأسماء بأسلوب snake_case كما يتوقع السكربت -->
+
+        <label><span>Pickup Date</span>
+
+          <input id="pickup_date" name="pickup_date" type="date" required/>
+
+        </label>
+
+
+
+        <label><span>Pickup Time</span>
+
+          <input id="pickup_time" name="pickup_time" type="time" required/>
+
+        </label>
+
+
+
+        <label><span>Delivery Date</span>
+
+          <input id="delivery_date" name="delivery_date" type="date" required/>
+
+        </label>
+
+
+
+        <label><span>Delivery Time</span>
+
+          <input id="delivery_time" name="delivery_time" type="time" required/>
+
+        </label>
+
+
+
+        <label class="wide"><span>Additional Notes (optional)</span>
+
+          <textarea id="notes" name="notes" rows="3"></textarea>
+
+        </label>
+
+      </div>
+
+
+
+      <button class="tm-btn" type="submit" id="submitBtn">Submit Booking</button>
+
+      <p id="formMsg" class="tm-msg" role="status" aria-live="polite"></p>
 
     </form>
 
-
-
-    <p id="statusMessage" style="margin-top:15px; font-weight:bold;"></p>
-
-  </div>
+  </main>
 
 
 
   <script>
 
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyk1V8RECksbFrHO4tPc8PzVCHXBK9tnx8X4dIJfdXboEK72nGkPGM83XoPsbNkjIG5tw/exec";
+  // رابط الويب آب تبعك:
+
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyk1V8RECksbFrHO4tPc8PzVCHXBK9tnx8X4dIJfdXboEK72nGkPGM83XoPsbNkjIG5tw/exec";
 
 
 
-    document.getElementById("appointmentForm").addEventListener("submit", async function(e) {
+  const form = document.getElementById('appointmentForm');
 
-      e.preventDefault();
+  const msg  = document.getElementById('formMsg');
 
+  const btn  = document.getElementById('submitBtn');
 
-
-      const form = e.target;
-
-      const formData = {
-
-        name: form.name.value,
-
-        phone: form.phone.value,
-
-        address: form.address.value,
-
-        service: form.service.value,
-
-        pieces: form.pieces.value,
-
-        pickupDate: form.pickupDate.value,
-
-        pickupTime: form.pickupTime.value,
-
-        deliveryDate: form.deliveryDate.value,
-
-        deliveryTime: form.deliveryTime.value,
-
-        notes: form.notes.value
-
-      };
+  const val = v => String(v || '').trim();
 
 
 
-      document.getElementById("statusMessage").innerText = "Sending booking...";
+  form.addEventListener('submit', async (e) => {
+
+    e.preventDefault();
+
+    msg.textContent = "";
 
 
 
-      try {
+    const payload = {
 
-        const res = await fetch(WEB_APP_URL, {
+      name: val(form.name.value),
 
-          method: "POST",
+      email: val(form.email.value),
 
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
+      phone: val(form.phone.value),
 
-          body: JSON.stringify(formData)
+      address: val(form.address.value),
 
-        });
+      service: val(form.service.value),
+
+      pieces: val(form.pieces.value),
+
+      pickup_date: form.pickup_date.value,
+
+      pickup_time: form.pickup_time.value,
+
+      delivery_date: form.delivery_date.value,
+
+      delivery_time: form.delivery_time.value,
+
+      notes: val(form.notes.value),
+
+      source: location.href
+
+    };
 
 
 
-        if (res.ok) {
+    // تحقق سريع للإلزاميات
 
-          document.getElementById("statusMessage").innerText = "✅ Booking submitted successfully!";
+    for (const k of ['name','email','phone','address','service','pieces','pickup_date','pickup_time','delivery_date','delivery_time']){
 
-          form.reset();
+      if(!payload[k]){ msg.textContent = "Please fill all required fields."; return; }
 
-        } else {
+    }
 
-          document.getElementById("statusMessage").innerText = "❌ Failed to send booking.";
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(payload.email)){
 
-        }
+      msg.textContent = "Please enter a valid email."; return;
 
-      } catch (error) {
+    }
 
-        document.getElementById("statusMessage").innerText = "⚠️ Network error. Please try again.";
 
-        console.error(error);
+
+    btn.disabled = true; btn.textContent = "Submitting...";
+
+
+
+    try {
+
+      // نرسل كـ text/plain لتجنب CORS preflight
+
+      const res = await fetch(WEB_APP_URL, {
+
+        method: "POST",
+
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+
+        body: JSON.stringify(payload)
+
+      });
+
+
+
+      let ok = false;
+
+      try { const data = await res.json(); ok = !!data.ok; } catch(_) { ok = res.ok; }
+
+
+
+      if (ok) {
+
+        msg.textContent = "✅ Booking received! A confirmation email has been sent.";
+
+        form.reset();
+
+      } else {
+
+        msg.textContent = "⚠️ Submitted, but something looked off. We’ll confirm shortly.";
 
       }
 
-    });
+    } catch (err) {
+
+      console.error(err);
+
+      msg.textContent = "❌ Network error. Please try again.";
+
+    } finally {
+
+      btn.disabled = false; btn.textContent = "Submit Booking";
+
+    }
+
+  });
 
   </script>
-
-
 
 </body>
 
