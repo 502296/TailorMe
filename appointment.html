@@ -32,8 +32,6 @@
 
         <label><span>Phone</span><input id="phone" name="phone" type="tel" inputmode="tel"/></label>
 
-
-
         <label class="wide"><span>Address</span><input id="address" name="address" type="text"/></label>
 
 
@@ -59,8 +57,6 @@
         <label><span>Number of Pieces</span><input id="pieces" name="pieces" type="number" min="1"/></label>
 
 
-
-        <!-- نترك التاريخ/الوقت بدون required لتفادي مشكلة الصيغ بين الأجهزة -->
 
         <label><span>Pickup Date</span><input id="pickup_date" name="pickup_date" type="date"/></label>
 
@@ -90,9 +86,9 @@
 
   <script>
 
-  // ✅ رابط الـ Web App (exec) — إذا نشرت إصدارًا جديدًا واستلمت رابطًا مختلفًا، حدّثه هنا
+  // 🔗 ضع هنا رابط Web App /exec
 
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwHXbD-VgLrGl-S0_sponOlfC2Gpuz0jtZ8EggCj-nmDlrI8epmQ65SgjQanU_0PN7EVQ/exec";
+  const WEB_APP_URL = "PASTE_YOUR_EXEC_URL_HERE";
 
 
 
@@ -178,11 +174,13 @@
 
     try {
 
+      // ✅ نرسل كـ text/plain لمنع CORS preflight
+
       const res = await fetch(WEB_APP_URL, {
 
         method: "POST",
 
-        headers: {"Content-Type": "application/json"},
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
 
         body: JSON.stringify(payload)
 
