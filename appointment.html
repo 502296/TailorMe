@@ -6,15 +6,25 @@
 
   <meta charset="UTF-8" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+
+  />
 
   <title>Book an Appointment – TailorMe</title>
+
+  <!-- استخدم نفس ملف التنسيق الذي أرسلته لك -->
 
   <link rel="stylesheet" href="appointment.css" />
 
 </head>
 
 <body>
+
+  <!-- Header -->
 
   <header class="tm-header">
 
@@ -30,6 +40,8 @@
 
 
 
+  <!-- Form -->
+
   <main class="form-wrap">
 
     <h1 class="form-title">Book an Appointment (Pickup)</h1>
@@ -42,7 +54,7 @@
 
       <div class="field">
 
-        <label for="email">Email<span>*</span></label>
+        <label for="email">Email <span>*</span></label>
 
         <input type="email" id="email" name="email" placeholder="you@example.com" required />
 
@@ -52,7 +64,7 @@
 
       <div class="field">
 
-        <label for="name">Full Name<span>*</span></label>
+        <label for="name">Full Name <span>*</span></label>
 
         <input type="text" id="name" name="name" placeholder="John Doe" required />
 
@@ -62,7 +74,7 @@
 
       <div class="field">
 
-        <label for="phone">Phone<span>*</span></label>
+        <label for="phone">Phone <span>*</span></label>
 
         <input type="tel" id="phone" name="phone" placeholder="(502) 123-4567" required />
 
@@ -72,7 +84,7 @@
 
       <div class="field">
 
-        <label for="address">Address<span>*</span></label>
+        <label for="address">Address <span>*</span></label>
 
         <input type="text" id="address" name="address" placeholder="123 Main St, Louisville, KY" required />
 
@@ -84,7 +96,7 @@
 
       <div class="field">
 
-        <label for="service">Service Type<span>*</span></label>
+        <label for="service">Service Type <span>*</span></label>
 
         <select id="service" name="service" required>
 
@@ -102,7 +114,7 @@
 
       <div class="field">
 
-        <label for="pieces">Number of Pieces<span>*</span></label>
+        <label for="pieces">Number of Pieces <span>*</span></label>
 
         <input type="number" id="pieces" name="pieces" min="1" step="1" placeholder="1" required />
 
@@ -116,7 +128,7 @@
 
         <div>
 
-          <label for="pickup_date">Pickup Date<span>*</span></label>
+          <label for="pickup_date">Pickup Date <span>*</span></label>
 
           <input type="date" id="pickup_date" name="pickup_date" required />
 
@@ -124,7 +136,7 @@
 
         <div>
 
-          <label for="pickup_time">Pickup Time<span>*</span></label>
+          <label for="pickup_time">Pickup Time <span>*</span></label>
 
           <input type="time" id="pickup_time" name="pickup_time" required />
 
@@ -146,8 +158,6 @@
 
       <button id="submitBtn" type="submit" class="btn-primary">Submit Booking</button>
 
-
-
       <p id="formStatus" class="form-status" aria-live="polite"></p>
 
     </form>
@@ -155,6 +165,8 @@
   </main>
 
 
+
+  <!-- Footer -->
 
   <footer class="tm-footer">
 
@@ -164,11 +176,13 @@
 
 
 
+  <!-- Script -->
+
   <script>
 
-    // ضع رابط الWeb App الخاص بGoogle Apps Script هنا
+    // رابط الويب الذي أرسلته
 
-    const WEB_APP_URL = 'https://script.google.com/macros/s/PASTE_YOUR_WEB_APP_ID/exec';
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby-QQDaS4z8jvircGit-1XR73DaVm-3CsNP5lQeEPHBx20BpQNt5taA2yvSgZ1vlQlChQ/exec';
 
 
 
@@ -197,6 +211,8 @@
     form.addEventListener('submit', async (e) => {
 
       e.preventDefault();
+
+
 
       if (!form.checkValidity()) {
 
@@ -240,13 +256,13 @@
 
       try {
 
-        const res = await fetch(WEB_APP_URL, {
+        // لا نضع هيدر Content-Type مع no-cors لتفادي أي منع من المتصفح
+
+        await fetch(WEB_APP_URL, {
 
           method: 'POST',
 
-          mode: 'no-cors', // يسمح بالإرسال حتى لو ما في CORS
-
-          headers: { 'Content-Type': 'application/json' },
+          mode: 'no-cors',
 
           body: JSON.stringify(payload)
 
@@ -254,7 +270,7 @@
 
 
 
-        // بما أن no-cors لا يرجّع رد واضح، نعرض نجاح مبدئي
+        // بما أن no-cors يرجّع استجابة "opaque"، نعرض نجاح مبدئي
 
         setStatus('Thank you! Your booking was received. A confirmation will be emailed to you shortly.');
 
