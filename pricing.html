@@ -12,201 +12,169 @@
 
 
 
-  <!-- نستخدم نفس لوحة الألوان والستايل العام -->
+  <!-- حمّل CSS القديم إن لزم، ثم ثيم TailorMe الجديد ليغلّب الألوان -->
 
-  <link rel="stylesheet" href="appointment.css" />
+  <link rel="stylesheet" href="/style.css" />
+
+  <link rel="stylesheet" href="/appointment.css" />
 
 
+
+  <!-- طبقة تخصيص خفيفة مضمونة لتوافق الصفحة حتى لو بقي ستايل قديم -->
 
   <style>
 
-    body.price-page { background: var(--bg); color: var(--text); overflow-x:hidden; }
+    :root{
 
+      /* في حال ما كانت متعرفة، نعرّف ألوان TailorMe */
 
-
-    /* Nav + brand */
-
-    .nav {
-
-      max-width: 1100px; margin: 12px auto 0; padding: 0 16px;
-
-      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      --bg: #0b1324; --panel:#0f1a34; --blue:#3b6ff5; --silver:#cfd6e3; --text:#eef3ff;
 
     }
 
-    .nav .brand { display:flex; align-items:center; gap:10px; }
+    body.price-page{ background:var(--bg) !important; color:var(--text) !important; overflow-x:hidden; }
 
-    .nav .brand .brand-logo { width:42px; height:42px; object-fit:contain; filter: drop-shadow(0 0 8px rgba(255,255,255,0.08)); }
+    .nav{
 
-    .nav .brand .brand-name { color: var(--silver); font-weight:700; font-size: clamp(18px, 4vw, 26px); }
+      max-width:1100px; margin:12px auto 0; padding:0 16px;
 
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
 
+    }
 
-    .nav ul { list-style:none; display:flex; gap:10px; margin:0 0 0 auto; padding:0; }
+    .nav .brand{ display:flex; align-items:center; gap:10px; }
 
-    .nav a {
+    .brand-logo{ width:42px; height:42px; object-fit:contain; }
+
+    .brand-name{ color:var(--silver); font-weight:700; font-size:clamp(18px,4vw,26px); }
+
+    .nav ul{ list-style:none; display:flex; gap:10px; margin:0 0 0 auto; padding:0; }
+
+    .nav a{
 
       display:inline-block; padding:10px 14px; text-decoration:none; font-weight:600;
 
-      color: var(--silver);
+      color:var(--silver); background:rgba(255,255,255,0.02);
 
       border:1px solid rgba(255,255,255,0.08); border-radius:10px;
 
-      background: rgba(255,255,255,0.02);
-
-      transition: border-color .2s, box-shadow .2s, transform .08s;
-
-      white-space:nowrap;
+      transition:.2s; white-space:nowrap;
 
     }
 
-    .nav a:hover { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(59,111,245,0.2); transform: translateY(-1px); }
+    .nav a:hover{ border-color:var(--blue); box-shadow:0 0 0 3px rgba(59,111,245,.2); transform:translateY(-1px); }
 
-    .nav a.active { color:#0a1222; background: linear-gradient(135deg, var(--silver), #e5ebf5); border-color: transparent; }
+    .nav a.active{ color:#0a1222; background:linear-gradient(135deg, var(--silver), #e5ebf5); border-color:transparent; }
 
 
 
-    /* CTA button */
+    .cta-btn{
 
-    .cta-btn {
+      display:inline-block; padding:10px 16px; border-radius:12px; font-weight:700; text-decoration:none;
 
-      display:inline-block; margin-left: 4px;
+      color:#0a1222; background:linear-gradient(135deg, var(--silver), #e5ebf5);
 
-      padding: 10px 16px; border-radius: 12px; font-weight: 700; text-decoration: none;
-
-      color: #0a1222; background: linear-gradient(135deg, var(--silver), #e5ebf5);
-
-      box-shadow: 0 8px 24px rgba(59,111,245,0.18);
-
-      transition: transform .08s ease, opacity .2s ease;
+      box-shadow:0 8px 24px rgba(59,111,245,.18); transition:.08s;
 
     }
 
-    .cta-btn:hover { transform: translateY(-1px); }
-
-    .cta-btn:active { transform: translateY(0); opacity:.9; }
+    .cta-btn:hover{ transform:translateY(-1px); }
 
 
 
-    /* Hero */
+    .price-hero{ max-width:1100px; margin:18px auto 0; padding:0 16px; text-align:center; }
 
-    .price-hero {
+    .price-hero h1{ color:var(--silver); font-size:clamp(22px,5vw,34px); margin:6px 0 8px; }
 
-      max-width: 1100px; margin: 18px auto 0; padding: 0 16px; text-align:center;
-
-    }
-
-    .price-hero h1 { color: var(--silver); font-size: clamp(22px, 5vw, 34px); margin: 6px 0 8px; }
-
-    .price-hero p { color: #9fb0d8; margin: 0 0 10px; }
+    .price-hero p{ color:#9fb0d8; margin:0 0 10px; }
 
 
 
-    /* Notice */
+    .price-notice{ max-width:1100px; margin:12px auto 8px; padding:0 16px; }
 
-    .price-notice {
-
-      max-width: 1100px; margin: 12px auto 8px; padding: 0 16px;
-
-    }
-
-    .notice-box {
+    .notice-box{
 
       border:1px solid rgba(255,255,255,.12);
 
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
 
-      border-radius: 12px; padding: 14px;
-
-      color: var(--silver);
+      border-radius:12px; padding:14px; color:var(--silver);
 
     }
 
 
 
-    /* Sections & tables */
+    .price-sections{ max-width:1100px; margin:12px auto 24px; padding:0 16px; }
 
-    .price-sections { max-width: 1100px; margin: 12px auto 24px; padding: 0 16px; }
+    .price-section{ margin-top:18px; }
 
-    .price-section { margin-top: 18px; }
+    .price-section h2{
 
-    .price-section h2 {
+      color:var(--silver); font-size:clamp(18px,4.5vw,26px); margin:16px 0 10px;
 
-      color: var(--silver); font-size: clamp(18px, 4.5vw, 26px); margin: 16px 0 10px;
-
-      border-left: 4px solid var(--blue); padding-left: 10px;
+      border-left:4px solid var(--blue); padding-left:10px;
 
     }
 
-    .price-section h3 { color: var(--silver); margin: 12px 0 6px; font-size: clamp(16px, 3.6vw, 20px); }
+    .price-section h3{ color:var(--silver); margin:12px 0 6px; font-size:clamp(16px,3.6vw,20px); }
 
 
 
-    .price-table {
+    .price-table{
 
-      width:100%; border-collapse: collapse; margin: 6px 0 16px;
+      width:100%; border-collapse:collapse; margin:6px 0 16px;
 
-      background: var(--panel);
+      background:var(--panel);
 
-      border: 1px solid rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.08);
 
-      border-radius: 12px; overflow: hidden;
-
-      box-shadow: 0 10px 26px rgba(0,0,0,0.25);
+      border-radius:12px; overflow:hidden; box-shadow:0 10px 26px rgba(0,0,0,.25);
 
     }
 
-    .price-table thead th {
+    .price-table thead th{
 
-      text-align:left; padding:12px; background: linear-gradient(180deg, rgba(59,111,245,0.3), rgba(59,111,245,0.1));
+      text-align:left; padding:12px;
 
-      color: var(--text); font-weight: 700;
+      background:linear-gradient(180deg, rgba(59,111,245,.3), rgba(59,111,245,.1));
 
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      color:var(--text); font-weight:700; border-bottom:1px solid rgba(255,255,255,0.08);
 
     }
 
-    .price-table tbody td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.06); color: var(--text); }
+    .price-table tbody td{ padding:12px; border-bottom:1px solid rgba(255,255,255,0.06); color:var(--text); }
 
-    .price-table tbody tr:nth-child(odd) { background: rgba(255,255,255,0.02); }
+    .price-table tbody tr:nth-child(odd){ background:rgba(255,255,255,0.02); }
 
-    .price-table tbody tr:hover { background: rgba(59,111,245,0.08); }
+    .price-table tbody tr:hover{ background:rgba(59,111,245,0.08); }
 
 
 
-    .price-footer {
+    .price-footer{
 
-      text-align:center; padding: 20px 16px 28px; color: var(--silver);
+      text-align:center; padding:20px 16px 28px; color:var(--silver);
 
       border-top:1px solid rgba(255,255,255,0.06);
 
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
 
     }
 
-    .price-footer a { color: var(--blue); text-decoration: none; }
+    .price-footer a{ color:var(--blue); text-decoration:none; }
 
-    .price-footer a:hover { text-decoration: underline; }
+    .price-footer a:hover{ text-decoration:underline; }
 
 
-
-    /* Sticky CTA for mobile */
 
     @media (max-width:640px){
 
-      .nav ul { gap:6px; }
+      .nav ul{ gap:6px; }
 
-      .nav a { padding:8px 10px; }
+      .nav a{ padding:8px 10px; }
 
-      .sticky-cta {
+      .sticky-cta{ position:sticky; bottom:10px; display:flex; gap:8px; justify-content:center; z-index:10; margin:10px 0 0; padding:0 16px; }
 
-        position: sticky; bottom: 10px; display:flex; gap:8px; justify-content:center; z-index: 10;
-
-        margin: 10px 0 0; padding: 0 16px;
-
-      }
-
-      .sticky-cta .cta-btn { flex:1; text-align:center; }
+      .sticky-cta .cta-btn{ flex:1; text-align:center; }
 
     }
 
@@ -224,7 +192,7 @@
 
     <div class="brand">
 
-      <img src="images/logo.png" class="brand-logo" alt="TailorMe Logo" />
+      <img src="/images/logo.png" class="brand-logo" alt="TailorMe Logo" />
 
       <span class="brand-name">TailorMe</span>
 
@@ -232,15 +200,15 @@
 
     <ul>
 
-      <li><a href="index.html">Home</a></li>
+      <li><a href="/index.html">Home</a></li>
 
-      <li><a class="active" href="pricing.html">Pricing</a></li>
+      <li><a class="active" href="/pricing.html">Pricing</a></li>
 
-      <li><a href="payment.html">Payment</a></li>
+      <li><a href="/payment.html">Payment</a></li>
 
-      <li><a class="cta-btn" href="appointment.html">Book an Appointment</a></li>
+      <li><a class="cta-btn" href="/appointment.html">Book an Appointment</a></li>
 
-      <li><a class="cta-btn" href="payment.html">Pay Now</a></li>
+      <li><a class="cta-btn" href="/payment.html">Pay Now</a></li>
 
     </ul>
 
@@ -278,9 +246,9 @@
 
   <div class="sticky-cta">
 
-    <a class="cta-btn" href="appointment.html">Book an Appointment</a>
+    <a class="cta-btn" href="/appointment.html">Book an Appointment</a>
 
-    <a class="cta-btn" href="payment.html">Pay Now</a>
+    <a class="cta-btn" href="/payment.html">Pay Now</a>
 
   </div>
 
@@ -289,8 +257,6 @@
   <!-- CONTENT -->
 
   <main class="price-sections">
-
-
 
     <!-- Men’s Alterations -->
 
@@ -438,7 +404,7 @@
 
 
 
-    <!-- Leather Alterations -->
+    <!-- Leather -->
 
     <section id="leather" class="price-section">
 
@@ -493,8 +459,6 @@
       </table>
 
     </section>
-
-
 
   </main>
 
