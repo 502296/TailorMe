@@ -4,15 +4,15 @@
 
   --bg:#0b1324;        /* أزرق مخملي غامق */
 
-  --panel:#0f1a34;     /* أغمق قليلًا للبطاقة */
+  --panel:#0f1a34;     /* خلفية البطاقة */
 
   --blue:#3b6ff5;      /* أزرق أفتح */
 
-  --silver:#cfd6e3;    /* فضي فاتح للنص والحدود */
+  --silver:#cfd6e3;    /* فضي للنص والحدود */
 
   --silver-2:#aeb6c3;  /* فضي أدكن */
 
-  --text:#eef3ff;      /* نص فاتح مريح */
+  --text:#eef3ff;      /* نص فاتح */
 
   --ok:#8ee08e;
 
@@ -36,7 +36,7 @@ html,body{
 
   line-height:1.5;
 
-  overflow-x:hidden; /* يمنع السحب يمين/يسار */
+  overflow-x:hidden; /* يمنع التحريك يمين/يسار */
 
 }
 
@@ -45,6 +45,8 @@ html,body{
 img{ max-width:100%; height:auto; display:block; }
 
 
+
+/* Header & Footer */
 
 .tm-header, .tm-footer{
 
@@ -57,8 +59,6 @@ img{ max-width:100%; height:auto; display:block; }
   border-bottom:1px solid rgba(255,255,255,0.06);
 
 }
-
-
 
 .tm-footer{
 
@@ -73,6 +73,8 @@ img{ max-width:100%; height:auto; display:block; }
 }
 
 
+
+/* Brand */
 
 .brand{
 
@@ -106,6 +108,8 @@ img{ max-width:100%; height:auto; display:block; }
 
 
 
+/* Form Wrapper */
+
 .form-wrap{
 
   max-width: 820px;
@@ -130,6 +134,8 @@ img{ max-width:100%; height:auto; display:block; }
 
 
 
+/* Form Card */
+
 form{
 
   background: var(--panel);
@@ -145,6 +151,8 @@ form{
 }
 
 
+
+/* Fields */
 
 .field{ margin-bottom: 14px; }
 
@@ -210,6 +218,8 @@ input:focus, select:focus, textarea:focus{
 
 
 
+/* Submit Button */
+
 .btn-primary{
 
   width:100%;
@@ -244,6 +254,8 @@ input:focus, select:focus, textarea:focus{
 
 
 
+/* Status line */
+
 .form-status{
 
   margin-top:12px;
@@ -259,3 +271,61 @@ input:focus, select:focus, textarea:focus{
 .form-status.ok{ color: var(--ok); }
 
 .form-status.err{ color: var(--err); }
+
+
+
+/* Success card (after submit) */
+
+.success-card {
+
+  display:none;
+
+  max-width: 820px;
+
+  margin: 18px auto;
+
+  padding: 16px;
+
+}
+
+.success-inner{
+
+  border-radius:14px;
+
+  border:1px solid rgba(255,255,255,.12);
+
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+
+  padding:18px;
+
+  display:flex; gap:12px; align-items:flex-start;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+
+}
+
+.success-icon{
+
+  font-size:28px; line-height:1;
+
+  filter: drop-shadow(0 0 10px rgba(142,224,142,0.3));
+
+}
+
+.success-title{
+
+  margin:0 0 4px; color:var(--ok); font-size:18px; font-weight:800;
+
+}
+
+.success-text{ margin:0; color:var(--silver); }
+
+
+
+/* Small tweaks */
+
+select{ appearance:none; background-image: linear-gradient(45deg, transparent 50%, var(--silver) 50%), linear-gradient(135deg, var(--silver) 50%, transparent 50%);
+
+  background-position: calc(100% - 18px) calc(1.1em), calc(100% - 13px) calc(1.1em);
+
+  background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; }
