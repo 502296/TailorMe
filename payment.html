@@ -6,7 +6,7 @@
 
   <meta charset="utf-8" />
 
-  <title>TailorMe – Pay Now</title>
+  <title>TailorMe – Payment</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
@@ -16,11 +16,9 @@
 
     :root{ --bg:#0b1324; --panel:#0f1a34; --blue:#3b6ff5; --silver:#cfd6e3; --text:#eef3ff; }
 
-    body { background:var(--bg); color:var(--text); overflow-x:hidden; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial; }
+    body { background:var(--bg); color:var(--text); overflow-x:hidden; }
 
 
-
-    /* Top nav */
 
     .nav { max-width:1100px; margin:12px auto 0; padding:0 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
 
@@ -40,57 +38,41 @@
 
     .nav a.active{ color:#0a1222; background:linear-gradient(135deg, var(--silver), #e5ebf5); border-color:transparent; }
 
-    .cta-btn{
 
-      display:inline-block; padding:10px 16px; border-radius:12px; font-weight:700; text-decoration:none; color:#0a1222;
+
+    .wrap{ max-width:900px; margin:30px auto; padding:0 16px; }
+
+    .panel{ background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:20px; box-shadow:0 10px 26px rgba(0,0,0,.25); }
+
+    .title{ margin:0 0 10px; color:var(--silver); font-size:clamp(22px,5vw,32px); text-align:center; }
+
+    .lead{ color:#9fb0d8; text-align:center; margin:0 0 16px; }
+
+
+
+    .btn{
+
+      display:inline-block; padding:12px 18px; border-radius:12px; font-weight:800; text-decoration:none; color:#0a1222;
 
       background:linear-gradient(135deg, var(--silver), #e5ebf5); box-shadow:0 8px 24px rgba(59,111,245,.18); transition:.08s;
 
     }
 
-    .cta-btn:hover{ transform:translateY(-1px); }
+    .btn:hover{ transform:translateY(-1px); }
 
-    .cta-btn.is-pay:hover{ background:linear-gradient(135deg,#f5e5b8,#d4af37); box-shadow:0 10px 28px rgba(212,175,55,.35); }
+    .btn.is-pay:hover{
+
+      background:linear-gradient(135deg,#f5e5b8,#d4af37);
+
+      box-shadow:0 10px 28px rgba(212,175,55,.35);
+
+    }
 
 
 
-    /* Layout */
+    .cta-row{ display:flex; gap:12px; justify-content:center; margin-top:14px; flex-wrap:wrap; }
 
-    .wrap{ max-width:900px; margin:20px auto 32px; padding:0 16px; }
-
-    .hero{ text-align:center; margin-bottom:12px; }
-
-    .hero h1{ color:var(--silver); font-size:clamp(22px,5vw,34px); margin:6px 0 8px; }
-
-    .hero p{ color:#9fb0d8; margin:0 0 10px; }
-
-    .panel{ background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.25); }
-
-    .pay-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-
-    @media (max-width:720px){ .pay-grid{ grid-template-columns:1fr; } }
-
-    .pay-card{ border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:14px; background:rgba(255,255,255,.02); }
-
-    .pay-card h3{ margin:0 0 6px; color:var(--silver); }
-
-    .muted{ color:#9fb0d8; margin:4px 0 10px; }
-
-    .btn{ display:inline-block; width:100%; text-align:center; padding:12px 16px; border-radius:12px; font-weight:800; text-decoration:none;
-
-      color:#0a1222; background:linear-gradient(135deg, var(--silver), #e5ebf5); box-shadow:0 8px 24px rgba(59,111,245,.18);
-
-      transition: transform .08s, opacity .2s; }
-
-    .btn:hover{ transform: translateY(-1px); }
-
-    .btn.is-pay:hover{ background:linear-gradient(135deg,#f5e5b8,#d4af37); box-shadow:0 10px 28px rgba(212,175,55,.35); }
-
-    .note{ color:#9fb0d8; font-size:14px; margin-top:10px; text-align:center; }
-
-    .footer{ text-align:center; color:var(--silver); margin:18px 0 26px; }
-
-    .footer a{ color:var(--blue); text-decoration:none; } .footer a:hover{ text-decoration:underline; }
+    .note{ color:#cdd7ec; text-align:center; margin:14px auto 0; max-width:680px; }
 
   </style>
 
@@ -116,7 +98,7 @@
 
       <li><a class="active" href="/payment.html">Payment</a></li>
 
-      <li><a class="cta-btn" href="/appointment.html">Book an Appointment</a></li>
+      <li><a class="btn" href="/appointment.html">Book an Appointment</a></li>
 
     </ul>
 
@@ -124,68 +106,42 @@
 
 
 
-  <div class="wrap">
-
-    <div class="hero">
-
-      <h1>Pay Now</h1>
-
-      <p>Secure checkout for TailorMe services. Pay by card, Apple Pay, or Google Pay via Stripe.</p>
-
-    </div>
-
-
+  <main class="wrap">
 
     <div class="panel">
 
-      <div class="pay-grid">
+      <h1 class="title">Secure Payment</h1>
 
-        <div class="pay-card">
-
-          <h3>Custom Amount</h3>
-
-          <p class="muted">Use this for deposits or any agreed balance.</p>
-
-          <!-- Put your Stripe Payment Link (custom amount) -->
-
-          <a class="btn is-pay" target="_blank" rel="noopener" href="https://buy.stripe.com/STRIPE_LINK_CUSTOM">💳 Pay with Stripe</a>
-
-          <p class="note">Apple Pay/Google Pay works automatically on Stripe’s hosted page.</p>
-
-        </div>
+      <p class="lead">Pay your TailorMe booking fee safely via Stripe Checkout.</p>
 
 
 
-        <div class="pay-card">
+      <div class="cta-row">
 
-          <h3>Quick Amounts</h3>
+        <a class="btn is-pay" target="_blank" rel="noopener"
 
-          <p class="muted">Pick a preset amount.</p>
+           href="https://buy.stripe.com/fZu5kxg2QcmFa5P0Di9ws00">
 
-          <!-- Replace with your own Stripe links -->
+          💳 Pay the $20 Booking Fee
 
-          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
-
-            <a class="btn is-pay" target="_blank" rel="noopener" href="https://buy.stripe.com/LINK_25">$25</a>
-
-            <a class="btn is-pay" target="_blank" rel="noopener" href="https://buy.stripe.com/LINK_50">$50</a>
-
-            <a class="btn is-pay" target="_blank" rel="noopener" href="https://buy.stripe.com/LINK_100">$100</a>
-
-          </div>
-
-        </div>
+        </a>
 
       </div>
 
+
+
+      <p class="note">
+
+        Why a $20 booking fee? It reserves your appointment, helps us prepare in advance,
+
+        and is fully deducted from your final bill.
+
+      </p>
+
     </div>
 
-
-
-    <p class="footer">Need help? <a href="mailto:contact@tailorme.me">contact@tailorme.me</a> • (502) 296-8168</p>
-
-  </div>
+  </main>
 
 </body>
 
-</html
+</html>
