@@ -4,135 +4,151 @@
 
 <head>
 
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Book an Appointment – TailorMe</title>
 
-  <link rel="stylesheet" href="appointment.css"/>
+  <link rel="stylesheet" href="appointment.css" />
 
 </head>
 
 <body>
 
-  <main class="tm-wrap">
+  <header class="tm-header">
 
-    <h1 class="tm-title">Book an Appointment</h1>
+    <div class="brand">
 
+      <img src="images/logo.png" alt="TailorMe Logo" class="brand-logo" />
 
+      <span class="brand-name">TailorMe</span>
 
-    <form id="appointmentForm" class="tm-form" novalidate>
+    </div>
 
-      <div class="grid">
-
-        <label><span>Full Name</span>
-
-          <input id="name" name="name" type="text" required/>
-
-        </label>
+  </header>
 
 
 
-        <label><span>Email</span>
+  <main class="form-wrap">
 
-          <input id="email" name="email" type="email" required/>
-
-        </label>
+    <h1 class="form-title">Book an Appointment (Pickup)</h1>
 
 
 
-        <label><span>Phone</span>
+    <form id="appointmentForm" novalidate>
 
-          <input id="phone" name="phone" type="tel" inputmode="tel" required/>
+      <!-- Contact -->
 
-        </label>
+      <div class="field">
 
+        <label for="email">Email<span>*</span></label>
 
-
-        <label class="wide"><span>Address</span>
-
-          <input id="address" name="address" type="text" required/>
-
-        </label>
-
-
-
-        <label><span>Service Type</span>
-
-          <select id="service" name="service" required>
-
-            <option value="">-- Select --</option>
-
-            <option value="Alteration">Alteration</option>
-
-            <option value="Custom Tailoring">Custom Tailoring</option>
-
-          </select>
-
-        </label>
-
-
-
-        <label><span>Number of Pieces</span>
-
-          <input id="pieces" name="pieces" type="number" min="1" required/>
-
-        </label>
-
-
-
-        <!-- ملاحظة: أسماء الحقول بأسلوب snake_case لتطابق السكربت -->
-
-        <label><span>Pickup Date</span>
-
-          <input id="pickup_date" name="pickup_date" type="date" required/>
-
-        </label>
-
-
-
-        <label><span>Pickup Time</span>
-
-          <input id="pickup_time" name="pickup_time" type="time" required/>
-
-        </label>
-
-
-
-        <label><span>Delivery Date</span>
-
-          <input id="delivery_date" name="delivery_date" type="date" required/>
-
-        </label>
-
-
-
-        <label><span>Delivery Time</span>
-
-          <input id="delivery_time" name="delivery_time" type="time" required/>
-
-        </label>
-
-
-
-        <label class="wide"><span>Additional Notes (optional)</span>
-
-          <textarea id="notes" name="notes" rows="3"></textarea>
-
-        </label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
 
       </div>
 
 
 
-      <button class="tm-btn" type="submit" id="submitBtn">Submit Booking</button>
+      <div class="field">
+
+        <label for="name">Full Name<span>*</span></label>
+
+        <input type="text" id="name" name="name" placeholder="John Doe" required />
+
+      </div>
 
 
 
-      <!-- مكان رسالة النجاح/الخطأ -->
+      <div class="field">
 
-      <p id="formMsg" class="tm-msg" role="status" aria-live="polite"></p>
+        <label for="phone">Phone<span>*</span></label>
+
+        <input type="tel" id="phone" name="phone" placeholder="(502) 123-4567" required />
+
+      </div>
+
+
+
+      <div class="field">
+
+        <label for="address">Address<span>*</span></label>
+
+        <input type="text" id="address" name="address" placeholder="123 Main St, Louisville, KY" required />
+
+      </div>
+
+
+
+      <!-- Service -->
+
+      <div class="field">
+
+        <label for="service">Service Type<span>*</span></label>
+
+        <select id="service" name="service" required>
+
+          <option value="">— Select —</option>
+
+          <option value="Alteration">Alteration</option>
+
+          <option value="Custom">Custom</option>
+
+        </select>
+
+      </div>
+
+
+
+      <div class="field">
+
+        <label for="pieces">Number of Pieces<span>*</span></label>
+
+        <input type="number" id="pieces" name="pieces" min="1" step="1" placeholder="1" required />
+
+      </div>
+
+
+
+      <!-- Pickup only -->
+
+      <div class="field two-col">
+
+        <div>
+
+          <label for="pickup_date">Pickup Date<span>*</span></label>
+
+          <input type="date" id="pickup_date" name="pickup_date" required />
+
+        </div>
+
+        <div>
+
+          <label for="pickup_time">Pickup Time<span>*</span></label>
+
+          <input type="time" id="pickup_time" name="pickup_time" required />
+
+        </div>
+
+      </div>
+
+
+
+      <div class="field">
+
+        <label for="notes">Additional Notes (optional)</label>
+
+        <textarea id="notes" name="notes" rows="3" placeholder="E.g., hem 2cm, taper legs..."></textarea>
+
+      </div>
+
+
+
+      <button id="submitBtn" type="submit" class="btn-primary">Submit Booking</button>
+
+
+
+      <p id="formStatus" class="form-status" aria-live="polite"></p>
 
     </form>
 
@@ -140,149 +156,123 @@
 
 
 
+  <footer class="tm-footer">
+
+    <p>© <span id="year"></span> TailorMe — Mobile Alterations & Custom Tailoring</p>
+
+  </footer>
+
+
+
   <script>
 
-  // رابط Web App (exec)
+    // ضع رابط الWeb App الخاص بGoogle Apps Script هنا
 
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyk1V8RECksbFrHO4tPc8PzVCHXBK9tnx8X4dIJfdXboEK72nGkPGM83XoPsbNkjIG5tw/exec";
-
-
-
-  const form = document.getElementById("appointmentForm");
-
-  const msg  = document.getElementById("formMsg");
-
-  const btn  = document.getElementById("submitBtn");
-
-  const val = v => String(v || "").trim();
+    const WEB_APP_URL = 'https://script.google.com/macros/s/PASTE_YOUR_WEB_APP_ID/exec';
 
 
 
-  form.addEventListener("submit", async (e) => {
-
-    e.preventDefault();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
 
 
-    // رسالة حالة أولية
+    const form = document.getElementById('appointmentForm');
 
-    msg.style.display = "block";
+    const statusEl = document.getElementById('formStatus');
 
-    msg.style.color = "#9aa4b2";
-
-    msg.textContent = "Sending booking...";
+    const submitBtn = document.getElementById('submitBtn');
 
 
 
-    // جمع الحقول (مطابقة للسكربت)
+    function setStatus(msg, ok = true) {
 
-    const payload = {
+      statusEl.textContent = msg;
 
-      name:        val(form.name.value),
-
-      email:       val(form.email.value),
-
-      phone:       val(form.phone.value),
-
-      address:     val(form.address.value),
-
-      service:     val(form.service.value),
-
-      pieces:      val(form.pieces.value),
-
-      pickup_date: form.pickup_date.value,
-
-      pickup_time: form.pickup_time.value,
-
-      delivery_date: form.delivery_date.value,
-
-      delivery_time: form.delivery_time.value,
-
-      notes:       val(form.notes.value),
-
-      source:      location.href
-
-    };
-
-
-
-    // تحقّق سريع
-
-    for (const k of ['name','email','phone','address','service','pieces','pickup_date','pickup_time','delivery_date','delivery_time']){
-
-      if(!payload[k]){ msg.textContent = "Please fill all required fields."; return; }
-
-    }
-
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(payload.email)){
-
-      msg.textContent = "Please enter a valid email."; return;
+      statusEl.className = 'form-status ' + (ok ? 'ok' : 'err');
 
     }
 
 
 
-    btn.disabled = true; btn.textContent = "Submitting...";
+    form.addEventListener('submit', async (e) => {
+
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+
+        setStatus('Please fill all required fields correctly.', false);
+
+        return;
+
+      }
 
 
 
-    try {
+      submitBtn.disabled = true;
 
-      // نرسل كنص عادي + no-cors لتجنب أي CORS preflight
-
-      await fetch(WEB_APP_URL, {
-
-        method: "POST",
-
-        mode: "no-cors",
-
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-
-        body: JSON.stringify(payload)
-
-      });
+      setStatus('Submitting… please wait.');
 
 
 
-      // نعرض رسالة نجاح خضراء
+      const payload = {
 
-      msg.textContent = "✅ Booking confirmed! Thank you for choosing TailorMe.";
+        email: form.email.value.trim(),
 
-      msg.style.color = "#28a745";
+        name: form.name.value.trim(),
 
-      msg.style.background = "rgba(40,167,69,0.1)";
+        phone: form.phone.value.trim(),
 
-      msg.style.padding = "10px";
+        address: form.address.value.trim(),
 
-      msg.style.borderRadius = "8px";
+        service: form.service.value,
+
+        pieces: form.pieces.value,
+
+        pickup_date: form.pickup_date.value,
+
+        pickup_time: form.pickup_time.value,
+
+        notes: form.notes.value.trim()
+
+      };
 
 
 
-      form.reset();
+      try {
+
+        const res = await fetch(WEB_APP_URL, {
+
+          method: 'POST',
+
+          mode: 'no-cors', // يسمح بالإرسال حتى لو ما في CORS
+
+          headers: { 'Content-Type': 'application/json' },
+
+          body: JSON.stringify(payload)
+
+        });
 
 
 
-      // إخفاء الرسالة بعد 5 ثوانٍ (اختياري)
+        // بما أن no-cors لا يرجّع رد واضح، نعرض نجاح مبدئي
 
-      setTimeout(() => { msg.style.display = "none"; }, 5000);
+        setStatus('Thank you! Your booking was received. A confirmation will be emailed to you shortly.');
 
+        form.reset();
 
+      } catch (err) {
 
-    } catch (err) {
+        console.error(err);
 
-      console.error(err);
+        setStatus('Submission failed. Please try again or contact us at contact@tailorme.me.', false);
 
-      msg.textContent = "❌ Something went wrong. Please try again.";
+      } finally {
 
-      msg.style.color = "red";
+        submitBtn.disabled = false;
 
-    } finally {
+      }
 
-      btn.disabled = false; btn.textContent = "Submit Booking";
-
-    }
-
-  });
+    });
 
   </script>
 
