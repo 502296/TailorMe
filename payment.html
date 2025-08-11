@@ -18,6 +18,10 @@
 
     body { background:var(--bg); color:var(--text); overflow-x:hidden; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial; }
 
+
+
+    /* Top nav */
+
     .nav { max-width:1100px; margin:12px auto 0; padding:0 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
 
     .brand { display:flex; align-items:center; gap:10px; }
@@ -36,7 +40,21 @@
 
     .nav a.active{ color:#0a1222; background:linear-gradient(135deg, var(--silver), #e5ebf5); border-color:transparent; }
 
+    .cta-btn{
 
+      display:inline-block; padding:10px 16px; border-radius:12px; font-weight:700; text-decoration:none; color:#0a1222;
+
+      background:linear-gradient(135deg, var(--silver), #e5ebf5); box-shadow:0 8px 24px rgba(59,111,245,.18); transition:.08s;
+
+    }
+
+    .cta-btn:hover{ transform:translateY(-1px); }
+
+    .cta-btn.is-pay:hover{ background:linear-gradient(135deg,#f5e5b8,#d4af37); box-shadow:0 10px 28px rgba(212,175,55,.35); }
+
+
+
+    /* Layout */
 
     .wrap{ max-width:900px; margin:20px auto 32px; padding:0 16px; }
 
@@ -46,19 +64,11 @@
 
     .hero p{ color:#9fb0d8; margin:0 0 10px; }
 
-
-
-    .panel{ background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:18px;
-
-      box-shadow:0 10px 30px rgba(0,0,0,.25); }
-
-
+    .panel{ background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.25); }
 
     .pay-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 
     @media (max-width:720px){ .pay-grid{ grid-template-columns:1fr; } }
-
-
 
     .pay-card{ border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:14px; background:rgba(255,255,255,.02); }
 
@@ -66,31 +76,21 @@
 
     .muted{ color:#9fb0d8; margin:4px 0 10px; }
 
+    .btn{ display:inline-block; width:100%; text-align:center; padding:12px 16px; border-radius:12px; font-weight:800; text-decoration:none;
 
+      color:#0a1222; background:linear-gradient(135deg, var(--silver), #e5ebf5); box-shadow:0 8px 24px rgba(59,111,245,.18);
 
-    .btn{
-
-      display:inline-block; width:100%; text-align:center; padding:12px 16px; border-radius:12px; font-weight:800; text-decoration:none;
-
-      color:#0a1222; background:linear-gradient(135deg, var(--silver), #e5ebf5);
-
-      box-shadow:0 8px 24px rgba(59,111,245,.18); transition: transform .08s ease, opacity .2s ease;
-
-    }
+      transition: transform .08s, opacity .2s; }
 
     .btn:hover{ transform: translateY(-1px); }
 
-    .btn:active{ transform: translateY(0); opacity:.9; }
-
-
+    .btn.is-pay:hover{ background:linear-gradient(135deg,#f5e5b8,#d4af37); box-shadow:0 10px 28px rgba(212,175,55,.35); }
 
     .note{ color:#9fb0d8; font-size:14px; margin-top:10px; text-align:center; }
 
     .footer{ text-align:center; color:var(--silver); margin:18px 0 26px; }
 
-    .footer a{ color:var(--blue); text-decoration:none; }
-
-    .footer a:hover{ text-decoration:underline; }
+    .footer a{ color:var(--blue); text-decoration:none; } .footer a:hover{ text-decoration:underline; }
 
   </style>
 
@@ -112,7 +112,7 @@
 
       <li><a href="/index.html">Home</a></li>
 
-      <li><a href="/pricing.html">Pricing</a></li>
+      <li><a href="/price-list.html">Pricing</a></li>
 
       <li><a class="active" href="/payment.html">Payment</a></li>
 
@@ -130,7 +130,7 @@
 
       <h1>Pay Now</h1>
 
-      <p>Secure checkout for TailorMe services. Use card, Apple Pay, or Google Pay via Stripe.</p>
+      <p>Secure checkout for TailorMe services. Pay by card, Apple Pay, or Google Pay via Stripe.</p>
 
     </div>
 
@@ -144,13 +144,13 @@
 
           <h3>Custom Amount</h3>
 
-          <p class="muted">Choose any amount (deposit or full balance).</p>
+          <p class="muted">Use this for deposits or any agreed balance.</p>
 
-          <!-- استبدل الرابط التالي برابط Stripe Payment Link الذي يسمح بالمبلغ المرن (donation) -->
+          <!-- Put your Stripe Payment Link (custom amount) -->
 
-          <a class="btn" target="_blank" rel="noopener" href="https://buy.stripe.com/STRIPE_PAYMENT_LINK_HERE">💳 Pay with Stripe</a>
+          <a class="btn is-pay" target="_blank" rel="noopener" href="https://buy.stripe.com/STRIPE_LINK_CUSTOM">💳 Pay with Stripe</a>
 
-          <p class="note">Apple Pay/Google Pay يعمل تلقائيًا داخل صفحة Stripe على الأجهزة الداعمة.</p>
+          <p class="note">Apple Pay/Google Pay works automatically on Stripe’s hosted page.</p>
 
         </div>
 
@@ -158,23 +158,21 @@
 
         <div class="pay-card">
 
-          <h3>Pre-set Amounts</h3>
+          <h3>Quick Amounts</h3>
 
-          <p class="muted">اختَر مبلغًا سريعًا (مثلاً 25، 50، 100).</p>
+          <p class="muted">Pick a preset amount.</p>
 
-          <!-- أمثلة: استبدل الروابط بثلاثة Payment Links مختلفة لكل مبلغ -->
+          <!-- Replace with your own Stripe links -->
 
           <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
 
-            <a class="btn" target="_blank" rel="noopener" href="https://buy.stripe.com/LINK_FOR_25">$25</a>
+            <a class="btn is-pay" target="_blank" rel="noopener" href="https://buy.stripe.com/LINK_25">$25</a>
 
-            <a class="btn" target="_blank" rel="noopener" href="https://buy.stripe.com/LINK_FOR_50">$50</a>
+            <a class="btn is-pay" target="_blank" rel="noopener" href="https://buy.stripe.com/LINK_50">$50</a>
 
-            <a class="btn" target="_blank" rel="noopener" href="https://buy.stripe.com/LINK_FOR_100">$100</a>
+            <a class="btn is-pay" target="_blank" rel="noopener" href="https://buy.stripe.com/LINK_100">$100</a>
 
           </div>
-
-          <p class="note">هنقدر نغيّر التسميات/المبالغ بأي وقت.</p>
 
         </div>
 
@@ -184,10 +182,10 @@
 
 
 
-    <p class="footer">Questions? <a href="mailto:contact@tailorme.me">contact@tailorme.me</a> • (502) 296-8168</p>
+    <p class="footer">Need help? <a href="mailto:contact@tailorme.me">contact@tailorme.me</a> • (502) 296-8168</p>
 
   </div>
 
 </body>
 
-</html>
+</html
