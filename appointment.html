@@ -20,6 +20,16 @@
 
     img, video, canvas, svg { max-width: 100%; height: auto; display: block; }
 
+    .form-status { margin-top:.5rem; font-size:.95rem }
+
+    .form-status.ok { color:#9fe3a1 }
+
+    .form-status.err { color:#ffb3b3 }
+
+    .btn-primary[data-busy="1"]{ opacity:.75; pointer-events:none }
+
+    .success-card{ display:none }
+
   </style>
 
 </head>
@@ -200,35 +210,25 @@
 
   <script>
 
-    // 🔗 رابط الويب الجديد (Web App URL)
+    // Web App URL (Google Apps Script)
 
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzYLH7nmp7PzzLbakf7ILStPfIX1t_EpSK6PcU619orLg2kasmwcMW_-ydHwnm-CP6P5Q/exec';
 
 
 
-    // السنة في الفوتر
+    // Year in footer
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
 
 
-    // تعيين أقل تاريخ للـ Pickup = اليوم (لا يؤثر على الإرسال)
+    // Min pickup date = today (UX فقط)
 
     (function setMinPickupDate(){
 
-      const d = new Date();
+      const d=new Date(), y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), day=String(d.getDate()).padStart(2,'0');
 
-      const y = d.getFullYear();
-
-      const m = String(d.getMonth()+1).padStart(2,'0');
-
-      const day = String(d.getDate()).padStart(2,'0');
-
-      const today = `${y}-${m}-${day}`;
-
-      const pd = document.getElementById('pickup_date');
-
-      if (pd) pd.min = today;
+      const pd=document.getElementById('pickup_date'); if(pd) pd.min=`${y}-${m}-${day}`;
 
     })();
 
@@ -244,11 +244,31 @@
 
 
 
+    // Honeypot مضاد سبام
+
+    const hp = document.createElement('input');
+
+    hp.type = 'text'; hp.name = 'company'; hp.style.position='absolute'; hp.style.left='-10000px'; hp.tabIndex=-1;
+
+    form.appendChild(hp);
+
+
+
     function setStatus(msg, ok = true) {
 
       statusEl.textContent = msg;
 
       statusEl.className = 'form-status ' + (ok ? 'ok' : 'err');
+
+    }
+
+    function setBusy(b){
+
+      submitBtn.disabled = b;
+
+      submitBtn.dataset.busy = b ? '1' : '0';
+
+      submitBtn.textContent = b ? 'Submitting…' : 'Submit Booking';
 
     }
 
@@ -270,8 +290,6 @@
 
     }
 
-
-
     async function postAsForm_(payload) {
 
       const params = new URLSearchParams(payload);
@@ -292,25 +310,15 @@
 
 
 
-    form.addEventListener('submit', async (e) => {
+    function buildPayload(){
 
-      e.preventDefault();
+      const pdate = form.pickup_date.value;
 
-      if (!form.checkValidity()) {
+      const ptime = form.pickup_time.value;
 
-        setStatus('Please fill all required fields correctly.', false);
+      const pickup_iso = (pdate && ptime) ? `${pdate}T${ptime}:00` : '';
 
-        return;
-
-      }
-
-      submitBtn.disabled = true;
-
-      setStatus('Submitting… please wait.');
-
-
-
-      const payload = {
+      return {
 
         email: form.email.value.trim(),
 
@@ -324,13 +332,61 @@
 
         pieces: form.pieces.value,
 
-        pickup_date: form.pickup_date.value,
+        pickup_date: pdate,
 
-        pickup_time: form.pickup_time.value,
+        pickup_time: ptime,
 
-        notes: form.notes.value.trim()
+        pickup_iso,
+
+        notes: form.notes.value.trim(),
+
+        userAgent: navigator.userAgent
 
       };
+
+    }
+
+
+
+    form.addEventListener('submit', async (e) => {
+
+      e.preventDefault();
+
+
+
+      // لو البوت عبّى الحقل المخفي: نجاح صامت
+
+      if (hp.value) {
+
+        form.reset();
+
+        setStatus('Thank you! Your booking was received.');
+
+        successCard.style.display = 'block';
+
+        return;
+
+      }
+
+
+
+      if (!form.checkValidity()) {
+
+        setStatus('Please fill all required fields correctly.', false);
+
+        return;
+
+      }
+
+
+
+      setBusy(true);
+
+      setStatus('Submitting… please wait.');
+
+
+
+      const payload = buildPayload();
 
 
 
@@ -338,7 +394,11 @@
 
         await postAsTextPlain_(payload);
 
-        setTimeout(() => postAsForm_(payload), 600);
+        // Retry احتياطي بصيغة form-encoded
+
+        setTimeout(() => postAsForm_(payload).catch(()=>{}), 600);
+
+
 
         setStatus('Thank you! Your booking was received. A confirmation will be emailed to you shortly.');
 
@@ -356,7 +416,7 @@
 
       } finally {
 
-        submitBtn.disabled = false;
+        setBusy(false);
 
       }
 
