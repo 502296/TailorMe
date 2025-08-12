@@ -24,6 +24,8 @@
 
 </head>
 
+
+
 <body>
 
   <!-- Header -->
@@ -198,11 +200,37 @@
 
   <script>
 
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwBQfb0Va_2o2htR0rID0wW_Rh59d0480yltgtN5KMZRSoSl1h7IyVf8qrEtJgG-pTR4g/exec';
+    // 🔗 رابط الويب الجديد (Web App URL)
+
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzYLH7nmp7PzzLbakf7ILStPfIX1t_EpSK6PcU619orLg2kasmwcMW_-ydHwnm-CP6P5Q/exec';
 
 
+
+    // السنة في الفوتر
 
     document.getElementById('year').textContent = new Date().getFullYear();
+
+
+
+    // تعيين أقل تاريخ للـ Pickup = اليوم (لا يؤثر على الإرسال)
+
+    (function setMinPickupDate(){
+
+      const d = new Date();
+
+      const y = d.getFullYear();
+
+      const m = String(d.getMonth()+1).padStart(2,'0');
+
+      const day = String(d.getDate()).padStart(2,'0');
+
+      const today = `${y}-${m}-${day}`;
+
+      const pd = document.getElementById('pickup_date');
+
+      if (pd) pd.min = today;
+
+    })();
 
 
 
