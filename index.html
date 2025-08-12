@@ -16,6 +16,8 @@
 
 </head>
 
+
+
 <body>
 
   <!-- Preview toolbar (اختياري) -->
@@ -162,8 +164,6 @@
 
         </div>
 
-
-
         <!-- تم حذف البطاقات الجانبية حسب طلبك -->
 
       </div>
@@ -246,21 +246,31 @@
 
       <h2 class="section-title">Contact</h2>
 
-      <form class="contact-form" onsubmit="event.preventDefault(); alert('Demo only. Wire this to your backend or Google Apps Script.');">
 
-        <input type="text" name="name" placeholder="Full Name" required/>
 
-        <input type="email" name="email" placeholder="Email" required/>
+      <!-- ✅ فورم فعّال عبر mailto (بدون سيرفر) -->
 
-        <input type="tel" name="phone" placeholder="Phone" required/>
+      <form id="contactForm" class="contact-form" novalidate>
 
-        <input type="text" name="subject" placeholder="Subject"/>
+        <input type="text"  name="name"    placeholder="Full Name" required/>
 
-        <textarea name="message" placeholder="Tell us about your request…" required></textarea>
+        <input type="email" name="email"   placeholder="Email" required/>
+
+        <input type="tel"   name="phone"   placeholder="Phone" required/>
+
+        <input type="text"  name="subject" placeholder="Subject"/>
+
+        <textarea           name="message" placeholder="Tell us about your request…" required></textarea>
 
         <button class="btn btn-glass" type="submit">Send Message</button>
 
+        <!-- سطر حالة للرسائل -->
+
+        <p id="contactStatus" aria-live="polite"></p>
+
       </form>
+
+
 
       <p class="hint">Email: <a href="mailto:contact@tailorme.me">contact@tailorme.me</a> · Phone: (502) 296-8168</p>
 
@@ -323,6 +333,108 @@
       });
 
     });
+
+
+
+    // ---------- CONTACT: mailto handler (سريع للإطلاق) ----------
+
+    (function(){
+
+      const SUPPORT_EMAIL = 'contact@tailorme.me';
+
+      const cform  = document.getElementById('contactForm');
+
+      const status = document.getElementById('contactStatus');
+
+
+
+      function setStatus(msg, ok = true){
+
+        if (!status) return;
+
+        status.textContent = msg;
+
+        status.style.color = ok ? '#9fe3a1' : '#ffb3b3';
+
+      }
+
+
+
+      if (!cform) return;
+
+
+
+      cform.addEventListener('submit', (e) => {
+
+        e.preventDefault();
+
+
+
+        const name    = cform.name?.value.trim();
+
+        const email   = cform.email?.value.trim();
+
+        const phone   = cform.phone?.value.trim() || '';
+
+        const subject = cform.subject?.value.trim() || 'TailorMe Inquiry';
+
+        const message = cform.message?.value.trim();
+
+
+
+        if (!name || !email || !message){
+
+          setStatus('Please fill required fields (name, email, message).', false);
+
+          return;
+
+        }
+
+
+
+        const lines = [
+
+          `Name: ${name}`,
+
+          `Email: ${email}`,
+
+          phone ? `Phone: ${phone}` : '',
+
+          '',
+
+          'Message:',
+
+          message,
+
+          '',
+
+          '— Sent from TailorMe Contact form'
+
+        ].filter(Boolean).join('\n');
+
+
+
+        const mailto = `mailto:${encodeURIComponent(SUPPORT_EMAIL)}`
+
+          + `?subject=${encodeURIComponent('TailorMe Contact — ' + subject)}`
+
+          + `&body=${encodeURIComponent(lines)}`;
+
+
+
+        // فتح تطبيق البريد لدى المستخدم
+
+        window.location.href = mailto;
+
+
+
+        setStatus('Opening your email app… If nothing opens, please email contact@tailorme.me.');
+
+        setTimeout(() => { cform.reset(); }, 800);
+
+      });
+
+    })();
 
   </script>
 
