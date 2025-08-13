@@ -168,31 +168,43 @@
 
   <script>
 
-    // ===== Web App URL (جاهز) =====
+    // === رابط الويب آب (أحدث واحد) ===
 
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwCoG_JRmDASWhnrFX0f98rMWUOIbKVzs6eyCBkNU_t7YAuQVmRfoPdNqPqfvL1EEm4/exec';
 
+    // صفحة الشكر (مسار مطلق لتجنّب 404)
+
+    const THANK_YOU_URL = 'https://tailorme.me/thank-you.html';
 
 
-    const $ = sel => document.querySelector(sel);
+
+    const $ = s => document.querySelector(s);
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
-
-
-    const form = $('#appointmentForm');
-
-    const statusEl = $('#status');
-
-    const submitBtn = $('#submitBtn');
+    const form = $('#appointmentForm'), statusEl = $('#status'), submitBtn = $('#submitBtn');
 
 
 
-    function showStatus(msg, ok = true){
+    function showStatus(msg, ok=true){ statusEl.textContent = msg; statusEl.style.color = ok ? '#c1ffd6' : '#ffb3b3'; }
 
-      statusEl.textContent = msg;
 
-      statusEl.style.color = ok ? '#c1ffd6' : '#ffb3b3';
+
+    async function goThankYou(){
+
+      try {
+
+        const r = await fetch(THANK_YOU_URL, { method: 'HEAD', cache: 'no-store' });
+
+        if (r.ok) window.location.replace(THANK_YOU_URL);
+
+        else { showStatus('✅ Booking received. Confirmation email sent.', true); form.reset(); submitBtn.disabled = false; }
+
+      } catch {
+
+        showStatus('✅ Booking received. Check your email & Sheet.', true); form.reset(); submitBtn.disabled = false;
+
+      }
 
     }
 
@@ -202,9 +214,7 @@
 
       e.preventDefault();
 
-      showStatus('Submitting…');
-
-      submitBtn.disabled = true;
+      showStatus('Submitting…'); submitBtn.disabled = true;
 
 
 
@@ -232,13 +242,11 @@
 
 
 
-      // تحقق سريع
+      const req = ['name','email','phone','address','service','pieces','pickup_date','pickup_time'];
 
-      const required = ['name','email','phone','address','service','pieces','pickup_date','pickup_time'];
+      for (const k of req){ if(!payload[k]){ showStatus('Please fill all required fields.', false); submitBtn.disabled=false; return; } }
 
-      for (const k of required){ if(!payload[k]){ showStatus('Please fill all required fields.', false); submitBtn.disabled = false; return; } }
-
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) { showStatus('Please enter a valid email address.', false); submitBtn.disabled = false; return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)){ showStatus('Please enter a valid email.', false); submitBtn.disabled=false; return; }
 
 
 
@@ -246,51 +254,27 @@
 
       try {
 
-        const res = await fetch(WEB_APP_URL, {
+        const res = await fetch(WEB_APP_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
 
-          method: 'POST',
-
-          headers: { 'Content-Type': 'application/json' },
-
-          body: JSON.stringify(payload)
-
-        });
-
-        if (!res.ok) throw new Error('HTTP ' + res.status);
+        if (!res.ok) throw new Error('HTTP '+res.status);
 
         const data = await res.json();
 
-        if (data && data.ok) {
-
-          window.location.href = 'thank-you.html';
-
-          return;
-
-        }
+        if (data && data.ok) { goThankYou(); return; }
 
         throw new Error('Unexpected response');
 
-      } catch (err) {
+      } catch {
 
-        // محاولة 2: no-cors (توافق)—لن نقرأ الرد، لكن السكربت يستقبل ويحفظ ويرسل الإيميل
+        // محاولة 2: وضع التوافق no-cors
 
         try {
 
-          await fetch(WEB_APP_URL, {
+          await fetch(WEB_APP_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
 
-            method: 'POST',
+          goThankYou();
 
-            mode: 'no-cors',
-
-            headers: { 'Content-Type': 'application/json' },
-
-            body: JSON.stringify(payload)
-
-          });
-
-          window.location.href = 'thank-you.html';
-
-        } catch (e2) {
+        } catch {
 
           showStatus('❌ Could not submit. Re-check Web App access (Anyone) and re-deploy, then try again.', false);
 
