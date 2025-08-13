@@ -1,12 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
- xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
- http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator https://sitemap-generator.org/ -->
-  <url>
-   <loc>https://tailorme.me/</loc>
-   <lastmod>2025-08-13T14:46:24.000Z</lastmod>
-   <priority>1.00</priority>
- </url>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+
+    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+
+
+    <!-- الصفحة الرئيسية -->
+
+    <url>
+
+        <loc>https://tailorme.me/</loc>
+
+        <priority>1.00</priority>
+
+    </url>
+
+
+
+    <!-- صفحة Booking -->
+
+    <url>
+
+        <loc>https://tailorme.me/Booking.html</loc>
+
+        <priority>0.80</priority>
+
+    </url>
+
+
+
+    <!-- صفحة Booking Luxury 1 -->
+
+    <url>
+
+        <loc>https://tailorme.me/Booking_Luxury_TailorMe.html</loc>
+
+        <priority>0.80</priority>
+
+    </url>
+
+
+
+    <!-- صفحة Booking Luxury 2 -->
+
+    <url>
+
+        <loc>https://tailorme.me/Booking_Luxury_TailorMe%202.html</loc>
+
+        <priority>0.80</priority>
+
+    </url>
+
+
+
+    <!-- صفحة TailorMeSite -->
+
+    <url>
+
+        <loc>https://tailorme.me/TailorMeSite</loc>
+
+        <priority>0.70</priority>
+
+    </url>
+
+
+
+    <!-- صفحة TailorMe Final -->
+
+    <url>
+
+        <loc>https://tailorme.me/TailorMe_Final_Cleaned_V2%202.html</loc>
+
+        <priority>0.70</priority>
+
+    </url>
+
+
+
 </urlset>
