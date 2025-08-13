@@ -18,11 +18,23 @@
 
   <url>
 
+    <loc>https://tailorme.me/index.html</loc>
+
+    <lastmod>2025-08-13</lastmod>
+
+    <priority>1.00</priority>
+
+  </url>
+
+
+
+  <url>
+
     <loc>https://tailorme.me/Booking.html</loc>
 
     <lastmod>2025-08-13</lastmod>
 
-    <priority>0.80</priority>
+    <priority>0.90</priority>
 
   </url>
 
@@ -34,7 +46,7 @@
 
     <lastmod>2025-08-13</lastmod>
 
-    <priority>0.80</priority>
+    <priority>0.90</priority>
 
   </url>
 
@@ -46,7 +58,7 @@
 
     <lastmod>2025-08-13</lastmod>
 
-    <priority>0.80</priority>
+    <priority>0.90</priority>
 
   </url>
 
@@ -59,6 +71,54 @@
     <lastmod>2025-08-13</lastmod>
 
     <priority>0.80</priority>
+
+  </url>
+
+
+
+  <url>
+
+    <loc>https://tailorme.me/payment.html</loc>
+
+    <lastmod>2025-08-13</lastmod>
+
+    <priority>0.80</priority>
+
+  </url>
+
+
+
+  <url>
+
+    <loc>https://tailorme.me/price-list.html</loc>
+
+    <lastmod>2025-08-13</lastmod>
+
+    <priority>0.80</priority>
+
+  </url>
+
+
+
+  <url>
+
+    <loc>https://tailorme.me/thank-you.html</loc>
+
+    <lastmod>2025-08-13</lastmod>
+
+    <priority>0.70</priority>
+
+  </url>
+
+
+
+  <url>
+
+    <loc>https://tailorme.me/thankyou.html</loc>
+
+    <lastmod>2025-08-13</lastmod>
+
+    <priority>0.70</priority>
 
   </url>
 
