@@ -1,84 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-
-    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-
-    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 
 
-    <!-- الصفحة الرئيسية -->
+  <url>
 
-    <url>
+    <loc>https://tailorme.me/</loc>
 
-        <loc>https://tailorme.me/</loc>
+    <lastmod>2025-08-13</lastmod>
 
-        <priority>1.00</priority>
+    <priority>1.00</priority>
 
-    </url>
-
-
-
-    <!-- صفحة Booking -->
-
-    <url>
-
-        <loc>https://tailorme.me/Booking.html</loc>
-
-        <priority>0.80</priority>
-
-    </url>
+  </url>
 
 
 
-    <!-- صفحة Booking Luxury 1 -->
+  <url>
 
-    <url>
+    <loc>https://tailorme.me/Booking.html</loc>
 
-        <loc>https://tailorme.me/Booking_Luxury_TailorMe.html</loc>
+    <lastmod>2025-08-13</lastmod>
 
-        <priority>0.80</priority>
+    <priority>0.80</priority>
 
-    </url>
-
-
-
-    <!-- صفحة Booking Luxury 2 -->
-
-    <url>
-
-        <loc>https://tailorme.me/Booking_Luxury_TailorMe%202.html</loc>
-
-        <priority>0.80</priority>
-
-    </url>
+  </url>
 
 
 
-    <!-- صفحة TailorMeSite -->
+  <url>
 
-    <url>
+    <loc>https://tailorme.me/Booking_Luxury_TailorMe%202.html</loc>
 
-        <loc>https://tailorme.me/TailorMeSite</loc>
+    <lastmod>2025-08-13</lastmod>
 
-        <priority>0.70</priority>
+    <priority>0.80</priority>
 
-    </url>
+  </url>
 
 
 
-    <!-- صفحة TailorMe Final -->
+  <url>
 
-    <url>
+    <loc>https://tailorme.me/Booking_Luxury_TailorMe.html</loc>
 
-        <loc>https://tailorme.me/TailorMe_Final_Cleaned_V2%202.html</loc>
+    <lastmod>2025-08-13</lastmod>
 
-        <priority>0.70</priority>
+    <priority>0.80</priority>
 
-    </url>
+  </url>
+
+
+
+  <url>
+
+    <loc>https://tailorme.me/TailorMe_Final_Cleaned_V2%202.html</loc>
+
+    <lastmod>2025-08-13</lastmod>
+
+    <priority>0.80</priority>
+
+  </url>
 
 
 
