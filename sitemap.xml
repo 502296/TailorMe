@@ -2,126 +2,36 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-
-
-  <url>
-
-    <loc>https://tailorme.me/</loc>
-
-    <lastmod>2025-08-13</lastmod>
-
-    <priority>1.00</priority>
-
-  </url>
-
-
-
   <url>
 
     <loc>https://tailorme.me/index.html</loc>
 
-    <lastmod>2025-08-13</lastmod>
-
     <priority>1.00</priority>
 
   </url>
 
-
-
   <url>
 
-    <loc>https://tailorme.me/Booking.html</loc>
-
-    <lastmod>2025-08-13</lastmod>
-
-    <priority>0.90</priority>
-
-  </url>
-
-
-
-  <url>
-
-    <loc>https://tailorme.me/Booking_Luxury_TailorMe%202.html</loc>
-
-    <lastmod>2025-08-13</lastmod>
-
-    <priority>0.90</priority>
-
-  </url>
-
-
-
-  <url>
-
-    <loc>https://tailorme.me/Booking_Luxury_TailorMe.html</loc>
-
-    <lastmod>2025-08-13</lastmod>
-
-    <priority>0.90</priority>
-
-  </url>
-
-
-
-  <url>
-
-    <loc>https://tailorme.me/TailorMe_Final_Cleaned_V2%202.html</loc>
-
-    <lastmod>2025-08-13</lastmod>
+    <loc>https://tailorme.me/appointment.html</loc>
 
     <priority>0.80</priority>
 
   </url>
-
-
-
-  <url>
-
-    <loc>https://tailorme.me/payment.html</loc>
-
-    <lastmod>2025-08-13</lastmod>
-
-    <priority>0.80</priority>
-
-  </url>
-
-
 
   <url>
 
     <loc>https://tailorme.me/price-list.html</loc>
 
-    <lastmod>2025-08-13</lastmod>
-
     <priority>0.80</priority>
 
   </url>
-
-
 
   <url>
 
     <loc>https://tailorme.me/thank-you.html</loc>
 
-    <lastmod>2025-08-13</lastmod>
-
-    <priority>0.70</priority>
+    <priority>0.80</priority>
 
   </url>
-
-
-
-  <url>
-
-    <loc>https://tailorme.me/thankyou.html</loc>
-
-    <lastmod>2025-08-13</lastmod>
-
-    <priority>0.70</priority>
-
-  </url>
-
-
 
 </urlset>
