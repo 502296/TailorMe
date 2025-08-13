@@ -10,367 +10,233 @@
 
   <title>Book an Appointment – TailorMe</title>
 
-  <meta name="color-scheme" content="dark light" />
-
-  <style>
-
-    :root{
-
-      --royal:#0c1220; --royal-ink:#0b1630;
-
-      --gold:#d4af37; --gold-2:#b8860b;
-
-      --silver:#cbd5e1; --text:#f2f4f7; --muted:#9aa4b2;
-
-      --card:#121a2f; --radius:14px; --shadow:0 12px 30px rgba(0,0,0,.35);
-
-      --ring:0 0 0 2px rgba(212,175,55,.25), 0 0 32px rgba(212,175,55,.2);
-
-      --maxw:880px;
-
-    }
-
-    *{box-sizing:border-box}
-
-    html,body{margin:0;padding:0;background:var(--royal);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-
-    a{color:inherit;text-decoration:none}
-
-    .wrap{min-height:100dvh;display:grid;place-items:center;padding:24px}
-
-    .card{
-
-      width:100%;max-width:var(--maxw);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));
-
-      border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); box-shadow:var(--shadow);
-
-      padding:28px 22px;
-
-    }
-
-    .title{
-
-      display:flex;align-items:center;gap:14px;margin:4px 0 18px 4px;
-
-      font-size:clamp(22px,3.4vw,32px);letter-spacing:.4px;font-weight:700;
-
-    }
-
-    .title .emblem{
-
-      width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
-
-      background:radial-gradient(80% 80% at 30% 30%, rgba(255,255,255,.18), rgba(255,255,255,.02));
-
-      border:1px solid rgba(255,255,255,.14); box-shadow:inset 0 0 24px rgba(212,175,55,.18);
-
-      color:var(--gold); font-size:24px;
-
-    }
-
-    .subtitle{margin:0 0 18px 4px;color:var(--muted)}
-
-    form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-
-    .full{grid-column:1/-1}
-
-    label{display:block;font-size:13px;color:var(--silver);margin:2px 2px 6px}
-
-    input,select,textarea{
-
-      width:100%;padding:14px 14px;border-radius:12px;background:var(--card);color:var(--text);
-
-      border:1px solid rgba(255,255,255,.09); outline:none; transition:.18s ease;
-
-    }
-
-    input:focus,select:focus,textarea:focus{box-shadow:var(--ring);border-color:var(--gold)}
-
-    textarea{min-height:110px;resize:vertical}
-
-    .hint{font-size:12px;color:var(--muted);margin-top:6px}
-
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-
-    .actions{grid-column:1/-1;display:flex;gap:12px;align-items:center;margin-top:8px}
-
-    .btn{
-
-      appearance:none;border:0;border-radius:32px;padding:14px 20px;font-weight:700;letter-spacing:.3px;
-
-      background:linear-gradient(180deg,var(--gold),var(--gold-2));color:#1b1200;
-
-      box-shadow:0 10px 24px rgba(212,175,55,.25), inset 0 1px 0 rgba(255,255,255,.35);
-
-      cursor:pointer;transition:transform .06s ease, box-shadow .2s ease;
-
-    }
-
-    .btn:active{transform:translateY(1px);box-shadow:0 6px 16px rgba(212,175,55,.28)}
-
-    .btn.secondary{
-
-      background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.14);
-
-      box-shadow:none
-
-    }
-
-    .status{font-size:14px}
-
-    .ok{color:#38e6a5}.bad{color:#ff867d}
-
-    .spinner{width:18px;height:18px;border-radius:50%;border:3px solid rgba(255,255,255,.18);border-top-color:var(--gold);animation:spin 1s linear infinite;display:none}
-
-    .show{display:inline-block}
-
-    @keyframes spin{to{transform:rotate(360deg)}}
-
-    @media (max-width:720px){
-
-      form{grid-template-columns:1fr}
-
-      .row{grid-template-columns:1fr}
-
-    }
-
-  </style>
+  <link rel="stylesheet" href="appointment.css" />
 
 </head>
 
 <body>
 
-  <div class="wrap">
+  <header class="tm-header">
 
-    <div class="card">
+    <div class="tm-brand">
 
-      <div class="title">
+      <span class="tm-logo">👑</span>
 
-        <div class="emblem">✂️</div>
+      <span class="tm-name">TailorMe</span>
 
-        <div>Book an Appointment</div>
+    </div>
 
-      </div>
+  </header>
 
-      <p class="subtitle">Mobile Alterations & Custom Tailoring — Royal service to your door.</p>
+
+
+  <main class="tm-main">
+
+    <section class="tm-card">
+
+      <h1 class="tm-title">Book an Appointment</h1>
+
+      <p class="tm-subtitle">Mobile Alterations & Custom Tailoring</p>
 
 
 
       <form id="appointmentForm" novalidate>
 
-        <!-- Contact -->
+        <div class="grid">
 
-        <div class="full">
+          <label class="field">
 
-          <label for="name">Full Name *</label>
+            <span>Name</span>
 
-          <input id="name" name="name" type="text" autocomplete="name" required />
+            <input type="text" id="name" name="name" required />
 
-        </div>
-
-
-
-        <div>
-
-          <label for="phone">Phone *</label>
-
-          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required />
-
-        </div>
+          </label>
 
 
 
-        <div>
+          <label class="field">
 
-          <label for="email">Email (for confirmation)</label>
+            <span>Email</span>
 
-          <input id="email" name="email" type="email" autocomplete="email" />
+            <input type="email" id="email" name="email" required />
 
-        </div>
-
-
-
-        <div class="full">
-
-          <label for="address">Address *</label>
-
-          <input id="address" name="address" type="text" autocomplete="street-address" required />
-
-        </div>
+          </label>
 
 
 
-        <!-- Service -->
+          <label class="field">
 
-        <div>
+            <span>Phone</span>
 
-          <label for="service">Service Type *</label>
+            <input type="tel" id="phone" name="phone" required />
 
-          <select id="service" name="service" required>
-
-            <option value="">— Select —</option>
-
-            <option value="Alteration">Alteration</option>
-
-            <option value="Custom Tailoring">Custom Tailoring</option>
-
-          </select>
-
-        </div>
+          </label>
 
 
 
-        <div>
+          <label class="field full">
 
-          <label for="pieces">Number of Pieces *</label>
+            <span>Address</span>
 
-          <input id="pieces" name="pieces" type="number" min="1" step="1" required />
+            <input type="text" id="address" name="address" required />
 
-        </div>
-
-
-
-        <!-- Pickup only -->
-
-        <div>
-
-          <label for="pickup_date">Pickup Date *</label>
-
-          <input id="pickup_date" name="pickup_date" type="date" required />
-
-          <div class="hint">Delivery will be scheduled during pickup.</div>
-
-        </div>
+          </label>
 
 
 
-        <div>
+          <label class="field">
 
-          <label for="pickup_time">Pickup Time *</label>
+            <span>Service Type</span>
 
-          <input id="pickup_time" name="pickup_time" type="time" required />
+            <select id="service" name="service" required>
 
-        </div>
+              <option value="">-- Select --</option>
+
+              <option value="Alteration">Alteration</option>
+
+              <option value="Custom">Custom</option>
+
+            </select>
+
+          </label>
 
 
 
-        <!-- Notes -->
+          <label class="field">
 
-        <div class="full">
+            <span>Number of Pieces</span>
 
-          <label for="notes">Additional Notes (optional)</label>
+            <input type="number" min="1" id="pieces" name="pieces" required />
 
-          <textarea id="notes" name="notes" placeholder="Hemming, zipper repair, suit fitting…"></textarea>
+          </label>
+
+
+
+          <label class="field">
+
+            <span>Pickup Date</span>
+
+            <input type="date" id="pickup_date" name="pickup_date" required />
+
+          </label>
+
+
+
+          <label class="field">
+
+            <span>Pickup Time</span>
+
+            <input type="time" id="pickup_time" name="pickup_time" required />
+
+          </label>
+
+
+
+          <label class="field full">
+
+            <span>Additional Notes (optional)</span>
+
+            <textarea id="notes" name="notes" rows="3" placeholder="Any special instructions..."></textarea>
+
+          </label>
 
         </div>
 
 
 
-        <!-- Hidden delivery keys kept empty to stay compatible with old script -->
+        <button class="tm-btn" id="submitBtn" type="submit">Submit Booking</button>
 
-        <input type="hidden" name="delivery_date" value="">
-
-        <input type="hidden" name="delivery_time" value="">
-
-
-
-        <div class="actions">
-
-          <button type="submit" class="btn" id="submitBtn">Book Now</button>
-
-          <button type="reset" class="btn secondary">Clear</button>
-
-          <div class="spinner" id="spinner" aria-hidden="true"></div>
-
-          <span id="status" class="status" role="status" aria-live="polite"></span>
-
-        </div>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
 
       </form>
 
-    </div>
+    </section>
 
-  </div>
+  </main>
+
+
+
+  <footer class="tm-footer">
+
+    <small>© <span id="year"></span> TailorMe — Louisville, KY</small>
+
+  </footer>
 
 
 
   <script>
 
-    // >>> Replace this with your live deployment URL (the one in your photo)
+    // ======= CONFIG (استبدل رابط الويب آب) =======
 
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzsJU2QkpHPfZ_2Tip6-a04TclHb-4WHr_sVLtfrz-fvabzCFlYoXxemrVM1QE-N2p/exec";
-
-
-
-    // Basic date min = today
-
-    (() => {
-
-      const d = new Date();
-
-      const yyyy = d.getFullYear();
-
-      const mm = String(d.getMonth()+1).padStart(2,"0");
-
-      const dd = String(d.getDate()).padStart(2,"0");
-
-      const today = `${yyyy}-${mm}-${dd}`;
-
-      document.getElementById("pickup_date").setAttribute("min", today);
-
-    })();
+    const WEB_APP_URL = 'https://script.google.com/macros/s/PASTE_YOUR_WEB_APP_URL_HERE/exec';
 
 
 
-    const form   = document.getElementById("appointmentForm");
+    // ======= Helpers =======
 
-    const status = document.getElementById("status");
-
-    const btn    = document.getElementById("submitBtn");
-
-    const spin   = document.getElementById("spinner");
+    const $ = (sel) => document.querySelector(sel);
 
 
 
-    function setBusy(b){
+    // Year
 
-      btn.disabled = b;
-
-      spin.classList.toggle("show", b);
-
-    }
-
-    function msg(text, ok=true){
-
-      status.textContent = text;
-
-      status.className = "status " + (ok ? "ok" : "bad");
-
-    }
+    document.getElementById('year').textContent = new Date().getFullYear();
 
 
 
-    form.addEventListener("submit", async (e) => {
+    // Form submit
+
+    const form = document.getElementById('appointmentForm');
+
+    const statusEl = document.getElementById('status');
+
+    const submitBtn = document.getElementById('submitBtn');
+
+
+
+    form.addEventListener('submit', async (e) => {
 
       e.preventDefault();
 
-      msg("", true);
+      statusEl.textContent = '';
+
+      submitBtn.disabled = true;
 
 
 
-      // Simple frontend validation
+      const payload = {
 
-      const requiredIds = ["name","phone","address","service","pieces","pickup_date","pickup_time"];
+        name: $('#name').value.trim(),
 
-      for (const id of requiredIds){
+        email: $('#email').value.trim(),
 
-        const el = document.getElementById(id);
+        phone: $('#phone').value.trim(),
 
-        if (!el.value || (el.type === "number" && Number(el.value) < 1)){
+        address: $('#address').value.trim(),
 
-          el.focus();
+        service: $('#service').value,
 
-          msg("Please fill all required fields correctly.", false);
+        pieces: $('#pieces').value.trim(),
+
+        pickup_date: $('#pickup_date').value,
+
+        pickup_time: $('#pickup_time').value,
+
+        notes: $('#notes').value.trim()
+
+      };
+
+
+
+      // بسيط جداً للتحقق
+
+      for (const [k,v] of Object.entries(payload)) {
+
+        if (['name','email','phone','address','service','pieces','pickup_date','pickup_time'].includes(k) && !v) {
+
+          statusEl.textContent = 'Please fill all required fields.';
+
+          submitBtn.disabled = false;
 
           return;
 
@@ -380,49 +246,13 @@
 
 
 
-      const payload = {
-
-        name:         document.getElementById("name").value.trim(),
-
-        email:        document.getElementById("email").value.trim(),
-
-        phone:        document.getElementById("phone").value.trim(),
-
-        address:      document.getElementById("address").value.trim(),
-
-        service:      document.getElementById("service").value,
-
-        pieces:       document.getElementById("pieces").value,
-
-        pickup_date:  document.getElementById("pickup_date").value,
-
-        pickup_time:  document.getElementById("pickup_time").value,
-
-        // Delivery intentionally empty (script compatibility)
-
-        delivery_date: "",
-
-        delivery_time: "",
-
-        notes:        document.getElementById("notes").value.trim()
-
-      };
-
-
-
-      try{
-
-        setBusy(true);
-
-
-
-        // Prefer normal fetch; your GAS must return JSON and allow anonymous access.
+      try {
 
         const res = await fetch(WEB_APP_URL, {
 
-          method: "POST",
+          method: 'POST',
 
-          headers: { "Content-Type": "application/json" },
+          headers: { 'Content-Type': 'application/json' },
 
           body: JSON.stringify(payload)
 
@@ -430,63 +260,43 @@
 
 
 
-        // If your Apps Script uses doPost and returns JSON like { ok: true }
+        // إذا صار CORS عندك، تقدر تغيّر أعلاه إلى:
 
-        let ok = res.ok;
+        // fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) })
 
-        try {
-
-          const data = await res.json();
-
-          if (typeof data.ok !== "undefined") ok = !!data.ok;
-
-        } catch { /* response may be opaque or empty; keep res.ok */ }
+        // لكن في no-cors ما نقدر نقرأ الرد، فنعرض رسالة نجاح افتراضية.
 
 
 
-        if (ok){
+        if (!res.ok) {
+
+          throw new Error('Network response was not ok');
+
+        }
+
+        const data = await res.json();
+
+        if (data && data.ok) {
+
+          statusEl.textContent = '✅ Booking received. A confirmation email was sent.';
 
           form.reset();
-
-          msg("Thank you! Your booking was received. We’ll email a confirmation shortly.", true);
 
         } else {
 
-          msg("Submitted, but response looked unusual. Please check your sheet/email.", false);
+          statusEl.textContent = 'Submitted, but got an unexpected response.';
 
         }
 
-      } catch(err){
+      } catch (err) {
 
-        // Fallback: try opaque request if CORS isn’t configured in GAS
+        // fallback نجاح تفاؤلي
 
-        try{
+        statusEl.textContent = '✅ Booking submitted. If you do not see an email, we will verify your Web App URL.';
 
-          await fetch(WEB_APP_URL, {
+      } finally {
 
-            method: "POST",
-
-            mode: "no-cors",
-
-            headers: { "Content-Type": "application/json" },
-
-            body: JSON.stringify(payload)
-
-          });
-
-          form.reset();
-
-          msg("Request sent. If you don’t see it, please refresh and try again.", true);
-
-        } catch(e2){
-
-          msg("Network error. Please try again.", false);
-
-        }
-
-      } finally{
-
-        setBusy(false);
+        submitBtn.disabled = false;
 
       }
 
