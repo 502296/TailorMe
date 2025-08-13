@@ -58,7 +58,9 @@
 
             <span>Email</span>
 
-            <input type="email" id="email" name="email" required />
+            <input type="email" id="email" name="email" required inputmode="email" autocomplete="email"
+
+                   pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" />
 
           </label>
 
@@ -166,23 +168,33 @@
 
   <script>
 
-    // ======= CONFIG: Web App URL (جاهز) =======
+    // ===== Web App URL (جاهز) =====
 
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwCoG_JRmDASWhnrFX0f98rMWUOIbKVzs6eyCBkNU_t7YAuQVmRfoPdNqPqfvL1EEm4/exec';
 
 
 
-    const $ = (sel) => document.querySelector(sel);
+    const $ = sel => document.querySelector(sel);
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
 
 
-    const form = document.getElementById('appointmentForm');
+    const form = $('#appointmentForm');
 
-    const statusEl = document.getElementById('status');
+    const statusEl = $('#status');
 
-    const submitBtn = document.getElementById('submitBtn');
+    const submitBtn = $('#submitBtn');
+
+
+
+    function showStatus(msg, ok = true){
+
+      statusEl.textContent = msg;
+
+      statusEl.style.color = ok ? '#c1ffd6' : '#ffb3b3';
+
+    }
 
 
 
@@ -190,7 +202,7 @@
 
       e.preventDefault();
 
-      statusEl.textContent = '';
+      showStatus('Submitting…');
 
       submitBtn.disabled = true;
 
@@ -220,13 +232,17 @@
 
 
 
-      for (const k of ['name','email','phone','address','service','pieces','pickup_date','pickup_time']){
+      // تحقق سريع
 
-        if (!payload[k]) { statusEl.textContent = 'Please fill all required fields.'; submitBtn.disabled = false; return; }
+      const required = ['name','email','phone','address','service','pieces','pickup_date','pickup_time'];
 
-      }
+      for (const k of required){ if(!payload[k]){ showStatus('Please fill all required fields.', false); submitBtn.disabled = false; return; } }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) { showStatus('Please enter a valid email address.', false); submitBtn.disabled = false; return; }
 
 
+
+      // محاولة 1: طلب عادي
 
       try {
 
@@ -240,35 +256,47 @@
 
         });
 
-
-
-        if (!res.ok) throw new Error('Network response was not ok');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
 
         const data = await res.json();
 
         if (data && data.ok) {
 
-          statusEl.textContent = '✅ Booking received. A confirmation email was sent.';
+          window.location.href = 'thank-you.html';
 
-          form.reset();
-
-        } else {
-
-          statusEl.textContent = 'Submitted, but got an unexpected response.';
+          return;
 
         }
 
+        throw new Error('Unexpected response');
+
       } catch (err) {
 
-        // إذا واجهت CORS، يمكنك تبديل الاستدعاء مؤقتًا إلى no-cors (لن نقرأ الرد لكن البيانات ستُحفظ وسيُرسل الإيميل)
+        // محاولة 2: no-cors (توافق)—لن نقرأ الرد، لكن السكربت يستقبل ويحفظ ويرسل الإيميل
 
-        // await fetch(WEB_APP_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+        try {
 
-        statusEl.textContent = '✅ Booking submitted. If no email appears, we will verify Web App settings.';
+          await fetch(WEB_APP_URL, {
 
-      } finally {
+            method: 'POST',
 
-        submitBtn.disabled = false;
+            mode: 'no-cors',
+
+            headers: { 'Content-Type': 'application/json' },
+
+            body: JSON.stringify(payload)
+
+          });
+
+          window.location.href = 'thank-you.html';
+
+        } catch (e2) {
+
+          showStatus('❌ Could not submit. Re-check Web App access (Anyone) and re-deploy, then try again.', false);
+
+          submitBtn.disabled = false;
+
+        }
 
       }
 
