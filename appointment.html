@@ -4,57 +4,135 @@
 
 <head>
 
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
   <title>Book an Appointment – TailorMe</title>
 
+  <meta name="color-scheme" content="dark light" />
+
   <style>
 
-    :root{--royal:#0c1220;--card:#121a2f;--gold:#d4af37;--muted:#9aa4b2;--text:#f2f4f7;--radius:14px;--shadow:0 12px 30px rgba(0,0,0,.35)}
+    :root{
+
+      --royal:#0c1220; --royal-ink:#0b1630;
+
+      --gold:#d4af37; --gold-2:#b8860b;
+
+      --silver:#cbd5e1; --text:#f2f4f7; --muted:#9aa4b2;
+
+      --card:#121a2f; --radius:14px; --shadow:0 12px 30px rgba(0,0,0,.35);
+
+      --ring:0 0 0 2px rgba(212,175,55,.25), 0 0 32px rgba(212,175,55,.2);
+
+      --maxw:880px;
+
+    }
 
     *{box-sizing:border-box}
 
-    html,body{margin:0;background:var(--royal);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    html,body{margin:0;padding:0;background:var(--royal);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 
-    .wrap{max-width:760px;margin:32px auto;padding:16px}
+    a{color:inherit;text-decoration:none}
 
-    .card{background:var(--card);border:1px solid var(--gold);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+    .wrap{min-height:100dvh;display:grid;place-items:center;padding:24px}
 
-    h1{margin:0 0 16px 0;font-size:28px;letter-spacing:.5px}
+    .card{
 
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+      width:100%;max-width:var(--maxw);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));
 
-    .grid .full{grid-column:1/-1}
+      border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); box-shadow:var(--shadow);
 
-    label{display:block;font-size:14px;color:var(--muted);margin:0 0 6px 2px}
+      padding:28px 22px;
 
-    input,select,textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #24304d;background:#0b1630;color:var(--text);outline:none}
+    }
 
-    input:focus,select:focus,textarea:focus{box-shadow:0 0 0 2px rgba(212,175,55,.25)}
+    .title{
+
+      display:flex;align-items:center;gap:14px;margin:4px 0 18px 4px;
+
+      font-size:clamp(22px,3.4vw,32px);letter-spacing:.4px;font-weight:700;
+
+    }
+
+    .title .emblem{
+
+      width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+
+      background:radial-gradient(80% 80% at 30% 30%, rgba(255,255,255,.18), rgba(255,255,255,.02));
+
+      border:1px solid rgba(255,255,255,.14); box-shadow:inset 0 0 24px rgba(212,175,55,.18);
+
+      color:var(--gold); font-size:24px;
+
+    }
+
+    .subtitle{margin:0 0 18px 4px;color:var(--muted)}
+
+    form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+    .full{grid-column:1/-1}
+
+    label{display:block;font-size:13px;color:var(--silver);margin:2px 2px 6px}
+
+    input,select,textarea{
+
+      width:100%;padding:14px 14px;border-radius:12px;background:var(--card);color:var(--text);
+
+      border:1px solid rgba(255,255,255,.09); outline:none; transition:.18s ease;
+
+    }
+
+    input:focus,select:focus,textarea:focus{box-shadow:var(--ring);border-color:var(--gold)}
 
     textarea{min-height:110px;resize:vertical}
 
-    .btn{appearance:none;cursor:pointer;width:100%;padding:14px 16px;border-radius:12px;border:none;background:linear-gradient(180deg,#e1c46a,#d4af37 60%,#b8860b);color:#1a1a1a;font-weight:700;font-size:16px;letter-spacing:.3px;transition:transform .05s ease}
+    .hint{font-size:12px;color:var(--muted);margin-top:6px}
 
-    .btn:active{transform:translateY(1px)}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
-    .row{display:flex;gap:12px;align-items:center;margin-top:14px}
+    .actions{grid-column:1/-1;display:flex;gap:12px;align-items:center;margin-top:8px}
 
-    .hint{color:var(--muted);font-size:13px}
+    .btn{
 
-    .ok,.err{padding:10px 12px;border-radius:10px;display:none;margin-top:12px}
+      appearance:none;border:0;border-radius:32px;padding:14px 20px;font-weight:700;letter-spacing:.3px;
 
-    .ok{border:1px solid #2bb673;background:#0f2a1b}
+      background:linear-gradient(180deg,var(--gold),var(--gold-2));color:#1b1200;
 
-    .err{border:1px solid #b63b2b;background:#2a0f0f}
+      box-shadow:0 10px 24px rgba(212,175,55,.25), inset 0 1px 0 rgba(255,255,255,.35);
 
-    .spinner{display:none;margin-left:8px;width:18px;height:18px;border:3px solid #3a4768;border-top-color:#d4af37;border-radius:50%;animation:spin .8s linear infinite}
+      cursor:pointer;transition:transform .06s ease, box-shadow .2s ease;
+
+    }
+
+    .btn:active{transform:translateY(1px);box-shadow:0 6px 16px rgba(212,175,55,.28)}
+
+    .btn.secondary{
+
+      background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.14);
+
+      box-shadow:none
+
+    }
+
+    .status{font-size:14px}
+
+    .ok{color:#38e6a5}.bad{color:#ff867d}
+
+    .spinner{width:18px;height:18px;border-radius:50%;border:3px solid rgba(255,255,255,.18);border-top-color:var(--gold);animation:spin 1s linear infinite;display:none}
+
+    .show{display:inline-block}
 
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    @media (max-width:640px){.grid{grid-template-columns:1fr}}
+    @media (max-width:720px){
+
+      form{grid-template-columns:1fr}
+
+      .row{grid-template-columns:1fr}
+
+    }
 
   </style>
 
@@ -66,121 +144,147 @@
 
     <div class="card">
 
-      <h1>👑 Book an Appointment (Pickup)</h1>
+      <div class="title">
 
-      <form id="bookingForm" autocomplete="on">
+        <div class="emblem">✂️</div>
 
-        <div class="grid">
+        <div>Book an Appointment</div>
 
-          <div class="full">
+      </div>
 
-            <label for="email">Email</label>
-
-            <input id="email" name="email" type="email" placeholder="you@example.com" required />
-
-          </div>
+      <p class="subtitle">Mobile Alterations & Custom Tailoring — Royal service to your door.</p>
 
 
 
-          <div>
+      <form id="appointmentForm" novalidate>
 
-            <label for="name">Full Name</label>
+        <!-- Contact -->
 
-            <input id="name" name="name" type="text" placeholder="Ali Kathem" required />
+        <div class="full">
 
-          </div>
+          <label for="name">Full Name *</label>
 
-          <div>
-
-            <label for="phone">Phone</label>
-
-            <input id="phone" name="phone" type="tel" placeholder="(502) 296-8168" required />
-
-          </div>
-
-
-
-          <div class="full">
-
-            <label for="address">Address</label>
-
-            <input id="address" name="address" type="text" placeholder="Street, City, State" required />
-
-          </div>
-
-
-
-          <div>
-
-            <label for="service">Service Type</label>
-
-            <select id="service" name="service" required>
-
-              <option value="" selected disabled>-- Select --</option>
-
-              <option value="Alteration">Alteration</option>
-
-              <option value="Custom Tailoring">Custom Tailoring</option>
-
-            </select>
-
-          </div>
-
-          <div>
-
-            <label for="pieces">Number of Pieces</label>
-
-            <input id="pieces" name="pieces" type="number" min="1" step="1" placeholder="1" required />
-
-          </div>
-
-
-
-          <div>
-
-            <label for="pickup_date">Pickup Date</label>
-
-            <input id="pickup_date" name="pickup_date" type="date" required />
-
-          </div>
-
-          <div>
-
-            <label for="pickup_time">Pickup Time</label>
-
-            <input id="pickup_time" name="pickup_time" type="time" required />
-
-          </div>
-
-
-
-          <div class="full">
-
-            <label for="notes">Additional Notes (optional)</label>
-
-            <textarea id="notes" name="notes" placeholder="Fit notes, parking tips, gate code, etc."></textarea>
-
-          </div>
+          <input id="name" name="name" type="text" autocomplete="name" required />
 
         </div>
 
 
 
-        <div class="row">
+        <div>
 
-          <button class="btn" id="submitBtn" type="submit">Submit Booking</button>
+          <label for="phone">Phone *</label>
 
-          <div class="spinner" id="spin"></div>
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required />
 
         </div>
 
-        <div class="hint">A confirmation email goes to <b>contact@tailorme.me</b> (CC to your email).</div>
+
+
+        <div>
+
+          <label for="email">Email (for confirmation)</label>
+
+          <input id="email" name="email" type="email" autocomplete="email" />
+
+        </div>
 
 
 
-        <div id="ok" class="ok">✅ Thank you! Your pickup booking was submitted.</div>
+        <div class="full">
 
-        <div id="err" class="err">❌ Something went wrong. Please try again.</div>
+          <label for="address">Address *</label>
+
+          <input id="address" name="address" type="text" autocomplete="street-address" required />
+
+        </div>
+
+
+
+        <!-- Service -->
+
+        <div>
+
+          <label for="service">Service Type *</label>
+
+          <select id="service" name="service" required>
+
+            <option value="">— Select —</option>
+
+            <option value="Alteration">Alteration</option>
+
+            <option value="Custom Tailoring">Custom Tailoring</option>
+
+          </select>
+
+        </div>
+
+
+
+        <div>
+
+          <label for="pieces">Number of Pieces *</label>
+
+          <input id="pieces" name="pieces" type="number" min="1" step="1" required />
+
+        </div>
+
+
+
+        <!-- Pickup only -->
+
+        <div>
+
+          <label for="pickup_date">Pickup Date *</label>
+
+          <input id="pickup_date" name="pickup_date" type="date" required />
+
+          <div class="hint">Delivery will be scheduled during pickup.</div>
+
+        </div>
+
+
+
+        <div>
+
+          <label for="pickup_time">Pickup Time *</label>
+
+          <input id="pickup_time" name="pickup_time" type="time" required />
+
+        </div>
+
+
+
+        <!-- Notes -->
+
+        <div class="full">
+
+          <label for="notes">Additional Notes (optional)</label>
+
+          <textarea id="notes" name="notes" placeholder="Hemming, zipper repair, suit fitting…"></textarea>
+
+        </div>
+
+
+
+        <!-- Hidden delivery keys kept empty to stay compatible with old script -->
+
+        <input type="hidden" name="delivery_date" value="">
+
+        <input type="hidden" name="delivery_time" value="">
+
+
+
+        <div class="actions">
+
+          <button type="submit" class="btn" id="submitBtn">Book Now</button>
+
+          <button type="reset" class="btn secondary">Clear</button>
+
+          <div class="spinner" id="spinner" aria-hidden="true"></div>
+
+          <span id="status" class="status" role="status" aria-live="polite"></span>
+
+        </div>
 
       </form>
 
@@ -192,79 +296,197 @@
 
   <script>
 
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbpKWDixIO5GkM9lS52ASSYV4ud8iKabP8jhKaQVuNfWkRNY63yviFy5K8l-ymdOFMuW/exec';
+    // >>> Replace this with your live deployment URL (the one in your photo)
+
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzsJU2QkpHPfZ_2Tip6-a04TclHb-4WHr_sVLtfrz-fvabzCFlYoXxemrVM1QE-N2p/exec";
 
 
 
-    const form = document.getElementById('bookingForm');
+    // Basic date min = today
 
-    const btn  = document.getElementById('submitBtn');
+    (() => {
 
-    const spin = document.getElementById('spin');
+      const d = new Date();
 
-    const okEl = document.getElementById('ok');
+      const yyyy = d.getFullYear();
 
-    const errEl= document.getElementById('err');
+      const mm = String(d.getMonth()+1).padStart(2,"0");
+
+      const dd = String(d.getDate()).padStart(2,"0");
+
+      const today = `${yyyy}-${mm}-${dd}`;
+
+      document.getElementById("pickup_date").setAttribute("min", today);
+
+    })();
 
 
 
-    function showError(msg){
+    const form   = document.getElementById("appointmentForm");
 
-      errEl.textContent = msg;
+    const status = document.getElementById("status");
 
-      errEl.style.display = 'block';
+    const btn    = document.getElementById("submitBtn");
+
+    const spin   = document.getElementById("spinner");
+
+
+
+    function setBusy(b){
+
+      btn.disabled = b;
+
+      spin.classList.toggle("show", b);
+
+    }
+
+    function msg(text, ok=true){
+
+      status.textContent = text;
+
+      status.className = "status " + (ok ? "ok" : "bad");
 
     }
 
 
 
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener("submit", async (e) => {
 
       e.preventDefault();
 
-      okEl.style.display='none'; errEl.style.display='none';
+      msg("", true);
 
 
 
-      // 🔒 فحص صارم قبل الإرسال (ليضمن اختيار Service)
+      // Simple frontend validation
 
-      if (!form.reportValidity()) return;
+      const requiredIds = ["name","phone","address","service","pieces","pickup_date","pickup_time"];
 
-      const service = document.getElementById('service').value;
+      for (const id of requiredIds){
 
-      if (!service) { showError('Please select a Service Type.'); return; }
+        const el = document.getElementById(id);
+
+        if (!el.value || (el.type === "number" && Number(el.value) < 1)){
+
+          el.focus();
+
+          msg("Please fill all required fields correctly.", false);
+
+          return;
+
+        }
+
+      }
 
 
 
-      btn.disabled = true; spin.style.display='inline-block';
+      const payload = {
+
+        name:         document.getElementById("name").value.trim(),
+
+        email:        document.getElementById("email").value.trim(),
+
+        phone:        document.getElementById("phone").value.trim(),
+
+        address:      document.getElementById("address").value.trim(),
+
+        service:      document.getElementById("service").value,
+
+        pieces:       document.getElementById("pieces").value,
+
+        pickup_date:  document.getElementById("pickup_date").value,
+
+        pickup_time:  document.getElementById("pickup_time").value,
+
+        // Delivery intentionally empty (script compatibility)
+
+        delivery_date: "",
+
+        delivery_time: "",
+
+        notes:        document.getElementById("notes").value.trim()
+
+      };
 
 
 
-      const fd = new URLSearchParams();
+      try{
 
-      const fields = ['email','name','phone','address','service','pieces','pickup_date','pickup_time','notes'];
-
-      for (const id of fields) fd.append(id, (document.getElementById(id)?.value || '').trim());
+        setBusy(true);
 
 
 
-      try {
+        // Prefer normal fetch; your GAS must return JSON and allow anonymous access.
 
-        await fetch(WEB_APP_URL, { method:'POST', mode:'no-cors', body:fd });
+        const res = await fetch(WEB_APP_URL, {
 
-        okEl.style.display='block';
+          method: "POST",
 
-        form.reset();
+          headers: { "Content-Type": "application/json" },
 
-      } catch (err) {
+          body: JSON.stringify(payload)
 
-        console.error(err);
+        });
 
-        showError('❌ Network error. Please try again.');
 
-      } finally {
 
-        btn.disabled = false; spin.style.display='none';
+        // If your Apps Script uses doPost and returns JSON like { ok: true }
+
+        let ok = res.ok;
+
+        try {
+
+          const data = await res.json();
+
+          if (typeof data.ok !== "undefined") ok = !!data.ok;
+
+        } catch { /* response may be opaque or empty; keep res.ok */ }
+
+
+
+        if (ok){
+
+          form.reset();
+
+          msg("Thank you! Your booking was received. We’ll email a confirmation shortly.", true);
+
+        } else {
+
+          msg("Submitted, but response looked unusual. Please check your sheet/email.", false);
+
+        }
+
+      } catch(err){
+
+        // Fallback: try opaque request if CORS isn’t configured in GAS
+
+        try{
+
+          await fetch(WEB_APP_URL, {
+
+            method: "POST",
+
+            mode: "no-cors",
+
+            headers: { "Content-Type": "application/json" },
+
+            body: JSON.stringify(payload)
+
+          });
+
+          form.reset();
+
+          msg("Request sent. If you don’t see it, please refresh and try again.", true);
+
+        } catch(e2){
+
+          msg("Network error. Please try again.", false);
+
+        }
+
+      } finally{
+
+        setBusy(false);
 
       }
 
