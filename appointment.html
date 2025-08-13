@@ -166,25 +166,17 @@
 
   <script>
 
-    // ======= CONFIG (استبدل رابط الويب آب) =======
+    // ======= CONFIG: Web App URL (جاهز) =======
 
-    const WEB_APP_URL = 'https://script.google.com/macros/s/PASTE_YOUR_WEB_APP_URL_HERE/exec';
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwCoG_JRmDASWhnrFX0f98rMWUOIbKVzs6eyCBkNU_t7YAuQVmRfoPdNqPqfvL1EEm4/exec';
 
 
-
-    // ======= Helpers =======
 
     const $ = (sel) => document.querySelector(sel);
-
-
-
-    // Year
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
 
-
-    // Form submit
 
     const form = document.getElementById('appointmentForm');
 
@@ -228,19 +220,9 @@
 
 
 
-      // بسيط جداً للتحقق
+      for (const k of ['name','email','phone','address','service','pieces','pickup_date','pickup_time']){
 
-      for (const [k,v] of Object.entries(payload)) {
-
-        if (['name','email','phone','address','service','pieces','pickup_date','pickup_time'].includes(k) && !v) {
-
-          statusEl.textContent = 'Please fill all required fields.';
-
-          submitBtn.disabled = false;
-
-          return;
-
-        }
+        if (!payload[k]) { statusEl.textContent = 'Please fill all required fields.'; submitBtn.disabled = false; return; }
 
       }
 
@@ -260,19 +242,7 @@
 
 
 
-        // إذا صار CORS عندك، تقدر تغيّر أعلاه إلى:
-
-        // fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) })
-
-        // لكن في no-cors ما نقدر نقرأ الرد، فنعرض رسالة نجاح افتراضية.
-
-
-
-        if (!res.ok) {
-
-          throw new Error('Network response was not ok');
-
-        }
+        if (!res.ok) throw new Error('Network response was not ok');
 
         const data = await res.json();
 
@@ -290,9 +260,11 @@
 
       } catch (err) {
 
-        // fallback نجاح تفاؤلي
+        // إذا واجهت CORS، يمكنك تبديل الاستدعاء مؤقتًا إلى no-cors (لن نقرأ الرد لكن البيانات ستُحفظ وسيُرسل الإيميل)
 
-        statusEl.textContent = '✅ Booking submitted. If you do not see an email, we will verify your Web App URL.';
+        // await fetch(WEB_APP_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+
+        statusEl.textContent = '✅ Booking submitted. If no email appears, we will verify Web App settings.';
 
       } finally {
 
