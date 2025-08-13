@@ -116,7 +116,7 @@
 
             <select id="service" name="service" required>
 
-              <option value="">-- Select --</option>
+              <option value="" selected disabled>-- Select --</option>
 
               <option value="Alteration">Alteration</option>
 
@@ -208,11 +208,33 @@
 
 
 
+    function showError(msg){
+
+      errEl.textContent = msg;
+
+      errEl.style.display = 'block';
+
+    }
+
+
+
     form.addEventListener('submit', async (e) => {
 
       e.preventDefault();
 
       okEl.style.display='none'; errEl.style.display='none';
+
+
+
+      // 🔒 فحص صارم قبل الإرسال (ليضمن اختيار Service)
+
+      if (!form.reportValidity()) return;
+
+      const service = document.getElementById('service').value;
+
+      if (!service) { showError('Please select a Service Type.'); return; }
+
+
 
       btn.disabled = true; spin.style.display='inline-block';
 
@@ -238,9 +260,7 @@
 
         console.error(err);
 
-        errEl.textContent = '❌ Network error. Please try again.';
-
-        errEl.style.display = 'block';
+        showError('❌ Network error. Please try again.');
 
       } finally {
 
