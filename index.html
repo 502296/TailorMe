@@ -8,21 +8,30 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-  <title>TailorMe – Royal Mobile Tailoring</title>
+  <title>TailorMe – Mobile Tailoring & Alterations</title>
 
-  <meta name="description" content="TailorMe – Mobile alterations & custom tailoring delivered to your door."/>
+  <meta name="description" content="TailorMe brings expert alterations and custom tailoring to your door with on-site fittings, pickup, and delivery across Louisville."/>
 
   <link rel="stylesheet" href="style.css"/>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YJP3RQE054"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-YJP3RQE054');
-</script>
-  
+
+
+  <!-- Google tag (gtag.js) -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJP3RQE054"></script>
+
+  <script>
+
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag(){dataLayer.push(arguments);}
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-YJP3RQE054');
+
+  </script>
+
 </head>
 
 
@@ -125,23 +134,21 @@
 
         <div>
 
-          <div class="kicker">Royal Mobile Tailoring</div>
+          <div class="kicker">Mobile Tailoring Service</div>
 
-          <h1>Mobile Alterations & Custom Tailoring—Delivered to Your Door</h1>
+          <h1>Perfect Fit, Delivered to Your Door</h1>
 
           <p class="lead">
 
-            Premium on-site fittings, precise alterations, and bespoke craftsmanship.
+            On-site fittings and precise alterations for suits, dresses, leather, and denim.
 
-            TailorMe brings the atelier experience to your home or office—fast, polished, unforgettable.
+            We come to you — home or office — with pickup and delivery across Louisville.
 
           </p>
 
 
 
           <div class="cta">
-
-            <!-- تم ربطه بصفحة الحجز -->
 
             <a class="btn btn-primary" href="appointment.html">
 
@@ -173,8 +180,6 @@
 
         </div>
 
-        <!-- تم حذف البطاقات الجانبية حسب طلبك -->
-
       </div>
 
 
@@ -205,11 +210,11 @@
 
           <p>
 
-            TailorMe is a royal-style mobile tailoring service founded by <strong>Ali Kathem</strong>.
+            TailorMe is a premium mobile tailoring service founded by <strong>Ali Kathem</strong>.
 
-            We blend classic craftsmanship with modern convenience, bringing fittings and couture-level
+            We blend classic craftsmanship with modern convenience, bringing fittings and
 
-            alterations straight to your door.
+            couture-level alterations straight to your door.
 
           </p>
 
@@ -217,7 +222,7 @@
 
             From suits and dresses to leather and denim, we perfect fit and finish with an artist’s eye.
 
-            Your time matters—so we come to you, keep everything scheduled, and save every detail on your client page.
+            Your time matters — we come to you, keep everything scheduled, and save every detail on your client page.
 
           </p>
 
@@ -233,9 +238,9 @@
 
             <li>Door-to-door service</li>
 
-            <li>Royal design & UX</li>
+            <li>Elegant design & smooth UX</li>
 
-            <li>Smart booking & signatures</li>
+            <li>Smart booking & e-signatures</li>
 
             <li>Client history saved securely</li>
 
@@ -257,8 +262,6 @@
 
 
 
-      <!-- ✅ فورم فعّال عبر mailto (بدون سيرفر) -->
-
       <form id="contactForm" class="contact-form" novalidate>
 
         <input type="text"  name="name"    placeholder="Full Name" required/>
@@ -272,8 +275,6 @@
         <textarea           name="message" placeholder="Tell us about your request…" required></textarea>
 
         <button class="btn btn-glass" type="submit">Send Message</button>
-
-        <!-- سطر حالة للرسائل -->
 
         <p id="contactStatus" aria-live="polite"></p>
 
@@ -345,7 +346,7 @@
 
 
 
-    // ---------- CONTACT: mailto handler (سريع للإطلاق) ----------
+    // CONTACT: mailto handler
 
     (function(){
 
@@ -431,11 +432,7 @@
 
 
 
-        // فتح تطبيق البريد لدى المستخدم
-
         window.location.href = mailto;
-
-
 
         setStatus('Opening your email app… If nothing opens, please email contact@tailorme.me.');
 
