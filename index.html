@@ -38,7 +38,7 @@
 
 <body>
 
-  <!-- Preview toolbar (اختياري) -->
+  <!-- Preview toolbar -->
 
   <div class="preview-toolbar" aria-hidden="true">
 
@@ -74,8 +74,6 @@
 
         </a>
 
-
-
         <nav aria-label="Primary">
 
           <ul>
@@ -89,8 +87,6 @@
           </ul>
 
         </nav>
-
-
 
         <div class="lang" title="Language">
 
@@ -130,6 +126,16 @@
 
     <main id="home" class="hero">
 
+      <picture class="hero-media">
+
+        <source srcset="images/hero-workshop.webp" type="image/webp">
+
+        <img src="images/hero-workshop.jpg" alt="TailorMe workshop scene" loading="eager" decoding="async">
+
+      </picture>
+
+
+
       <div class="hero-inner">
 
         <div>
@@ -146,31 +152,19 @@
 
           </p>
 
-
-
           <div class="cta">
 
             <a class="btn btn-primary" href="appointment.html">
 
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-
-                <path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v3H2V6a2 2 0 0 1 2-2h3V2zm15 8v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10h20z"/>
-
-              </svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v3H2V6a2 2 0 0 1 2-2h3V2zm15 8v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10h20z"/></svg>
 
               Book an Appointment
 
             </a>
 
+            <a class="btn btn-glass" href="price-list.html">
 
-
-            <a class="btn btn-glass" href="price-list.html" id="price">
-
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-
-                <path d="M6 7V6a6 6 0 1 1 12 0v1h2a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2zm2-1a4 4 0 1 1 8 0v1H8V6z"/>
-
-              </svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 7V6a6 6 0 1 1 12 0v1h2a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2zm2-1a4 4 0 1 1 8 0v1H8V6z"/></svg>
 
               View Price List
 
@@ -260,19 +254,15 @@
 
       <h2 class="section-title">Contact</h2>
 
-
-
       <form id="contactForm" class="contact-form" novalidate>
 
-        <input type="text"  name="name"    placeholder="Full Name" required/>
+        <input type="text" name="name" placeholder="Full Name" required/>
 
-        <input type="email" name="email"   placeholder="Email" required/>
+        <input type="email" name="email" placeholder="Email" required/>
 
-        <input type="tel"   name="phone"   placeholder="Phone" required/>
+        <input type="text" name="subject" placeholder="Subject"/>
 
-        <input type="text"  name="subject" placeholder="Subject"/>
-
-        <textarea           name="message" placeholder="Tell us about your request…" required></textarea>
+        <textarea name="message" placeholder="Tell us about your request…" required></textarea>
 
         <button class="btn btn-glass" type="submit">Send Message</button>
 
@@ -280,9 +270,7 @@
 
       </form>
 
-
-
-      <p class="hint">Email: <a href="mailto:contact@tailorme.me">contact@tailorme.me</a> · Phone: (502) 296-8168</p>
+      <p class="hint">Email: <a href="mailto:contact@tailorme.me">contact@tailorme.me</a></p>
 
     </section>
 
@@ -318,13 +306,7 @@
 
   <script>
 
-    // Year
-
     document.getElementById('year').textContent = new Date().getFullYear();
-
-
-
-    // Preview toolbar logic
 
     const wrap = document.getElementById('previewWrap');
 
@@ -344,10 +326,6 @@
 
     });
 
-
-
-    // CONTACT: mailto handler
-
     (function(){
 
       const SUPPORT_EMAIL = 'contact@tailorme.me';
@@ -355,8 +333,6 @@
       const cform  = document.getElementById('contactForm');
 
       const status = document.getElementById('contactStatus');
-
-
 
       function setStatus(msg, ok = true){
 
@@ -368,73 +344,29 @@
 
       }
 
-
-
       if (!cform) return;
-
-
 
       cform.addEventListener('submit', (e) => {
 
         e.preventDefault();
 
+        const name = cform.name?.value.trim();
 
-
-        const name    = cform.name?.value.trim();
-
-        const email   = cform.email?.value.trim();
-
-        const phone   = cform.phone?.value.trim() || '';
+        const email= cform.email?.value.trim();
 
         const subject = cform.subject?.value.trim() || 'TailorMe Inquiry';
 
         const message = cform.message?.value.trim();
 
+        if (!name || !email || !message){ setStatus('Please fill required fields.', false); return; }
 
+        const lines = [`Name: ${name}`,`Email: ${email}`,'', 'Message:',message,'','— Sent from TailorMe'].join('\n');
 
-        if (!name || !email || !message){
-
-          setStatus('Please fill required fields (name, email, message).', false);
-
-          return;
-
-        }
-
-
-
-        const lines = [
-
-          `Name: ${name}`,
-
-          `Email: ${email}`,
-
-          phone ? `Phone: ${phone}` : '',
-
-          '',
-
-          'Message:',
-
-          message,
-
-          '',
-
-          '— Sent from TailorMe Contact form'
-
-        ].filter(Boolean).join('\n');
-
-
-
-        const mailto = `mailto:${encodeURIComponent(SUPPORT_EMAIL)}`
-
-          + `?subject=${encodeURIComponent('TailorMe Contact — ' + subject)}`
-
-          + `&body=${encodeURIComponent(lines)}`;
-
-
+        const mailto = `mailto:${encodeURIComponent(SUPPORT_EMAIL)}?subject=${encodeURIComponent('TailorMe Contact — ' + subject)}&body=${encodeURIComponent(lines)}`;
 
         window.location.href = mailto;
 
-        setStatus('Opening your email app… If nothing opens, please email contact@tailorme.me.');
+        setStatus('Opening email app… If nothing opens, email contact@tailorme.me.');
 
         setTimeout(() => { cform.reset(); }, 800);
 
