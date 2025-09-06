@@ -8,9 +8,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-  <title>TailorMe – Mobile Tailoring & Alterations</title>
+  <title>TailorMe – Mobile Tailoring</title>
 
-  <meta name="description" content="Expert mobile alterations and custom tailoring. On-site fittings, pickup and delivery across Louisville."/>
+  <meta name="description" content="TailorMe – Mobile alterations & custom tailoring delivered to your door."/>
 
   <link rel="stylesheet" href="style.css"/>
 
@@ -74,8 +74,6 @@
 
         </a>
 
-
-
         <nav aria-label="Primary">
 
           <ul>
@@ -89,8 +87,6 @@
           </ul>
 
         </nav>
-
-
 
         <div class="lang" title="Language">
 
@@ -130,8 +126,6 @@
 
     <main id="home" class="hero">
 
-      <!-- صورة واحدة فقط: لا خلفيات CSS -->
-
       <picture class="hero-media">
 
         <source srcset="images/hero-workshop.webp" type="image/webp">
@@ -142,21 +136,9 @@
 
 
 
-      <!-- شارة نص للهاتف فقط -->
-
-      <div class="hero-badge">
-
-        <strong>TailorMe</strong>
-
-        <span>Delivered to your door</span>
-
-      </div>
-
-
-
       <div class="hero-inner">
 
-        <div class="hero-panel">
+        <div>
 
           <div class="kicker">Mobile Tailoring Service</div>
 
@@ -169,8 +151,6 @@
             We come to you — home or office — with pickup and delivery across Louisville.
 
           </p>
-
-
 
           <div class="cta">
 
@@ -186,13 +166,11 @@
 
             </a>
 
-
-
-            <a class="btn btn-glass" href="price-list.html" id="price">
+            <a class="btn btn-glass" href="price-list.html">
 
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 
-                <path d="M6 7V6a6 6 0 1 1 12 0v1H8V6z"/>
+                <path d="M6 7V6a6 6 0 1 1 12 0v1h2a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2zm2-1a4 4 0 1 1 8 0v1H8V6z"/>
 
               </svg>
 
@@ -234,19 +212,19 @@
 
           <p>
 
-            TailorMe is a mobile tailoring studio that brings the fitting room to you.
+            TailorMe is a premium mobile tailoring service dedicated to providing
 
-            We combine heritage craftsmanship with modern service to deliver clean lines,
-
-            balanced silhouettes, and a comfortable fit you’ll wear with confidence.
+            top-quality alterations and custom tailoring at your convenience.
 
           </p>
 
           <p>
 
-            From everyday hems to couture-level alterations, we handle suits, gowns,
+            Our goal is to make luxury craftsmanship accessible. From suits and
 
-            leather and denim with the same precision and care — scheduled around your time.
+            dresses to leather and denim, we bring precision and elegance
+
+            straight to your doorstep.
 
           </p>
 
@@ -260,9 +238,9 @@
 
           <ul class="why">
 
-            <li>Door-to-door pickup & delivery</li>
+            <li>Door-to-door service</li>
 
-            <li>On-site fittings at home or office</li>
+            <li>Elegant design & smooth UX</li>
 
             <li>Smart booking & e-signatures</li>
 
@@ -284,25 +262,21 @@
 
       <h2 class="section-title">Contact</h2>
 
-
-
       <form id="contactForm" class="contact-form" novalidate>
 
-        <input type="text"  name="name"    placeholder="Full Name" required/>
+        <input type="text" name="name" placeholder="Full Name" required/>
 
-        <input type="email" name="email"   placeholder="Email" required/>
+        <input type="email" name="email" placeholder="Email" required/>
 
-        <input type="text"  name="subject" placeholder="Subject"/>
+        <input type="text" name="subject" placeholder="Subject"/>
 
-        <textarea           name="message" placeholder="Tell us about your request…" required></textarea>
+        <textarea name="message" placeholder="Tell us about your request…" required></textarea>
 
         <button class="btn btn-glass" type="submit">Send Message</button>
 
         <p id="contactStatus" aria-live="polite"></p>
 
       </form>
-
-
 
       <p class="hint">Email: <a href="mailto:contact@tailorme.me">contact@tailorme.me</a></p>
 
@@ -318,7 +292,7 @@
 
         <div class="mini-logo">
 
-          <img class="footer-emblem" src="images/logo.png" alt="TailorMe emblem"/>
+          <img class="footer-emblem" src="images/logo.png" alt=""/>
 
           <strong class="tm-wordmark tm-wordmark-sm">
 
@@ -340,13 +314,7 @@
 
   <script>
 
-    // Year
-
     document.getElementById('year').textContent = new Date().getFullYear();
-
-
-
-    // Preview buttons
 
     const wrap = document.getElementById('previewWrap');
 
@@ -365,58 +333,6 @@
       });
 
     });
-
-
-
-    // Contact mailto
-
-    (function(){
-
-      const SUPPORT_EMAIL = 'contact@tailorme.me';
-
-      const cform  = document.getElementById('contactForm');
-
-      const status = document.getElementById('contactStatus');
-
-      function setStatus(msg, ok = true){
-
-        if (!status) return;
-
-        status.textContent = msg;
-
-        status.style.color = ok ? '#9fe3a1' : '#ffb3b3';
-
-      }
-
-      if (!cform) return;
-
-      cform.addEventListener('submit', (e) => {
-
-        e.preventDefault();
-
-        const name    = cform.name?.value.trim();
-
-        const email   = cform.email?.value.trim();
-
-        const subject = cform.subject?.value.trim() || 'TailorMe Inquiry';
-
-        const message = cform.message?.value.trim();
-
-        if (!name || !email || !message){ setStatus('Please fill required fields.', false); return; }
-
-        const lines = [`Name: ${name}`,`Email: ${email}`,'','Message:',message,'','— Sent from TailorMe'].join('\n');
-
-        const mailto = `mailto:${encodeURIComponent(SUPPORT_EMAIL)}?subject=${encodeURIComponent('TailorMe Contact — ' + subject)}&body=${encodeURIComponent(lines)}`;
-
-        window.location.href = mailto;
-
-        setStatus('Opening email app… If nothing opens, email contact@tailorme.me.');
-
-        setTimeout(() => { cform.reset(); }, 800);
-
-      });
-
-    })();
 
   </script>
 
