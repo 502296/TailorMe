@@ -68,7 +68,7 @@ header{position:sticky;top:48px;z-index:999;background:rgba(12,18,32,.75);backdr
 
 
 
-/* الشعار يسار الهيدر – كبير وبارز */
+/* Logo */
 
 .tm-emblem{
 
@@ -87,8 +87,6 @@ header{position:sticky;top:48px;z-index:999;background:rgba(12,18,32,.75);backdr
 @media (max-width:600px){ .tm-emblem{ height:64px; width:78px; } }
 
 
-
-/* كلمة TailorMe بجانب الشعار */
 
 .tm-wordmark{
 
@@ -138,23 +136,69 @@ nav a:hover{color:white}
 
 /* Hero */
 
-.hero{position:relative;isolation:isolate;overflow:hidden}
+.hero{
 
-.hero::before{
+  position:relative; isolation:isolate; overflow:hidden;
 
-  content:"";position:absolute;inset:-40% -10% auto -10%;
+  min-height:78vh;
 
-  height:120%;background:radial-gradient(60% 100% at 50% 0, rgba(212,175,55,.08), transparent 60%);
 
-  z-index:-1;filter: blur(10px);
+
+  /* الخلفية الجديدة: webp + jpg */
+
+  background-image: image-set(
+
+    url('images/hero-workshop.webp') type('image/webp'),
+
+    url('images/hero-workshop.jpg') type('image/jpeg')
+
+  );
+
+  background-size: cover;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
 
 }
 
 
 
-/* ✅ بعد حذف الكروت الجانبية: عمود واحد للهيرو */
+/* Overlay لتوضيح النص */
+
+.hero::after{
+
+  content:""; position:absolute; inset:0;
+
+  background:
+
+    linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.38) 40%, rgba(0,0,0,.30) 100%);
+
+  z-index:0;
+
+}
+
+
+
+/* glow ذهبي خفيف بالأعلى (اختياري) */
+
+.hero::before{
+
+  content:"";position:absolute;inset:-40% -10% auto -10%;
+
+  height:120%;
+
+  background:radial-gradient(60% 100% at 50% 0, rgba(212,175,55,.08), transparent 60%);
+
+  z-index:0;filter: blur(10px);
+
+}
+
+
 
 .hero-inner{
+
+  position:relative; z-index:1;
 
   max-width:var(--maxw);margin:0 auto;
 
@@ -170,7 +214,7 @@ nav a:hover{color:white}
 
 h1{margin:10px 0 14px;font-size:44px;line-height:1.08}
 
-.lead{color:#dbe3f4;opacity:.9;max-width:60ch}
+.lead{color:#dbe3f4;opacity:.92;max-width:60ch}
 
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
 
@@ -197,28 +241,6 @@ h1{margin:10px 0 14px;font-size:44px;line-height:1.08}
 .btn-secondary{background:linear-gradient(90deg,#bdc1c9,#9198a1);color:#0b1020}
 
 .btn-glass{background:rgba(255,255,255,.08);color:white;border:1px solid rgba(255,255,255,.2)}
-
-
-
-/* (اختياري) بقت هذه الكلاسات لو رجّعنا كروت لاحقًا */
-
-.right-cards{display:grid; grid-template-columns:1fr; gap:14px}
-
-.card{
-
-  background:linear-gradient(180deg,#111a2f,#0b1327 40%, #091225);
-
-  border:1px solid rgba(255,255,255,.08);
-
-  border-radius:var(--radius);padding:18px;min-height:130px;
-
-  box-shadow: 0 8px 24px rgba(0,0,0,.38);
-
-}
-
-.card h3{margin:0 0 6px}
-
-.card p{margin:0;color:#d3d9ea;opacity:.9}
 
 
 
