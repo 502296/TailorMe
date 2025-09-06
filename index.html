@@ -10,7 +10,7 @@
 
   <title>TailorMe – Mobile Tailoring & Alterations</title>
 
-  <meta name="description" content="TailorMe brings expert alterations and custom tailoring to your door with on-site fittings, pickup, and delivery across Louisville."/>
+  <meta name="description" content="Expert mobile alterations and custom tailoring. On-site fittings, pickup and delivery across Louisville."/>
 
   <link rel="stylesheet" href="style.css"/>
 
@@ -74,6 +74,8 @@
 
         </a>
 
+
+
         <nav aria-label="Primary">
 
           <ul>
@@ -87,6 +89,8 @@
           </ul>
 
         </nav>
+
+
 
         <div class="lang" title="Language">
 
@@ -126,6 +130,8 @@
 
     <main id="home" class="hero">
 
+      <!-- صورة واحدة فقط: لا خلفيات CSS -->
+
       <picture class="hero-media">
 
         <source srcset="images/hero-workshop.webp" type="image/webp">
@@ -136,9 +142,21 @@
 
 
 
+      <!-- شارة نص للهاتف فقط -->
+
+      <div class="hero-badge">
+
+        <strong>TailorMe</strong>
+
+        <span>Delivered to your door</span>
+
+      </div>
+
+
+
       <div class="hero-inner">
 
-        <div>
+        <div class="hero-panel">
 
           <div class="kicker">Mobile Tailoring Service</div>
 
@@ -152,19 +170,31 @@
 
           </p>
 
+
+
           <div class="cta">
 
             <a class="btn btn-primary" href="appointment.html">
 
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v3H2V6a2 2 0 0 1 2-2h3V2zm15 8v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10h20z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+
+                <path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v3H2V6a2 2 0 0 1 2-2h3V2zm15 8v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10h20z"/>
+
+              </svg>
 
               Book an Appointment
 
             </a>
 
-            <a class="btn btn-glass" href="price-list.html">
 
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 7V6a6 6 0 1 1 12 0v1h2a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2zm2-1a4 4 0 1 1 8 0v1H8V6z"/></svg>
+
+            <a class="btn btn-glass" href="price-list.html" id="price">
+
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+
+                <path d="M6 7V6a6 6 0 1 1 12 0v1H8V6z"/>
+
+              </svg>
 
               View Price List
 
@@ -204,19 +234,19 @@
 
           <p>
 
-            TailorMe is a premium mobile tailoring service founded by <strong>Ali Kathem</strong>.
+            TailorMe is a mobile tailoring studio that brings the fitting room to you.
 
-            We blend classic craftsmanship with modern convenience, bringing fittings and
+            We combine heritage craftsmanship with modern service to deliver clean lines,
 
-            couture-level alterations straight to your door.
+            balanced silhouettes, and a comfortable fit you’ll wear with confidence.
 
           </p>
 
           <p>
 
-            From suits and dresses to leather and denim, we perfect fit and finish with an artist’s eye.
+            From everyday hems to couture-level alterations, we handle suits, gowns,
 
-            Your time matters — we come to you, keep everything scheduled, and save every detail on your client page.
+            leather and denim with the same precision and care — scheduled around your time.
 
           </p>
 
@@ -230,9 +260,9 @@
 
           <ul class="why">
 
-            <li>Door-to-door service</li>
+            <li>Door-to-door pickup & delivery</li>
 
-            <li>Elegant design & smooth UX</li>
+            <li>On-site fittings at home or office</li>
 
             <li>Smart booking & e-signatures</li>
 
@@ -254,21 +284,25 @@
 
       <h2 class="section-title">Contact</h2>
 
+
+
       <form id="contactForm" class="contact-form" novalidate>
 
-        <input type="text" name="name" placeholder="Full Name" required/>
+        <input type="text"  name="name"    placeholder="Full Name" required/>
 
-        <input type="email" name="email" placeholder="Email" required/>
+        <input type="email" name="email"   placeholder="Email" required/>
 
-        <input type="text" name="subject" placeholder="Subject"/>
+        <input type="text"  name="subject" placeholder="Subject"/>
 
-        <textarea name="message" placeholder="Tell us about your request…" required></textarea>
+        <textarea           name="message" placeholder="Tell us about your request…" required></textarea>
 
         <button class="btn btn-glass" type="submit">Send Message</button>
 
         <p id="contactStatus" aria-live="polite"></p>
 
       </form>
+
+
 
       <p class="hint">Email: <a href="mailto:contact@tailorme.me">contact@tailorme.me</a></p>
 
@@ -284,7 +318,7 @@
 
         <div class="mini-logo">
 
-          <img class="footer-emblem" src="images/logo.png" alt=""/>
+          <img class="footer-emblem" src="images/logo.png" alt="TailorMe emblem"/>
 
           <strong class="tm-wordmark tm-wordmark-sm">
 
@@ -306,7 +340,13 @@
 
   <script>
 
+    // Year
+
     document.getElementById('year').textContent = new Date().getFullYear();
+
+
+
+    // Preview buttons
 
     const wrap = document.getElementById('previewWrap');
 
@@ -325,6 +365,10 @@
       });
 
     });
+
+
+
+    // Contact mailto
 
     (function(){
 
@@ -350,9 +394,9 @@
 
         e.preventDefault();
 
-        const name = cform.name?.value.trim();
+        const name    = cform.name?.value.trim();
 
-        const email= cform.email?.value.trim();
+        const email   = cform.email?.value.trim();
 
         const subject = cform.subject?.value.trim() || 'TailorMe Inquiry';
 
@@ -360,7 +404,7 @@
 
         if (!name || !email || !message){ setStatus('Please fill required fields.', false); return; }
 
-        const lines = [`Name: ${name}`,`Email: ${email}`,'', 'Message:',message,'','— Sent from TailorMe'].join('\n');
+        const lines = [`Name: ${name}`,`Email: ${email}`,'','Message:',message,'','— Sent from TailorMe'].join('\n');
 
         const mailto = `mailto:${encodeURIComponent(SUPPORT_EMAIL)}?subject=${encodeURIComponent('TailorMe Contact — ' + subject)}&body=${encodeURIComponent(lines)}`;
 
