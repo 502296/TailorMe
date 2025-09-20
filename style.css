@@ -18,7 +18,9 @@
 
 }
 
-*{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--royal);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+*{box-sizing:border-box}
+
+html,body{margin:0;padding:0;background:var(--royal);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 
 a{text-decoration:none;color:inherit}
 
@@ -38,7 +40,7 @@ a{text-decoration:none;color:inherit}
 
 
 
-/* Navbar */
+/* Navbar (القديم موجود لكن لن يُستخدم بعد استبدال الهيدر) */
 
 header{position:sticky;top:48px;z-index:999;background:rgba(12,18,32,.75);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
 
@@ -176,4 +178,108 @@ footer{margin-top:24px;border-top:1px solid rgba(255,255,255,.06);background:rad
 
 .mini-logo{display:flex;align-items:center;gap:10px}
 
-.footer-emblem{height:32px;width:38px;object-fit:cover;object-position:top center;border-radius:6
+/* .footer-emblem{...}  الصورة لم تعد مستخدمة */
+
+
+
+/* ===== الإضافات الجديدة (Navbar الجديد + إخفاءات آمنة) ===== */
+
+:root{
+
+  --tm-navy:#0e1e2e;
+
+  --tm-navy-2:#0b1826;
+
+  --tm-text:#e9edf2;
+
+  --tm-gold:#d7b54a;
+
+}
+
+
+
+/* Header New */
+
+.tm-header{
+
+  position:sticky; top:48px; z-index:1000;
+
+  background: linear-gradient(180deg, var(--tm-navy) 0%, var(--tm-navy-2) 100%);
+
+  border-bottom:1px solid rgba(255,255,255,.06);
+
+  backdrop-filter: blur(6px);
+
+}
+
+.tm-header .tm-container{
+
+  max-width:var(--maxw); margin:0 auto;
+
+  padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:12px;
+
+}
+
+.tm-brand{display:flex; align-items:center; gap:10px; text-decoration:none}
+
+.tm-logo{width:38px; height:38px; display:block}
+
+.tm-wordmark{font-family:Georgia,"Times New Roman",serif; font-weight:800; letter-spacing:.5px; font-size:30px; line-height:1}
+
+.tm-wordmark span{ color: var(--tm-gold); }
+
+
+
+.tm-nav ul{list-style:none; display:flex; gap:18px; margin:0; padding:0}
+
+.tm-nav a{color:#e8ecf6; font-weight:600; opacity:.9}
+
+.tm-nav a:hover{color:#fff}
+
+
+
+@media(max-width:600px){
+
+  .tm-logo{width:32px;height:32px}
+
+  .tm-wordmark{font-size:26px}
+
+  .tm-nav ul{gap:16px}
+
+}
+
+
+
+/* Hide trust pills safely (kept in DOM) */
+
+.hero .trust{ display:none !important; }
+
+
+
+/* Hide contact form safely; show inline email row */
+
+#contactForm, .contact-form{ display:none !important; }
+
+.hint{ display:none !important; } /* إخفاء السطر القديم حتى يبقى صف الإيميل الجديد فقط */
+
+
+
+.tm-contact-inline{
+
+  display:flex; align-items:center; gap:14px; margin:22px 0 10px;
+
+}
+
+.tm-contact-inline .label{
+
+  color:var(--tm-gold); font-weight:800; letter-spacing:.6px; text-transform:uppercase;
+
+}
+
+.tm-contact-inline .email{
+
+  color:#cfd6dd; text-decoration:none; font-weight:700;
+
+}
+
+.tm-contact-inline .email:hover{ color:var(--tm-gold); text-decoration:underline; }
