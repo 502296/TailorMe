@@ -1,4 +1,3 @@
-
 :root{
 
   --emerald:#046d53; 
@@ -57,7 +56,7 @@ a{text-decoration:none;color:inherit}
 
 /* Navbar */
 
-header{position:sticky;top:48px;z-index:999;background:var(--emerald);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+header{position:sticky;top:48px;z-index:999;background:var(--emerald);border-bottom:1px solid rgba(255,255,255,.06)}
 
 .nav{max-width:var(--maxw);margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 
@@ -113,7 +112,25 @@ nav a:hover{color:var(--gold)}
 
   .hero-inner{position:relative;z-index:1;height:100vh;display:flex;align-items:center;padding:0 5%}
 
-  .hero-inner>div{max-width:720px;background:rgba(12,18,32,.38);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:28px}
+  /* أزلنا الخلفية الزجاجية نهائياً */
+
+  .hero-inner>div{
+
+    max-width:720px;
+
+    background:none !important;
+
+    backdrop-filter:none !important;
+
+    border:none !important;
+
+    border-radius:0;
+
+    padding:28px;
+
+    text-shadow:1px 1px 3px rgba(0,0,0,.7);
+
+  }
 
 }
 
