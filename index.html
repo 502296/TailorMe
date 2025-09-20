@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -13,7 +12,7 @@
 
   <meta name="description" content="TailorMe – Mobile alterations & custom tailoring delivered to your door."/>
 
-  <link rel="stylesheet" href="style.css?v=4"/>
+  <link rel="stylesheet" href="style.css?v=5"/>
 
 
 
@@ -65,7 +64,7 @@
 
         <a class="brand tm-brand" href="#home" aria-label="TailorMe Home">
 
-          <!-- سنحقن الـSVG هنا تلقائياً عبر JS إذا لم يكن موجود -->
+          <!-- فقط النص -->
 
           <span class="tm-wordmark">
 
@@ -271,89 +270,7 @@
 
 
 
-  <!-- FORCE ICON PATCH: يحقن SVG ويزيل أي صور قديمة -->
-
   <script>
-
-    (function(){
-
-      const brand = document.querySelector('.tm-brand');
-
-      if(!brand) return;
-
-
-
-      // احذف أي صور/أيقونات قديمة
-
-      brand.querySelectorAll('img, svg:not(.tm-icon-sew)').forEach(el => {
-
-        // اترك كلمة TailorMe فقط، واحذف أي SVG لا يحمل كلاسنا
-
-        if(!el.classList.contains('tm-icon-sew')) el.remove();
-
-      });
-
-
-
-      // إذا لم توجد أيقونتنا، أحقنها في البداية
-
-      if(!brand.querySelector('.tm-icon-sew')){
-
-        const svg = `
-
-<svg class="tm-icon-sew gold" viewBox="0 0 180 90" aria-hidden="true" role="img">
-
-  <defs>
-
-    <linearGradient id="tmGoldAntique" x1="0" y1="0" x2="0" y2="1">
-
-      <stop offset="0%"  stop-color="#f7e3a2"/>
-
-      <stop offset="35%" stop-color="#e6c86b"/>
-
-      <stop offset="65%" stop-color="#caa848"/>
-
-      <stop offset="100%" stop-color="#8f742b"/>
-
-    </linearGradient>
-
-  </defs>
-
-  <rect x="14" y="70" width="152" height="10" rx="3" class="metal-fill"/>
-
-  <path d="M22,80 L22,68 L50,68 L50,80 M130,80 L130,68 L158,68 L158,80" fill="none" class="metal-stroke" stroke-width="5"/>
-
-  <path d="M32,50 C32,34 52,30 76,30 L112,30 C128,30 132,36 132,44 L132,58 L32,58 Z" class="metal-fill"/>
-
-  <rect x="104" y="36" width="6" height="20" rx="2" class="metal-fill"/>
-
-  <rect x="106" y="56" width="18" height="4" rx="2" class="metal-fill"/>
-
-  <circle cx="142" cy="52" r="14" fill="none" class="metal-stroke" stroke-width="6"/>
-
-  <circle cx="142" cy="52" r="4" class="metal-fill"/>
-
-  <circle cx="122" cy="34" r="6" class="metal-fill"/>
-
-  <line x1="122" y1="40" x2="122" y2="48" class="thread" stroke-width="2"/>
-
-  <rect x="64" y="74" width="36" height="4" rx="2" class="metal-stroke" stroke-width="3"/>
-
-  <line x1="107" y1="36" x2="107" y2="58" class="thread" stroke-width="2"/>
-
-  <path d="M107,58 C112,60 118,62 124,62" fill="none" class="thread" stroke-width="2"/>
-
-</svg>`;
-
-        brand.insertAdjacentHTML('afterbegin', svg);
-
-      }
-
-    })();
-
-
-
-    // أزرار المعاينة كما هي
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
