@@ -38,405 +38,307 @@
 
 <body>
 
-  <!-- Preview toolbar -->
+  <!-- NAVBAR -->
 
-  <div class="preview-toolbar" aria-hidden="true">
+  <header class="tm-header">
 
-    <strong>Preview:</strong>
+    <div class="tm-container">
 
-    <button data-w="desktop" class="active">Desktop</button>
+      <a class="tm-brand" href="#home" aria-label="TailorMe Home">
 
-    <button data-w="tablet">Tablet</button>
+        <!-- Sewing Machine Icon -->
 
-    <button data-w="mobile">Mobile</button>
+        <svg class="tm-icon-sew gold" viewBox="0 0 128 80" aria-hidden="true" role="img">
 
-  </div>
+          <defs>
+
+            <!-- ذهب -->
+
+            <linearGradient id="tmGoldA" x1="0" y1="0" x2="0" y2="1">
+
+              <stop offset="0%"  stop-color="#f7e3a2"/>
+
+              <stop offset="35%" stop-color="#e6c86b"/>
+
+              <stop offset="65%" stop-color="#caa848"/>
+
+              <stop offset="100%" stop-color="#9c7b2e"/>
+
+            </linearGradient>
+
+            <!-- فضة -->
+
+            <linearGradient id="tmSilverA" x1="0" y1="0" x2="0" y2="1">
+
+              <stop offset="0%"  stop-color="#f4f7fb"/>
+
+              <stop offset="40%" stop-color="#cfd6dd"/>
+
+              <stop offset="70%" stop-color="#aeb8c2"/>
+
+              <stop offset="100%" stop-color="#8b95a1"/>
+
+            </linearGradient>
+
+          </defs>
+
+          <!-- الجسم -->
+
+          <g class="metal-fill">
+
+            <rect x="10" y="62" width="108" height="10" rx="3"/>
+
+            <rect x="22" y="24" width="68" height="14" rx="6"/>
+
+            <rect x="22" y="36" width="14" height="26" rx="4"/>
+
+            <rect x="86" y="36" width="10" height="20" rx="3"/>
+
+            <rect x="70" y="38" width="8" height="12" rx="2"/>
+
+            <rect x="70" y="50" width="18" height="4" rx="2"/>
+
+          </g>
+
+          <!-- عجلة -->
+
+          <circle class="metal-stroke" cx="102" cy="50" r="12" fill="none" stroke-width="6"/>
+
+          <circle class="metal-fill"  cx="102" cy="50" r="4"/>
+
+          <!-- سطح الطاولة -->
+
+          <rect class="metal-stroke" x="18" y="58" width="74" height="2" rx="1" fill="none" stroke-width="4"/>
+
+          <!-- الإبرة والخيط -->
+
+          <line  x1="74" y1="38" x2="74" y2="58" stroke="currentColor" stroke-width="2"/>
+
+          <path d="M74,58 C78,60 82,62 88,62" fill="none" stroke="currentColor" stroke-width="2"/>
+
+        </svg>
+
+        <span class="tm-wordmark">Tailor<span>Me</span></span>
+
+      </a>
 
 
 
-  <div id="previewWrap" class="preview-wrap w-desktop">
+      <nav class="tm-nav" aria-label="Primary">
+
+        <ul>
+
+          <li><a href="#home">Home</a></li>
+
+          <li><a href="price-list.html">Price List</a></li>
+
+          <li><a href="#about">About</a></li>
+
+        </ul>
+
+      </nav>
 
 
 
-    <!-- ===== NAVBAR (TM Global / inline SVG) ===== -->
+      <div class="lang" title="Language">
 
-    <header class="tm-header">
+        <span class="flag" aria-hidden="true">
 
-      <div class="tm-container">
+          <svg viewBox="0 0 19 13" xmlns="http://www.w3.org/2000/svg">
 
-        <a class="tm-brand" href="#home" aria-label="TailorMe Home">
+            <rect width="19" height="13" fill="#b22234"/>
 
-          <!-- Inline SVG logo: TM (no background) -->
+            <g fill="#fff">
 
-          <svg class="tm-logo" width="38" height="38" viewBox="0 0 100 100" role="img" aria-label="TailorMe Monogram">
+              <rect y="1" width="19" height="1"/><rect y="3" width="19" height="1"/>
 
-            <defs>
+              <rect y="5" width="19" height="1"/><rect y="7" width="19" height="1"/>
 
-              <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
-
-                <stop offset="0%" stop-color="#f5d777"/>
-
-                <stop offset="50%" stop-color="#d7b54a"/>
-
-                <stop offset="100%" stop-color="#b9952f"/>
-
-              </linearGradient>
-
-              <linearGradient id="silverGrad" x1="0" y1="0" x2="0" y2="1">
-
-                <stop offset="0%" stop-color="#f4f6f9"/>
-
-                <stop offset="50%" stop-color="#cfd6dd"/>
-
-                <stop offset="100%" stop-color="#a8b2bd"/>
-
-              </linearGradient>
-
-            </defs>
-
-            <!-- T -->
-
-            <g fill="url(#silverGrad)">
-
-              <rect x="10" y="12" width="80" height="12" rx="2"></rect>
-
-              <rect x="44" y="24" width="12" height="64" rx="2"></rect>
+              <rect y="9" width="19" height="1"/><rect y="11" width="19" height="1"/>
 
             </g>
 
-            <!-- M -->
-
-            <g fill="none" stroke="url(#goldGrad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
-
-              <path d="M 18 86 L 32 36"></path>
-
-              <path d="M 32 36 L 50 62 L 68 36"></path>
-
-              <path d="M 68 36 L 82 86"></path>
-
-            </g>
+            <rect width="8.2" height="7" fill="#3c3b6e"/>
 
           </svg>
 
-          <span class="tm-wordmark">Tailor<span>Me</span></span>
+        </span>
 
-        </a>
+        <span>English</span>
 
+      </div>
 
+    </div>
 
-        <nav class="tm-nav" aria-label="Primary">
-
-          <ul>
-
-            <li><a href="#home">Home</a></li>
-
-            <li><a href="price-list.html">Price List</a></li>
-
-            <li><a href="#about">About</a></li>
-
-          </ul>
-
-        </nav>
+  </header>
 
 
 
-        <div class="lang" title="Language">
+  <!-- HERO -->
 
-          <span class="flag" aria-hidden="true">
+  <main id="home" class="hero">
 
-            <svg viewBox="0 0 19 13" xmlns="http://www.w3.org/2000/svg">
+    <picture class="hero-media">
 
-              <rect width="19" height="13" fill="#b22234"/>
+      <source srcset="images/hero-workshop.webp" type="image/webp">
 
-              <g fill="#fff">
+      <img src="images/hero-workshop.jpg" alt="TailorMe workshop scene" loading="eager" decoding="async">
 
-                <rect y="1" width="19" height="1"/><rect y="3" width="19" height="1"/>
+    </picture>
 
-                <rect y="5" width="19" height="1"/><rect y="7" width="19" height="1"/>
+    <div class="hero-inner">
 
-                <rect y="9" width="19" height="1"/><rect y="11" width="19" height="1"/>
+      <div>
 
-              </g>
+        <div class="kicker">Mobile Tailoring Service</div>
 
-              <rect width="8.2" height="7" fill="#3c3b6e"/>
+        <h1>Perfect Fit, Delivered to Your Door</h1>
 
-            </svg>
+        <p class="lead">
 
-          </span>
+          On-site fittings and precise alterations for suits, dresses, leather, and denim.
 
-          <span>English</span>
+          We come to you — home or office — with pickup and delivery across Louisville.
+
+        </p>
+
+        <div class="cta">
+
+          <a class="btn btn-primary" href="appointment.html">Book an Appointment</a>
+
+          <a class="btn btn-glass" href="price-list.html">View Price List</a>
 
         </div>
 
       </div>
 
-    </header>
+    </div>
 
-    <!-- /NAVBAR -->
+    <div class="trust">
 
+      <div class="pill">✔️ Free pickup & delivery in Louisville</div>
 
+      <div class="pill">🧵 Since 1996 tailoring experience</div>
 
-    <!-- HERO -->
+      <div class="pill">🇺🇸 Proudly serving Kentucky</div>
 
-    <main id="home" class="hero">
+    </div>
 
-      <picture class="hero-media">
-
-        <source srcset="images/hero-workshop.webp" type="image/webp">
-
-        <img src="images/hero-workshop.jpg" alt="TailorMe workshop scene" loading="eager" decoding="async">
-
-      </picture>
+  </main>
 
 
 
-      <div class="hero-inner">
+  <!-- ABOUT -->
 
-        <div>
+  <section id="about">
 
-          <div class="kicker">Mobile Tailoring Service</div>
+    <h2 class="section-title">About TailorMe</h2>
 
-          <h1>Perfect Fit, Delivered to Your Door</h1>
+    <div class="about">
 
-          <p class="lead">
+      <div>
 
-            On-site fittings and precise alterations for suits, dresses, leather, and denim.
+        <p>TailorMe is a premium mobile tailoring service dedicated to providing
 
-            We come to you — home or office — with pickup and delivery across Louisville.
+           top-quality alterations and custom tailoring at your convenience.</p>
 
-          </p>
+        <p>Our goal is to make luxury craftsmanship accessible. From suits and
 
-          <div class="cta">
+           dresses to leather and denim, we bring precision and elegance straight
 
-            <a class="btn btn-primary" href="appointment.html">
+           to your doorstep.</p>
 
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-
-                <path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v3H2V6a2 2 0 0 1 2-2h3V2zm15 8v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10h20z"/>
-
-              </svg>
-
-              Book an Appointment
-
-            </a>
-
-            <a class="btn btn-glass" href="price-list.html">
-
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-
-                <path d="M6 7V6a6 6 0 1 1 12 0v1h2a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2zm2-1a4 4 0 1 1 8 0v1H8V6z"/>
-
-              </svg>
-
-              View Price List
-
-            </a>
-
-          </div>
-
-        </div>
+        <a class="btn btn-secondary" href="price-list.html">Explore Price List</a>
 
       </div>
 
+      <div class="card">
 
+        <h3>Why TailorMe</h3>
 
-      <!-- trust pills kept in DOM but hidden by CSS -->
+        <ul class="why">
 
-      <div class="trust">
+          <li>Door-to-door service</li>
 
-        <div class="pill">✔️ Free pickup & delivery in Louisville</div>
+          <li>Elegant design & smooth UX</li>
 
-        <div class="pill">🧵 Since 1996 tailoring experience</div>
+          <li>Smart booking & e-signatures</li>
 
-        <div class="pill">🇺🇸 Proudly serving Kentucky</div>
+          <li>Client history saved securely</li>
 
-      </div>
-
-    </main>
-
-
-
-    <!-- ABOUT -->
-
-    <section id="about">
-
-      <h2 class="section-title">About TailorMe</h2>
-
-      <div class="about">
-
-        <div>
-
-          <p>
-
-            TailorMe is a premium mobile tailoring service dedicated to providing
-
-            top-quality alterations and custom tailoring at your convenience.
-
-          </p>
-
-          <p>
-
-            Our goal is to make luxury craftsmanship accessible. From suits and
-
-            dresses to leather and denim, we bring precision and elegance
-
-            straight to your doorstep.
-
-          </p>
-
-          <a class="btn btn-secondary" href="price-list.html">Explore Price List</a>
-
-        </div>
-
-        <div class="card">
-
-          <h3>Why TailorMe</h3>
-
-          <ul class="why">
-
-            <li>Door-to-door service</li>
-
-            <li>Elegant design & smooth UX</li>
-
-            <li>Smart booking & e-signatures</li>
-
-            <li>Client history saved securely</li>
-
-          </ul>
-
-        </div>
+        </ul>
 
       </div>
 
-    </section>
+    </div>
+
+  </section>
 
 
 
-    <!-- CONTACT -->
+  <!-- CONTACT -->
 
-    <section id="contact">
+  <section id="contact">
 
-      <h2 class="section-title">Contact</h2>
+    <h2 class="section-title">Contact</h2>
 
+    <form id="contactForm" class="contact-form" novalidate>
 
+      <input type="text" name="name" placeholder="Full Name" required/>
 
-      <!-- inline email row (visible) -->
+      <input type="email" name="email" placeholder="Email" required/>
 
-      <div class="tm-contact-inline">
+      <input type="text" name="subject" placeholder="Subject"/>
 
-        <span class="label">Contact</span>
+      <textarea name="message" placeholder="Tell us about your request…" required></textarea>
 
-        <a class="email" href="mailto:contact@tailorme.me">contact@tailorme.me</a>
+      <button class="btn btn-glass" type="submit">Send Message</button>
 
-      </div>
+      <p id="contactStatus" aria-live="polite"></p>
 
+    </form>
 
+    <p class="hint">Email: <a href="mailto:contact@tailorme.me">contact@tailorme.me</a></p>
 
-      <!-- keep original form in DOM (hidden by CSS for safety with any integrations) -->
-
-      <form id="contactForm" class="contact-form" novalidate>
-
-        <input type="text" name="name" placeholder="Full Name" required/>
-
-        <input type="email" name="email" placeholder="Email" required/>
-
-        <input type="text" name="subject" placeholder="Subject"/>
-
-        <textarea name="message" placeholder="Tell us about your request…" required></textarea>
-
-        <button class="btn btn-glass" type="submit">Send Message</button>
-
-        <p id="contactStatus" aria-live="polite"></p>
-
-      </form>
+  </section>
 
 
 
-      <!-- original hint kept but hidden via CSS -->
+  <!-- FOOTER -->
 
-      <p class="hint">Email: <a href="mailto:contact@tailorme.me">contact@tailorme.me</a></p>
+  <footer>
 
-    </section>
+    <div class="foot">
 
+      <div class="mini-logo">
 
+        <!-- Sewing Machine Icon small -->
 
-    <!-- FOOTER -->
+        <svg class="tm-icon-sew gold" viewBox="0 0 128 80" aria-hidden="true" role="img">
 
-    <footer>
+          <use href="#tmGoldA"/>
 
-      <div class="foot">
+        </svg>
 
-        <div class="mini-logo">
+        <strong class="tm-wordmark tm-wordmark-sm">
 
-          <!-- footer inline SVG instead of image -->
+          Tailor<span>Me</span>
 
-          <svg class="tm-logo" width="28" height="28" viewBox="0 0 100 100" aria-hidden="true">
-
-            <defs>
-
-              <linearGradient id="goldGradF" x1="0" y1="0" x2="0" y2="1">
-
-                <stop offset="0%" stop-color="#f5d777"/><stop offset="50%" stop-color="#d7b54a"/><stop offset="100%" stop-color="#b9952f"/>
-
-              </linearGradient>
-
-              <linearGradient id="silverGradF" x1="0" y1="0" x2="0" y2="1">
-
-                <stop offset="0%" stop-color="#f4f6f9"/><stop offset="50%" stop-color="#cfd6dd"/><stop offset="100%" stop-color="#a8b2bd"/>
-
-              </linearGradient>
-
-            </defs>
-
-            <g fill="url(#silverGradF)"><rect x="10" y="12" width="80" height="12" rx="2"/><rect x="44" y="24" width="12" height="64" rx="2"/></g>
-
-            <g fill="none" stroke="url(#goldGradF)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
-
-              <path d="M 18 86 L 32 36"/><path d="M 32 36 L 50 62 L 68 36"/><path d="M 68 36 L 82 86"/>
-
-            </g>
-
-          </svg>
-
-          <strong class="tm-wordmark tm-wordmark-sm">
-
-            <span class="t-silver">Tailor</span><span class="m-gold">Me</span>
-
-          </strong>
-
-        </div>
-
-        <small>© <span id="year"></span> TailorMe. All rights reserved.</small>
+        </strong>
 
       </div>
 
-    </footer>
+      <small>© <span id="year"></span> TailorMe. All rights reserved.</small>
 
-  </div>
+    </div>
+
+  </footer>
 
 
 
   <script>
 
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    const wrap = document.getElementById('previewWrap');
-
-    document.querySelectorAll('.preview-toolbar button').forEach(btn=>{
-
-      btn.addEventListener('click', ()=>{
-
-        document.querySelectorAll('.preview-toolbar button').forEach(x=>x.classList.remove('active'));
-
-        btn.classList.add('active');
-
-        wrap.className = 'preview-wrap w-' + btn.dataset.w;
-
-        window.scrollTo({top:0, behavior:'smooth'});
-
-      });
-
-    });
 
   </script>
 
