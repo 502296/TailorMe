@@ -1,3 +1,4 @@
+
 :root{
 
   --royal:#0c1220; --royal-ink:#0b1630;
@@ -56,17 +57,27 @@ header{position:sticky;top:48px;z-index:999;background:rgba(12,18,32,.75);backdr
 
 .m-gold{background:linear-gradient(90deg,var(--gold),var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
 
-nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}nav a{color:#e8ecf6;font-weight:600;opacity:.9}nav a:hover{color:white}
+nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
 
-.lang{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}.flag{width:18px;height:12px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.2)}
+nav a{color:#e8ecf6;font-weight:600;opacity:.9}
+
+nav a:hover{color:white}
+
+.lang{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+
+.flag{width:18px;height:12px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.2)}
 
 .flag svg{display:block}
 
 
 
-/* اخفاء أي شعار صورة قديم إن وُجد */
+/* اقتل أي شعار قديم (صور/خلفيات/بيسودو) */
 
 .tm-emblem, .brand .tm-emblem, .brand img[src*="logo"]{display:none !important;}
+
+.tm-brand::before, .brand::before, .brand::after{content:none !important; background:none !important;}
+
+.brand{background-image:none !important;}
 
 
 
@@ -195,11 +206,3 @@ footer{margin-top:24px;border-top:1px solid rgba(255,255,255,.06);background:rad
 .tm-icon-sew.gold  .metal-fill  { fill: url(#tmGoldAntique); }
 
 .tm-icon-sew.gold  .metal-stroke{ stroke: url(#tmGoldAntique); }
-
-/* (Optional silver)
-
-.tm-icon-sew.silver .metal-fill  { fill: url(#tmSilverAntique); }
-
-.tm-icon-sew.silver .metal-stroke{ stroke: url(#tmSilverAntique); }
-
-*/
