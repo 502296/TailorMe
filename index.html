@@ -56,25 +56,75 @@
 
   <div id="previewWrap" class="preview-wrap w-desktop">
 
-    <!-- NAVBAR -->
 
-    <header>
 
-      <div class="nav">
+    <!-- ===== NAVBAR (TM Global / inline SVG) ===== -->
 
-        <a class="brand" href="#home" aria-label="TailorMe Home">
+    <header class="tm-header">
 
-          <img class="tm-emblem" src="images/logo.png" alt="TailorMe logo"/>
+      <div class="tm-container">
 
-          <span class="tm-wordmark">
+        <a class="tm-brand" href="#home" aria-label="TailorMe Home">
 
-            <span class="t-silver">Tailor</span><span class="m-gold">Me</span>
+          <!-- Inline SVG logo: TM (no background) -->
 
-          </span>
+          <svg class="tm-logo" width="38" height="38" viewBox="0 0 100 100" role="img" aria-label="TailorMe Monogram">
+
+            <defs>
+
+              <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+
+                <stop offset="0%" stop-color="#f5d777"/>
+
+                <stop offset="50%" stop-color="#d7b54a"/>
+
+                <stop offset="100%" stop-color="#b9952f"/>
+
+              </linearGradient>
+
+              <linearGradient id="silverGrad" x1="0" y1="0" x2="0" y2="1">
+
+                <stop offset="0%" stop-color="#f4f6f9"/>
+
+                <stop offset="50%" stop-color="#cfd6dd"/>
+
+                <stop offset="100%" stop-color="#a8b2bd"/>
+
+              </linearGradient>
+
+            </defs>
+
+            <!-- T -->
+
+            <g fill="url(#silverGrad)">
+
+              <rect x="10" y="12" width="80" height="12" rx="2"></rect>
+
+              <rect x="44" y="24" width="12" height="64" rx="2"></rect>
+
+            </g>
+
+            <!-- M -->
+
+            <g fill="none" stroke="url(#goldGrad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+
+              <path d="M 18 86 L 32 36"></path>
+
+              <path d="M 32 36 L 50 62 L 68 36"></path>
+
+              <path d="M 68 36 L 82 86"></path>
+
+            </g>
+
+          </svg>
+
+          <span class="tm-wordmark">Tailor<span>Me</span></span>
 
         </a>
 
-        <nav aria-label="Primary">
+
+
+        <nav class="tm-nav" aria-label="Primary">
 
           <ul>
 
@@ -87,6 +137,8 @@
           </ul>
 
         </nav>
+
+
 
         <div class="lang" title="Language">
 
@@ -119,6 +171,8 @@
       </div>
 
     </header>
+
+    <!-- /NAVBAR -->
 
 
 
@@ -185,6 +239,8 @@
       </div>
 
 
+
+      <!-- trust pills kept in DOM but hidden by CSS -->
 
       <div class="trust">
 
@@ -262,6 +318,22 @@
 
       <h2 class="section-title">Contact</h2>
 
+
+
+      <!-- inline email row (visible) -->
+
+      <div class="tm-contact-inline">
+
+        <span class="label">Contact</span>
+
+        <a class="email" href="mailto:contact@tailorme.me">contact@tailorme.me</a>
+
+      </div>
+
+
+
+      <!-- keep original form in DOM (hidden by CSS for safety with any integrations) -->
+
       <form id="contactForm" class="contact-form" novalidate>
 
         <input type="text" name="name" placeholder="Full Name" required/>
@@ -278,6 +350,10 @@
 
       </form>
 
+
+
+      <!-- original hint kept but hidden via CSS -->
+
       <p class="hint">Email: <a href="mailto:contact@tailorme.me">contact@tailorme.me</a></p>
 
     </section>
@@ -292,7 +368,35 @@
 
         <div class="mini-logo">
 
-          <img class="footer-emblem" src="images/logo.png" alt=""/>
+          <!-- footer inline SVG instead of image -->
+
+          <svg class="tm-logo" width="28" height="28" viewBox="0 0 100 100" aria-hidden="true">
+
+            <defs>
+
+              <linearGradient id="goldGradF" x1="0" y1="0" x2="0" y2="1">
+
+                <stop offset="0%" stop-color="#f5d777"/><stop offset="50%" stop-color="#d7b54a"/><stop offset="100%" stop-color="#b9952f"/>
+
+              </linearGradient>
+
+              <linearGradient id="silverGradF" x1="0" y1="0" x2="0" y2="1">
+
+                <stop offset="0%" stop-color="#f4f6f9"/><stop offset="50%" stop-color="#cfd6dd"/><stop offset="100%" stop-color="#a8b2bd"/>
+
+              </linearGradient>
+
+            </defs>
+
+            <g fill="url(#silverGradF)"><rect x="10" y="12" width="80" height="12" rx="2"/><rect x="44" y="24" width="12" height="64" rx="2"/></g>
+
+            <g fill="none" stroke="url(#goldGradF)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+
+              <path d="M 18 86 L 32 36"/><path d="M 32 36 L 50 62 L 68 36"/><path d="M 68 36 L 82 86"/>
+
+            </g>
+
+          </svg>
 
           <strong class="tm-wordmark tm-wordmark-sm">
 
