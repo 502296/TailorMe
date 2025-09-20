@@ -56,17 +56,17 @@ header{position:sticky;top:48px;z-index:999;background:rgba(12,18,32,.75);backdr
 
 .m-gold{background:linear-gradient(90deg,var(--gold),var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
 
-nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}nav a{color:#e8ecf6;font-weight:600;opacity:.9}nav a:hover{color:white}
 
-nav a{color:#e8ecf6;font-weight:600;opacity:.9}
-
-nav a:hover{color:white}
-
-.lang{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
-
-.flag{width:18px;height:12px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.2)}
+.lang{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}.flag{width:18px;height:12px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.2)}
 
 .flag svg{display:block}
+
+
+
+/* اخفاء أي شعار صورة قديم إن وُجد */
+
+.tm-emblem, .brand .tm-emblem, .brand img[src*="logo"]{display:none !important;}
 
 
 
@@ -180,7 +180,7 @@ footer{margin-top:24px;border-top:1px solid rgba(255,255,255,.06);background:rad
 
   width:56px; height:34px; display:block; margin-right:12px;
 
-  transform: translateY(1px); /* محاذاة أفضل مع النص */
+  transform:translateY(1px);
 
 }
 
@@ -190,24 +190,16 @@ footer{margin-top:24px;border-top:1px solid rgba(255,255,255,.06);background:rad
 
 }
 
-.tm-icon-sew .thread{
+.tm-icon-sew .thread{ stroke:#d7b54a; stroke-linecap:round; stroke-linejoin:round; }
 
-  stroke:#d7b54a; stroke-linecap:round; stroke-linejoin:round;
+.tm-icon-sew.gold  .metal-fill  { fill: url(#tmGoldAntique); }
 
-}
+.tm-icon-sew.gold  .metal-stroke{ stroke: url(#tmGoldAntique); }
 
-/* اللون المعدني يأخذ الـgradient المعرّف داخل SVG */
+/* (Optional silver)
 
-.tm-icon-sew.gold .metal-fill   { fill: url(#tmGoldAntique); }
+.tm-icon-sew.silver .metal-fill  { fill: url(#tmSilverAntique); }
 
-.tm-icon-sew.gold .metal-stroke { stroke: url(#tmGoldAntique); }
+.tm-icon-sew.silver .metal-stroke{ stroke: url(#tmSilverAntique); }
 
-/* (إختياري) لو عملت نسخة فضية لاحقًا
-
-.tm-icon-sew.silver .metal-fill   { fill: url(#tmSilverAntique); }
-
-.tm-icon-sew.silver .metal-stroke { stroke: url(#tmSilverAntique); } */
-
-
-
-.tm-brand:hover .tm-icon-sew{ filter:drop-shadow(0 2px 10px rgba(215,181,74,.25)); }
+*/
