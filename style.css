@@ -46,7 +46,7 @@
 
 
 
-  --radius:22px;
+  --radius:26px;
 
 
 
@@ -62,15 +62,7 @@
 
 
 
-html{
-
-
-
-  scroll-behavior:smooth;
-
-
-
-}
+html{scroll-behavior:smooth}
 
 
 
@@ -86,7 +78,7 @@ body{
 
 
 
-    radial-gradient(circle at top left, rgba(212,175,55,.12), transparent 32%),
+    radial-gradient(circle at top left, rgba(212,175,55,.10), transparent 32%),
 
 
 
@@ -98,7 +90,7 @@ body{
 
 
 
-  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 
 
 
@@ -138,7 +130,7 @@ a{
 
 
 
-  background:rgba(7,11,22,.82);
+  background:rgba(7,11,22,.88);
 
 
 
@@ -146,7 +138,7 @@ a{
 
 
 
-  border-bottom:1px solid rgba(212,175,55,.18);
+  border-bottom:1px solid rgba(212,175,55,.16);
 
 
 
@@ -166,7 +158,7 @@ a{
 
 
 
-  padding:16px 22px;
+  padding:18px 22px;
 
 
 
@@ -202,22 +194,6 @@ a{
 
 
 
-  gap:10px;
-
-
-
-}
-
-
-
-.crown{
-
-
-
-  filter:drop-shadow(0 0 12px rgba(212,175,55,.55));
-
-
-
 }
 
 
@@ -234,11 +210,11 @@ a{
 
 
 
-  letter-spacing:.5px;
+  letter-spacing:.3px;
 
 
 
-  font-size:30px;
+  font-size:32px;
 
 
 
@@ -254,7 +230,7 @@ a{
 
 
 
-  font-size:22px;
+  font-size:24px;
 
 
 
@@ -322,7 +298,7 @@ nav ul{
 
 
 
-  gap:22px;
+  gap:24px;
 
 
 
@@ -346,15 +322,15 @@ nav a{
 
 
 
-  font-weight:700;
+  font-weight:800;
 
 
 
-  font-size:14px;
+  font-size:15px;
 
 
 
-  opacity:.9;
+  opacity:.92;
 
 
 
@@ -378,7 +354,7 @@ nav a:hover{
 
 
 
-  padding:10px 15px;
+  padding:12px 20px;
 
 
 
@@ -494,11 +470,11 @@ nav a:hover{
 
 
 
-    linear-gradient(90deg,rgba(4,7,15,.92) 0%,rgba(7,11,22,.78) 43%,rgba(7,11,22,.25) 100%),
+    linear-gradient(90deg,rgba(4,7,15,.92) 0%,rgba(7,11,22,.78) 45%,rgba(7,11,22,.35) 100%),
 
 
 
-    radial-gradient(circle at 28% 42%,rgba(212,175,55,.16),transparent 34%);
+    radial-gradient(circle at 28% 42%,rgba(212,175,55,.14),transparent 34%);
 
 
 
@@ -538,7 +514,7 @@ nav a:hover{
 
 
 
-  padding:90px 22px;
+  padding:86px 22px;
 
 
 
@@ -554,7 +530,7 @@ nav a:hover{
 
 
 
-  padding:34px;
+  padding:36px;
 
 
 
@@ -566,7 +542,7 @@ nav a:hover{
 
 
 
-  background:linear-gradient(180deg,rgba(12,18,32,.78),rgba(7,11,22,.52));
+  background:linear-gradient(180deg,rgba(12,18,32,.82),rgba(7,11,22,.58));
 
 
 
@@ -594,7 +570,7 @@ nav a:hover{
 
 
 
-  letter-spacing:.22em;
+  letter-spacing:.24em;
 
 
 
@@ -626,7 +602,7 @@ h1{
 
 
 
-  letter-spacing:-.04em;
+  letter-spacing:-.045em;
 
 
 
@@ -642,7 +618,7 @@ h2{
 
 
 
-  font-size:clamp(28px,4vw,48px);
+  font-size:clamp(30px,4vw,50px);
 
 
 
@@ -650,7 +626,7 @@ h2{
 
 
 
-  letter-spacing:-.03em;
+  letter-spacing:-.035em;
 
 
 
@@ -667,6 +643,10 @@ h3{
 
 
   color:var(--gold-2);
+
+
+
+  font-size:26px;
 
 
 
@@ -738,7 +718,7 @@ h3{
 
 
 
-  padding:14px 20px;
+  padding:15px 22px;
 
 
 
@@ -858,7 +838,7 @@ h3{
 
 
 
-  padding:8px 12px;
+  padding:9px 13px;
 
 
 
@@ -882,7 +862,7 @@ h3{
 
 
 
-  font-weight:700;
+  font-weight:800;
 
 
 
@@ -902,7 +882,7 @@ h3{
 
 
 
-  padding:70px 22px;
+  padding:72px 22px;
 
 
 
@@ -914,11 +894,11 @@ h3{
 
 
 
-  max-width:760px;
+  max-width:780px;
 
 
 
-  margin-bottom:26px;
+  margin-bottom:28px;
 
 
 
@@ -954,7 +934,7 @@ h3{
 
 
 
-  border:1px solid rgba(212,175,55,.2);
+  border:1px solid rgba(212,175,55,.20);
 
 
 
@@ -970,7 +950,7 @@ h3{
 
 
 
-  padding:30px;
+  padding:32px;
 
 
 
@@ -990,7 +970,7 @@ h3{
 
 
 
-  font-size:16px;
+  font-size:17px;
 
 
 
@@ -1022,7 +1002,7 @@ h3{
 
 
 
-  padding:13px 0 13px 30px;
+  padding:14px 0 14px 28px;
 
 
 
@@ -1038,7 +1018,7 @@ h3{
 
 
 
-  font-weight:700;
+  font-weight:800;
 
 
 
@@ -1050,7 +1030,7 @@ h3{
 
 
 
-  content:"✦";
+  content:"•";
 
 
 
@@ -1082,7 +1062,7 @@ h3{
 
 
 
-  padding:40px 22px 80px;
+  padding:42px 22px 86px;
 
 
 
@@ -1098,15 +1078,23 @@ h3{
 
 
 
+  max-width:920px;
+
+
+
+  margin:0 auto;
+
+
+
   background:
 
 
 
-    radial-gradient(circle at top,rgba(212,175,55,.14),transparent 42%),
+    radial-gradient(circle at top,rgba(212,175,55,.12),transparent 42%),
 
 
 
-    linear-gradient(180deg,rgba(16,26,46,.9),rgba(7,11,22,.82));
+    linear-gradient(180deg,rgba(16,26,46,.90),rgba(7,11,22,.82));
 
 
 
@@ -1130,15 +1118,27 @@ h3{
 
 
 
-  margin-top:20px;
+  display:inline-block;
 
 
 
-  color:var(--gold-2) !important;
+  margin-top:22px;
+
+
+
+  color:var(--gold-2);
 
 
 
   font-weight:900;
+
+
+
+  font-size:18px;
+
+
+
+  border-bottom:1px solid rgba(244,214,117,.75);
 
 
 
@@ -1174,7 +1174,7 @@ footer{
 
 
 
-  padding:24px 22px;
+  padding:26px 22px;
 
 
 
@@ -1210,7 +1210,67 @@ footer{
 
 
 
+    justify-content:center;
+
+
+
     flex-wrap:wrap;
+
+
+
+    gap:18px;
+
+
+
+    padding:20px 20px 24px;
+
+
+
+  }
+
+
+
+  .tm-brand{
+
+
+
+    width:100%;
+
+
+
+    justify-content:center;
+
+
+
+  }
+
+
+
+  .nav-cta{
+
+
+
+    order:2;
+
+
+
+    width:100%;
+
+
+
+    max-width:680px;
+
+
+
+    text-align:center;
+
+
+
+    padding:16px 20px;
+
+
+
+    font-size:20px;
 
 
 
@@ -1242,7 +1302,7 @@ footer{
 
 
 
-    gap:16px;
+    gap:22px;
 
 
 
@@ -1254,11 +1314,11 @@ footer{
 
 
 
-  .nav-cta{
+  nav a{
 
 
 
-    margin-left:auto;
+    font-size:18px;
 
 
 
@@ -1282,7 +1342,7 @@ footer{
 
 
 
-    padding:24px;
+    padding:28px;
 
 
 
@@ -1330,7 +1390,7 @@ footer{
 
 
 
-    font-size:25px;
+    font-size:36px;
 
 
 
@@ -1338,11 +1398,11 @@ footer{
 
 
 
-  .nav{
+  .hero{
 
 
 
-    justify-content:center;
+    min-height:auto;
 
 
 
@@ -1350,15 +1410,31 @@ footer{
 
 
 
-  .nav-cta{
+  .hero-inner{
 
 
 
-    width:100%;
+    min-height:auto;
 
 
 
-    text-align:center;
+    padding:74px 18px 54px;
+
+
+
+  }
+
+
+
+  .hero-content{
+
+
+
+    padding:28px 24px;
+
+
+
+    border-radius:30px;
 
 
 
@@ -1370,7 +1446,59 @@ footer{
 
 
 
-    font-size:42px;
+    font-size:44px;
+
+
+
+    line-height:1;
+
+
+
+  }
+
+
+
+  h2{
+
+
+
+    font-size:38px;
+
+
+
+    line-height:1.08;
+
+
+
+  }
+
+
+
+  .lead{
+
+
+
+    font-size:20px;
+
+
+
+    line-height:1.65;
+
+
+
+  }
+
+
+
+  .kicker,.eyebrow{
+
+
+
+    font-size:13px;
+
+
+
+    letter-spacing:.24em;
 
 
 
@@ -1383,6 +1511,14 @@ footer{
 
 
     width:100%;
+
+
+
+    min-height:60px;
+
+
+
+    font-size:20px;
 
 
 
@@ -1399,6 +1535,102 @@ footer{
 
 
     text-align:center;
+
+
+
+    font-size:16px;
+
+
+
+    padding:12px 14px;
+
+
+
+  }
+
+
+
+  .section{
+
+
+
+    padding:58px 20px;
+
+
+
+  }
+
+
+
+  .about-text,.premium-card,.contact-card{
+
+
+
+    padding:30px 28px;
+
+
+
+    border-radius:30px;
+
+
+
+  }
+
+
+
+  .about-text p,.contact-card p{
+
+
+
+    font-size:20px;
+
+
+
+    line-height:1.7;
+
+
+
+  }
+
+
+
+  .why li{
+
+
+
+    font-size:19px;
+
+
+
+    line-height:1.45;
+
+
+
+  }
+
+
+
+  .contact-section{
+
+
+
+    padding:36px 20px 72px;
+
+
+
+  }
+
+
+
+  .direct-email{
+
+
+
+    font-size:18px;
+
+
+
+    word-break:break-word;
 
 
 
