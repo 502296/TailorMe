@@ -1,293 +1,90 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-
-  <title>Book an Appointment – TailorMe</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book TailorMe</title>
   <link rel="stylesheet" href="appointment.css" />
-
 </head>
 
 <body>
-
-  <header class="tm-header">
-
-    <div class="tm-brand">
-
-      <span class="tm-logo">👑</span>
-
-      <span class="tm-name">TailorMe</span>
-
-    </div>
-
-  </header>
-
-
-
   <main class="tm-main">
-
     <section class="tm-card">
-
-      <h1 class="tm-title">Book an Appointment</h1>
-
-      <p class="tm-subtitle">Mobile Alterations & Custom Tailoring</p>
-
-
-
-      <form id="appointmentForm" novalidate>
-
-        <div class="grid">
-
-          <label class="field">
-
-            <span>Name</span>
-
-            <input type="text" id="name" name="name" required />
-
-          </label>
-
-
-
-          <label class="field">
-
-            <span>Email</span>
-
-            <input type="email" id="email" name="email" required inputmode="email" autocomplete="email"
-
-                   pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" />
-
-          </label>
-
-
-
-          <label class="field">
-
-            <span>Phone</span>
-
-            <input type="tel" id="phone" name="phone" required />
-
-          </label>
-
-
-
-          <label class="field full">
-
-            <span>Address</span>
-
-            <input type="text" id="address" name="address" required />
-
-          </label>
-
-
-
-          <label class="field">
-
-            <span>Service Type</span>
-
-            <select id="service" name="service" required>
-
-              <option value="">-- Select --</option>
-
-              <option value="Alteration">Alteration</option>
-
-              <option value="Custom">Custom</option>
-
-            </select>
-
-          </label>
-
-
-
-          <label class="field">
-
-            <span>Number of Pieces</span>
-
-            <input type="number" min="1" id="pieces" name="pieces" required />
-
-          </label>
-
-
-
-          <label class="field">
-
-            <span>Pickup Date</span>
-
-            <input type="date" id="pickup_date" name="pickup_date" required />
-
-          </label>
-
-
-
-          <label class="field">
-
-            <span>Pickup Time</span>
-
-            <input type="time" id="pickup_time" name="pickup_time" required />
-
-          </label>
-
-
-
-          <label class="field full">
-
-            <span>Additional Notes (optional)</span>
-
-            <textarea id="notes" name="notes" rows="3" placeholder="Any special instructions..."></textarea>
-
-          </label>
-
-        </div>
-
-
-
-        <button class="tm-btn" id="submitBtn" type="submit">Submit Booking</button>
-
-        <p id="status" class="status" role="status" aria-live="polite"></p>
-
+      <div class="tm-brand">👑 TailorMe</div>
+
+      <h1>Book a Visit</h1>
+      <p class="subtitle">
+        Tell us what you need. We’ll contact you to confirm the details.
+      </p>
+
+      <form id="bookingForm">
+        <label>
+          Full Name
+          <input type="text" id="name" required />
+        </label>
+
+        <label>
+          Phone Number
+          <input type="tel" id="phone" required />
+        </label>
+
+        <label>
+          Email
+          <input type="email" id="email" />
+        </label>
+
+        <label>
+          Address
+          <input type="text" id="address" required />
+        </label>
+
+        <label>
+          What do you need?
+          <textarea id="message" rows="5" required placeholder="Example: I have a jacket that needs sleeve shortening..."></textarea>
+        </label>
+
+        <button type="submit">Send Request</button>
+
+        <p id="status"></p>
       </form>
 
+      <a class="back" href="index.html">← Back to Home</a>
     </section>
-
   </main>
 
-
-
-  <footer class="tm-footer">
-
-    <small>© <span id="year"></span> TailorMe — Louisville, KY</small>
-
-  </footer>
-
-
-
   <script>
+    const PERSONAL_EMAIL = "ali.kathem.edu@gmail.com";
 
-    // === رابط الويب آب (أحدث واحد) ===
-
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxfu7uMnPGmql7JO1FLl6hZTUlOmi4st3ppTFa1T4124kbK-RfomtZN2qEh_e_cKGb8DA/exec';
-
-    // صفحة الشكر (مسار مطلق لتجنّب 404)
-
-    const THANK_YOU_URL = 'https://tailorme.me/thank-you.html';
-
-
-
-    const $ = s => document.querySelector(s);
-
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const form = $('#appointmentForm'), statusEl = $('#status'), submitBtn = $('#submitBtn');
-
-
-
-    function showStatus(msg, ok=true){ statusEl.textContent = msg; statusEl.style.color = ok ? '#c1ffd6' : '#ffb3b3'; }
-
-
-
-    async function goThankYou(){
-
-      try {
-
-        const r = await fetch(THANK_YOU_URL, { method: 'HEAD', cache: 'no-store' });
-
-        if (r.ok) window.location.replace(THANK_YOU_URL);
-
-        else { showStatus('✅ Booking received. Confirmation email sent.', true); form.reset(); submitBtn.disabled = false; }
-
-      } catch {
-
-        showStatus('✅ Booking received. Check your email & Sheet.', true); form.reset(); submitBtn.disabled = false;
-
-      }
-
-    }
-
-
-
-    form.addEventListener('submit', async (e) => {
-
+    document.getElementById("bookingForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
-      showStatus('Submitting…'); submitBtn.disabled = true;
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const message = document.getElementById("message").value.trim();
 
-
-
-      const payload = {
-
-        name: $('#name').value.trim(),
-
-        email: $('#email').value.trim(),
-
-        phone: $('#phone').value.trim(),
-
-        address: $('#address').value.trim(),
-
-        service: $('#service').value,
-
-        pieces: $('#pieces').value.trim(),
-
-        pickup_date: $('#pickup_date').value,
-
-        pickup_time: $('#pickup_time').value,
-
-        notes: $('#notes').value.trim()
-
-      };
-
-
-
-      const req = ['name','email','phone','address','service','pieces','pickup_date','pickup_time'];
-
-      for (const k of req){ if(!payload[k]){ showStatus('Please fill all required fields.', false); submitBtn.disabled=false; return; } }
-
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)){ showStatus('Please enter a valid email.', false); submitBtn.disabled=false; return; }
-
-
-
-      // محاولة 1: طلب عادي
-
-      try {
-
-        const res = await fetch(WEB_APP_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
-
-        if (!res.ok) throw new Error('HTTP '+res.status);
-
-        const data = await res.json();
-
-        if (data && data.ok) { goThankYou(); return; }
-
-        throw new Error('Unexpected response');
-
-      } catch {
-
-        // محاولة 2: وضع التوافق no-cors
-
-        try {
-
-          await fetch(WEB_APP_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
-
-          goThankYou();
-
-        } catch {
-
-          showStatus('❌ Could not submit. Re-check Web App access (Anyone) and re-deploy, then try again.', false);
-
-          submitBtn.disabled = false;
-
-        }
-
+      if (!name || !phone || !address || !message) {
+        document.getElementById("status").textContent = "Please fill all required fields.";
+        return;
       }
 
+      const subject = encodeURIComponent("New TailorMe Request");
+      const body = encodeURIComponent(
+`New TailorMe Request
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email || "Not provided"}
+Address: ${address}
+
+Customer Message:
+${message}
+`
+      );
+
+      window.location.href = `mailto:${PERSONAL_EMAIL}?subject=${subject}&body=${body}`;
     });
-
   </script>
-
 </body>
-
 </html>
