@@ -1,299 +1,141 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8"/>
-
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-  <title>TailorMe – Mobile Tailoring</title>
-
-  <meta name="description" content="TailorMe – Mobile alterations & custom tailoring delivered to your door."/>
+  <title>TailorMe – Premium Mobile Tailoring</title>
+  <meta name="description" content="TailorMe – Premium mobile alterations and custom tailoring in Louisville. We come to your door."/>
 
   <link rel="stylesheet" href="style.css"/>
 
-
-
   <!-- Google tag (gtag.js) -->
-
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJP3RQE054"></script>
-
   <script>
-
     window.dataLayer = window.dataLayer || [];
-
     function gtag(){dataLayer.push(arguments);}
-
     gtag('js', new Date());
-
     gtag('config', 'G-YJP3RQE054');
-
   </script>
-
 </head>
 
-
-
 <body>
+  <header class="site-header">
+    <div class="nav">
+      <a class="brand tm-brand" href="#home" aria-label="TailorMe Home">
+        <span class="crown">👑</span>
+        <span class="tm-wordmark">
+          <span class="t-silver">Tailor</span><span class="m-gold">Me</span>
+        </span>
+      </a>
 
-  <!-- Preview toolbar (dev only) -->
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="price-list.html">Price List</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
 
-  <div class="preview-toolbar" aria-hidden="true">
+      <a class="nav-cta" href="appointment.html">Book a Visit</a>
+    </div>
+  </header>
 
-    <strong>Preview:</strong>
+  <main id="home" class="hero">
+    <picture class="hero-media">
+      <source srcset="images/hero-workshop.webp" type="image/webp">
+      <img src="images/hero-workshop.jpg" alt="Premium tailoring workshop" loading="eager" decoding="async">
+    </picture>
 
-    <button data-w="desktop" class="active">Desktop</button>
+    <div class="hero-overlay"></div>
 
-    <button data-w="tablet">Tablet</button>
+    <section class="hero-inner">
+      <div class="hero-content">
+        <div class="kicker">Premium Mobile Tailoring</div>
 
-    <button data-w="mobile">Mobile</button>
+        <h1>Luxury Alterations, Delivered to Your Door.</h1>
 
-  </div>
+        <p class="lead">
+          Professional fittings, precise alterations, and custom tailoring for suits,
+          dresses, leather, denim, and special garments — serving Louisville with care.
+        </p>
 
-
-
-  <div id="previewWrap" class="preview-wrap w-desktop">
-
-    <!-- NAVBAR -->
-
-    <header>
-
-      <div class="nav">
-
-        <a class="brand tm-brand" href="#home" aria-label="TailorMe Home">
-
-          <span class="tm-wordmark">
-
-            <span class="t-silver">Tailor</span><span class="m-gold">Me</span>
-
-          </span>
-
-        </a>
-
-        <nav aria-label="Primary">
-
-          <ul>
-
-            <li><a href="#home">Home</a></li>
-
-            <li><a href="price-list.html">Price List</a></li>
-
-            <li><a href="#about">About</a></li>
-
-          </ul>
-
-        </nav>
-
-        <div class="lang" title="Language">
-
-          <span class="flag" aria-hidden="true">
-
-            <svg viewBox="0 0 19 13" xmlns="http://www.w3.org/2000/svg">
-
-              <rect width="19" height="13" fill="#b22234"/>
-
-              <g fill="#fff">
-
-                <rect y="1" width="19" height="1"/>
-
-                <rect y="3" width="19" height="1"/>
-
-                <rect y="5" width="19" height="1"/>
-
-                <rect y="7" width="19" height="1"/>
-
-                <rect y="9" width="19" height="1"/>
-
-                <rect y="11" width="19" height="1"/>
-
-              </g>
-
-              <rect width="8.2" height="7" fill="#3c3b6e"/>
-
-            </svg>
-
-          </span>
-
-          <span>English</span>
-
+        <div class="cta">
+          <a class="btn btn-primary" href="appointment.html">Book a Visit</a>
+          <a class="btn btn-glass" href="price-list.html">View Price List</a>
         </div>
 
+        <div class="trust-row">
+          <span>Door-to-door service</span>
+          <span>Professional fitting</span>
+          <span>Simple request form</span>
+        </div>
       </div>
-
-    </header>
-
-
-
-    <!-- HERO -->
-
-    <main id="home" class="hero">
-
-      <picture class="hero-media">
-
-        <source srcset="images/hero-workshop.webp" type="image/webp">
-
-        <img src="images/hero-workshop.jpg" alt="TailorMe workshop scene" loading="eager" decoding="async">
-
-      </picture>
-
-
-
-      <div class="hero-inner">
-
-        <div>
-
-          <div class="kicker">Mobile Tailoring Service</div>
-
-          <h1>Perfect Fit, Delivered to Your Door</h1>
-
-          <p class="lead">
-
-            On-site fittings and precise alterations for suits, dresses, leather, and denim.
-
-            We come to you — home or office — with pickup and delivery across Louisville.
-
-          </p>
-
-          <div class="cta">
-
-            <a class="btn btn-primary" href="appointment.html">Book an Appointment</a>
-
-            <a class="btn btn-glass" href="price-list.html">View Price List</a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </main>
-
-
-
-    <!-- ABOUT -->
-
-    <section id="about">
-
-      <h2 class="section-title">About TailorMe</h2>
-
-      <div class="about">
-
-        <div>
-
-          <p>
-
-            TailorMe is a premium mobile tailoring service dedicated to providing
-
-            top-quality alterations and custom tailoring at your convenience.
-
-          </p>
-
-          <p>
-
-            Our goal is to make luxury craftsmanship accessible. From suits and
-
-            dresses to leather and denim, we bring precision and elegance
-
-            straight to your doorstep.
-
-          </p>
-
-          <a class="btn btn-secondary" href="price-list.html">Explore Price List</a>
-
-        </div>
-
-        <div class="card">
-
-          <h3>Why TailorMe</h3>
-
-          <ul class="why">
-
-            <li>Door-to-door service</li>
-
-            <li>Elegant design & smooth UX</li>
-
-            <li>Smart booking & e-signatures</li>
-
-            <li>Client history saved securely</li>
-
-          </ul>
-
-        </div>
-
-      </div>
-
     </section>
+  </main>
 
+  <section id="about" class="section">
+    <div class="section-head">
+      <span class="eyebrow">About</span>
+      <h2>Tailoring with craftsmanship and convenience.</h2>
+    </div>
 
+    <div class="about">
+      <div class="about-text">
+        <p>
+          TailorMe is a local mobile tailoring service built for people who want
+          quality work without the stress of visiting a shop.
+        </p>
 
-    <!-- CONTACT (inline only) -->
+        <p>
+          You send a simple request, we review the details, and we contact you to
+          confirm the best time and service needed.
+        </p>
 
-    <section id="contact">
-
-      <div class="tm-contact-inline">
-
-        <span class="label">Contact</span>
-
-        <a class="email" href="mailto:contact@tailorme.me">contact@tailorme.me</a>
-
+        <a class="btn btn-secondary" href="appointment.html">Request a Visit</a>
       </div>
 
-    </section>
+      <div class="card premium-card">
+        <h3>Why TailorMe</h3>
+        <ul class="why">
+          <li>Mobile pickup and fitting</li>
+          <li>Suits, dresses, denim, and leather</li>
+          <li>Simple contact-based booking</li>
+          <li>Local Louisville service</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
+  <section id="contact" class="contact-section">
+    <div class="contact-card">
+      <span class="eyebrow">Contact</span>
+      <h2>Have a garment that needs attention?</h2>
+      <p>
+        Send a simple request and include your address, phone number, and what you need done.
+      </p>
 
-
-    <!-- FOOTER -->
-
-    <footer>
-
-      <div class="foot">
-
-        <div class="mini-logo">
-
-          <strong class="tm-wordmark tm-wordmark-sm">
-
-            <span class="t-silver">Tailor</span><span class="m-gold">Me</span>
-
-          </strong>
-
-        </div>
-
-        <small>© <span id="year"></span> TailorMe. All rights reserved.</small>
-
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="appointment.html">Send a Request</a>
+        <a class="btn btn-glass" href="mailto:ali.kathem.edu@gmail.com">Email Directly</a>
       </div>
 
-    </footer>
+      <p class="direct-email">ali.kathem.edu@gmail.com</p>
+    </div>
+  </section>
 
-  </div>
+  <footer>
+    <div class="foot">
+      <strong class="tm-wordmark tm-wordmark-sm">
+        <span class="t-silver">Tailor</span><span class="m-gold">Me</span>
+      </strong>
 
-
+      <small>© <span id="year"></span> TailorMe. All rights reserved.</small>
+    </div>
+  </footer>
 
   <script>
-
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    const wrap = document.getElementById('previewWrap');
-
-    document.querySelectorAll('.preview-toolbar button').forEach(btn=>{
-
-      btn.addEventListener('click', ()=>{
-
-        document.querySelectorAll('.preview-toolbar button').forEach(x=>x.classList.remove('active'));
-
-        btn.classList.add('active');
-
-        wrap.className = 'preview-wrap w-' + btn.dataset.w;
-
-        window.scrollTo({top:0, behavior:'smooth'});
-
-      });
-
-    });
-
   </script>
-
 </body>
-
 </html>
