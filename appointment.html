@@ -3,52 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Book TailorMe</title>
+
+  <title>Book a Visit – TailorMe</title>
+  <meta name="description" content="Send a simple TailorMe visit request for mobile tailoring and alterations in Louisville." />
+
   <link rel="stylesheet" href="appointment.css" />
 </head>
 
 <body>
   <main class="tm-main">
     <section class="tm-card">
-      <div class="tm-brand">👑 TailorMe</div>
+      <a class="tm-brand" href="index.html" aria-label="Back to TailorMe home">
+        <span class="crown">👑</span>
+        <span>Tailor<span>Me</span></span>
+      </a>
 
-      <h1>Book a Visit</h1>
-      <p class="subtitle">
-        Tell us what you need. We’ll contact you to confirm the details.
-      </p>
+      <div class="intro">
+        <p class="eyebrow">Mobile Tailoring Request</p>
+        <h1>Book a Visit</h1>
+        <p class="subtitle">
+          Tell us what you need. We’ll review your request and contact you to confirm the details.
+        </p>
+      </div>
 
-      <form id="bookingForm">
-        <label>
-          Full Name
-          <input type="text" id="name" required />
+      <form id="bookingForm" class="booking-form">
+        <div class="form-grid">
+          <label>
+            <span>Full Name *</span>
+            <input type="text" id="name" autocomplete="name" required />
+          </label>
+
+          <label>
+            <span>Phone Number *</span>
+            <input type="tel" id="phone" autocomplete="tel" required />
+          </label>
+
+          <label>
+            <span>Email</span>
+            <input type="email" id="email" autocomplete="email" />
+          </label>
+
+          <label>
+            <span>Address *</span>
+            <input type="text" id="address" autocomplete="street-address" required />
+          </label>
+        </div>
+
+        <label class="full">
+          <span>What do you need? *</span>
+          <textarea id="message" rows="6" required placeholder="Example: I have a jacket that needs sleeve shortening, or a dress that needs fitting..."></textarea>
         </label>
 
-        <label>
-          Phone Number
-          <input type="tel" id="phone" required />
-        </label>
+        <button type="submit" class="send-btn">Send Request</button>
 
-        <label>
-          Email
-          <input type="email" id="email" />
-        </label>
-
-        <label>
-          Address
-          <input type="text" id="address" required />
-        </label>
-
-        <label>
-          What do you need?
-          <textarea id="message" rows="5" required placeholder="Example: I have a jacket that needs sleeve shortening..."></textarea>
-        </label>
-
-        <button type="submit">Send Request</button>
-
-        <p id="status"></p>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
       </form>
 
-      <a class="back" href="index.html">← Back to Home</a>
+      <div class="quick-actions">
+        <a class="back-btn" href="index.html">← Back to Home</a>
+        <a class="email-btn" href="mailto:ali.kathem.edu@gmail.com">Email Directly</a>
+      </div>
     </section>
   </main>
 
@@ -63,9 +77,11 @@
       const email = document.getElementById("email").value.trim();
       const address = document.getElementById("address").value.trim();
       const message = document.getElementById("message").value.trim();
+      const status = document.getElementById("status");
 
       if (!name || !phone || !address || !message) {
-        document.getElementById("status").textContent = "Please fill all required fields.";
+        status.textContent = "Please fill all required fields.";
+        status.className = "status error";
         return;
       }
 
@@ -82,6 +98,9 @@ Customer Message:
 ${message}
 `
       );
+
+      status.textContent = "Opening your email app...";
+      status.className = "status success";
 
       window.location.href = `mailto:${PERSONAL_EMAIL}?subject=${subject}&body=${body}`;
     });
