@@ -6,10 +6,6 @@
 
 
 
-  --royal-2:#0c1220;
-
-
-
   --navy:#101a2e;
 
 
@@ -34,7 +30,7 @@
 
 
 
-  --border:rgba(212,175,55,.22);
+  --border:rgba(212,175,55,.18);
 
 
 
@@ -46,7 +42,7 @@
 
 
 
-  --shadow:0 22px 60px rgba(0,0,0,.38);
+  --shadow:0 18px 44px rgba(0,0,0,.30);
 
 
 
@@ -74,7 +70,7 @@ body{
 
 
 
-    radial-gradient(circle at top, rgba(212,175,55,.08), transparent 34%),
+    radial-gradient(circle at top, rgba(212,175,55,.07), transparent 34%),
 
 
 
@@ -126,7 +122,7 @@ a{
 
 
 
-  background:rgba(7,11,22,.90);
+  background:rgba(7,11,22,.92);
 
 
 
@@ -134,7 +130,7 @@ a{
 
 
 
-  border-bottom:1px solid rgba(212,175,55,.14);
+  border-bottom:1px solid rgba(212,175,55,.12);
 
 
 
@@ -154,7 +150,7 @@ a{
 
 
 
-  padding:20px 22px;
+  padding:16px 22px;
 
 
 
@@ -210,7 +206,7 @@ a{
 
 
 
-  font-size:32px;
+  font-size:30px;
 
 
 
@@ -354,7 +350,7 @@ nav a:hover{
 
 
 
-  min-height:74vh;
+  min-height:72vh;
 
 
 
@@ -406,7 +402,7 @@ nav a:hover{
 
 
 
-  filter:saturate(.92) contrast(1.05);
+  filter:saturate(.90) contrast(1.05);
 
 
 
@@ -434,11 +430,11 @@ nav a:hover{
 
 
 
-    linear-gradient(90deg,rgba(4,7,15,.94) 0%,rgba(7,11,22,.80) 48%,rgba(7,11,22,.42) 100%),
+    linear-gradient(90deg,rgba(4,7,15,.96) 0%,rgba(7,11,22,.78) 48%,rgba(7,11,22,.38) 100%),
 
 
 
-    radial-gradient(circle at 28% 42%,rgba(212,175,55,.10),transparent 34%);
+    radial-gradient(circle at 25% 42%,rgba(212,175,55,.11),transparent 34%);
 
 
 
@@ -466,7 +462,7 @@ nav a:hover{
 
 
 
-  min-height:74vh;
+  min-height:72vh;
 
 
 
@@ -490,31 +486,31 @@ nav a:hover{
 
 
 
-  max-width:610px;
+  max-width:600px;
 
 
 
-  padding:34px;
+  padding:0;
 
 
 
-  border:1px solid var(--border);
+  border:none;
 
 
 
-  border-radius:var(--radius);
+  border-radius:0;
 
 
 
-  background:linear-gradient(180deg,rgba(12,18,32,.80),rgba(7,11,22,.56));
+  background:transparent;
 
 
 
-  box-shadow:var(--shadow);
+  box-shadow:none;
 
 
 
-  backdrop-filter:blur(12px);
+  backdrop-filter:none;
 
 
 
@@ -575,6 +571,10 @@ h1{
 
 
   font-weight:800;
+
+
+
+  text-shadow:0 8px 24px rgba(0,0,0,.48);
 
 
 
@@ -646,7 +646,7 @@ h3{
 
 
 
-  max-width:48ch;
+  max-width:46ch;
 
 
 
@@ -654,7 +654,11 @@ h3{
 
 
 
-  line-height:1.65;
+  line-height:1.6;
+
+
+
+  text-shadow:0 6px 18px rgba(0,0,0,.45);
 
 
 
@@ -678,7 +682,7 @@ h3{
 
 
 
-  margin-top:24px;
+  margin-top:26px;
 
 
 
@@ -706,7 +710,7 @@ h3{
 
 
 
-  padding:13px 24px;
+  padding:13px 26px;
 
 
 
@@ -738,7 +742,7 @@ h3{
 
 
 
-  transform:translateY(-2px);
+  transform:translateY(-1px);
 
 
 
@@ -758,7 +762,19 @@ h3{
 
 
 
-  box-shadow:0 16px 34px rgba(212,175,55,.22);
+  box-shadow:0 10px 22px rgba(212,175,55,.18);
+
+
+
+}
+
+
+
+.btn-primary:hover{
+
+
+
+  box-shadow:0 14px 28px rgba(212,175,55,.22);
 
 
 
@@ -778,7 +794,7 @@ h3{
 
 
 
-  padding:58px 22px;
+  padding:56px 22px;
 
 
 
@@ -830,7 +846,7 @@ h3{
 
 
 
-  border:1px solid rgba(212,175,55,.18);
+  border:1px solid var(--border);
 
 
 
@@ -838,7 +854,7 @@ h3{
 
 
 
-  background:linear-gradient(180deg,rgba(16,26,46,.78),rgba(7,11,22,.70));
+  background:linear-gradient(180deg,rgba(16,26,46,.72),rgba(7,11,22,.66));
 
 
 
@@ -862,7 +878,7 @@ h3{
 
 
 
-  line-height:1.65;
+  line-height:1.6;
 
 
 
@@ -990,11 +1006,11 @@ h3{
 
 
 
-    radial-gradient(circle at top,rgba(212,175,55,.10),transparent 42%),
+    radial-gradient(circle at top,rgba(212,175,55,.09),transparent 42%),
 
 
 
-    linear-gradient(180deg,rgba(16,26,46,.86),rgba(7,11,22,.80));
+    linear-gradient(180deg,rgba(16,26,46,.82),rgba(7,11,22,.78));
 
 
 
@@ -1122,7 +1138,7 @@ footer{
 
 
 
-    padding:20px 20px 22px;
+    padding:16px 20px 20px;
 
 
 
@@ -1202,18 +1218,6 @@ footer{
 
 
 
-  .hero-content{
-
-
-
-    padding:28px;
-
-
-
-  }
-
-
-
   .about{
 
 
@@ -1254,7 +1258,7 @@ footer{
 
 
 
-    font-size:34px;
+    font-size:32px;
 
 
 
@@ -1266,7 +1270,7 @@ footer{
 
 
 
-    padding:18px 18px 20px;
+    padding:16px 18px 18px;
 
 
 
@@ -1318,7 +1322,7 @@ footer{
 
 
 
-    padding:54px 18px 42px;
+    padding:62px 24px 54px;
 
 
 
@@ -1330,11 +1334,7 @@ footer{
 
 
 
-    padding:26px 22px;
-
-
-
-    border-radius:28px;
+    max-width:100%;
 
 
 
@@ -1346,11 +1346,11 @@ footer{
 
 
 
-    font-size:38px;
+    font-size:40px;
 
 
 
-    line-height:1.05;
+    line-height:1.04;
 
 
 
